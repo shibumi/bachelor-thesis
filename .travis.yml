@@ -1,0 +1,18 @@
+dist: trusty
+sudo: required
+before_install:
+- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
+  texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng biber latexmk texlive-lang-german texlive-bibtex-extra
+script:
+  cd transaction
+- mkdir build
+- latexmk -pdf -output-directory=build transaction.tex
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: fI9uAD/T7pFuZFBVS6AkJIOY8QrXNwE5IJ2b8SMRmfsc1JHgpSQwRg2DgFUtB+qZmJzPy/g0wKGwAvvbq/H6WL2ENeO5CNGtp7HjOoIW353caQ8V5/cpS5rUCulETZhWH9H4nm17kCCrXx5F+kOTK+z+WgbobwxSK2Mdw0ed6D9QI59tLWVYj2UKyjISzSz1ueQDSs9l+0OMazdPCMF6xiRkWpqXw8y/nwi7TdCpkUliA14UM/2S1muQQjM3X4J/ZajbfgDJqRlq6WDFjIhnf+FaJIyeC7HllkFWZ9VK10PLBlWxukIRQzZnjyNxczHfdZdxA3K3A91kVm7l0wSoPio0+e5J4/kVqZZy2mcq+LwU12eQo7JaMbj8SZSVrzhhaeF0uXekop7nSSbUYqSmv9UhTmYEn+9aTfnnFL5w6BNcckshIrOKNiCOSwxaxH9A/yrffHXasKF/pGa2Q2kHVN953KrJsO0WCVRcl1VVdzuP6WDB7VV9r8ipbRmkJawSNx9UUHgQC4sf3Q0B59G2dnhm7Lt4uzDkGxjmYXhrpKQZyQPvM/JYmoig2RE7nMlndG/+i3ua2ZoQVSzQ+4Y4rLDgO39q3IOHxxiEt4xrEDcc7iegc6SuNL261tdUfnw662QhtplBu+ln0I/fGa2Ic0lrg1N6tW1TG8Wj7zbKY7U=
+  file: build/transaction.pdf
+  on:
+    repo: shibumi/bachelor-thesis
+    tags: true
