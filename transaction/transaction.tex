@@ -36,29 +36,30 @@ Das Netz der TU Clausthal erstreckt sich über mehrere Standorte.
 Teilweise liegen diese Standorte nicht in Clausthal selbst, wie
 beispielsweise das EFZN in Goslar. Dementsprechend schwierig gestaltet
 sich die Wartung und der Betrieb des Netzes. So kann auf Netzeinbrüche
-etwa nur reaktiv nach Meldung des Problems reagiert werden. Das
-Aufspüren der Ursache ist ebenfalls nur manuell und mit viel Aufwand
-möglich. Ein modernes Monitoring von zugesicherten Bandbreiten findet
-demnach nicht statt. Es kann also zwar eine Anbindung, aber keine
-stabile und gleichbleibende Bandbreite über einen längeren Zeitraum
-garantiert werden, wie es in größeren Betrieben seit geraumer Zeit mit
-Service-Level-Agreements der Fall ist.
+etwa nur reaktiv nach Meldung des Problems reagiert werden. Es existiert
+zwar ein Monitoring-System, welches die Verfügbarkeit von einzelnen
+Diensten überprüft, jedoch erfolgt diese Messung nur von einem Punkt aus
+und gibt nur binäre Statuswerte zurück (Dienst läuft oder Dienst läuft
+nicht). Dementsprechend fehlen Informationen um die Verfügbarkeit von
+Diensten und deren vollständige Funktion von mehreren Messpunkten aus zu
+garantieren. Beispielsweise ist es möglich, dass ein Dienst zwar vom
+zentralen Monitoring-Server aus erreichbar ist, aber aus einem einzelnen
+Institut der Zugriff auf den Dienst nur eingeschränkt oder sogar gar
+nicht möglich ist. Besonders Dienste wie \textit{Domain Name System}
+(DNS) sind auf schnelle Verbindungen angewiesen. Eine zu hohe Latenz
+zwischen einem Client und dem Dienst führt unweigerlich zu für den
+Nutzer sichtbaren Konsequenzen (Zum Beispiel verzögerte Seitenaufrufe beim
+Web-Browsing).
 \section*{Lösungsansatz}
-Um, erste Service-Level-Agreements zu etablieren, gilt es die Grundlage
-dafür zu schaffen: Service-Assurance-Tests. Die Service-Assurance-Tests
-sollen ein Monitoring der Netzqualität ermöglichen und Probleme erkennen
-bevor schwerwiegendere Ereignisse auftreten oder die Nutzer des
-Netzwerks auf Qualitätseinbußen aufmerksam werden. Die Implementierung
-der Tests erfolgt mit einer gängigen Programmiersprache und unter
-Beachtung des RFC2544 (Request for Comments 2544) der IETF (Internet
-Engineering Task Force) und den darauf aufbauenden Industriestandard
-ITU-T Y.1564.  Zur besseren Skalierbarkeit werden diese
-Service-Assurance-Tests auf Computersystemen platziert. Diese
-Computersysteme können dann auf dem Campus verteilt werden und
-sollen sich von einem Command-and-Control-Server im Schwarm
-administrieren lassen. Dafür werden moderne Config-Management-Tools
-eingesetzt werden. Die von den Computersystemen gewonnenen Daten
-sollen in einer Datenbank abgespeichert und grafisch aufgewertet werden.
+Als ersten Lösungsansatz ist ein System aus mehreren verteilten
+Computern geplant. Die einzelnen Computer dienen als Messpunkte. Von den
+einzelnen Messpunkten können dann Latenz- und Delay-Tests durchgeführt
+werden. Die von den Messpunkten gesammelten Daten werden dann zur
+weiteren Auswertung und grafischen Aufbereitung an ein System bestehend
+aus einer Datenbank und einem Webserver gesendet. Die Latenz- und
+Delay-Tests werden mit einer gängigen Programmiersprache implementiert.
+Zur einfachen Verwaltung der verteilten Computern wird ein modernes
+Config-Management-System benutzt.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/network.pdf}
