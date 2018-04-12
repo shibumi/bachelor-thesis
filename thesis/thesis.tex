@@ -55,7 +55,32 @@ stabiles Netz für den täglichen Betrieb. In dieser Bachelorarbeit widme
 ich mich deshalb der technischen Umsetzung eines verteilten
 Monitoring-Systems zur Überwachung der Netzwerkqualität zwischen
 einzelnen Endpunkten und Kernsystemen die für einen problemlosen
-Netzbetrieb nötig sind.
+Netzbetrieb nötig sind. Das Rechenzentrum der Technischen Universität
+Clausthal dient bei dieser Bachelorarbeit als Auftraggeber.
+\section*{Problemstellung}
+\addcontentsline{toc}{section}{Problemstellung}
+Das Netz der TU Clausthal erstreckt sich über mehrere
+Standorte. Teilweise liegen diese Standorte nicht in Clausthal
+selbst, wie beispielsweise das EFZN in Goslar. Dementsprechend
+schwierig gestaltet sich die Wartung und der Betrieb
+des Netzes. So kann auf Netzeinbrüche etwa nur reaktiv
+nach Meldung des Problems reagiert werden. Es existiert
+zwar ein Monitoring-System, welches die Verfügbarkeit von
+einzelnen Diensten überprüft, jedoch erfolgt diese Messung
+nur von einem Punkt aus und gibt nur binäre Statuswerte
+zurück (Dienst läuft oder Dienst läuft nicht). Dementsprechend
+fehlen Informationen um die Verfügbarkeit von Diensten und
+deren vollständige Funktion von mehreren Messpunkten aus
+zu garantieren. Beispielsweise ist es möglich, dass ein Dienst
+zwar vom zentralen Monitoring-Server aus erreichbar ist, aber
+aus einem einzelnen Institut der Zugriff auf den Dienst nur
+eingeschränkt oder sogar gar nicht möglich ist. Besonders
+Dienste wie Domain Name System (DNS) sind auf schnelle
+Verbindungen angewiesen. Eine zu hohe Latenz zwischen
+einem Client und dem Dienst führt unweigerlich zu für den
+Nutzer sichtbaren Konsequenzen (Zum Beispiel verzögerte
+Seitenaufrufe beim Web-Browsing). Aber auch andere Dienste sind
+essentiell für einen problemlosen Netzbetrieb.
 \chapter*{Definitionen}
 \addcontentsline{toc}{chapter}{Definitionen}
 \chapter*{Fazit}
