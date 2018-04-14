@@ -72,14 +72,44 @@ deren vollständige Funktion von mehreren Messpunkten aus
 zu garantieren. Beispielsweise ist es möglich, dass ein Dienst
 zwar vom zentralen Monitoring-Server aus erreichbar ist, aber
 aus einem einzelnen Institut der Zugriff auf den Dienst nur
-eingeschränkt oder sogar gar nicht möglich ist. Besonders
-Dienste wie Domain Name System (DNS) sind auf schnelle
-Verbindungen angewiesen. Eine zu hohe Latenz zwischen
-einem Client und dem Dienst führt unweigerlich zu für den
-Nutzer sichtbaren Konsequenzen (zum Beispiel verzögerte
-Seitenaufrufe beim Web-Browsing).
-\chapter*{Definitionen}
-\addcontentsline{toc}{chapter}{Definitionen}
+eingeschränkt oder sogar gar nicht möglich ist. Das Rechenzentrum der
+Technischen Universität Clausthal bietet mehrere Kerndienste an. Dazu
+gehören:
+\begin{itemize}
+    \item Domain Name System (DNS)
+    \item Diverse Webdienste basierend auf:
+    \begin{itemize}
+        \item Hypertext Transport Protocol (HTTP)
+        \item Hypertext Transport Protocol Secure (HTTPS)
+    \end{itemize}
+    \item Common Internet File System (CIFS)
+    \item Voice Over Internet Protocol (VOIP)
+\end{itemize}
+Besonders Dienste wie Domain Name System (DNS) sind auf schnelle
+Verbindungen angewiesen. Eine zu hohe Latenz zwischen einem Client und
+dem Dienst führt unweigerlich zu für den Nutzer sichtbaren Konsequenzen
+(zum Beispiel verzögerte Seitenaufrufe beim Web-Browsing). Noch mehr ins
+Gewicht fallen Latenzen bei Voice Over IP (VOIP), dort sind Latenzen
+oder ein Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTER})
+leicht auszumachen. Nämlich an abgehakten Telefonaten oder Rauschen in
+der Leitung. Was also fehlt ist ein Netz aus verteilten Messpunkten,
+dass es ermöglicht die Erreichbarkeit einzelner Dienste periodisch und
+über einen längeren Zeitraum zu beobachten. Dies hätte zwei Vorteile.
+Zum einen lässt sich so der Zustand des Campus-Netzwerks besser
+erfassen, da Tests nicht nur von einem zentralen Monitoring-System aus
+gestartet werden. Zum anderen können die gewonnenen Daten weiter
+verwertet, grafisch aufbereitet und zum Beispiel für die Erstellung von
+Langzeitstatistiken über die Gesundheit des Netzwerks genutzt werden.
+Weiterhin könnten im Fall eines Ausfalls natürlich die zuständigen
+Netzadministratoren benachrichtigt werden, im Idealfall durch gewohnte
+Kommunikationswege wie Email. Mit dem Wandel von einem zentralen zu
+einem dezentralen Monitoring-System entsteht allerdings auch mehr
+Arbeitsaufwand. Denn auch diese Systeme müssen gewartet werden. Im
+nachfolgenden Kapitel werden aus dieser Problemstellung die nötigen
+Anforderungen abgeleitet und ein erster Lösungsansatz für das Problem
+erstellt.
+\chapter*{Anforderungsanalyse}
+\addcontentsline{toc}{chapter}{Anforderungsanalyse}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
