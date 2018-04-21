@@ -14,4 +14,8 @@
 *.swp
 *.odt
 *.run.xml
+*.glg
+*.glo
+*.gls
+*.ist
 
