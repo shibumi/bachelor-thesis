@@ -9,21 +9,24 @@
 \usepackage[T1]{fontenc}
 \usepackage{url}
 \usepackage{hyphenat}
+\usepackage{glossaries}
+\makeglossaries{}
+\input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
 Campus der TU Clausthal}
 \author{Christian, Rebischke\\
-Technische Universität Clausthal\\
+\gls{tuc}\\
 Rechenzentrum\\
 Email: Christian.Rebischke@tu-clausthal.de}
 \begin{document}
 \maketitle
 \chapter*{Danksagung}
-Ich bedanke mich bei dem Rechenzentrum der Technischen Universität
-Clausthal, insbesondere bei Dipl.\hyp{}Math. Christian Strauf. Das Thema
-dieser Bachelorarbeit beruht auf seiner Idee und war mein Ansporn mich
-mit diesem Thema näher auseinanderzusetzen. Desweiteren danke ich Herrn
-Prof. Dr.\hyp{}Ing. Dr. rer. nat. habil. Harald Richter für die Unterstützung
-aus akademischer Seite.
+Ich bedanke mich bei dem Rechenzentrum der \gls{tuc}, insbesondere bei
+Dipl.\hyp{}Math. Christian Strauf. Das Thema dieser Bachelorarbeit
+beruht auf seiner Idee und war mein Ansporn mich mit diesem Thema näher
+auseinanderzusetzen. Desweiteren danke ich Herrn Prof. Dr.\hyp{}Ing. Dr.
+rer. nat. habil. Harald Richter für die Unterstützung aus akademischer
+Seite.
 \tableofcontents
 \chapter*{Vorwort}
 \addcontentsline{toc}{chapter}{Vorwort}
@@ -41,25 +44,25 @@ Technologiesprünge in der Informatik und dem immer weiteren Ausbau des
 Internets. Da ist es nicht verwunderlich, dass der UN-Menschenrechtsrat das
 Internet zu einem Menschenrecht\cite{UNHRC} erklärt hat und umso weniger
 verwunderlich ist es, dass die Vernetzung von Computersystemen auch auf
-dem Campus der Technischen Universität Clausthal eine Rolle spielt,
+dem Campus der \gls{tuc} eine Rolle spielt,
 nicht nur für Forschung und Lehre, sondern natürlich auch für den
 täglichen Betrieb. Eine Schlüsselposition nimmt dabei das Rechenzentrum
-der Technischen Universität Clausthal ein. Das Rechenzentrum bildet die
+der \gls{tuc} ein. Das Rechenzentrum bildet die
 Basis für die Vernetzung der einzelnen Fakultäten untereinander, die
 Vernetzung zwischen Fakultäten und Firmen aus der freien Wirtschaft,
-sowie auch die Vernetzung zwischen der Technischen Universität Clausthal
+sowie auch die Vernetzung zwischen der \gls{tuc} 
 und anderen Universitäten weltweit. Dementsprechend wichtig ist ein
 stabiles Netz für den täglichen Betrieb. In dieser Bachelorarbeit widme
 ich mich deshalb der technischen Umsetzung eines verteilten
 Monitoring-Systems zur Überwachung der Netzwerkqualität zwischen
 einzelnen Endpunkten und Kernsystemen die für einen problemlosen
-Netzbetrieb nötig sind. Das Rechenzentrum der Technischen Universität
-Clausthal dient bei dieser Bachelorarbeit als Auftraggeber.
+Netzbetrieb nötig sind. Das Rechenzentrum der \gls{tuc} dient bei dieser
+Bachelorarbeit als Auftraggeber.
 \chapter*{Problemstellung}
 \addcontentsline{toc}{chapter}{Problemstellung}
-Das Netz der TU Clausthal erstreckt sich über mehrere
+Das Netz der \gls{tuc} erstreckt sich über mehrere
 Standorte. Teilweise liegen diese Standorte nicht in Clausthal
-selbst, wie beispielsweise das EFZN in Goslar. Dementsprechend
+selbst, wie beispielsweise das \gls{efzn} in Goslar. Dementsprechend
 schwierig gestaltet sich die Wartung und der Betrieb
 des Netzes. So kann auf Netzeinbrüche etwa nur reaktiv
 nach Meldung des Problems reagiert werden. Es existiert
@@ -73,23 +76,23 @@ zu garantieren. Beispielsweise ist es möglich, dass ein Dienst
 zwar vom zentralen Monitoring-Server aus erreichbar ist, aber
 aus einem einzelnen Institut der Zugriff auf den Dienst nur
 eingeschränkt oder sogar gar nicht möglich ist. Das Rechenzentrum der
-Technischen Universität Clausthal bietet mehrere Kerndienste an. Dazu
+\gls{tuc} bietet mehrere Kerndienste an. Dazu
 gehören:
 \begin{itemize}
-    \item Domain Name System (DNS)
+    \item \gls{dns}
     \item Diverse Webdienste basierend auf:
     \begin{itemize}
-        \item Hypertext Transport Protocol (HTTP)
-        \item Hypertext Transport Protocol Secure (HTTPS)
+        \item \gls{http}
+        \item \gls{https}
     \end{itemize}
-    \item Common Internet File System (CIFS)
-    \item Voice Over Internet Protocol (VOIP)
+    \item \gls{cifs}
+    \item \gls{voip}
 \end{itemize}
-Besonders Dienste wie Domain Name System (DNS) sind auf schnelle
+Besonders Dienste wie \gls{dns} sind auf schnelle
 Verbindungen angewiesen. Eine zu hohe Latenz zwischen einem Client und
 dem Dienst führt unweigerlich zu für den Nutzer sichtbaren Konsequenzen
 (zum Beispiel verzögerte Seitenaufrufe beim Web-Browsing). Noch mehr ins
-Gewicht fallen Latenzen bei Voice Over IP (VOIP), dort sind Latenzen
+Gewicht fallen Latenzen bei \gls{voip}, dort sind Latenzen
 oder ein Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTER})
 leicht auszumachen. Nämlich an abgehakten Telefonaten oder Rauschen in
 der Leitung. Was also fehlt ist ein Netz aus verteilten Messpunkten,
@@ -119,4 +122,5 @@ Anforderungen erläutert.
 \nocite{*}
 \printbibliography{}
 \listoffigures
+\printglossary{}
 \end{document}
