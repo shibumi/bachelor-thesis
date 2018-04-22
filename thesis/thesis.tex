@@ -123,8 +123,28 @@ Aufgaben der Software im Bezug auf die Problemstellung. Die
 nichtfunktionalen Anforderungen dagegen sind besonders. Sie umfassen
 Anforderungen wie Sicherheit, nachträgliche Erweiterbarkeit,
 Testbarkeit, also Anforderungen die erst nach der Entwicklung
-mess\hyp{} oder
-testbar werden\cite[S. 292]{SNFA}.
+mess\hyp{} oder testbar werden\cite[S. 292]{SNFA}. Um die funktionalen
+und nichtfunktionalen Anforderungen besser einordnen zu können, werden
+folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
+\gls{rfc} 2119\cite{RFC2119} definiert:
+\begin{description}
+    \item[ERFORDERLICH] Ist eine absolute Anforderung an die Software. Alle
+        Anforderungen die mit \textbf{ERFORDERLICH} markiert sind,
+        \textbf{MÜSSEN} implementiert worden sein sein.
+    \item[VERBOTEN] Beschreibt eine negative Anforderung. Demnach eine
+        Anforderung die auf keinen Fall implementiert werden darf.
+    \item[EMPFOHLEN] Ist eine Anforderung die implementiert werden
+        \textbf{SOLLTE} aber nicht \textbf{MUSS}. Dies ist der Fall bei
+        Anforderungen die aus nachvollziehbaren Gründen nicht
+        implementiert worden sind.
+    \item[NICHT EMPFOHLEN] Das Gegenteil von \textbf{EMPFOHLEN}. Es
+        handelt sich hier um Anforderungen die vermieden werden sollten.
+    \item[OPTIONAL] Ist eine Anforderung die implementiert werden
+        \textbf{KANN}. Diese Art von Anforderungen sind
+        zusätzliches Extra und nicht nötig für die Grundfunktion der
+        Software.
+\end{description}
+\section*{Funktionale Anforderungen}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
