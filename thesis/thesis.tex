@@ -153,6 +153,7 @@ folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
 habe mich zur übersetzung der Schlüsselwörter auf die Übersetzung der
 Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \section*{Funktionale Anforderungen}
+\addcontentsline{toc}{section}{Funktionale Anforderungen}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA1: Zeitmessung von \gls{dns}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
@@ -182,7 +183,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA4: Zeitmessung von \gls{cifs}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA4: Zeitmessung von \gls{cifs}-Abfragen } & \textbf{Priorität: SOLL} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
     Die Software \textbf{MUSS} die Zeit messen können, die vergeht
     zwischen einer \gls{cifs}-Abfrage und der Antwort von einem
@@ -191,7 +192,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA5: Zeitmessung von \gls{voip}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA5: Zeitmessung von \gls{voip}-Abfragen } & \textbf{Priorität: KANN} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
     Die Software \textbf{MUSS} die Zeit messen können, die vergeht
     zwischen einer \gls{voip}-Abfrage und der Antwort von einem
@@ -207,6 +208,36 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     \gls{voip}-Server}\\\bottomrule
 \end{tabular}
 \end{center}
+\section*{Nichtfunktionale Anforderungen}
+\addcontentsline{toc}{section}{Nichtfunktionale Anforderungen}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{NFA1: Einfache Wartbarkeit} & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{voip}-Abfrage und der Antwort von einem
+    \gls{voip}-Server}\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{NFA2: Niedrige Beschaffungskosten} & \textbf{Priorität: SOLL} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{voip}-Abfrage und der Antwort von einem
+    \gls{voip}-Server}\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{NFA3: Sicherheit} & \textbf{Priorität: SOLL} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{voip}-Abfrage und der Antwort von einem
+    \gls{voip}-Server}\\\bottomrule
+\end{tabular}
+\end{center}
+
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
