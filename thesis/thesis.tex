@@ -116,6 +116,8 @@ Anforderungen abgeleitet und ein erster Lösungsansatz für das Problem
 erstellt.
 \chapter*{Herleitung eines Lösungsansatzes}
 \addcontentsline{toc}{chapter}{Herleitung eines Lösungsansatzes}
+\section*{Technische Grundlagen}
+\addcontentsline{toc}{section}{Technische Grundlagen}
 \section*{Anforderungsanalyse}
 \addcontentsline{toc}{section}{Anforderungsanalyse}
 Nachfolgend werden die ermittelten funktionalen und nichtfunktionalen
@@ -151,6 +153,7 @@ folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
 habe mich zur übersetzung der Schlüsselwörter auf die Übersetzung der
 Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \section*{Funktionale Anforderungen}
+\begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA1: Zeitmessung von \gls{dns}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
@@ -158,6 +161,8 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     zwischen einer \gls{dns}-Abfrage und der Antwort von einem
     \gls{dns}-Server}\\\bottomrule
 \end{tabular}
+\end{center}
+\begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA2: Zeitmessung von \gls{http}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
@@ -165,6 +170,8 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     zwischen einer \gls{http}-Abfrage und der Antwort von einem
     \gls{http}-Server}\\\bottomrule
 \end{tabular}
+\end{center}
+\begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA3: Zeitmessung von \gls{https}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
@@ -172,6 +179,34 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     zwischen einer \gls{https}-Abfrage und der Antwort von einem
     \gls{https}-Server}\\\bottomrule
 \end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA4: Zeitmessung von \gls{cifs}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{cifs}-Abfrage und der Antwort von einem
+    \gls{cifs}-Server}\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA5: Zeitmessung von \gls{voip}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{voip}-Abfrage und der Antwort von einem
+    \gls{voip}-Server}\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA6: Grafische Aufbereitung } & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{voip}-Abfrage und der Antwort von einem
+    \gls{voip}-Server}\\\bottomrule
+\end{tabular}
+\end{center}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
