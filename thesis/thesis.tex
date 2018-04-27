@@ -10,6 +10,7 @@
 \usepackage{url}
 \usepackage{hyphenat}
 \usepackage{glossaries}
+\usepackage{tabularx}
 \makeglossaries{}
 \input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
@@ -128,26 +129,50 @@ und nichtfunktionalen Anforderungen besser einordnen zu können, werden
 folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
 \gls{rfc} 2119\cite{RFC2119} definiert:
 \begin{description}
-    \item[ERFORDERLICH] Ist eine absolute Anforderung an die Software. Alle
+    \item[ERFORDERLICH] ist eine absolute Anforderung an die Software. Alle
         Anforderungen die mit \textbf{ERFORDERLICH} markiert sind,
         \textbf{MÜSSEN} implementiert worden sein sein.
-    \item[VERBOTEN] Beschreibt eine negative Anforderung. Demnach eine
+    \item[VERBOTEN] beschreibt eine negative Anforderung. Demnach eine
         Anforderung die auf keinen Fall implementiert werden darf.
-    \item[EMPFOHLEN] Ist eine Anforderung die implementiert werden
+    \item[EMPFOHLEN] ist eine Anforderung die implementiert werden
         \textbf{SOLLTE} aber nicht \textbf{MUSS}. Dies ist der Fall bei
         Anforderungen die aus nachvollziehbaren Gründen nicht
         implementiert worden sind.
-    \item[NICHT EMPFOHLEN] Das Gegenteil von \textbf{EMPFOHLEN}. Es
+    \item[NICHT EMPFOHLEN] ist das Gegenteil von \textbf{EMPFOHLEN}. Es
         handelt sich hier um Anforderungen die vermieden werden sollten.
-    \item[OPTIONAL] Ist eine Anforderung die implementiert werden
+    \item[OPTIONAL] ist eine Anforderung die implementiert werden
         \textbf{KANN}. Diese Art von Anforderungen sind
         zusätzliches Extra und nicht nötig für die Grundfunktion der
         Software.
 \end{description}
 \textbf{Anmerkung}: Das \gls{rfc} 2119 ist im Original in Englisch. Ich
 habe mich zur übersetzung der Schlüsselwörter auf die Übersetzung der
-Schweizer Firma Adfinis SyGroup AG gestützt.
+Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \section*{Funktionale Anforderungen}
+\begin{tabularx}{\textwidth}{|X|r|}
+\hline
+    \textbf{FA1: Zeitmessung von \gls{dns}-Abfragen } & \textbf{Priorität: MUSS} \\
+\hline
+    \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{%
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{dns}-Abfrage und der Antwort von einem
+    \gls{dns}-Server}\\
+\hline
+\end{tabularx}
+\begin{tabularx}{\textwidth}{X|l}
+    \textbf{FA2: Zeitmessung von \gls{http}-Abfragen } & \textbf{Priorität: MUSS} \\
+\hline
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{http}-Abfrage und der Antwort von einem
+    \gls{http}-Server\\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{X|l}
+    \textbf{FA3: Zeitmessung von \gls{https}-Abfragen } & \textbf{Priorität: MUSS} \\
+\hline
+    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    zwischen einer \gls{https}-Abfrage und der Antwort von einem
+    \gls{https}-Server\\
+\end{tabularx}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
