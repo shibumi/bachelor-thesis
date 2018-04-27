@@ -10,7 +10,9 @@
 \usepackage{url}
 \usepackage{hyphenat}
 \usepackage{glossaries}
-\usepackage{tabularx}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{booktabs}
 \makeglossaries{}
 \input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
@@ -51,7 +53,7 @@ täglichen Betrieb. Eine Schlüsselposition nimmt dabei das Rechenzentrum
 der \gls{tuc} ein. Das Rechenzentrum bildet die
 Basis für die Vernetzung der einzelnen Fakultäten untereinander, die
 Vernetzung zwischen Fakultäten und Firmen aus der freien Wirtschaft,
-sowie auch die Vernetzung zwischen der \gls{tuc} 
+sowie auch die Vernetzung zwischen der \gls{tuc}
 und anderen Universitäten weltweit. Dementsprechend wichtig ist ein
 stabiles Netz für den täglichen Betrieb. In dieser Bachelorarbeit widme
 ich mich deshalb der technischen Umsetzung eines verteilten
@@ -149,30 +151,27 @@ folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
 habe mich zur übersetzung der Schlüsselwörter auf die Übersetzung der
 Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \section*{Funktionale Anforderungen}
-\begin{tabularx}{\textwidth}{|X|r|}
-\hline
-    \textbf{FA1: Zeitmessung von \gls{dns}-Abfragen } & \textbf{Priorität: MUSS} \\
-\hline
-    \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{%
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA1: Zeitmessung von \gls{dns}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
     Die Software \textbf{MUSS} die Zeit messen können, die vergeht
     zwischen einer \gls{dns}-Abfrage und der Antwort von einem
-    \gls{dns}-Server}\\
-\hline
-\end{tabularx}
-\begin{tabularx}{\textwidth}{X|l}
-    \textbf{FA2: Zeitmessung von \gls{http}-Abfragen } & \textbf{Priorität: MUSS} \\
-\hline
+    \gls{dns}-Server}\\\bottomrule
+\end{tabular}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA2: Zeitmessung von \gls{http}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
     Die Software \textbf{MUSS} die Zeit messen können, die vergeht
     zwischen einer \gls{http}-Abfrage und der Antwort von einem
-    \gls{http}-Server\\
-\end{tabularx}
-\begin{tabularx}{\textwidth}{X|l}
-    \textbf{FA3: Zeitmessung von \gls{https}-Abfragen } & \textbf{Priorität: MUSS} \\
-\hline
+    \gls{http}-Server}\\\bottomrule
+\end{tabular}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA3: Zeitmessung von \gls{https}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
     Die Software \textbf{MUSS} die Zeit messen können, die vergeht
     zwischen einer \gls{https}-Abfrage und der Antwort von einem
-    \gls{https}-Server\\
-\end{tabularx}
+    \gls{https}-Server}\\\bottomrule
+\end{tabular}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
