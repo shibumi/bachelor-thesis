@@ -121,8 +121,41 @@ technischen Grundlagen erläutert. Darunter fallen einige wichtige
 Protokolle.
 \section*{\glsfirst{dns}}
 \addcontentsline{toc}{section}{\glsfirst{dns}}
-
-\section*{\glsfirst{http}}
+Aus Erfahrungen mit dem Internetvorgänger \gls{arpanet} wurde
+abgeleitet, dass ein manuelles Eingeben von \gls{ip}\hyph{}adressen mit
+steigender Anzahl von Knoten im Netzwerk immer unübersichtlicher wurde.
+Hinzukommend sind \gls{ip}\hyph{}Adressen für den Menschen schwer zu
+merken. Mit dieser Problemstellung als Grundlage arbeitete der Ingenieur
+Peter Mockapetris an einem ersten Lösungsansatz: \gls{dns}.
+Bei \gls{dns} handelt es sich um einen mehr als 20 Jahre alten
+Verzeichnisdienst, welcher über das gleichnamige Protokoll, für Menschen
+merkbare Internetadressen auf \gls{ip}\hyph{}Adressen abbildet.
+\gls{dns} wurde erstmalig im Jahr 1983 in den beiden \glspl{rfc}
+\gls{rfc} 882\cite{RFC0882} und \gls{rfc} 883\cite{RFC0883} beschrieben.
+Damals befanden sich die \gls{dns}\hyph{}Einträge, die Abbildungen von
+lesbarer Adresse auf \gls{ip}\hyph{}Adresse, noch verteilt auf
+allen Servern des frühen Internets, wurden von der \gls{nic} verwaltet
+und mit dem Dateiübertragungsprotokoll \gls{ftp}
+synchronisiert\cite{RFC1034}. In der damaligen Zeit stellte sich dies
+als ein Flaschenhals für das Internet heraus, da die Anzahl der Server
+im Netzwerk exponentiell zunahm. Deshalb wurden nur vier Jahre später
+Überarbeitungen von \gls{dns} veröffentlicht. Diese Überarbeitungen
+wurden in den \glspl{rfc} \gls{rfc} 1034 und \gls{rfc} 1035 erläutert
+und bilden die Grundlage für \gls{dns} wie es heute bekannt ist und auch
+eingesetzt wird. Der heutige Ansatz verläuft dezentraler als es damals
+der Fall gewesen ist. Anstatt die \gls{dns}\hyph{}Einträge auf allen
+Knoten des Internets zu verteilen und zentral von der \gls{nic} aus zu
+steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
+wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
+\gls{fqdn} ist beispielsweise \emph{akira.rz.tu-clausthal.de}. Die
+folgende Grafik veranschaulicht, die Gliederung dieses \gls{fqdn} in die
+einzelnen Bestandteile:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/dnsname.pdf}
+    \caption[Bestandteile eines \gls{fqdn} mit Hostname und Third-Level
+    Domain]\label{fig:1}
+\end{figure}
 \addcontentsline{toc}{section}{\glsfirst{http}}
 \section*{\glsfirst{https}}
 \addcontentsline{toc}{section}{\glsfirst{https}}
