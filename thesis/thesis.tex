@@ -96,7 +96,7 @@ Verbindungen angewiesen. Eine zu hohe Latenz zwischen einem Client und
 dem Dienst führt unweigerlich zu für den Nutzer sichtbaren Konsequenzen
 (zum Beispiel verzögerte Seitenaufrufe beim Web-Browsing). Noch mehr ins
 Gewicht fallen Latenzen bei \gls{voip}, dort sind Latenzen
-oder ein Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTER})
+oder ein Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTERWIKI})
 leicht auszumachen. Nämlich an abgehakten Telefonaten oder Rauschen in
 der Leitung. Was also fehlt ist ein Netz aus verteilten Messpunkten,
 dass es ermöglicht die Erreichbarkeit einzelner Dienste periodisch und
@@ -122,18 +122,18 @@ Protokolle.
 \section*{\glsfirst{dns}}
 \addcontentsline{toc}{section}{\glsfirst{dns}}
 Aus Erfahrungen mit dem Internetvorgänger \gls{arpanet} wurde
-abgeleitet, dass ein manuelles Eingeben von \gls{ip}\hyph{}adressen mit
+abgeleitet, dass ein manuelles Eingeben von \gls{ip}\hyp{}adressen mit
 steigender Anzahl von Knoten im Netzwerk immer unübersichtlicher wurde.
-Hinzukommend sind \gls{ip}\hyph{}Adressen für den Menschen schwer zu
+Hinzukommend sind \gls{ip}\hyp{}Adressen für den Menschen schwer zu
 merken. Mit dieser Problemstellung als Grundlage arbeitete der Ingenieur
 Peter Mockapetris an einem ersten Lösungsansatz: \gls{dns}.
 Bei \gls{dns} handelt es sich um einen mehr als 20 Jahre alten
 Verzeichnisdienst, welcher über das gleichnamige Protokoll, für Menschen
-merkbare Internetadressen auf \gls{ip}\hyph{}Adressen abbildet.
+merkbare Internetadressen auf \gls{ip}\hyp{}Adressen abbildet.
 \gls{dns} wurde erstmalig im Jahr 1983 in den beiden \glspl{rfc}
 \gls{rfc} 882\cite{RFC0882} und \gls{rfc} 883\cite{RFC0883} beschrieben.
-Damals befanden sich die \gls{dns}\hyph{}Einträge, die Abbildungen von
-lesbarer Adresse auf \gls{ip}\hyph{}Adresse, noch verteilt auf
+Damals befanden sich die \gls{dns}\hyp{}Einträge, die Abbildungen von
+lesbarer Adresse auf \gls{ip}\hyp{}Adresse, noch verteilt auf
 allen Servern des frühen Internets, wurden von der \gls{nic} verwaltet
 und mit dem Dateiübertragungsprotokoll \gls{ftp}
 synchronisiert\cite{RFC1034}. In der damaligen Zeit stellte sich dies
@@ -143,7 +143,7 @@ im Netzwerk exponentiell zunahm. Deshalb wurden nur vier Jahre später
 wurden in den \glspl{rfc} \gls{rfc} 1034 und \gls{rfc} 1035 erläutert
 und bilden die Grundlage für \gls{dns} wie es heute bekannt ist und auch
 eingesetzt wird. Der heutige Ansatz verläuft dezentraler als es damals
-der Fall gewesen ist. Anstatt die \gls{dns}\hyph{}Einträge auf allen
+der Fall gewesen ist. Anstatt die \gls{dns}\hyp{}Einträge auf allen
 Knoten des Internets zu verteilen und zentral von der \gls{nic} aus zu
 steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
 wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
