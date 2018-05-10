@@ -189,7 +189,19 @@ wie \emph{academy}, \emph{fun} oder \emph{house}\cite{NEWTLDLIST}. Die
 Vergabe der \glspl{tld} verlief direkt über die \gls{icann}. Der jeweilige
 Käufer ist dann Eigentümer der jeweiligen \gls{tld}. Ein Eigentümer
 einer \gls{tld} kann dann beliebig viele Subdomains erstellen für den
-Eigenbedarf oder diese weiterverkaufen.
+Eigenbedarf, diese weiterverkaufen oder gar verschenken. Weitere
+wichtige Elemente des \gls{dns}\hyp{}Protokolls sind \emph{Name Server}
+und \emph{Resolver}\cite[Siehe Section 2.4]{RFC1034}.
+\emph{Name Server} sind Server Programme, welche
+Informationen zu der Baumstruktur enthalten. Ergo halten \emph{Name
+Server} Domain\hyp{}\gls{ip}\hyp{}\hyp{}Tabellen für ihre
+hierarchische Ebene vor oder cachen Informationen von anderen \emph{Name
+Servern}, diese Informationen werden dann via dem
+\gls{dns}\hyp{}Protokoll an \emph{Resolver} weitergegeben.
+\emph{Resolver} übernehmen die Rolle des Clients, demzufolge senden
+\emph{Resolver} über \gls{dns} Anfragen an \emph{Name Server}. Diese
+Anfragen erfolgen in den meisten Fällen über UDP an den Zielport
+53\cite[Siehe Section 4.2.1]{RFC1035}.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
 \section*{\glsfirst{https}}
