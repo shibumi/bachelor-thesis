@@ -153,7 +153,7 @@ einzelnen Bestandteile:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/dnsname.pdf}
-    \caption{Bestandteile eines \gls{fqdn} mit Hostname und Third-Level
+    \caption{Bestandteile eines \gls{fqdn} mit optionalem Hostname und Third-Level
     Domain}\label{fig:1}
 \end{figure}
 \textbf{Anmerkung:} Eine Angabe des Hostname oder einer Third-Level
@@ -164,7 +164,27 @@ ist die maximale Anzahl abhängig vom \gls{dns}\hyp{}Server der die
 Domains ausliefert. Nach \gls{rfc} 1035 ist die maximale Länge eines
 \gls{fqdn} aber auf 255 Bytes begrenzt\cite[siehe Section
 2.3.4]{RFC1035}, was die maximale Anzahl von Subdomains zumindest stark
-einschränkt.
+einschränkt. Der Begriff Subdomain umfasst alle Domains unter der
+\gls{tld}.
+
+\glspl{fqdn} sind nicht nur hierarchisch strukturiert, sondern
+unterliegen zusätzlich einer Baumstruktur. Dessen Wurzel ist die
+\emph{Root Domain}, meistens symbolisiert durch einen einfachen Punkt.
+Eine Ebene direkt darunter sind die \glspl{tld} diese
+werden in der Regel von den \glspl{nic} einzelner Länder verwaltet. Von
+Ländern verwaltete \glspl{tld} haben meist Länderabkürzungen wie
+\emph{de} (Deutschland), \emph{jp} (Japan) oder \emph{cn} (Volksrepublik
+China). Es existieren aber auch militärische oder akademische
+\glspl{tld} wie \emph{edu} und {mil}. In Deutschland ist die DENIC eG
+verantwortlich für Domains mit \emph{de}\hyp{}Endung.
+In den letzten 5 Jahren kamen auch noch neue \glspl{tld} hinzu, welche
+nicht an Länder geknüpft sind. Darunter fallen Markennamen wie
+\emph{BMW}, \emph{Audi} oder \emph{Deutschepost} oder markenfreie Namen
+wie \emph{academy}, \emph{fun} oder \emph{house}\cite{NEWTLDLIST}. Die
+Vergabe der \glspl{tld} verlief direkt über die \gls{icann}. Der jeweilige
+Käufer ist dann Eigentümer der jeweiligen \gls{tld}. Ein Eigentümer
+einer \gls{tld} kann dann beliebig viele Subdomains erstellen für den
+Eigenbedarf oder diese weiterverkaufen.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
 \section*{\glsfirst{https}}
