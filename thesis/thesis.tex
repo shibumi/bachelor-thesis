@@ -13,6 +13,7 @@
 \usepackage{array}
 \usepackage{calc}
 \usepackage{booktabs}
+\usepackage{hyperref}
 \makeglossaries{}
 \input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
@@ -29,7 +30,12 @@ Dipl.\hyp{}Math. Christian Strauf. Das Thema dieser Bachelorarbeit
 beruht auf seiner Idee und war mein Ansporn mich mit diesem Thema näher
 auseinanderzusetzen. Desweiteren danke ich Herrn Prof. Dr.\hyp{}Ing. Dr.
 rer. nat. habil. Harald Richter für die Unterstützung aus akademischer
-Seite.
+Seite. Besonderen Dank bekommt von mir auch die Opensource Gemeinschaft.
+Ohne die harte Arbeit der Opensource Gemeinschaft würden die grundlegenden
+Werkzeuge die ich zur Vollendung dieser Bachelor-Arbeit benutzt habe
+nicht existieren. Darunter das Softwarepaket \LaTeX, die Zeichensoftware
+\emph{Draw IO} (\url{https://www.draw.io/}) und viele weitere spannende
+freiverfügbare Projekte.
 \tableofcontents
 \chapter*{Vorwort}
 \addcontentsline{toc}{chapter}{Vorwort}
@@ -148,15 +154,16 @@ Knoten des Internets zu verteilen und zentral von der \gls{nic} aus zu
 steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
 wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
 \gls{fqdn} ist beispielsweise \emph{akira.rz.tu-clausthal.de}. Die
-folgende Grafik veranschaulicht, die Gliederung dieses \gls{fqdn} in die
-einzelnen Bestandteile:
+\autoref{fig:1} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
+einzelnen Bestandteile.
+\newpage
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/dnsname.pdf}
     \caption{Bestandteile eines \gls{fqdn} mit optionalem Hostname und Third-Level
     Domain}\label{fig:1}
 \end{figure}
-\textbf{Anmerkung:} Eine Angabe des Hostname oder einer Third-Level
+Eine Angabe des Hostname oder einer Third-Level
 Domain ist optional. Es können auch weitere Domains hinzugefügt werden.
 So ist auch eine Sixth-Level Domain möglich. Die Maximale Anzahl der
 Subdomains ist in keinem der \gls{dns} \glspl{rfc} spezifiziert. Deshalb
@@ -165,9 +172,7 @@ Domains ausliefert. Nach \gls{rfc} 1035 ist die maximale Länge eines
 \gls{fqdn} aber auf 255 Bytes begrenzt\cite[siehe Section
 2.3.4]{RFC1035}, was die maximale Anzahl von Subdomains zumindest stark
 einschränkt. Der Begriff Subdomain umfasst alle Domains unter der
-\gls{tld}.
-
-\glspl{fqdn} sind nicht nur hierarchisch strukturiert, sondern
+\gls{tld}. \glspl{fqdn} sind nicht nur hierarchisch strukturiert, sondern
 unterliegen zusätzlich einer Baumstruktur. Dessen Wurzel ist die
 \emph{Root Domain}, meistens symbolisiert durch einen einfachen Punkt.
 Eine Ebene direkt darunter sind die \glspl{tld} diese
@@ -175,7 +180,7 @@ werden in der Regel von den \glspl{nic} einzelner Länder verwaltet. Von
 Ländern verwaltete \glspl{tld} haben meist Länderabkürzungen wie
 \emph{de} (Deutschland), \emph{jp} (Japan) oder \emph{cn} (Volksrepublik
 China). Es existieren aber auch militärische oder akademische
-\glspl{tld} wie \emph{edu} und {mil}. In Deutschland ist die DENIC eG
+\glspl{tld} wie \emph{edu} und \emph{mil}. In Deutschland ist die DENIC eG
 verantwortlich für Domains mit \emph{de}\hyp{}Endung.
 In den letzten 5 Jahren kamen auch noch neue \glspl{tld} hinzu, welche
 nicht an Länder geknüpft sind. Darunter fallen Markennamen wie
