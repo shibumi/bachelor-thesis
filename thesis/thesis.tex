@@ -126,7 +126,7 @@ abgeleitet, dass ein manuelles Eingeben von \gls{ip}\hyp{}adressen mit
 steigender Anzahl von Knoten im Netzwerk immer unübersichtlicher wurde.
 Hinzukommend sind \gls{ip}\hyp{}Adressen für den Menschen schwer zu
 merken. Mit dieser Problemstellung als Grundlage arbeitete der Ingenieur
-Peter Mockapetris an einem ersten Lösungsansatz: \gls{dns}.
+Peter Mockapetris an einem ersten Lösungsansatz: \glsfirst{dns}.
 Bei \gls{dns} handelt es sich um einen mehr als 20 Jahre alten
 Verzeichnisdienst, welcher über das gleichnamige Protokoll, für Menschen
 merkbare Internetadressen auf \gls{ip}\hyp{}Adressen abbildet.
@@ -134,7 +134,7 @@ merkbare Internetadressen auf \gls{ip}\hyp{}Adressen abbildet.
 \gls{rfc} 882\cite{RFC0882} und \gls{rfc} 883\cite{RFC0883} beschrieben.
 Damals befanden sich die \gls{dns}\hyp{}Einträge, die Abbildungen von
 lesbarer Adresse auf \gls{ip}\hyp{}Adresse, noch verteilt auf
-allen Servern des frühen Internets, wurden von der \gls{nic} verwaltet
+allen Servern des frühen Internets und wurden von der \gls{nic} verwaltet
 und mit dem Dateiübertragungsprotokoll \gls{ftp}
 synchronisiert\cite{RFC1034}. In der damaligen Zeit stellte sich dies
 als ein Flaschenhals für das Internet heraus, da die Anzahl der Server
@@ -156,6 +156,15 @@ einzelnen Bestandteile:
     \caption{Bestandteile eines \gls{fqdn} mit Hostname und Third-Level
     Domain}\label{fig:1}
 \end{figure}
+\textbf{Anmerkung:} Eine Angabe des Hostname oder einer Third-Level
+Domain ist optional. Es können auch weitere Domains hinzugefügt werden.
+So ist auch eine Sixth-Level Domain möglich. Die Maximale Anzahl der
+Subdomains ist in keinem der \gls{dns} \glspl{rfc} spezifiziert. Deshalb
+ist die maximale Anzahl abhängig vom \gls{dns}\hyp{}Server der die
+Domains ausliefert. Nach \gls{rfc} 1035 ist die maximale Länge eines
+\gls{fqdn} aber auf 255 Bytes begrenzt\cite[siehe Section
+2.3.4]{RFC1035}, was die maximale Anzahl von Subdomains zumindest stark
+einschränkt.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
 \section*{\glsfirst{https}}
