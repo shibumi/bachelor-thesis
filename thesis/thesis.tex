@@ -195,15 +195,30 @@ und \emph{Resolver}\cite[Siehe Section 2.4]{RFC1034}.
 \emph{Name Server} sind Server Programme, welche
 Informationen zu der Baumstruktur enthalten. Ergo halten \emph{Name
 Server} Domain\hyp{}\gls{ip}\hyp{}\hyp{}Tabellen für ihre
-hierarchische Ebene vor oder cachen Informationen von anderen \emph{Name
-Servern}, diese Informationen werden dann via dem
-\gls{dns}\hyp{}Protokoll an \emph{Resolver} weitergegeben.
-\emph{Resolver} übernehmen die Rolle des Clients, demzufolge senden
-\emph{Resolver} über \gls{dns} Anfragen an \emph{Name Server}. Diese
-Anfragen erfolgen in den meisten Fällen über UDP an den Zielport
-53\cite[Siehe Section 4.2.1]{RFC1035}.
+hierarchische Ebene vor. Wenn kein Eintrag zu dem angefragten \gls{fqdn}
+existiert wird der nächsthöhere \gls{dns}\hyp{}Server gefragt. An
+oberster Stelle stehen 13 \emph{Root Nameserver
+Server}\cite{ROOTNAMESERVER}. Die \emph{Root
+Name Server} umfassen die Namen und \gls{ip}\hyp{}Adressen aller
+\emph{Name Server} die für die \gls{tld} verantwortlich sind.
+\emph{Resolver} übernehmen die Rolle des Clients, sie senden
+\gls{dns}\hyp{}Anfragen an \emph{Name Server}. Diese
+Anfragen erfolgen in den meisten Fällen über \gls{udp} an den Zielport
+53\cite[Siehe Section 4.2.1]{RFC1035}. Es ist allerdings auch \gls{dns}
+über \gls{tcp} spezifiziert\cite[Siehe Section 4.2.2]{RFC1035}.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
+\glsfirst{http} ist ein auf \gls{tcp} aufbauendes
+Datenübertragungsprotokoll, welcher auf der Andwendungsschicht des
+\gls{osi} operiert. Der am meisten verbreiteste Anwendungszweck für das
+Protokoll ist das Ausliefern von Webseiten. \gls{http} wurde erstmals im
+Jahre 1996 als \gls{rfc} 1945 spezifiziert, nach dem es bereits fast 6
+Jahre im Internet im Einsatz gewesen war\cite{RFC1945}. Im Laufe der
+Jahre kamen dann weitere Versionen, sowie diverse Erweiterungen für das
+Protokoll hinzu. Darunter Erweiterungen für Kompression (um die
+Datenübertragungsrate zu erhöhen), Verschlüsselung, Caching und
+Authentifikation. Seit 2015 ist die aktuelle Version \gls{http}/2,
+welches in \gls{rfc} 7540 standardisiert wird\cite{RFC7540}.
 \section*{\glsfirst{https}}
 \addcontentsline{toc}{section}{\glsfirst{https}}
 \section*{\glsfirst{cifs}}
