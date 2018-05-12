@@ -23,6 +23,7 @@
     breaklines=true,
 }
 \renewcommand{\lstlistingname}{Snippet}
+\renewcommand{\lstlistlistingname}{Snippets}
 \makeglossaries{}
 \input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
@@ -234,15 +235,38 @@ keine Session aufgebaut und keine Sitzungsinformationen verwaltet.
 Sitzungsinformationen können aber zusätzlich durch \emph{Cookies}
 übertragen werden. \emph{Cookies} ergänzen den \gls{http}\hyp{}Header um
 Sitzungsinformationen, dadurch ist dann eine genaue Zuordnung möglich.
+Zur Interaktion mit dem Server besitzt \gls{http} mehrere Methoden. Die
+häufigsten sind:
+\begin{description}
+    \item[GET] für einfache Anfragen
+    \item[POST] um Informationen wie beispielsweise Logindaten an den
+        Server zu senden.
+    \item[HEAD] ist ähnlich wie \textbf{GET} mit dem Unterschied, dass
+        der Server bei einer Antwort keinen Inhalt mitliefert.
+\end{description}
+Weitere Methoden sind \textbf{DELETE}, \textbf{PUT} und \textbf{OPTIONS}
+die hier nicht weiter erläutert werden, da diese nur für eine
+\gls{restapi} verwendet werden.
 Im \autoref{lst:1} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
 Verbindungsaufbau an den Host \emph{http://tu-clausthal.de}
 visualisiert. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
 und ended in Zeile 9. Aus Zeile 5 wird ersichtlich, dass es sich um die
 Version 1.1 von \gls{http} handelt und der Client via \emph{GET} den
-Index der Seite \emph{tu-clausthal.de}(siehe Zeile 6) anfragt. Zeile 7
+Index der Seite \emph{tu-clausthal.de} (siehe Zeile 6) anfragt. Zeile 7
 übermittelt den Namen und Version der Software mit dem diese
 \gls{http}\hyp{}Anfrage gesendet worden ist und Zeile 8 definiert,
-welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}.
+welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}. Ab Zeile
+10 beginnt dann die Antwort des Servers. Dort wird das Protokoll und die
+Version nochmal bestätigt und in diesem Beispiel ein Statuscode
+hinzugefügt (301 weist daraufhin, dass der Inhalt der Seite verschoben
+worden ist und an einem neuen Ort liegt (siehe Zeile 13)). Zeile 11 gibt
+das aktuelle Datum, die Uhrzeit und die Zeitzone an und Zeile 12 die
+Software des Servers und deren Version. Die Zeilen 14,15 und 16
+enthalten die Information, dass der Server diverse Encodings unterstützt
+(zum Beispiel Kompression mit dem Kompressionsalgorithmus \emph{gzip}),
+die Länge des übermittelten Inhalts und der Typ des Inhalts sowie dessen
+Zeichenkodierung. Die Zeilen 18 bis 21 enthalten dann den übermittelten
+Inhalt. Hier gekürzt dargestellt.
 \begin{lstlisting}[caption={Eine HTTP-Anfrage an
 http://tu-clausthal.de},label={lst:1}]
 * Rebuilt URL to: http://tu-clausthal.de/
@@ -432,6 +456,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
 \printbibliography{}
+\lstlistoflistings{}
 \listoffigures
 \printglossary{}
 \end{document}
