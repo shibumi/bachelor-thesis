@@ -14,6 +14,15 @@
 \usepackage{calc}
 \usepackage{booktabs}
 \usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{%
+    frame=tb,
+    tabsize=4,
+    numbers=left,
+    breaklines=true,
+}
+\renewcommand{\lstlistingname}{Snippet}
 \makeglossaries{}
 \input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
@@ -218,7 +227,47 @@ Jahre kamen dann weitere Versionen, sowie diverse Erweiterungen für das
 Protokoll hinzu. Darunter Erweiterungen für Kompression (um die
 Datenübertragungsrate zu erhöhen), Verschlüsselung, Caching und
 Authentifikation. Seit 2015 ist die aktuelle Version \gls{http}/2,
-welche in \gls{rfc} 7540 standardisiert wird\cite{RFC7540}.
+welche in \gls{rfc} 7540 standardisiert wird\cite{RFC7540}. \gls{http}
+ist ein zustandsloses Protokoll, dementsprechend werden mehrere Anfragen
+getrennt von einander und ohne Kontext zu einander bearbeitet. Es wird
+keine Session aufgebaut und keine Sitzungsinformationen verwaltet.
+Sitzungsinformationen können aber zusätzlich durch \emph{Cookies}
+übertragen werden. \emph{Cookies} ergänzen den \gls{http}\hyp{}Header um
+Sitzungsinformationen, dadurch ist dann eine genaue Zuordnung möglich.
+Im \autoref{lst:1} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
+Verbindungsaufbau an den Host \emph{http://tu-clausthal.de}
+visualisiert. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
+und ended in Zeile 9. Aus Zeile 5 wird ersichtlich, dass es sich um die
+Version 1.1 von \gls{http} handelt und der Client via \emph{GET} den
+Index der Seite \emph{tu-clausthal.de}(siehe Zeile 6) anfragt. Zeile 7
+übermittelt den Namen und Version der Software mit dem diese
+\gls{http}\hyp{}Anfrage gesendet worden ist und Zeile 8 definiert,
+welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}.
+\begin{lstlisting}[caption={Eine HTTP-Anfrage an
+http://tu-clausthal.de},label={lst:1}]
+* Rebuilt URL to: http://tu-clausthal.de/
+*   Trying 2001:638:605:20:1::2...
+* TCP_NODELAY set
+* Connected to tu-clausthal.de (2001:638:605:20:1::2) port 80 (#0)
+> GET / HTTP/1.1
+> Host: tu-clausthal.de
+> User-Agent: curl/7.59.0
+> Accept: */*
+>
+< HTTP/1.1 301 Moved Permanently
+< Date: Fri, 11 May 2018 23:48:50 GMT
+< Server: Apache/2.2.22 (Ubuntu)
+< Location: http://www.tu-clausthal.de/
+< Vary: Accept-Encoding
+< Content-Length: 235
+< Content-Type: text/html; charset=iso-8859-1
+<
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+[...]
+</body></html>
+* Connection #0 to host tu-clausthal.de left intact
+\end{lstlisting}
 \section*{\glsfirst{https}}
 \addcontentsline{toc}{section}{\glsfirst{https}}
 \section*{\glsfirst{cifs}}
