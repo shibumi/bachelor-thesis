@@ -218,7 +218,7 @@ Anfragen erfolgen in den meisten Fällen über \gls{udp} an den Zielport
 über \gls{tcp} spezifiziert\cite[Siehe Section 4.2.2]{RFC1035}.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
-\glsfirst{http} ist ein auf \gls{tcp} aufbauendes
+\glsfirst{http} ist ein auf \gls{tcp}/\gls{ip} aufbauendes
 Datenübertragungsprotokoll, welcher auf der Andwendungsschicht des
 \gls{osi} operiert. Der am meisten verbreiteste Anwendungszweck für das
 Protokoll ist das Ausliefern von Webseiten über Port 80. \gls{http}
@@ -299,9 +299,32 @@ http://tu-clausthal.de},label={lst:1}]
 \addcontentsline{toc}{section}{\glsfirst{https}}
 Bei \gls{https} handelt es sich um das Protokoll \gls{http} mit einer
 zusätzlichen Schicht zur Verschlüsselung und Herstellung von
-Datenintegrität. Als Port für den Verbindungsaufbau wird standardmäßig
-433 benutzt\cite[Siehe Section 2.3]{RFC2818} und der
-\gls{url}\hyp{}Präfix ist \emph{https://}.
+Datenintegrität. Dafür wird das Verschlüsselungsprotokoll \gls{tls}
+benutzt, teilweise auch noch unter der Bezeichnung \gls{ssl} bekannt.
+Wobei anzumerken ist, dass \gls{ssl} der Name des Vorgängers ist.
+Für den Verbindungsaufbau wird bei \gls{https} standardmäßig
+Port 433 benutzt\cite[Siehe Section 2.3]{RFC2818}. Als
+\gls{url}\hyp{}Präfix dient \emph{https://}. Bei der Verschlüsselung und
+Herstellung der Datenintegrität bleibt die eigentliche
+\gls{http}\hyp{}Syntax intakt, ergo findet eine Verschlüsselung der
+einzelnen \gls{http}\hyp{}Pakete statt. Dazu verschickt der Client beim
+Verbindungsaufbau über Port 433 ein \emph{TLS ClientHello} an den
+Server, daraufhin wird dann der \gls{tls}\hyp{}Handshake initiiert.
+Dieser Handshake beinhaltet die Überprüfung der Integrität des Servers
+unter Betrachtung des \gls{tls}\hyp{}Zertifikats. Das Zertifikat ist
+nichts anderes als ein öffentlicher Schlüssel, welcher mit einer
+digitalen Signatur einer Zertifizierungsstelle beglaubigt worden ist.
+Der Client besitzt eine Datenbank mit gültigen Zertifizierungsstellen
+und vergleicht so das signierte Zertifikat des Servers mit dem
+Zertifikat einer Zertifizierungsstelle. Wurden keine Mängel
+festgestellt, beispielsweise ein abgelaufenes Zertifikat oder eine
+fremde Zertifizierungsstelle, geht der Client davon aus, dass der Server
+die Identität besitzt, die er vorgibt zu haben. Dies ist in so fern
+problematisch, als dass in der Vergangenheit wiederholt bei
+Zertifizierungsstellen eingebrochen worden ist und private Schlüssel zum
+erstellen von gültigen Zertifikaten gestohlen worden
+sind\cite{PRIVATEKEYSSTOLEN}. Nach der Integritätsprüfung folgt dann der
+eigentliche Aufbau einer verschlüsselten Verbindung.
 \section*{\glsfirst{cifs}}
 \addcontentsline{toc}{section}{\glsfirst{cifs}}
 \section*{\glsfirst{voip}}
