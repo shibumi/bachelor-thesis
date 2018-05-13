@@ -221,22 +221,22 @@ Anfragen erfolgen in den meisten Fällen über \gls{udp} an den Zielport
 \glsfirst{http} ist ein auf \gls{tcp} aufbauendes
 Datenübertragungsprotokoll, welcher auf der Andwendungsschicht des
 \gls{osi} operiert. Der am meisten verbreiteste Anwendungszweck für das
-Protokoll ist das Ausliefern von Webseiten. \gls{http} wurde erstmals im
-Jahre 1996 als \gls{rfc} 1945 spezifiziert, nach dem es bereits fast 6
-Jahre im Internet im Einsatz gewesen war\cite{RFC1945}. Im Laufe der
-Jahre kamen dann weitere Versionen, sowie diverse Erweiterungen für das
-Protokoll hinzu. Darunter Erweiterungen für Kompression (um die
-Datenübertragungsrate zu erhöhen), Verschlüsselung, Caching und
-Authentifikation. Seit 2015 ist die aktuelle Version \gls{http}/2,
-welche in \gls{rfc} 7540 standardisiert wird\cite{RFC7540}. \gls{http}
-ist ein zustandsloses Protokoll, dementsprechend werden mehrere Anfragen
-getrennt von einander und ohne Kontext zu einander bearbeitet. Es wird
-keine Session aufgebaut und keine Sitzungsinformationen verwaltet.
-Sitzungsinformationen können aber zusätzlich durch \emph{Cookies}
-übertragen werden. \emph{Cookies} ergänzen den \gls{http}\hyp{}Header um
-Sitzungsinformationen, dadurch ist dann eine genaue Zuordnung möglich.
-Zur Interaktion mit dem Server besitzt \gls{http} mehrere Methoden. Die
-häufigsten sind:
+Protokoll ist das Ausliefern von Webseiten über Port 80. \gls{http}
+wurde erstmals im Jahre 1996 als \gls{rfc} 1945 spezifiziert, nach dem
+es bereits fast 6 Jahre im Internet im Einsatz gewesen
+war\cite{RFC1945}. Im Laufe der Jahre kamen dann weitere Versionen,
+sowie diverse Erweiterungen für das Protokoll hinzu. Darunter
+Erweiterungen für Kompression (um die Datenübertragungsrate zu erhöhen),
+Verschlüsselung, Caching und Authentifikation. Seit 2015 ist die
+aktuelle Version \gls{http}/2, welche in \gls{rfc} 7540 standardisiert
+wird\cite{RFC7540}. \gls{http} ist ein zustandsloses Protokoll,
+dementsprechend werden mehrere Anfragen getrennt von einander und ohne
+Kontext zu einander bearbeitet. Es wird keine Session aufgebaut und
+keine Sitzungsinformationen verwaltet. Sitzungsinformationen können
+aber zusätzlich durch \emph{Cookies} übertragen werden. \emph{Cookies}
+ergänzen den \gls{http}\hyp{}Header um Sitzungsinformationen, dadurch
+ist dann eine genaue Zuordnung möglich. Zur Interaktion mit dem Server
+besitzt \gls{http} mehrere Methoden. Die häufigsten sind:
 \begin{description}
     \item[GET] für einfache Anfragen
     \item[POST] um Informationen wie beispielsweise Logindaten an den
@@ -259,7 +259,10 @@ welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}. Ab Zeile
 10 beginnt dann die Antwort des Servers. Dort wird das Protokoll und die
 Version nochmal bestätigt und in diesem Beispiel ein Statuscode
 hinzugefügt (301 weist daraufhin, dass der Inhalt der Seite verschoben
-worden ist und an einem neuen Ort liegt (siehe Zeile 13)). Zeile 11 gibt
+worden ist und an einem neuen Ort liegt (siehe Zeile 13)). Dazu wird auf
+eine neue \gls{url} verwiesen. Die \gls{url} dient als Pfadangabe zur
+gewünschten Ressource oder Information. Bei \gls{http} haben diese
+Pfadangaben den Präfix \emph{http://}. Zeile 11 gibt
 das aktuelle Datum, die Uhrzeit und die Zeitzone an und Zeile 12 die
 Software des Servers und deren Version. Die Zeilen 14,15 und 16
 enthalten die Information, dass der Server diverse Encodings unterstützt
@@ -294,6 +297,11 @@ http://tu-clausthal.de},label={lst:1}]
 \end{lstlisting}
 \section*{\glsfirst{https}}
 \addcontentsline{toc}{section}{\glsfirst{https}}
+Bei \gls{https} handelt es sich um das Protokoll \gls{http} mit einer
+zusätzlichen Schicht zur Verschlüsselung und Herstellung von
+Datenintegrität. Als Port für den Verbindungsaufbau wird standardmäßig
+433 benutzt\cite[Siehe Section 2.3]{RFC2818} und der
+\gls{url}\hyp{}Präfix ist \emph{https://}.
 \section*{\glsfirst{cifs}}
 \addcontentsline{toc}{section}{\glsfirst{cifs}}
 \section*{\glsfirst{voip}}
