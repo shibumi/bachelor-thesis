@@ -327,7 +327,28 @@ sind\cite{PRIVATEKEYSSTOLEN}. Nach der Integritätsprüfung folgt dann der
 eigentliche Aufbau einer verschlüsselten Verbindung. Für den Aufbau
 existieren im Augenblick zwei mögliche Verfahren. Zum Einen der
 \gls{rsa}\hyp{}Handshake und zum Anderen der
-Diffie\hyp{}Hellman\hyp{}Handshake\cite{TLS}.
+Diffie\hyp{}Hellman\hyp{}Handshake\cite{TLS}. Beim
+\gls{rsa}\hyp{}Handshake wird vom Client ein symmetrischer Schlüssel
+erzeugt, dieser wird dann mit dem öffentlichen Schlüssel des Servers
+verschlüsselt und dem Server mitgeteilt. Der Server entschlüsselt den
+symmetrischen Schlüssel unter Zuhilfenahme seines privaten Schlüssels.
+Damit ist eine sichere Verbindung aufgebaut und der Client und Server
+sind in der Lage sich mit dem symmetrischen Schlüssel
+verschlüsselte Nachrichten zu senden. Beim
+Diffie\hyp{}Hellman\hyp{}Handshake dagegen werden die öffentlichen
+Schlüssel beider Gesprächspartner ausgetauscht und mit dem jeweiligen im
+Besitz befindlichen privaten Schlüssel ein gemeinsamer symmetrischer
+Schlüssel berechnet. Dieser symmetrische Schlüssel verlässt im Gegensatz
+zum \gls{rsa}\hyp{}Handshake niemals den Server oder Client. Außerdem
+ist es möglich für jede Session einen neuen flüchtigen symmetrischen Key
+zu erzeugen, dies wird ermöglicht in dem bei jeder neuen Session ein
+neues Schlüsselpaar erzeugt wird. Ergo ist der
+Diffie\hyp{}Hellman\hyp{}Handshake als sicherer anzusehen, da der
+gemeinsame symmetrische Schlüssel niemals übertragen wird (auch nicht
+verschlüsselt) und neue Sessions immer mit einem neuen Schlüssel
+versehen werden. Letzteres ermöglicht \gls{pfs}.  Durch \gls{pfs} ist es
+einem Angreifer mit einem aktuellen privaten Schlüssel nicht möglich
+ältere aufgezeichnete Verbindungen zu entschlüsseln.
 \section*{\glsfirst{cifs}}
 \addcontentsline{toc}{section}{\glsfirst{cifs}}
 \section*{\glsfirst{voip}}
@@ -349,18 +370,18 @@ und nichtfunktionalen Anforderungen besser einordnen zu können, werden
 folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
 \gls{rfc} 2119\cite{RFC2119} definiert:
 \begin{description}
-    \item[ERFORDERLICH] ist eine absolute Anforderung an die Software. Alle
-        Anforderungen die mit \textbf{ERFORDERLICH} markiert sind,
+    \item[MUSS] ist eine absolute Anforderung an die Software. Alle
+        Anforderungen die mit \textbf{MUSS} markiert sind,
         \textbf{MÜSSEN} implementiert werden.
-    \item[VERBOTEN] beschreibt eine negative Anforderung. Demnach eine
+    \item[DARF NICHT] beschreibt eine negative Anforderung. Demnach eine
         Anforderung die auf keinen Fall implementiert werden darf.
-    \item[EMPFOHLEN] ist eine Anforderung die implementiert werden
+    \item[SOLL] ist eine Anforderung die implementiert werden
         \textbf{SOLLTE} aber nicht \textbf{MUSS}. Dies ist der Fall bei
         Anforderungen die aus nachvollziehbaren Gründen nicht
-        implementiert wird.
-    \item[NICHT EMPFOHLEN] ist das Gegenteil von \textbf{EMPFOHLEN}. Es
+        implementiert werden.
+    \item[MUSS NICHT] ist das Gegenteil von \textbf{MUSS}. Es
         handelt sich hier um Anforderungen die vermieden werden sollten.
-    \item[OPTIONAL] ist eine Anforderung die implementiert werden
+    \item[KANN] ist eine Anforderung die implementiert werden
         \textbf{KANN}. Diese Art von Anforderungen sind
         zusätzliches Extra und nicht nötig für die Grundfunktion der
         Software.
@@ -372,29 +393,29 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \addcontentsline{toc}{section}{Funktionale Anforderungen}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA1: Zeitmessung von \gls{dns}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA1: Überwachung von \gls{dns} } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
-    zwischen einer \gls{dns}-Abfrage und der Antwort von einem
-    \gls{dns}-Server}\\\bottomrule
+        Die Software muss die Erreichbarkeit mehrerer
+        \gls{dns}\hyp{}Server überprüfen können. Ebenfalls muss die
+        Latenz einer \gls{dns}\hyp{}Anfrage gemessen werden können.}\\bottomrule
 \end{tabular}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA2: Zeitmessung von \gls{http}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA2: Überwachung von \gls{http} } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
-    zwischen einer \gls{http}-Abfrage und der Antwort von einem
-    \gls{http}-Server}\\\bottomrule
+        Die Software \textbf{MUSS} die Erreichbarkeit mehrerer
+        \gls{http}\hyp{}Server überprüfen können. Ebenfalls muss die
+        Latenz einer \gls{http}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA3: Zeitmessung von \gls{https}-Abfragen } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA3: Überwachung von \gls{https} } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
-    zwischen einer \gls{https}-Abfrage und der Antwort von einem
-    \gls{https}-Server}\\\bottomrule
+        Die Software \textbf{MUSS} die Erreichbarkeit mehrerer
+        \gls{https}\hyp{}Server überprüfen können. Ebenfalls muss die
+        Latenz einer \gls{https}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
 \end{center}
 \begin{center}
