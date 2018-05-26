@@ -351,6 +351,25 @@ einem Angreifer mit einem aktuellen privaten Schlüssel nicht möglich
 ältere aufgezeichnete Verbindungen zu entschlüsseln.
 \section*{\glsfirst{cifs}}
 \addcontentsline{toc}{section}{\glsfirst{cifs}}
+\gls{cifs} ist ein von der Firma Microsoft 1996 eingeführtes
+Datentransferprotokoll auf Basis von \gls{SMB}\cite{SMBWIKI} und
+\emph{NetBIOS over TCP/IP}. Das Protokoll ist nicht nur auf
+Dateitransfer beschränkt, sondern kann auch für Druckerfreigaben,
+Windows-RPC (ein von Microsoft eingeführtes Protokoll um Code aus der
+Ferne auszuführen) und den NT-Domänendienst (Ein von Microsoft
+eingeführter Dienst zur Authentifizierung von Computern und Nutzern)
+verwendet werden. Für die in dem vorherigen Kapitel genannte
+Problemstellung ist allerdings nur der Dateitransfer via \gls{SMB} von
+Relevanz. Im Gegensatz zu \gls{http} ist \gls{CIFS} ein
+sessionbehaftetes Protokoll. Der \gls{CIFS}\hyp{}Server ordnet also
+jeder Verbindung eine Sitzung zu die einem Client genau zugeordnet
+werden kann, darüber sind diverse Operationen möglich wie
+Authentifizierung, Verschlüsselung oder \emph{Locking}\cite[S.
+16]{MSSMB}. Beim \emph{Locking} wird der Zugriff auf eine Datei
+beschränkt um deren Korruption zu vermeiden, welche passieren kann wenn
+mehrere Nutzer auf die gleiche Datei schreiben. Um dies zu verhindern
+setzt der \gls{CIFS}\hyp{}Server ein \emph{Lock} auf diese Datei und
+lässt nur einen Client in diese Datei schreiben.
 \section*{\glsfirst{voip}}
 \addcontentsline{toc}{section}{\glsfirst{voip}}
 \chapter*{Herleitung eines Lösungsansatzes}
@@ -420,7 +439,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA4: Zeitmessung von \gls{cifs}-Abfragen } & \textbf{Priorität: SOLL} \\\midrule
+    \textbf{FA4: Überwachung von \gls{cifs} } & \textbf{Priorität: SOLL} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
     Die Software \textbf{MUSS} die Zeit messen können, die vergeht
     zwischen einer \gls{cifs}-Abfrage und der Antwort von einem
@@ -454,6 +473,15 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         Diese Graphen \textbf{MÜSSEN} via Port 80 (\gls{http})
         und Port 443 (\gls{https}) erreichbar sein.
         }\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA8: Bandbreitenmessung } & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+        Das System muss in der Lage sein Bandbreitenmessungen anhand des
+        Durchsatzes vorzunehmen.
+                }\\\bottomrule
 \end{tabular}
 \end{center}
 \section*{Nichtfunktionale Anforderungen}
