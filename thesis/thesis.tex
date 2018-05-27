@@ -378,7 +378,7 @@ Die von der \gls{iana} für \gls{cifs} vergebene Portnummer ist:
 der Lage ist gleichzeitig Daten zu empfangen und zu senden.
 \autoref{fig:2} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
 \gls{tcp}\hyp{}Header. Der Header beginnt mit einem Byte aus Nullen und
-der anschließenden Länge des \smb{SMB}\hyp{}Pakets. Danach kommt in 32
+der anschließenden Länge des \gls{smb}\hyp{}Pakets. Danach kommt in 32
 Byte Blöcken die eigentliche Nachricht. Die Länge des Pakets wird als
 drei Byte Integer in \emph{Network Byte Order} repräsentiert\cite[S.
 21]{MSSMB}. \emph{Network Byte Order} entspricht dem \emph{Big Endian
@@ -502,7 +502,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA8: Bandbreitenmessung } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-        Das System muss in der Lage sein Bandbreitenmessungen anhand des
+        Das System \textbf{MUSS} in der Lage sein Bandbreitenmessungen anhand des
         Durchsatzes vorzunehmen.
                 }\\\bottomrule
 \end{tabular}
