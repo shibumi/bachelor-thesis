@@ -17,6 +17,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{bytefield}
+\usepackage{float}
 \lstset{%
     frame=tb,
     tabsize=4,
@@ -135,7 +136,65 @@ erstellt.
 \addcontentsline{toc}{chapter}{Technische Grundlagen}
 In diesem Kapitel werden die für die Lösung des Problems nötigen
 technischen Grundlagen erläutert. Darunter fallen einige wichtige
-Protokolle.
+Netzwerkprotokolle, sowie eine allgemeine Einführung in
+Computernetzwerke.
+\section*{Netzwerkgrundlagen}
+\addcontentsline{toc}{section}{Netzwerkgrundlagen}
+Um auf Basis der vorangegangenen Problemstellung eine Lösung zu
+erarbeiten, ist es notwendig einen groben Überblick über die Grundlagen
+von Computernetzwerken zu bekommen. Als Basis dafür dient das \gls{osi}. Das
+\gls{osi} ist de facto das bis heute gängige Referenzmodell, wenn es
+darum geht mehrere Systeme mit einander zu vernetzen. Ein solches System
+wird \emph{offenes System} genannt, wenn es den im \gls{osi}
+spezifizierten Standards entspricht\cite[Siehe Abschnitt
+4.1.2]{ITUOSI}. Diese \emph{offenen Systemen} sind mit einem physischen
+Medium verbunden und bilden so ein Computernetzwerk. \autoref{fig:1}
+zeigt eine solche Verbindung mehrerer \emph{offener Systeme}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/open_systems.pdf}
+    \caption{Veranschaulichung der Assoziationen verschiedenener offener
+    Systeme mit diversen Anwendungen über ein physisches Medium}\label{fig:1}
+\end{figure}
+Innerhalb eines dieser \emph{offener Systeme} sind sieben
+Netzwerkschichten oder auch \emph{OSI-Schichten} definiert\cite[Siehe
+Abschnitt 6.1.2]{ITUOSI}. Zur
+Kommunikation zwischen zwei \emph{offenen Systemen} wird mindestens eine
+Schicht durchlaufen, in den meisten Fällen jedoch mehrere Schichten.
+\autoref{fig:2} listet alle sieben Schichten, deren Protokolle,
+Einheiten und Einordnung auf. Die Funktionsweise des \gls{osi} lässt
+sich am besten durch ein kurzes Beispiel erklären:
+
+Es wird angenommen, es wird mit einem Laptop eine Website aufgerufen.
+Nachfolgend wird nur der Netzverkehr zwischen dem Client und dem Server
+betrachtet. Wenn der Client eine \gls{http}\hyp{}basierte Website
+aufrufen möchte, sendet dieser eine \gls{http}Anfrage in Form von
+\gls{http}\hyp{}Daten (Anwendungsschicht). Diese \gls{http}\hyp{}Daten
+werden wiederum in ein \gls{tcp}Segment eingebettet (Transportschicht),
+welches wiederum in ein \gls{ip}\hyp{}Paket eingebettet ist
+(Vermittlungsschicht). Dieses \gls{ip}\hyp{}Paket enthält die Adresse
+des Empfängers und wird ebenfalls eingebettet in einen
+Ethernet\hyp{}Frame (Sicherungsschicht), welcher wiederum in Form von
+Bits über ein Netzwerkkabel übertragen wird (Bitübertragungsschicht).
+Dieses Matrjoschka\hyp{}ähnliche Gebilde wird dann über das physische
+Medium versendet und der Empfänger packt es angefangen bei der
+Bitübertragungsschicht von unten nach oben wieder aus.
+
+\textbf{Anmerkung}: Es handelt sich hierbei um eine starkvereinfachte
+Darstellung. In der Realität kommen diverse andere Faktoren dazu, wie in
+etwa:
+\begin{itemize}
+    \item Das Auflösen eines Hostnamen mit \gls{dns}
+    \item Das Routing über \gls{ip}
+    \item Der Aufbau einer Session mit \gls{tcp}
+    \item \ldots
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/osi.pdf}
+    \caption{Das OSI-Schichtenmodell mit Protokollbeispielen und
+    verwendeten Einheiten}\label{fig:2}
+\end{figure}
 \section*{\glsfirst{dns}}
 \addcontentsline{toc}{section}{\glsfirst{dns}}
 Aus Erfahrungen mit dem Internetvorgänger \gls{arpanet} wurde
@@ -165,14 +224,13 @@ Knoten des Internets zu verteilen und zentral von der \gls{nic} aus zu
 steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
 wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
 \gls{fqdn} ist beispielsweise \emph{akira.rz.tu-clausthal.de}. Die
-\autoref{fig:1} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
+\autoref{fig:3} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
 einzelnen Bestandteile.
-\newpage
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/dnsname.pdf}
     \caption{Bestandteile eines \gls{fqdn} mit optionalem Hostname und Third-Level
-    Domain}\label{fig:1}
+    Domain}\label{fig:3}
 \end{figure}
 Eine Angabe des Hostname oder einer Third-Level
 Domain ist optional. Es können auch weitere Domains hinzugefügt werden.
@@ -376,7 +434,7 @@ Die von der \gls{iana} für \gls{cifs} vergebene Portnummer ist:
 445\cite[S. 19]{MSSMB}. Desweiteren hat \gls{tcp} den Vorteil, dass es
 \emph{full-duplex} ist. \emph{Full-duplex} bedeutet, dass \gls{tcp} in
 der Lage ist gleichzeitig Daten zu empfangen und zu senden.
-\autoref{fig:2} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
+\autoref{fig:4} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
 \gls{tcp}\hyp{}Header. Der Header beginnt mit einem Byte aus Nullen und
 der anschließenden Länge des \gls{smb}\hyp{}Pakets. Danach kommt in 32
 Byte Blöcken die eigentliche Nachricht. Die Länge des Pakets wird als
@@ -391,7 +449,7 @@ Format} bei dem das höchstwertige Byte zu erst gespeichert wird.
         \bitbox{32}{SMB Nachricht}\\
         \bitbox{32}{\ldots}
     \end{bytefield}
-    \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:2}
+    \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:4}
 \end{figure}
 \section*{\glsfirst{voip}}
 \addcontentsline{toc}{section}{\glsfirst{voip}}
