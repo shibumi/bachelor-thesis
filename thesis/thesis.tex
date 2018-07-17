@@ -24,6 +24,7 @@
     numbers=left,
     breaklines=true,
 }
+\setcounter{biburllcpenalty}{9001}
 \renewcommand{\lstlistingname}{Snippet}
 \renewcommand{\lstlistlistingname}{Snippets}
 \makeglossaries{}
@@ -46,7 +47,7 @@ Seite. Besonderen Dank bekommt von mir auch die
 Opensource\hyp{}Gemeinschaft.  Ohne die harte Arbeit der
 Opensource\hyp{}Gemeinschaft würden die grundlegenden Werkzeuge, die
 ich zur Vollendung dieser Bachelor-Arbeit benutzt habe, nicht
-existieren. Besonders hilfreich waren das Softwarepaket \LaTeX und die
+existieren. Besonders hilfreich waren das Softwarepaket \LaTeX{} und die
 Zeichensoftware \emph{Draw IO} (\url{https://www.draw.io/}).
 \chapter*{Eidesstattliche Erklärung}
 Hiermit erkläre ich an Eides statt, dass ich die vorliegende Arbeit
@@ -541,16 +542,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA5: Zeitmessung von \gls{voip}-Abfragen } & \textbf{Priorität: KANN} \\\midrule
-	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
-    zwischen einer \gls{voip}-Abfrage und der Antwort von einem
-    \gls{voip}-Server}\\\bottomrule
-\end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA6: Speicherung von Performance-Daten in einer Datenbank } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA5: Speicherung von Performance-Daten in einer Datenbank } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Das System \textbf{MUSS} die gesammelten Performance-Daten
         zur weiteren Auswertung an eine Datenbank übertragen.}\\\bottomrule
@@ -558,7 +550,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA7: Grafische Aufbereitung } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA6: Grafische Aufbereitung } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Die vom System zur Datenbank gesendeten Performance-Daten
         \textbf{MÜSSEN} für die Administratoren grafisch in Form von
@@ -570,15 +562,15 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{FA8: Bandbreitenmessung } & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{FA7: Bandbreitenmessung } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Das System \textbf{MUSS} in der Lage sein Bandbreitenmessungen anhand des
         Durchsatzes vorzunehmen.
                 }\\\bottomrule
 \end{tabular}
 \end{center}
-\subsection*{Nichtfunktionale Anforderungen}
-\addcontentsline{toc}{subsection}{Nichtfunktionale Anforderungen}
+\subsection*{Nicht-funktionale Anforderungen}
+\addcontentsline{toc}{subsection}{Nicht-funktionale Anforderungen}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{NFA1: Wahl der Programmiersprache} & \textbf{Priorität: MUSS} \\\midrule
@@ -628,6 +620,17 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \section*{Systemarchitektur}
 \addcontentsline{toc}{section}{Systemarchitektur}
+\section*{Datenmodell}
+\addcontentsline{toc}{section}{Datenmodell}
+\section*{Wahl der Monitoring Plattform}
+\addcontentsline{toc}{section}{Wahl der Monitoring Plattform}
+\section*{Wahl der Visualisierungslösung}
+\addcontentsline{toc}{section}{Wahl der Visualisierungslösung}
+\section*{Wahl des Configuration-Management}
+\addcontentsline{toc}{section}{Wahl des Configuration-Management}
+\section*{Wahl der Hardware}
+\addcontentsline{toc}{section}{Wahl der Hardware}
+
 
 \begin{figure}[H]
     \centering
