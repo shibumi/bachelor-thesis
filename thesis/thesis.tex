@@ -39,15 +39,15 @@ Email: Christian.Rebischke@tu-clausthal.de}
 \chapter*{Danksagung}
 Ich bedanke mich bei dem Rechenzentrum der \gls{tuc}, insbesondere bei
 Dipl.\hyp{}Math. Christian Strauf. Das Thema dieser Bachelorarbeit
-beruht auf seiner Idee und war mein Ansporn mich mit diesem Thema näher
+beruht auf seiner Idee und war mein Ansporn, mich mit diesem Thema näher
 auseinanderzusetzen. Desweiteren danke ich Herrn Prof. Dr.\hyp{}Ing. Dr.
 rer. nat. habil. Harald Richter für die Unterstützung aus akademischer
-Seite. Besonderen Dank bekommt von mir auch die Opensource Gemeinschaft.
-Ohne die harte Arbeit der Opensource Gemeinschaft würden die grundlegenden
-Werkzeuge die ich zur Vollendung dieser Bachelor-Arbeit benutzt habe
-nicht existieren. Darunter das Softwarepaket \LaTeX, die Zeichensoftware
-\emph{Draw IO} (\url{https://www.draw.io/}) und viele weitere spannende
-freiverfügbare Projekte.
+Seite. Besonderen Dank bekommt von mir auch die
+Opensource\hyp{}Gemeinschaft.  Ohne die harte Arbeit der
+Opensource\hyp{}Gemeinschaft würden die grundlegenden Werkzeuge, die
+ich zur Vollendung dieser Bachelor-Arbeit benutzt habe, nicht
+existieren. Besonders hilfreich waren das Softwarepaket \LaTeX und die
+Zeichensoftware \emph{Draw IO} (\url{https://www.draw.io/}).
 \chapter*{Eidesstattliche Erklärung}
 Hiermit erkläre ich an Eides statt, dass ich die vorliegende Arbeit
 selbstständig und nur unter Zuhilfenahme der ausgewiesenen Hilfsmittel
@@ -63,17 +63,17 @@ Christian Rebischke
 \tableofcontents
 \chapter*{Vorwort}
 \addcontentsline{toc}{chapter}{Vorwort}
-Es gibt nun seit mehr als 20 Jahren das Internet und keine Technologie
-ist wohl über so kurze Zeit so alltäglich geworden. Das Internet hat es
-geschafft Einzug zu erhalten in Arbeit, Privatleben und auch Forschung
+Es gibt nun mehr als 20 Jahren das Internet und keine Technologie
+ist über so kurze Zeit so alltäglich geworden. Das Internet hat es
+geschafft, Einzug zu erhalten in Arbeit, Privatleben und auch Forschung
 und Lehre. Nahezu in allen wissenschaftlichen Diszplinen spielt das
 Internet und die damit verknüpfte Informationstechnologie eine Rolle.
-Sei es die Industrie 4.0 mit ihren Cyber-physischen Systemen, dem
+Sei es die Industrie 4.0 mit ihren cyber-physischen Systemen, dem
 schnellen Abgleich von DNA-Informationen über das Netz in der
 angewandten Biologie, dem Sammeln von Krankheitsdaten in der Medizin
 oder das Verarbeiten von Datenmengen gigantischen Ausmaßes im
 Finanzsektor. All diese Beispiele sind nur möglich durch immer größere
-Technologiesprünge in der Informatik und dem immer weiteren Ausbau des
+Technologiesprünge in der Informatik und dem immer größeren Ausbau des
 Internets. Da ist es nicht verwunderlich, dass der UN-Menschenrechtsrat das
 Internet zu einem Menschenrecht\cite{UNHRC} erklärt hat und umso weniger
 verwunderlich ist es, dass die Vernetzung von Computersystemen auch auf
@@ -81,14 +81,14 @@ dem Campus der \gls{tuc} eine Rolle spielt,
 nicht nur für Forschung und Lehre, sondern natürlich auch für den
 täglichen Betrieb. Eine Schlüsselposition nimmt dabei das Rechenzentrum
 der \gls{tuc} ein. Das Rechenzentrum bildet die
-Basis für die Vernetzung der einzelnen Fakultäten untereinander, die
+Basis für die Vernetzung der einzelnen Fakultäten untereinander, der
 Vernetzung zwischen Fakultäten und Firmen aus der freien Wirtschaft,
 sowie auch die Vernetzung zwischen der \gls{tuc}
 und anderen Universitäten weltweit. Dementsprechend wichtig ist ein
 stabiles Netz für den täglichen Betrieb. In dieser Bachelorarbeit widme
 ich mich deshalb der technischen Umsetzung eines verteilten
 Monitoring-Systems zur Überwachung der Netzwerkqualität zwischen
-einzelnen Endpunkten und Kernsystemen die für einen problemlosen
+einzelnen Endpunkten und Kernsystemen, die für einen problemlosen
 Netzbetrieb nötig sind. Das Rechenzentrum der \gls{tuc} dient bei dieser
 Bachelorarbeit als Auftraggeber.
 \chapter*{Problemstellung}
@@ -101,7 +101,7 @@ des Netzes. So kann auf Netzeinbrüche etwa nur reaktiv
 nach Meldung des Problems reagiert werden. Es existiert
 zwar ein Monitoring-System, welches die Verfügbarkeit von
 einzelnen Diensten überprüft, jedoch erfolgt diese Messung
-nur von einem Punkt aus und gibt nur binäre Statuswerte
+von einem Punkt aus und gibt binäre Statuswerte
 zurück (Dienst läuft oder Dienst läuft nicht). Dementsprechend
 fehlen Informationen um die Verfügbarkeit von Diensten und
 deren vollständige Funktion von mehreren Messpunkten aus
@@ -123,24 +123,23 @@ gehören:
 \end{itemize}
 Besonders Dienste wie \gls{dns} sind auf schnelle
 Verbindungen angewiesen. Eine zu hohe Latenz zwischen einem Client und
-dem Dienst führt unweigerlich zu für den Nutzer sichtbaren Konsequenzen
+dem Dienst führt unweigerlich zu für den Nutzer spürbaren Konsequenzen
 (zum Beispiel verzögerte Seitenaufrufe beim Web-Browsing). Noch mehr ins
 Gewicht fallen Latenzen bei \gls{voip}, dort sind Latenzen
 oder ein Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTERWIKI})
-leicht auszumachen. Nämlich an abgehakten Telefonaten oder Rauschen in
-der Leitung. Was also fehlt ist ein Netz aus verteilten Messpunkten,
-dass es ermöglicht die Erreichbarkeit einzelner Dienste periodisch und
+leicht auszumachen. Was fehlt, ist ein Netz aus verteilten Messpunkten,
+das es ermöglicht, die Erreichbarkeit einzelner Dienste periodisch und
 über einen längeren Zeitraum zu beobachten. Dies hätte zwei Vorteile.
 Zum einen lässt sich so der Zustand des Campus-Netzwerks besser
 erfassen, da Tests nicht nur von einem zentralen Monitoring-System aus
 gestartet werden. Zum anderen können die gewonnenen Daten weiter
 verwertet, grafisch aufbereitet und zum Beispiel für die Erstellung von
 Langzeitstatistiken über die Gesundheit des Netzwerks genutzt werden.
-Weiterhin könnten im Fall eines Ausfalls natürlich die zuständigen
+Weiterhin könnten im Fall eines Ausfalls die zuständigen
 Netzadministratoren benachrichtigt werden, im Idealfall durch gewohnte
 Kommunikationswege wie Email. Mit dem Wandel von einem zentralen zu
 einem dezentralen Monitoring-System entsteht allerdings auch mehr
-Arbeitsaufwand. Denn auch diese Systeme müssen gewartet werden. Im
+Arbeitsaufwand, denn auch diese Systeme müssen gewartet werden. Im
 nachfolgenden Kapitel werden aus dieser Problemstellung die nötigen
 Anforderungen abgeleitet und ein erster Lösungsansatz für das Problem
 erstellt.
@@ -153,10 +152,10 @@ Computernetzwerke.
 \section*{Netzwerkgrundlagen}
 \addcontentsline{toc}{section}{Netzwerkgrundlagen}
 Um auf Basis der vorangegangenen Problemstellung eine Lösung zu
-erarbeiten, ist es notwendig einen groben Überblick über die Grundlagen
+erarbeiten, ist es notwendig, einen groben Überblick über die Grundlagen
 von Computernetzwerken zu bekommen. Als Basis dafür dient das \gls{osi}. Das
 \gls{osi} ist de facto das bis heute gängige Referenzmodell, wenn es
-darum geht mehrere Systeme mit einander zu vernetzen. Ein solches System
+darum geht, mehrere Systeme mit einander zu vernetzen. Ein solches System
 wird \emph{offenes System} genannt, wenn es den im \gls{osi}
 spezifizierten Standards entspricht\cite[Siehe Abschnitt
 4.1.2]{ITUOSI}. Diese \emph{offenen Systemen} sind mit einem physischen
@@ -177,12 +176,12 @@ Schicht durchlaufen, in den meisten Fällen jedoch mehrere Schichten.
 Einheiten und Einordnung auf. Die Funktionsweise des \gls{osi} lässt
 sich am besten durch ein kurzes Beispiel erklären:
 
-Es wird angenommen, es wird mit einem Laptop eine Website aufgerufen.
+Es wird angenommen, dass mit einem Laptop eine Website aufgerufen wird.
 Nachfolgend wird nur der Netzverkehr zwischen dem Client und dem Server
 betrachtet. Wenn der Client eine \gls{http}\hyp{}basierte Website
-aufrufen möchte, sendet dieser eine \gls{http}Anfrage in Form von
+aufrufen möchte, sendet dieser eine \gls{http}\hyp{}Anfrage in Form von
 \gls{http}\hyp{}Daten (Anwendungsschicht). Diese \gls{http}\hyp{}Daten
-werden wiederum in ein \gls{tcp}Segment eingebettet (Transportschicht),
+werden wiederum in ein \gls{tcp}\hyp{}Segment eingebettet (Transportschicht),
 welches wiederum in ein \gls{ip}\hyp{}Paket eingebettet ist
 (Vermittlungsschicht). Dieses \gls{ip}\hyp{}Paket enthält die Adresse
 des Empfängers und wird ebenfalls eingebettet in einen
@@ -190,7 +189,7 @@ Ethernet\hyp{}Frame (Sicherungsschicht), welcher wiederum in Form von
 Bits über ein Netzwerkkabel übertragen wird (Bitübertragungsschicht).
 Dieses Matrjoschka\hyp{}ähnliche Gebilde wird dann über das physische
 Medium versendet und der Empfänger packt es angefangen bei der
-Bitübertragungsschicht von unten nach oben wieder aus.
+Bitübertragungsschicht aufsteigend wieder aus.
 
 \textbf{Anmerkung}: Es handelt sich hierbei um eine starkvereinfachte
 Darstellung. In der Realität kommen diverse andere Faktoren dazu, wie in
@@ -199,7 +198,6 @@ etwa:
     \item Das Auflösen eines Hostnamen mit \gls{dns}
     \item Das Routing über \gls{ip}
     \item Der Aufbau einer Session mit \gls{tcp}
-    \item \ldots
 \end{itemize}
 \begin{figure}[H]
     \centering
@@ -216,26 +214,26 @@ Hinzukommend sind \gls{ip}\hyp{}Adressen für den Menschen schwer zu
 merken. Mit dieser Problemstellung als Grundlage arbeitete der Ingenieur
 Peter Mockapetris an einem ersten Lösungsansatz: \glsfirst{dns}.
 Bei \gls{dns} handelt es sich um einen mehr als 20 Jahre alten
-Verzeichnisdienst, welcher über das gleichnamige Protokoll, für Menschen
+Verzeichnisdienst, welcher über das gleichnamige Protokoll für Menschen
 merkbare Internetadressen auf \gls{ip}\hyp{}Adressen abbildet.
 \gls{dns} wurde erstmalig im Jahr 1983 in den beiden \glspl{rfc}
 \gls{rfc} 882\cite{RFC0882} und \gls{rfc} 883\cite{RFC0883} beschrieben.
 Damals befanden sich die \gls{dns}\hyp{}Einträge, die Abbildungen von
 lesbarer Adresse auf \gls{ip}\hyp{}Adresse, noch verteilt auf
-allen Servern des frühen Internets und wurden von der \gls{nic} verwaltet
+allen Servern des frühen Internets und wurden vom \gls{nic} verwaltet
 und mit dem Dateiübertragungsprotokoll \gls{ftp}
 synchronisiert\cite{RFC1034}. In der damaligen Zeit stellte sich dies
 als ein Flaschenhals für das Internet heraus, da die Anzahl der Server
-im Netzwerk exponentiell zunahm. Deshalb wurden nur vier Jahre später
+im Netzwerk exponentiell zunahm. Deshalb werden nur vier Jahre später
 Überarbeitungen von \gls{dns} veröffentlicht. Diese Überarbeitungen
 wurden in den \glspl{rfc} \gls{rfc} 1034 und \gls{rfc} 1035 erläutert
 und bilden die Grundlage für \gls{dns} wie es heute bekannt ist und auch
 eingesetzt wird. Der heutige Ansatz verläuft dezentraler als es damals
 der Fall gewesen ist. Anstatt die \gls{dns}\hyp{}Einträge auf allen
-Knoten des Internets zu verteilen und zentral von der \gls{nic} aus zu
+Knoten des Internets zu verteilen und zentral vom \gls{nic} aus zu
 steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
 wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
-\gls{fqdn} ist beispielsweise \emph{akira.rz.tu-clausthal.de}. Die
+\gls{fqdn} ist \emph{akira.rz.tu-clausthal.de}. Die
 \autoref{fig:3} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
 einzelnen Bestandteile.
 \begin{figure}[H]
@@ -246,9 +244,9 @@ einzelnen Bestandteile.
 \end{figure}
 Eine Angabe des Hostname oder einer Third-Level
 Domain ist optional. Es können auch weitere Domains hinzugefügt werden.
-So ist auch eine Sixth-Level Domain möglich. Die Maximale Anzahl der
+So ist auch eine Sixth-Level Domain möglich. Die maximale Anzahl der
 Subdomains ist in keinem der \gls{dns} \glspl{rfc} spezifiziert. Deshalb
-ist die maximale Anzahl abhängig vom \gls{dns}\hyp{}Server der die
+ist die maximale Anzahl abhängig vom \gls{dns}\hyp{}Server, der die
 Domains ausliefert. Nach \gls{rfc} 1035 ist die maximale Länge eines
 \gls{fqdn} aber auf 255 Bytes begrenzt\cite[siehe Section
 2.3.4]{RFC1035}, was die maximale Anzahl von Subdomains zumindest stark
@@ -256,7 +254,7 @@ einschränkt. Der Begriff Subdomain umfasst alle Domains unter der
 \gls{tld}. \glspl{fqdn} sind nicht nur hierarchisch strukturiert, sondern
 unterliegen zusätzlich einer Baumstruktur. Dessen Wurzel ist die
 \emph{Root Domain}, meistens symbolisiert durch einen einfachen Punkt.
-Eine Ebene direkt darunter sind die \glspl{tld} diese
+Eine Ebene direkt darunter sind die \glspl{tld}. Diese
 werden in der Regel von den \glspl{nic} einzelner Länder verwaltet. Von
 Ländern verwaltete \glspl{tld} haben meist Länderabkürzungen wie
 \emph{de} (Deutschland), \emph{jp} (Japan) oder \emph{cn} (Volksrepublik
@@ -268,23 +266,23 @@ nicht an Länder geknüpft sind. Darunter fallen Markennamen wie
 \emph{BMW}, \emph{Audi} oder \emph{Deutschepost} oder markenfreie Namen
 wie \emph{academy}, \emph{fun} oder \emph{house}\cite{NEWTLDLIST}. Die
 Vergabe der \glspl{tld} verlief direkt über die \gls{icann}. Der jeweilige
-Käufer ist dann Eigentümer der jeweiligen \gls{tld}. Ein Eigentümer
+Käufer ist Eigentümer der jeweiligen \gls{tld}. Ein Eigentümer
 einer \gls{tld} kann dann beliebig viele Subdomains erstellen für den
 Eigenbedarf, diese weiterverkaufen oder gar verschenken. Weitere
 wichtige Elemente des \gls{dns}\hyp{}Protokolls sind \emph{Name Server}
 und \emph{Resolver}\cite[Siehe Section 2.4]{RFC1034}.
-\emph{Name Server} sind Server Programme, welche
-Informationen zu der Baumstruktur enthalten. Ergo halten \emph{Name
-Server} Domain\hyp{}\gls{ip}\hyp{}\hyp{}Tabellen für ihre
+\emph{Name Server} sind Server\hyp{}Programme, welche
+Informationen zur Baumstruktur enthalten. Ergo halten \emph{Name
+Server} Domain\hyp{}\gls{ip}\hyp{}Tabellen für ihre
 hierarchische Ebene vor. Wenn kein Eintrag zu dem angefragten \gls{fqdn}
-existiert wird der nächsthöhere \gls{dns}\hyp{}Server gefragt. An
+existiert, wird der nächsthöhere \gls{dns}\hyp{}Server gefragt. An
 oberster Stelle stehen 13 \emph{Root Nameserver
 Server}\cite{ROOTNAMESERVER}. Die \emph{Root
 Name Server} umfassen die Namen und \gls{ip}\hyp{}Adressen aller
 \emph{Name Server} die für die \gls{tld} verantwortlich sind.
 \emph{Resolver} übernehmen die Rolle des Clients, sie senden
 \gls{dns}\hyp{}Anfragen an \emph{Name Server}. Diese
-Anfragen erfolgen in den meisten Fällen über \gls{udp} an den Zielport
+Anfragen erfolgen in den meisten Fällen über das \gls{udp} an den Zielport
 53\cite[Siehe Section 4.2.1]{RFC1035}. Es ist allerdings auch \gls{dns}
 über \gls{tcp} spezifiziert\cite[Siehe Section 4.2.2]{RFC1035}.
 \section*{\glsfirst{http}}
@@ -293,8 +291,8 @@ Anfragen erfolgen in den meisten Fällen über \gls{udp} an den Zielport
 Datenübertragungsprotokoll, welcher auf der Andwendungsschicht des
 \gls{osi} operiert. Der am meisten verbreiteste Anwendungszweck für das
 Protokoll ist das Ausliefern von Webseiten über Port 80. \gls{http}
-wurde erstmals im Jahre 1996 als \gls{rfc} 1945 spezifiziert, nach dem
-es bereits fast 6 Jahre im Internet im Einsatz gewesen
+wurde erstmals im Jahre 1996 als \gls{rfc} 1945 spezifiziert, nachdem
+es bereits fast sechs Jahre im Internet im Einsatz gewesen
 war\cite{RFC1945}. Im Laufe der Jahre kamen dann weitere Versionen,
 sowie diverse Erweiterungen für das Protokoll hinzu. Darunter
 Erweiterungen für Kompression (um die Datenübertragungsrate zu erhöhen),
@@ -306,17 +304,18 @@ Kontext zu einander bearbeitet. Es wird keine Session aufgebaut und
 keine Sitzungsinformationen verwaltet. Sitzungsinformationen können
 aber zusätzlich durch \emph{Cookies} übertragen werden. \emph{Cookies}
 ergänzen den \gls{http}\hyp{}Header um Sitzungsinformationen, dadurch
-ist dann eine genaue Zuordnung möglich. Zur Interaktion mit dem Server
+ist eine genaue Zuordnung möglich. Zur Interaktion mit dem Server
 besitzt \gls{http} mehrere Methoden. Die häufigsten sind:
 \begin{description}
     \item[GET] für einfache Anfragen
     \item[POST] um Informationen wie beispielsweise Logindaten an den
         Server zu senden.
-    \item[HEAD] ist ähnlich wie \textbf{GET} mit dem Unterschied, dass
+    \item[HEAD] ähnlich wie \textbf{GET} mit dem Unterschied, dass
         der Server bei einer Antwort keinen Inhalt mitliefert.
 \end{description}
-Weitere Methoden sind \textbf{DELETE}, \textbf{PUT} und \textbf{OPTIONS}
-die hier nicht weiter erläutert werden, da diese nur für eine
+Weitere Methoden sind \textbf{DELETE}, \textbf{PUT} und
+\textbf{OPTIONS},
+die hier nicht weiter erläutert werden, da diese nur für ein
 \gls{restapi} verwendet werden.
 Im \autoref{lst:1} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
 Verbindungsaufbau an den Host \emph{http://tu-clausthal.de}
@@ -327,11 +326,11 @@ Index der Seite \emph{tu-clausthal.de} (siehe Zeile 6) anfragt. Zeile 7
 übermittelt den Namen und Version der Software mit dem diese
 \gls{http}\hyp{}Anfrage gesendet worden ist und Zeile 8 definiert,
 welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}. Ab Zeile
-10 beginnt dann die Antwort des Servers. Dort wird das Protokoll und die
+10 beginnt dann die Antwort des Servers. Dort werden Protokoll und die
 Version nochmal bestätigt und in diesem Beispiel ein Statuscode
 hinzugefügt (301 weist daraufhin, dass der Inhalt der Seite verschoben
 worden ist und an einem neuen Ort liegt (siehe Zeile 13)). Dazu wird auf
-eine neue \gls{url} verwiesen. Die \gls{url} dient als Pfadangabe zur
+einen neuen \gls{url} verwiesen. Die \gls{url} dient als Pfadangabe zur
 gewünschten Ressource oder Information. Bei \gls{http} haben diese
 Pfadangaben den Präfix \emph{http://}. Zeile 11 gibt
 das aktuelle Datum, die Uhrzeit und die Zeitzone an und Zeile 12 die
@@ -339,7 +338,7 @@ Software des Servers und deren Version. Die Zeilen 14,15 und 16
 enthalten die Information, dass der Server diverse Encodings unterstützt
 (zum Beispiel Kompression mit dem Kompressionsalgorithmus \emph{gzip}),
 die Länge des übermittelten Inhalts und der Typ des Inhalts sowie dessen
-Zeichenkodierung. Die Zeilen 18 bis 21 enthalten dann den übermittelten
+Zeichenkodierung. Die Zeilen 18 bis 21 enthalten den übermittelten
 Inhalt. Hier gekürzt dargestellt.
 \begin{lstlisting}[caption={Eine HTTP-Anfrage an
 http://tu-clausthal.de},label={lst:1}]
@@ -372,7 +371,8 @@ Bei \gls{https} handelt es sich um das Protokoll \gls{http} mit einer
 zusätzlichen Schicht zur Verschlüsselung und Herstellung von
 Datenintegrität. Dafür wird das Verschlüsselungsprotokoll \gls{tls}
 benutzt, teilweise auch noch unter der Bezeichnung \gls{ssl} bekannt.
-Wobei anzumerken ist, dass \gls{ssl} der Name des Vorgängers ist.
+Dabei ist anzumerken, dass \gls{ssl} das Vorgängerprotokoll von
+\gls{tls} ist.
 Für den Verbindungsaufbau wird bei \gls{https} standardmäßig
 Port 433 benutzt\cite[Siehe Section 2.3]{RFC2818}. Als
 \gls{url}\hyp{}Präfix dient \emph{https://}. Bei der Verschlüsselung und
@@ -380,10 +380,10 @@ Herstellung der Datenintegrität bleibt die eigentliche
 \gls{http}\hyp{}Syntax intakt, ergo findet eine Verschlüsselung der
 einzelnen \gls{http}\hyp{}Pakete statt. Dazu verschickt der Client beim
 Verbindungsaufbau über Port 433 ein \emph{TLS ClientHello} an den
-Server, daraufhin wird dann der \gls{tls}\hyp{}Handshake initiiert.
+Server, woraufhin der \gls{tls}\hyp{}Handshake initiiert wird.
 Dieser Handshake beinhaltet die Überprüfung der Integrität des Servers
 unter Betrachtung des \gls{tls}\hyp{}Zertifikats. Das Zertifikat ist
-nichts anderes als ein öffentlicher Schlüssel, welcher mit einer
+ein öffentlicher Schlüssel, welcher mit einer
 digitalen Signatur einer Zertifizierungsstelle beglaubigt worden ist.
 Der Client besitzt eine Datenbank mit gültigen Zertifizierungsstellen
 und vergleicht so das signierte Zertifikat des Servers mit dem
@@ -391,19 +391,19 @@ Zertifikat einer Zertifizierungsstelle. Wurden keine Mängel
 festgestellt, beispielsweise ein abgelaufenes Zertifikat oder eine
 fremde Zertifizierungsstelle, geht der Client davon aus, dass der Server
 die Identität besitzt, die er vorgibt zu haben. Dies ist in so fern
-problematisch, als dass in der Vergangenheit wiederholt bei
+problematisch, als in der Vergangenheit wiederholt bei
 Zertifizierungsstellen eingebrochen worden ist und private Schlüssel zum
 erstellen von gültigen Zertifikaten gestohlen worden
-sind\cite{PRIVATEKEYSSTOLEN}. Nach der Integritätsprüfung folgt dann der
+sind\cite{PRIVATEKEYSSTOLEN}. Nach der Integritätsprüfung folgt der
 eigentliche Aufbau einer verschlüsselten Verbindung. Für den Aufbau
-existieren im Augenblick zwei mögliche Verfahren. Zum Einen der
+existieren derzeit zwei mögliche Verfahren. Zum Einen der
 \gls{rsa}\hyp{}Handshake und zum Anderen der
 Diffie\hyp{}Hellman\hyp{}Handshake\cite{TLS}. Beim
 \gls{rsa}\hyp{}Handshake wird vom Client ein symmetrischer Schlüssel
-erzeugt, dieser wird dann mit dem öffentlichen Schlüssel des Servers
+erzeugt, dieser wird mit dem öffentlichen Schlüssel des Servers
 verschlüsselt und dem Server mitgeteilt. Der Server entschlüsselt den
 symmetrischen Schlüssel unter Zuhilfenahme seines privaten Schlüssels.
-Damit ist eine sichere Verbindung aufgebaut und der Client und Server
+Damit ist eine sichere Verbindung aufgebaut und der Client und der Server
 sind in der Lage sich mit dem symmetrischen Schlüssel
 verschlüsselte Nachrichten zu senden. Beim
 Diffie\hyp{}Hellman\hyp{}Handshake dagegen werden die öffentlichen
@@ -411,14 +411,14 @@ Schlüssel beider Gesprächspartner ausgetauscht und mit dem jeweiligen im
 Besitz befindlichen privaten Schlüssel ein gemeinsamer symmetrischer
 Schlüssel berechnet. Dieser symmetrische Schlüssel verlässt im Gegensatz
 zum \gls{rsa}\hyp{}Handshake niemals den Server oder Client. Außerdem
-ist es möglich für jede Session einen neuen flüchtigen symmetrischen Key
-zu erzeugen, dies wird ermöglicht in dem bei jeder neuen Session ein
+ist es möglich, für jede Session einen neuen flüchtigen symmetrischen Key
+zu erzeugen. Dies wird ermöglicht, in dem bei jeder neuen Session ein
 neues Schlüsselpaar erzeugt wird. Ergo ist der
 Diffie\hyp{}Hellman\hyp{}Handshake als sicherer anzusehen, da der
 gemeinsame symmetrische Schlüssel niemals übertragen wird (auch nicht
 verschlüsselt) und neue Sessions immer mit einem neuen Schlüssel
 versehen werden. Letzteres ermöglicht \gls{pfs}.  Durch \gls{pfs} ist es
-einem Angreifer mit einem aktuellen privaten Schlüssel nicht möglich
+einem Angreifer mit einem aktuellen privaten Schlüssel nicht möglich,
 ältere aufgezeichnete Verbindungen zu entschlüsseln.
 \section*{\glsfirst{cifs}}
 \addcontentsline{toc}{section}{\glsfirst{cifs}}
@@ -426,33 +426,33 @@ einem Angreifer mit einem aktuellen privaten Schlüssel nicht möglich
 Datentransferprotokoll auf Basis von \gls{smb}\cite{SMBWIKI} und
 \gls{netbios} über \gls{tcp}/\gls{ip}. Das Protokoll ist nicht nur auf
 Dateitransfer beschränkt, sondern kann auch für Druckerfreigaben,
-Windows-RPC (ein von Microsoft eingeführtes Protokoll um Code aus der
-Ferne auszuführen) und den NT-Domänendienst (Ein von Microsoft
+Windows-RPC (ein von Microsoft eingeführtes Protokoll, um Code aus der
+Ferne auszuführen) und den NT-Domänendienst (ein von Microsoft
 eingeführter Dienst zur Authentifizierung von Computern und Nutzern)
 verwendet werden. Für die in dem vorherigen Kapitel genannte
 Problemstellung ist allerdings nur der Dateitransfer via \gls{smb} von
 Relevanz. Im Gegensatz zu \gls{http} ist \gls{cifs} ein
 sessionbehaftetes Protokoll. Der \gls{cifs}\hyp{}Server ordnet also
-jeder Verbindung eine Sitzung zu die einem Client genau zugeordnet
-werden kann, darüber sind diverse Operationen möglich wie
+jeder Verbindung eine Sitzung zu, die einem Client genau zugeordnet
+werden kann. Darüber sind diverse Operationen möglich wie
 Authentifizierung, Verschlüsselung oder \emph{Locking}\cite[S.
 16]{MSSMB}. Beim \emph{Locking} wird der Zugriff auf eine Datei
-beschränkt um deren Korruption zu vermeiden, welche passieren kann wenn
-mehrere Nutzer auf die gleiche Datei schreiben. Um dies zu verhindern
+beschränkt, um deren Korruption zu vermeiden, welche passieren kann, wenn
+mehrere Nutzer auf die gleiche Datei schreiben. Um dies zu verhindern,
 setzt der \gls{cifs}\hyp{}Server ein \emph{Lock} auf diese Datei und
 lässt nur einen Client in diese Datei schreiben. Der eigentliche
 Transfer der Dateien wird mit \gls{tcp} vor Korruption geschützt.
 Die von der \gls{iana} für \gls{cifs} vergebene Portnummer ist:
 445\cite[S. 19]{MSSMB}. Desweiteren hat \gls{tcp} den Vorteil, dass es
 \emph{full-duplex} ist. \emph{Full-duplex} bedeutet, dass \gls{tcp} in
-der Lage ist gleichzeitig Daten zu empfangen und zu senden.
+der Lage ist, gleichzeitig Daten zu empfangen und zu senden.
 \autoref{fig:4} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
 \gls{tcp}\hyp{}Header. Der Header beginnt mit einem Byte aus Nullen und
-der anschließenden Länge des \gls{smb}\hyp{}Pakets. Danach kommt in 32
-Byte Blöcken die eigentliche Nachricht. Die Länge des Pakets wird als
+der anschließenden Länge des \gls{smb}\hyp{}Pakets. Danach folgt in
+32\hyp{}Byte\hyp{}Blöcken die eigentliche Nachricht. Die Länge des Pakets wird als
 drei Byte Integer in \emph{Network Byte Order} repräsentiert\cite[S.
 21]{MSSMB}. \emph{Network Byte Order} entspricht dem \emph{Big Endian
-Format} bei dem das höchstwertige Byte zu erst gespeichert wird.
+Format}, bei dem das höchstwertige Byte zuerst gespeichert wird.
 \begin{figure}[h]
     \centering
     \begin{bytefield}{32}
@@ -469,30 +469,30 @@ Format} bei dem das höchstwertige Byte zu erst gespeichert wird.
 \addcontentsline{toc}{chapter}{Herleitung eines Lösungsansatzes}
 \section*{Anforderungsanalyse}
 \addcontentsline{toc}{section}{Anforderungsanalyse}
-Nachfolgend werden die ermittelten funktionalen und nichtfunktionalen
+Nachfolgend werden die ermittelten funktionalen und nichthyp{}funktionalen
 Anforderungen erläutert. Funktionale Anforderungen stellen das
 ``eigentliche Systemverhalten und die jeweiligen Funktionen des zu
 erstellenden Produkts''\cite[S. 20]{BPSE} dar, also die grundlegenden
 Aufgaben der Software im Bezug auf die Problemstellung. Die
-nichtfunktionalen Anforderungen dagegen sind besonders. Sie umfassen
+nichthyp{}funktionalen Anforderungen dagegen sind besonders. Sie umfassen
 Anforderungen wie Sicherheit, nachträgliche Erweiterbarkeit,
-Testbarkeit, also Anforderungen die erst nach der Entwicklung
+Testbarkeit, also Anforderungen, welche erst nach der Entwicklung
 mess\hyp{} oder testbar werden\cite[S. 292]{SNFA}. Um die funktionalen
-und nichtfunktionalen Anforderungen besser einordnen zu können, werden
+und nichthyp{}funktionalen Anforderungen besser einordnen zu können, werden
 folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
 \gls{rfc} 2119\cite{RFC2119} definiert:
 \begin{description}
     \item[MUSS] ist eine absolute Anforderung an die Software. Alle
-        Anforderungen die mit \textbf{MUSS} markiert sind,
+        Anforderungen, die mit \textbf{MUSS} markiert sind,
         \textbf{MÜSSEN} implementiert werden.
     \item[DARF NICHT] beschreibt eine negative Anforderung. Demnach eine
-        Anforderung die auf keinen Fall implementiert werden darf.
-    \item[SOLL] ist eine Anforderung die implementiert werden
+        Anforderung, welche auf keinen Fall implementiert werden darf.
+    \item[SOLL] ist eine Anforderung, die implementiert werden
         \textbf{SOLLTE} aber nicht \textbf{MUSS}. Dies ist der Fall bei
-        Anforderungen die aus nachvollziehbaren Gründen nicht
+        Anforderungen, welche aus nachvollziehbaren Gründen nicht
         implementiert werden.
-    \item[MUSS NICHT] ist das Gegenteil von \textbf{MUSS}. Es
-        handelt sich hier um Anforderungen die vermieden werden sollten.
+    \item[DARF NICHT] ist das Gegenteil von \textbf{MUSS}. Es
+        handelt sich hier um Anforderungen, die vermieden werden sollten.
     \item[KANN] ist eine Anforderung die implementiert werden
         \textbf{KANN}. Diese Art von Anforderungen sind
         zusätzliches Extra und nicht nötig für die Grundfunktion der
