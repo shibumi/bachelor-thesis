@@ -306,6 +306,33 @@ Name Server} umfassen die Namen und \gls{ip}\hyp{}Adressen aller
 Anfragen erfolgen in den meisten Fällen über das \gls{udp} an den Zielport
 53\cite[Siehe Section 4.2.1]{RFC1035}. Es ist allerdings auch \gls{dns}
 über \gls{tcp} spezifiziert\cite[Siehe Section 4.2.2]{RFC1035}.
+Letzteres ist nötig für die \gls{dns}\hyp{}Erweiterungen
+\gls{dns}\hyp{}over\hyp{}\gls{tls} (Port 853) und
+\gls{dns}\hyp{}over\hyp{}\gls{https} (Port 443), welche das Protokoll \gls{dns} um
+Verschlüsselung erweitern\cite{RFC7858}
+(\gls{dns}\hyp{}over\hyp{}\gls{https} ist zum Zeitpunkt dieser Arbeit
+noch nicht endgültig spezifiziert). Dieses Bestreben \gls{dns} sicherer
+zu machen unterstreicht die Wichtigkeit des Protokolls. Das Protokoll
+ist heute maßgeblich an der Funktionalität des Internets beteiligt. Ohne
+\gls{dns} wären diverse vernetzte Anwendungen nicht möglich. Der
+Webbrowser in etwa löst permanent \gls{dns}\hyp{}Anfragen aus. Ist nur
+eine dieser Anfragen fehlerhaft oder stark verzögert ist das für den
+Nutzer augenblicklich zu merken. Im Fall von fehlerhaften Anfragen, wäre
+eine Auflösung der Domain nicht möglich und eine Verbindung zu der
+assoziierten \gls{ip}\hyp{}Adresse würde fehlschlagen. Der Webbrowser
+beispielsweise würde in diesem Fall einen Fehlerbildschirm anzeigen.
+Bei stark verzögerten
+\gls{dns}\hyp{}Anfragen dauert der Aufbau einer neuen Seite massiv
+länger als üblich. Wie wichtig schnelle Antwortzeiten eines Computers
+sind hat Walter Doherty bereits im Jahre 1982 mit seinem Paper ``The
+Economic Value of Rapid Response Time'' deutlich gemacht. Doherty
+beobachtete einen signifikanten Anstieg an Benutzerinteraktionen, wenn
+die Latenz der Anfrage (in diesem Fall bezogen auf normale
+Computereingaben) unter einen bestimmten Wert fiel\cite{DOHERTY}.
+Bezogen auf die Latenz von \gls{dns}\hyp{}Anfragen hieße das, dass der
+Benutzer massiv bei seiner Arbeit ausgebremst wird. Dies führt nicht nur
+zu Frustration beim Nutzer, sondern auch zu Verschwendung seiner
+bezahlten Arbeitszeit und damit einer geringeren Produktivität.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
 \glsfirst{http} ist ein auf \gls{tcp}/\gls{ip} aufbauendes
