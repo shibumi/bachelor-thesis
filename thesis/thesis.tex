@@ -361,10 +361,10 @@ besitzt \gls{http} mehrere Methoden. Die häufigsten sind:
     \item[HEAD] ähnlich wie \textbf{GET} mit dem Unterschied, dass
         der Server bei einer Antwort keinen Inhalt mitliefert.
 \end{description}
-Weitere Methoden sind \textbf{DELETE}, \textbf{PUT} und
-\textbf{OPTIONS},
-die hier nicht weiter erläutert werden, da diese nur für ein
-\gls{restapi} verwendet werden.
+Die Methoden \textbf{DELETE}, \textbf{PUT} sind nur für eine
+\gls{restapi} relevant und umfassen das Löschen und hinzufügen. Um
+herauszufinden, welche Methoden ein Server unterstützt, kann die Methode
+\textbf{OPTIONS} verwendet werden.
 Im \autoref{lst:1} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
 Verbindungsaufbau an den Host \emph{http://tu-clausthal.de}
 visualisiert. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
@@ -413,6 +413,14 @@ http://tu-clausthal.de},label={lst:1}]
 </body></html>
 * Connection #0 to host tu-clausthal.de left intact
 \end{lstlisting}
+Bei der Verwendung von \gls{http} können folgende Fehlerfälle auftreten:
+\begin{itemize}
+    \item Die Verbindung ist zu langsam und der Seitenaufbau erfolgt in
+          einem für den Nutzer zu langsamen Tempo. Dies führt zu
+          Frustration beim Nutzer.
+    \item Die Verbindung kommt nicht zu Stande, weil der Webserver nicht
+          erreichbar ist.
+\end{itemize}
 \section*{\glsfirst{https}}
 \addcontentsline{toc}{section}{\glsfirst{https}}
 Bei \gls{https} handelt es sich um das Protokoll \gls{http} mit einer
@@ -468,6 +476,13 @@ verschlüsselt) und neue Sessions immer mit einem neuen Schlüssel
 versehen werden. Letzteres ermöglicht \gls{pfs}.  Durch \gls{pfs} ist es
 einem Angreifer mit einem aktuellen privaten Schlüssel nicht möglich,
 ältere aufgezeichnete Verbindungen zu entschlüsseln.
+Die Fehlerfälle bei \gls{https} entsprechen denen von \gls{http} mit
+erweitert um einige Fehler bezogen auf \gls{tls}:
+\begin{itemize}
+    \item Das \gls{tls}\hyp{}Zertifikat ist ungültig
+    \item Es kommt keine Verbindung auf Port 443 zu Stande, weil der
+          Webserver kein \gls{https} unterstützt.
+\end{itemize}
 \section*{\glsfirst{cifs}}
 \addcontentsline{toc}{section}{\glsfirst{cifs}}
 \gls{cifs} ist ein von der Firma Microsoft 1996 eingeführtes
@@ -511,6 +526,14 @@ Format}, bei dem das höchstwertige Byte zuerst gespeichert wird.
     \end{bytefield}
     \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:4}
 \end{figure}
+Bei der Verwendung von \gls{cifs} können folgende Fehlerfälle auftreten:
+\begin{itemize}
+    \item Die Verbindung zum Server, welcher den \gls{cifs}\hyp{}Share
+          anbietet weist eine hohe Latenz auf. Dies führt zu langsamen
+          Schreib\hyp{} und Leseoperationen auf dem Share, was die
+          Produktivität des Nutzers massiv bremst.
+    \item Der \gls{cifs}\hyp{}Share ist nicht erreichbar.
+\end{itemize}
 \chapter*{Herleitung eines Lösungsansatzes}
 \addcontentsline{toc}{chapter}{Herleitung eines Lösungsansatzes}
 \section*{Anforderungsanalyse}
