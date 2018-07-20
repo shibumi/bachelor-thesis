@@ -388,6 +388,7 @@ enthalten die Information, dass der Server diverse Encodings unterstützt
 die Länge des übermittelten Inhalts und der Typ des Inhalts sowie dessen
 Zeichenkodierung. Die Zeilen 18 bis 21 enthalten den übermittelten
 Inhalt. Hier gekürzt dargestellt.
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Eine HTTP-Anfrage an
 http://tu-clausthal.de},label={lst:1}]
 * Rebuilt URL to: http://tu-clausthal.de/
@@ -413,6 +414,7 @@ http://tu-clausthal.de},label={lst:1}]
 </body></html>
 * Connection #0 to host tu-clausthal.de left intact
 \end{lstlisting}
+\end{minipage}
 Bei der Verwendung von \gls{http} können folgende Fehlerfälle auftreten:
 \begin{itemize}
     \item Die Verbindung ist zu langsam und der Seitenaufbau erfolgt in
@@ -688,6 +690,25 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \end{center}
 \section*{Systemarchitektur}
 \addcontentsline{toc}{section}{Systemarchitektur}
+Auf Grundlage der Problemstellung und der Anforderungen ergibt sich die
+folgende Aufstellung von Komponenten für die Systemarchitektur:
+\begin{description}
+    \item[Datenbank] Eine Datenbank zur Speicherung der
+                     gewonnenen Messdaten.
+    \item[Konfigurationsmanagement] Ein System zur Verwaltung, Kontrolle
+        und Konfiguration der einzelnen Messsensoren, der Datenbank und
+        der Visualisierungslösung.
+    \item[Visualisierungslösung] Das System zur Visualisierung der von
+        den Messsensoren gewonnenen Messdaten.
+    \item[Messensor] Ein verteilter Messpunkt um die in den
+        Anforderungen spezifizierten Daten zu gewinnen.
+\end{description}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/network.pdf}
+    \caption{Übersicht der einzelnen Komponenten der zu entwickelnden
+    Systeme}\label{fig:5}
+\end{figure}
 \section*{Datenmodell}
 \addcontentsline{toc}{section}{Datenmodell}
 \section*{Wahl der Monitoring Plattform}
@@ -698,14 +719,6 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \addcontentsline{toc}{section}{Wahl des Configuration-Management}
 \section*{Wahl der Hardware}
 \addcontentsline{toc}{section}{Wahl der Hardware}
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures/network.pdf}
-    \caption{Übersicht der einzelnen Komponenten der zu entwickelnden
-    Systeme}\label{fig:5}
-\end{figure}
 \chapter*{Projektumsetzung}
 \addcontentsline{toc}{chapter}{Projektumsetzung}
 \chapter*{Fazit}
