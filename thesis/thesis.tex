@@ -695,14 +695,20 @@ folgende Aufstellung von Komponenten für die Systemarchitektur:
 \begin{description}
     \item[Datenbank] Eine Datenbank zur Speicherung der
                      gewonnenen Messdaten.
-    \item[Konfigurationsmanagement] Ein System zur Verwaltung, Kontrolle
+    \item[Konfigurationsmanagement] Ein Subsystem zur Verwaltung, Kontrolle
         und Konfiguration der einzelnen Messsensoren, der Datenbank und
         der Visualisierungslösung.
-    \item[Visualisierungslösung] Das System zur Visualisierung der von
-        den Messsensoren gewonnenen Messdaten.
-    \item[Messensor] Ein verteilter Messpunkt um die in den
-        Anforderungen spezifizierten Daten zu gewinnen.
+    \item[Visualisierungslösung] Das Subsystem zur Visualisierung der, von
+        den Messsensoren, gewonnenen Messdaten.
+    \item[Messensor] Ein verteilter Messpunkt, um die in den
+        Anforderungen spezifizierten Daten, zu gewinnen.
 \end{description}
+Aus der Komponentenaufstellung ergeben sich die Assoziationen zwischen
+den einzelnen Komponenten. Das Konfigurationsmanagement umspannt alle
+Komponenten und sorgt für deren Konfiguration, Verwaltung und Kontrolle.
+Die einzelnen Messensoren senden ihre Messdaten zur Datenbank. Der
+Webserver mit der Visualisierungslösung stellt diese Daten dann
+aufbereitet für den Nutzer grafisch dar.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/network.pdf}
