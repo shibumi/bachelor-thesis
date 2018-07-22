@@ -324,8 +324,8 @@ beispielsweise würde in diesem Fall einen Fehlerbildschirm anzeigen.
 Bei stark verzögerten
 \gls{dns}\hyp{}Anfragen dauert der Aufbau einer neuen Seite massiv
 länger als üblich. Wie wichtig schnelle Antwortzeiten eines Computers
-sind hat Walter Doherty bereits im Jahre 1982 mit seinem Paper ``The
-Economic Value of Rapid Response Time'' deutlich gemacht. Doherty
+sind hat Walter Doherty bereits im Jahre 1982 mit seinem Paper \emph{The
+Economic Value of Rapid Response Time} deutlich gemacht. Doherty
 beobachtete einen signifikanten Anstieg an Benutzerinteraktionen, wenn
 die Latenz der Anfrage (in diesem Fall bezogen auf normale
 Computereingaben) unter einen bestimmten Wert fiel\cite{DOHERTY}.
@@ -716,6 +716,73 @@ für den Nutzer, grafisch dar.
 \end{figure}
 \section*{Datenmodell}
 \addcontentsline{toc}{section}{Datenmodell}
+Zur Speicherung der Messdaten steht ein breites Spektrum von Datenbanken
+zur Verfügung. Das Spektrum reicht von traditionellen relationalen
+Datenbanken, wie zum Beispiel MySQL, bis zu modernen
+NoSQL\hyp{}Datenbanken, wie Key\hyp{}Value\hyp{}Stores und \glspl{tsdb}.
+Dieses Kapitel versucht einen Überblick über alle Datenbanktypen zu
+geben und den passenden Datenbanktyp für das Projekt festzulegen.
+\subsection*{Relationale Datenbanken}
+\addcontentsline*{toc}{subsection}{Relationale Datenbanken}
+Bei relationalen Datenbanken handelt es sich um tabellenbasierte
+Datensätze. Als Grundlage dieser Datenbanken dienen Relationen.
+Relationen sind mathematisch bewiesene und damit wohldefinierte
+Beschreibungen von diesen Tabellen. Für Schreib\hyp{} und
+Leseoperationen, auf diesen durch Relationen beschrieben Tabellen, wird
+eine formale Sprache verwendet; die relationale Algebra. Jede Tabelle
+wird beim Relationenmodell als eine Menge untergeordneter Tupel
+aufgefasst\cite[S. 4]{MEIER2013}. Ein weiteres Merkmal von relationalen
+Datenbanken ist die Verwendung von Primärschlüsseln (englisch: primary
+key). Durch Primärschlüsseln ist jeder Eintrag in einer relationalen
+Datenbank einzigartig. Um Datenbankeinträge abzufragen, zu manipulieren
+und in die Datenbank zu transferieren wird die international
+standardisierte Datenbankbeschreibungssprache \gls{sql} eingesetzt. Die
+nachfolgende Tabelle namens \emph{Studenten} beschreibt einen
+Datenbankeintrag in einer relationen Datenbank:
+\begin{center}
+    \begin{tabular}{l c r}
+        \toprule
+        Matrikelnummer & Vorname & Nachname \\
+        \midrule
+        1              & Alice   & Alcatraz \\
+        2              & Bob     & Bounty   \\
+        3              & Charlie & Echo     \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+In der oben abgebildeten Datenbank ist nur eine Tabelle namens
+\emph{Studenten} vorhanden. Auf dieser Tabelle können mit \gls{sql} diverse
+Operationen durchgeführt werden. Das \autoref{lst:2} zeigt das hinzufügen von neuen
+Daten, das abrufen von Daten, das manipulieren von Daten und das
+erzeugen einer neuen Tabelle. Als Implementierung wurde \emph{sqlite}
+verwendet. In der ersten Zeile wird durch das \emph{INSERT} Statement
+ein neuer Student zur Tabelle \emph{Studenten} mit der Matrikelnummer 4,
+dem Vornamen Dana und dem Nachnamen Foxtrott hinzugefügt. In der zweiten
+Zeile werden alle Vornamen aus der Tabelle \emph{Studenten}
+ausgegeben und in der siebten Zeile wird der Nachname vom Studenten
+namens Charlie zu Alcatraz geändert. Zeile 8 zeigt das Erzeugen einer
+neuen Tabelle \emph{Professoren} mit der MitarbeiterID als
+aufsteigenden Primärschlüssel und den Einträgen zu Vorname und Nachname.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Verwendung von Structured Query Language},label={lst:2}]
+sqlite> INSERT INTO Studenten VALUES (4,'Dana','Foxtrott');
+sqlite> select Vorname from Studenten;
+Alice
+Bob
+Charlie
+Dana
+sqlite> UPDATE Studenten SET Nachname = "Alcatraz" WHERE Matrikelnummer = 3;
+sqlite> CREATE TABLE Professoren(MitarbeiterID INTEGER PRIMARY KEY ASC, Vorname, Nachname);
+\end{lstlisting}
+\end{minipage}
+Bekannte Implementierungen für relationale Datenbanken sind:
+\begin{itemize}
+    \item MySQL
+    \item MariaDB
+    \item Sqlite
+\end{itemize}
+\subsection*{NoSQL Datenbanken}
+\addcontentsline*{toc}{subsection}{NoSQL Datenbanken}
 \section*{Wahl der Monitoring Plattform}
 \addcontentsline{toc}{section}{Wahl der Monitoring Plattform}
 \section*{Wahl der Visualisierungslösung}
