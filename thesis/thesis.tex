@@ -763,6 +763,7 @@ ausgegeben und in der siebten Zeile wird der Nachname vom Studenten
 namens Charlie zu Alcatraz geändert. Zeile 8 zeigt das Erzeugen einer
 neuen Tabelle \emph{Professoren} mit der MitarbeiterID als
 aufsteigenden Primärschlüssel und den Einträgen zu Vorname und Nachname.
+
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Verwendung von Structured Query Language},label={lst:2}]
 sqlite> INSERT INTO Studenten VALUES (4,'Dana','Foxtrott');
@@ -781,8 +782,45 @@ Bekannte Implementierungen für relationale Datenbanken sind:
     \item MariaDB
     \item Sqlite
 \end{itemize}
-\subsection*{NoSQL Datenbanken}
-\addcontentsline*{toc}{subsection}{NoSQL Datenbanken}
+\subsection*{NoSQL\hyp{}Datenbanken}
+\addcontentsline*{toc}{subsection}{NoSQL\hyp{}Datenbanken}
+NoSQL\hyp{}Datenbanken sind zunächst einmal nur ein grober Sammelbegriff
+für alle Datenbanken die kein relationales Konzept verfolgen und somit
+nicht durch die Sprache \gls{sql} beschrieben werden können. In den
+meisten Fällen handelt es sich bei NoSQL\hyp{}Datenbanken um einfache
+Key\hyp{}Value\hyp{}Stores. Key\hyp{}Value\hyp{}Stores sind Ansammlungen
+von Daten in Tupeln mit einem Schlüssel und einem Wert. Sie ähneln
+demnach also einem Wörterbuch. Meist sind diese Ansammlungen von Tupeln
+gespeichert in großen Binärdateien (kurz BLOB für Binary Large Object)
+oder sogar in einfachen Textdateien. Ein Beispiel für eine
+Key\hyp{}Value\hyp{}Datenbank ist \emph{Amazon Dynamo} von der
+gleichnamigen Firma \emph{Amazon}. Doch NoSQL\hyp{}Datenbanken umfassen
+nicht nur Key\hyp{}Value\hyp{}Stores. Es existieren auch
+NoSQL\hyp{}Datenbanken zum Speichern von Graphen, großen Mengen an
+Dokumenten, wie \emph{IBM Notes} Spaltenorientierten Datenbanken wie
+\emph{Apache Cassandra} und der \glsfirst{tsdb}. \glspl{tsdb} kommen bei
+jedem Gebiet zum einsetzt wo große Mengen zeitlichabhängige Daten für
+kurze Zeit oder einen längeren Zeitraum gespeichert werden müssen.
+\glspl{tsdb} sammeln Unmengen von Daten und benutzen einen Zeitstempel
+als Index für diese Daten. Die gewonnen Messdaten werden demnach einem
+festen Zeitpunkt zugeordnet. Dies macht eine \gls{tsdb} besonders beliebt
+als Datenbank für Wetterdaten, Aktienhandel, Messdaten oder sonstige
+Daten die abhängig von der Zeit und in besonders großen Mengen
+visualisiert werden sollen. Beispiele für \glspl{tsdb} sind
+\emph{InfluxDB} und die \gls{tsdb} im Monitoringsystem
+\emph{Prometheus}. Trotz dieser Kategorisierungen haben
+NoSQL\hyp{}Datenbanken mehrere gemeinsame Eigenschaften. So verbindet
+sie der Verzicht von Eigenschaften von relationalen Datenbanken für
+höhere Skalierbarkeit\cite[S. 13]{TSDB}. Durch diesen Tausch sind
+NoSQL\hyp{}Datenbanken viel simpler aufgebaut und haben auch weniger
+Ansprüche an die gespeicherten Daten. Es müssen keine Datentypen
+eingehalten werden oder sonstige Relationen zwischen Daten gewährleistet
+werden. Alle Daten landen in einer Tabelle, welche sich beliebig groß
+horizontal mit mehr Rechenpower skalieren lässt. Dies äußert sich einer
+hohen Leistung, Skalierbarkeit und Flexibilität von
+NoSQL\hyp{}Datenbanken\cite{NOSQL}.
+\subsection*{Wahl der Datenbank}
+\addcontentsline*{toc}{subsection}{Wahl der Datenbank}
 \section*{Wahl der Monitoring Plattform}
 \addcontentsline{toc}{section}{Wahl der Monitoring Plattform}
 \section*{Wahl der Visualisierungslösung}
