@@ -556,14 +556,14 @@ folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
     \item[MUSS] ist eine absolute Anforderung an die Software. Alle
         Anforderungen, die mit \textbf{MUSS} markiert sind,
         \textbf{MÜSSEN} implementiert werden.
-    \item[DARF NICHT] beschreibt eine negative Anforderung. Demnach eine
-        Anforderung, welche auf keinen Fall implementiert werden darf.
+    \item[DARF NICHT] ist gleichbedeutend zu \textbf{VERBOTEN}.
     \item[SOLL] ist eine Anforderung, die implementiert werden
-        \textbf{SOLLTE} aber nicht \textbf{MUSS}. Dies ist der Fall bei
+        \textbf{SOLLTE}, aber nicht \textbf{MUSS}. Dies ist der Fall bei
         Anforderungen, welche aus nachvollziehbaren Gründen nicht
         implementiert werden.
-    \item[DARF NICHT] ist das Gegenteil von \textbf{MUSS}. Es
-        handelt sich hier um Anforderungen, die vermieden werden sollten.
+    \item[SOLL NICHT] ist gleichbedeutend zu \textbf{NICHT EMPFOHLEN}
+        und beschreibt Anforderungen die nicht erfüllt werden sollten,
+        wenn man sie vermeiden kann.
     \item[KANN] ist eine Anforderung die implementiert werden
         \textbf{KANN}. Diese Art von Anforderungen sind
         zusätzliches Extra und nicht nötig für die Grundfunktion der
@@ -723,7 +723,7 @@ NoSQL\hyp{}Datenbanken, wie Key\hyp{}Value\hyp{}Stores und \glspl{tsdb}.
 Dieses Kapitel versucht einen Überblick über alle Datenbanktypen zu
 geben und den passenden Datenbanktyp für das Projekt festzulegen.
 \subsection*{Relationale Datenbanken}
-\addcontentsline*{toc}{subsection}{Relationale Datenbanken}
+\addcontentsline{toc}{subsection}{Relationale Datenbanken}
 Bei relationalen Datenbanken handelt es sich um tabellenbasierte
 Datensätze. Als Grundlage dieser Datenbanken dienen Relationen.
 Relationen sind mathematisch bewiesene und damit wohldefinierte
@@ -783,7 +783,7 @@ Bekannte Implementierungen für relationale Datenbanken sind:
     \item Sqlite
 \end{itemize}
 \subsection*{NoSQL\hyp{}Datenbanken}
-\addcontentsline*{toc}{subsection}{NoSQL\hyp{}Datenbanken}
+\addcontentsline{toc}{subsection}{NoSQL\hyp{}Datenbanken}
 NoSQL\hyp{}Datenbanken sind zunächst einmal nur ein grober Sammelbegriff
 für alle Datenbanken die kein relationales Konzept verfolgen und somit
 nicht durch die Sprache \gls{sql} beschrieben werden können. In den
@@ -820,7 +820,7 @@ horizontal mit mehr Rechenpower skalieren lässt. Dies äußert sich einer
 hohen Leistung, Skalierbarkeit und Flexibilität von
 NoSQL\hyp{}Datenbanken\cite{NOSQL}.
 \subsection*{Wahl der Datenbank}
-\addcontentsline*{toc}{subsection}{Wahl der Datenbank}
+\addcontentsline{toc}{subsection}{Wahl der Datenbank}
 \section*{Wahl der Monitoring Plattform}
 \addcontentsline{toc}{section}{Wahl der Monitoring Plattform}
 \section*{Wahl der Visualisierungslösung}
