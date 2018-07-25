@@ -55,6 +55,17 @@ selbstständig und nur unter Zuhilfenahme der ausgewiesenen Hilfsmittel
 angefertig habe. Sämtliche Stellen der Arbeit, die im Wortlaut oder dem
 Sinn nach anderen gedruckten oder im Internet verfügbaren Werken
 entnommen sind, habe ich durch genaue Quellenangaben kenntlich gemacht.
+Außerdem wurde diese Arbeit in gleicher oder ähnlicher Form noch keiner
+anderen Prüfungsstelle im Sinne von \S 11 Absatz 5 lit. b) der
+Allgemeinen Prüfungsordnung vorgelegt.
+\\
+\\
+Clausthal-Zellerfeld, der \today
+\\
+\\
+Christian Rebischke
+\chapter*{Sperrvermerk}
+Foobar Foobar Foobar
 \\
 \\
 Clausthal-Zellerfeld, der \today
@@ -188,6 +199,11 @@ entscheidend und hat Einfluss auf die Produktivität der Endkunden.
     \includegraphics[width=1.0\textwidth]{figures/problemstellung.pdf}
     \caption{Veranschaulichung der Problemstellung}\label{fig:1}
 \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/problemloesung.pdf}
+    \caption{Veranschaulichung der Problemlösung}\label{fig:2}
+\end{figure}
 \chapter*{Technische Grundlagen}
 \addcontentsline{toc}{chapter}{Technische Grundlagen}
 In diesem Kapitel werden die für die Lösung des Problems nötigen
@@ -205,20 +221,20 @@ darum geht, mehrere Systeme mit einander zu vernetzen. Ein solches System
 wird \emph{offenes System} genannt, wenn es den im \gls{osi}
 spezifizierten Standards entspricht\cite[Siehe Abschnitt
 4.1.2]{ITUOSI}. Diese \emph{offenen Systemen} sind mit einem physischen
-Medium verbunden und bilden so ein Computernetzwerk. \autoref{fig:2}
+Medium verbunden und bilden so ein Computernetzwerk. \autoref{fig:3}
 zeigt eine solche Verbindung mehrerer \emph{offener Systeme}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/open_systems.pdf}
     \caption{Veranschaulichung der Assoziationen verschiedenener offener
-    Systeme mit diversen Anwendungen über ein physisches Medium}\label{fig:2}
+    Systeme mit diversen Anwendungen über ein physisches Medium}\label{fig:3}
 \end{figure}
 Innerhalb eines dieser \emph{offener Systeme} sind sieben
 Netzwerkschichten oder auch \emph{OSI-Schichten} definiert\cite[Siehe
 Abschnitt 6.1.2]{ITUOSI}. Zur
 Kommunikation zwischen zwei \emph{offenen Systemen} wird mindestens eine
 Schicht durchlaufen, in den meisten Fällen jedoch mehrere Schichten.
-\autoref{fig:2} listet alle sieben Schichten, deren Protokolle,
+\autoref{fig:4} listet alle sieben Schichten, deren Protokolle,
 Einheiten und Einordnung auf. Die Funktionsweise des \gls{osi} lässt
 sich am besten durch ein kurzes Beispiel erklären:
 
@@ -249,7 +265,7 @@ etwa:
     \centering
     \includegraphics[width=0.8\textwidth]{figures/osi.pdf}
     \caption{Das OSI-Schichtenmodell mit Protokollbeispielen und
-    verwendeten Einheiten}\label{fig:3}
+    verwendeten Einheiten}\label{fig:4}
 \end{figure}
 \section*{\glsfirst{dns}}
 \addcontentsline{toc}{section}{\glsfirst{dns}}
@@ -280,13 +296,13 @@ Knoten des Internets zu verteilen und zentral vom \gls{nic} aus zu
 steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
 wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
 \gls{fqdn} ist \emph{akira.rz.tu-clausthal.de}. Die
-\autoref{fig:4} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
+\autoref{fig:5} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
 einzelnen Bestandteile.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/dnsname.pdf}
     \caption{Bestandteile eines \gls{fqdn} mit optionalem Hostname und Third-Level
-    Domain}\label{fig:4}
+    Domain}\label{fig:5}
 \end{figure}
 Eine Angabe des Hostname oder einer Third-Level
 Domain ist optional. Es können auch weitere Domains hinzugefügt werden.
@@ -536,7 +552,7 @@ Die von der \gls{iana} für \gls{cifs} vergebene Portnummer ist:
 445\cite[S. 19]{MSSMB}. Desweiteren hat \gls{tcp} den Vorteil, dass es
 \emph{full-duplex} ist. \emph{Full-duplex} bedeutet, dass \gls{tcp} in
 der Lage ist, gleichzeitig Daten zu empfangen und zu senden.
-\autoref{fig:5} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
+\autoref{fig:6} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
 \gls{tcp}\hyp{}Header. Der Header beginnt mit einem Byte aus Nullen und
 der anschließenden Länge des \gls{smb}\hyp{}Pakets. Danach folgt in
 32\hyp{}Byte\hyp{}Blöcken die eigentliche Nachricht. Die Länge des Pakets wird als
@@ -551,7 +567,7 @@ Format}, bei dem das höchstwertige Byte zuerst gespeichert wird.
         \bitbox{32}{SMB Nachricht}\\
         \bitbox{32}{\ldots}
     \end{bytefield}
-    \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:5}
+    \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:6}
 \end{figure}
 Bei der Verwendung von \gls{cifs} können folgende Fehlerfälle auftreten:
 \begin{itemize}
@@ -736,8 +752,8 @@ Webserver mit der Visualisierungslösung stellt diese Daten, aufbereitet
 für den Nutzer, grafisch dar.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/network.pdf}
-    \caption{Zusammenspiel aller Systemkomponenten}\label{fig:6}
+    \includegraphics[width=0.8\textwidth]{figures/network.pdf}
+    \caption{Zusammenspiel aller Systemkomponenten}\label{fig:7}
 \end{figure}
 \section*{Datenmodell}
 \addcontentsline{toc}{section}{Datenmodell}
