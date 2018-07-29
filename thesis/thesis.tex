@@ -134,7 +134,7 @@ gehören:
     \item \gls{voip}
 \end{itemize}
 
-\autoref{fig:1} zeigt die aktuelle Netzstruktur der \gls{tuc}. Zu sehen
+\autoref{fig:problemstellung} zeigt die aktuelle Netzstruktur der \gls{tuc}. Zu sehen
 sind die drei \emph{Core\hyp{}Router}, welche auf die Gebiete
 Rechenzentrum, Feldgraben und Tannenhöhe verteilt sind.
 \emph{Core\hyp{}Router} stellen das Rückgrat, den Backbone, des Netzes
@@ -160,7 +160,7 @@ Gewicht fallen Latenzen bei \gls{voip}, dort sind Latenzen oder ein
 Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTERWIKI})
 leicht auszumachen. Was fehlt, ist ein Netz aus verteilten Messpunkten,
 das es ermöglicht, die Erreichbarkeit einzelner Dienste periodisch und
-über einen längeren Zeitraum zu beobachten (siege \autoref{fig:2}). Dies
+über einen längeren Zeitraum zu beobachten (siehe \autoref{fig:problemloesung}). Dies
 hätte zwei Vorteile.  Zum einen lässt sich so der Zustand des
 Campus-Netzwerks besser erfassen, da Tests nicht nur von einem zentralen
 Monitoring-System aus gestartet werden. Zum anderen können die
@@ -198,12 +198,12 @@ Herausforderungen an diese Arbeit ableiten:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/problemstellung.pdf}
-    \caption{Veranschaulichung der Problemstellung}\label{fig:1}
+    \caption{Veranschaulichung der Problemstellung}\label{fig:problemstellung}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/problemloesung.pdf}
-    \caption{Veranschaulichung der Problemlösung}\label{fig:2}
+    \caption{Veranschaulichung der Problemlösung}\label{fig:problemloesung}
 \end{figure}
 \chapter*{Technische Grundlagen}
 \addcontentsline{toc}{chapter}{Technische Grundlagen}
@@ -222,20 +222,20 @@ darum geht, mehrere Systeme mit einander zu vernetzen. Ein solches System
 wird \emph{offenes System} genannt, wenn es den im \gls{osi}
 spezifizierten Standards entspricht\cite[Siehe Abschnitt
 4.1.2]{ITUOSI}. Diese \emph{offenen Systemen} sind mit einem physischen
-Medium verbunden und bilden so ein Computernetzwerk. \autoref{fig:3}
+Medium verbunden und bilden so ein Computernetzwerk. \autoref{fig:opensystems}
 zeigt eine solche Verbindung mehrerer \emph{offener Systeme}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/open_systems.pdf}
     \caption{Veranschaulichung der Assoziationen verschiedenener offener
-    Systeme mit diversen Anwendungen über ein physisches Medium}\label{fig:3}
+    Systeme mit diversen Anwendungen über ein physisches Medium}\label{fig:opensystems}
 \end{figure}
 Innerhalb eines dieser \emph{offener Systeme} sind sieben
 Netzwerkschichten oder auch \emph{OSI-Schichten} definiert\cite[Siehe
 Abschnitt 6.1.2]{ITUOSI}. Zur
 Kommunikation zwischen zwei \emph{offenen Systemen} wird mindestens eine
 Schicht durchlaufen, in den meisten Fällen jedoch mehrere Schichten.
-\autoref{fig:4} listet alle sieben Schichten, deren Protokolle,
+\autoref{fig:osi} listet alle sieben Schichten, deren Protokolle,
 Einheiten und Einordnung auf. Die Funktionsweise des \gls{osi} lässt
 sich am besten durch ein kurzes Beispiel erklären:
 
@@ -266,7 +266,7 @@ etwa:
     \centering
     \includegraphics[width=0.8\textwidth]{figures/osi.pdf}
     \caption{Das OSI-Schichtenmodell mit Protokollbeispielen und
-    verwendeten Einheiten}\label{fig:4}
+    verwendeten Einheiten}\label{fig:osi}
 \end{figure}
 \section*{\glsfirst{dns}}
 \addcontentsline{toc}{section}{\glsfirst{dns}}
@@ -297,13 +297,13 @@ Knoten des Internets zu verteilen und zentral vom \gls{nic} aus zu
 steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
 wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
 \gls{fqdn} ist \emph{akira.rz.tu-clausthal.de}. Die
-\autoref{fig:5} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
+\autoref{fig:dnsname} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
 einzelnen Bestandteile.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/dnsname.pdf}
     \caption{Bestandteile eines \gls{fqdn} mit optionalem Hostname und Third-Level
-    Domain}\label{fig:5}
+    Domain}\label{fig:dnsname}
 \end{figure}
 Eine Angabe des Hostname oder einer Third-Level
 Domain ist optional. Es können auch weitere Domains hinzugefügt werden.
@@ -407,7 +407,7 @@ Die Methoden \textbf{DELETE}, \textbf{PUT} sind nur für eine
 \gls{restapi} relevant und umfassen das Löschen und hinzufügen. Um
 herauszufinden, welche Methoden ein Server unterstützt, kann die Methode
 \textbf{OPTIONS} verwendet werden.
-Im \autoref{lst:1} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
+Im \autoref{lst:httpanfrage} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
 Verbindungsaufbau an den Host \emph{http://tu-clausthal.de}
 visualisiert. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
 und ended in Zeile 9. Aus Zeile 5 wird ersichtlich, dass es sich um die
@@ -432,7 +432,7 @@ Zeichenkodierung. Die Zeilen 18 bis 21 enthalten den übermittelten
 Inhalt. Hier gekürzt dargestellt.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Eine HTTP-Anfrage an
-http://tu-clausthal.de},label={lst:1}]
+http://tu-clausthal.de},label={lst:httpanfrage}]
 * Rebuilt URL to: http://tu-clausthal.de/
 *   Trying 2001:638:605:20:1::2...
 * TCP_NODELAY set
@@ -553,7 +553,7 @@ Die von der \gls{iana} für \gls{cifs} vergebene Portnummer ist:
 445\cite[S. 19]{MSSMB}. Desweiteren hat \gls{tcp} den Vorteil, dass es
 \emph{full-duplex} ist. \emph{Full-duplex} bedeutet, dass \gls{tcp} in
 der Lage ist, gleichzeitig Daten zu empfangen und zu senden.
-\autoref{fig:6} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
+\autoref{fig:smbbytefield} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
 \gls{tcp}\hyp{}Header. Der Header beginnt mit einem Byte aus Nullen und
 der anschließenden Länge des \gls{smb}\hyp{}Pakets. Danach folgt in
 32\hyp{}Byte\hyp{}Blöcken die eigentliche Nachricht. Die Länge des Pakets wird als
@@ -568,7 +568,7 @@ Format}, bei dem das höchstwertige Byte zuerst gespeichert wird.
         \bitbox{32}{SMB Nachricht}\\
         \bitbox{32}{\ldots}
     \end{bytefield}
-    \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:6}
+    \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:smbbytefield}
 \end{figure}
 Bei der Verwendung von \gls{cifs} können folgende Fehlerfälle auftreten:
 \begin{itemize}
@@ -754,7 +754,7 @@ für den Nutzer, grafisch dar.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/network.pdf}
-    \caption{Zusammenspiel aller Systemkomponenten}\label{fig:7}
+    \caption{Zusammenspiel aller Systemkomponenten}\label{fig:network}
 \end{figure}
 \section*{Datenmodell}
 \addcontentsline{toc}{section}{Datenmodell}
@@ -794,7 +794,7 @@ Datenbankeintrag in einer relationen Datenbank:
 \end{center}
 In der oben abgebildeten Datenbank ist nur eine Tabelle namens
 \emph{Studenten} vorhanden. Auf dieser Tabelle können mit \gls{sql} diverse
-Operationen durchgeführt werden. Das \autoref{lst:2} zeigt das hinzufügen von neuen
+Operationen durchgeführt werden. Das \autoref{lst:sqlexample} zeigt das hinzufügen von neuen
 Daten, das abrufen von Daten, das manipulieren von Daten und das
 erzeugen einer neuen Tabelle. Als Implementierung wurde \emph{sqlite}
 verwendet. In der ersten Zeile wird durch das \emph{INSERT} Statement
@@ -807,7 +807,7 @@ neuen Tabelle \emph{Professoren} mit der MitarbeiterID als
 aufsteigenden Primärschlüssel und den Einträgen zu Vorname und Nachname.
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[caption={Verwendung von Structured Query Language},label={lst:2}]
+\begin{lstlisting}[caption={Verwendung von Structured Query Language},label={lst:sqlexample}]
 sqlite> INSERT INTO Studenten VALUES (4,'Dana','Foxtrott');
 sqlite> select Vorname from Studenten;
 Alice
@@ -889,9 +889,9 @@ und den Vorteilen von \emph{Prometheus} sind im Kapitel
 \emph{Prometheus} zu finden). Daten werden in \emph{Prometheus} als
 Tupel aus 64\hyp{}bit Fließkommazahlen und einem Millisekunden genauen
 Timestamp gespeichert\cite{PROMETHEUS_DATA_MODEL}. Diese Tupel werden
-dann mit einem Identifikator versehen. Dieser Identifikator besteht aus
+mit einem Identifikator versehen. Dieser Identifikator besteht aus
 einem eindeutigen Namen für die Metrik und einem
-Key\hyp{}Value\hyp{}Store (siehe \autoref{lst:3} Zeile 1. Für ein
+Key\hyp{}Value\hyp{}Store (siehe \autoref{lst:prometheusdataformat} Zeile 1. Für ein
 Beispiel siehe Zeile 2). Die Keys werden auch \emph{Labels} genannt.
 Anhand von diesen \emph{Labels} ist es möglich Daten einer Metrik weiter
 zu filtern. Zwei Stunden werden diese Metriken von \emph{Prometheus}
@@ -904,19 +904,22 @@ genannt\cite{PROMETHEUS_STORAGE}. Bevor diese Metriken gespeichert
 werden legt \emph{Prometheus} außerdem einen \gls{wal} an. Der \gls{wal}
 dient zur Wiederherstellung von Daten nach einem Crash. Gelöschte Daten
 werden nicht unwiderruflich gelöscht, sondern in
-\emph{Tombstone}\hyp{}Dateien abgelegt. Das \autoref{fig:4} zeigt ein
+\emph{Tombstone}\hyp{}Dateien abgelegt. Das
+\autoref{fig:prometheusstorage} zeigt eine
 solche Verzeichnisstruktur. Die \emph{Prometheus}\hyp{}Datenbank
 arbeitet demnach dateibasiert im Gegensatz zu \glspl{blob} in
 \gls{sql}\hyp{}basierten Datenbanken.
 \emph{Prometheus}.
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[caption={Prometheus Datenformat und Beispiel},label={lst:3}]
+\begin{lstlisting}[caption={Prometheus Datenformat und
+Beispiel},label={lst:prometheusdataformat}]
 <metric name>{<label name>=<label value>, ...}
 http_requests_total{service="service", server="www.tu-clausthal.de", env="production"}
 \end{lstlisting}
 \end{minipage}
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[caption={Auszug aus dem Prometheus Datenmodell},label={lst:4}]
+\begin{lstlisting}[caption={Auszug aus dem Prometheus
+Datenmodell},label={lst:prometheusstorage}]
 ./data/01BKGV7JBM69T2G1BGBGM6KB12
 ./data/01BKGV7JBM69T2G1BGBGM6KB12/meta.json
 ./data/01BKGV7JBM69T2G1BGBGM6KB12/wal
