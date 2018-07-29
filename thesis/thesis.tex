@@ -895,7 +895,7 @@ Key\hyp{}Value\hyp{}Store (siehe \autoref{lst:prometheusdataformat} Zeile 1. Fü
 Beispiel siehe Zeile 2). Die Keys werden auch \emph{Labels} genannt.
 Anhand von diesen \emph{Labels} ist es möglich Daten einer Metrik weiter
 zu filtern. Zwei Stunden werden diese Metriken von \emph{Prometheus}
-gesammelt bis sie zusammen mit Metadaten und einer Indexdatei in einem
+gesammelt bis sie, zusammen mit Metadaten und einer Indexdatei, in einem
 Verzeichnis abgelegt werden. Metadaten sind Informationen über die
 gesammelten Daten, darunter fallen \emph{Labels}. Die Indexdatei
 speichert die Relation zwischen den Metriknamen und den Metriken die
@@ -943,6 +943,9 @@ http_requests_total{service="service", server="www.tu-clausthal.de", env="produc
 \end{lstlisting}
 \end{minipage}
 \section*{Prothemeus}
+Bei \emph{Prometheus} handelt es sich um keine reine \gls{tsdb}.
+\emph{Prometheus} ist viel mehr eine auf Monitoringdaten spezialisierte
+und mit diversen Komponenten erweiterbare Monitoringanwendung.
 \addcontentsline{toc}{section}{Prometheus}
 \section*{Wahl der Visualisierungslösung}
 \addcontentsline{toc}{section}{Wahl der Visualisierungslösung}
