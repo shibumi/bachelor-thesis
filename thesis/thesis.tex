@@ -981,7 +981,10 @@ können. Weitere Komponenten sind der \emph{Alertmanager}, das
 \emph{Pushgateway}, die \emph{Exporter} und das bereits erläuterte und
 im \emph{Prometheus Server} integrierte \emph{Prometheus Web UI}. Der
 \emph{Alertmanager} ist verantwortlich für das Alarmieren der Benutzer,
-wenn Messdaten, vom Benutzer bestimmte, Richtwerte überschreiten. Das
+wenn Messdaten, vom Benutzer bestimmte, Richtwerte überschreiten.
+Unterstützt werden vom \emph{Alertmanager} direkt keine
+Kommunikationswege. Viel mehr wird Fremdsoftware, beispielsweise für den
+Mailtransfer, an den \emph{Alertmanger} angedockt. Das
 \emph{Pushgateway} bietet einen statischen Bezugspunkt und Puffer von dem der
 \emph{Prometheus Server} mit dem \emph{Retrieval}\hyp{}Modul Messdaten
 abholen kann. Dies ist nützlich, wenn der \emph{Prometheus Server}, statt
