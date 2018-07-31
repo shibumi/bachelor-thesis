@@ -990,7 +990,7 @@ werden zum \emph{Pushgateway} geschoben und \emph{Prometheus
 Server} holt die Messdaten dort ab. Weitere Komponenten sind die
 \emph{Exporter}. \emph{Exporter} sind Applikationen, die die
 Logik zum Sammeln von Messdaten besitzen und diese via einem
-\gls{HTTP}\hyp{}Server dem \emph{Prometheus Server} zur Verfügung
+\gls{http}\hyp{}Server dem \emph{Prometheus Server} zur Verfügung
 stellen. Es gibt eine Vielzahl von
 \emph{Exportern} und die Zahl ist stetig steigend. Prominente Beispiele
 für \emph{Exporter} sind:
@@ -1017,7 +1017,7 @@ sind \gls{http}\hyp{}Anfragen einer \gls{restapi}. Alle Komponenten sind
 statische Binärdateien und geschrieben in der Sprache \emph{Go}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/prometheus.pdf}
+    \includegraphics[width=1.0\textwidth]{figures/prometheus.pdf}
     \caption{Interner Aufbau des Prometheus Server und dessen
     Komponenten}\label{fig:prometheus}
 \end{figure}
