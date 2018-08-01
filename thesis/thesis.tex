@@ -975,7 +975,9 @@ Modul zum Anfordern von Messdaten (im weiteren Verlauf
 \emph{Retrieval} genannt). Die \gls{tsdb} wurde bereits im Kapitel
 Datenmodell erläutert. Der \gls{http}\hyp{}Server bietet eine grafische
 Oberfläche an um Queries auf der \gls{tsdb} zu testen, inklusive
-dem Anzeigen von Graphen. Außerdem bietet der \gls{http}\hyp{}Server
+dem Anzeigen von Graphen. \autoref{fig:prometheuswebui} zeigt
+die grafische Oberfläche mit einem Beispiel\hyp{}Query und Graphen.
+Außerdem bietet der \gls{http}\hyp{}Server
 eine \gls{restapi} an, an der die restlichen Komponenten andocken
 können. Weitere Komponenten sind der \emph{Alertmanager}, das
 \emph{Pushgateway}, die \emph{Exporter} und das bereits erläuterte und
@@ -1024,6 +1026,30 @@ statische Binärdateien und geschrieben in der Sprache \emph{Go}.
     \caption{Interner Aufbau des Prometheus Server und dessen
     Komponenten}\label{fig:prometheus}
 \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/prometheus_web_ui.png}
+    \caption{Prometheus Web UI Beispiel}\label{fig:prometheus_web_ui}
+\end{figure}
+\subsection*{PromQL}
+\addcontentsline{toc}{subsection}{PromQL}
+\emph{Prometheus} besitzt zum Abfragen der Messdaten eine eigene
+Query\hyp{}Language names \emph{PromQL}. \emph{PromQL} ist nicht
+vergleichbar mit \gls{sql} und besitzt keinen relationalen Ansatz.
+Stattdessen handelt es sich um eine Art Filtersprache, welche mit
+booleschen Operatoren und diversen Funktionen ergänzt worden ist.
+Anhand von \emph{PromQL} lassen sich einzelne Messdatensätze auswählen
+und weiter auswerten oder filtern\cite{PROMETHEUS_PROMQL}. Dies ist insbesondere für die
+grafische Darstellung der Messdaten relevant. Dazu unterstützt die
+\emph{PromQL} vier verschiedene Datentypen\cite{PROMETHEUS_PROMQL}:
+\begin{description}
+    \item[Instant vector] ein Set von Messdaten mit selben
+        Zeitstempel.
+    \item[Range vector] eine Auswahl von Messdaten über einen größeren
+        Zeitraum.
+    \item[Scalar] ein Fließkommawert.
+    \item[String] ein Array von Chars (zurzeit unbenutzt).
+\end{description}
 \section*{Wahl der Visualisierungslösung}
 \addcontentsline{toc}{section}{Wahl der Visualisierungslösung}
 \section*{Wahl des Configuration-Management}
