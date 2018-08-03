@@ -1045,16 +1045,37 @@ und weiter auswerten oder filtern\cite{PROMETHEUS_PROMQL}. Dies ist insbesondere
 grafische Darstellung der Messdaten relevant. Dazu unterstützt die
 \emph{PromQL} vier verschiedene Datentypen\cite{PROMETHEUS_PROMQL}:
 \begin{description}
-    \item[Instant vector] ein Set von Messdaten mit selben
+    \item[Instant Vector] ein Set von Messdaten mit selben
         Zeitstempel.
-    \item[Range vector] eine Auswahl von Messdaten über einen größeren
+    \item[Range Vector] eine Auswahl von Messdaten über einen größeren
         Zeitraum.
     \item[Scalar] ein Fließkommawert.
     \item[String] ein Array von Chars (zurzeit unbenutzt).
 \end{description}
-\emph{Instant Vectors}
+Der \emph{Instant Vector} besteht aus einem eindeutigen Namen einer
+Metrik und einem Key\hyp{}Value\hyp{}Store (siehe auch
+\autoref{lst:prometheusdataformat}). Innerhalb eines \emph{Instant
+Vectors} lassen sich reguläre Ausdrücke (Regex)
+anwenden. Reguläre Ausdrücke beschreiben anhand von fest definierten
+Zeichen und syntaktischer Regeln eine Menge von
+Zeichenketten\cite{REGEXWIKI}. Für reguläre Ausdrücke verwendet
+\emph{PromQL} die von der Firma \emph{Google} entwickelte Bibliothek
+\emph{RE2}\cite{RE2}. Wird dieser \emph{Instant Vector} um einen
+\emph{Range Selector} erweitert, handelt es sich um einen \emph{Range
+Vector}. Ein \emph{Range Selector} ist eine in eckigen Klammern
+geschriebene Zeitangabe für einen \emph{Instant Vector}. Der \emph{Range
+Selector} wird dem \emph{Instant Vector} nachträglich angefügt.
+Zusätzlich lassen sich diese Vektoren durch weitere Funktionen und
+Operatoren beeinflussen. So bietet \emph{PromQL} eine Vielzahl von
+weiteren Funktionen, um beispielsweise den Durchschnitt über einen
+\emph{Range Vector} zu bilden\cite{PROMETHEUS_PROMQL_FUNCTIONS}.
 \section*{Grafana}
 \addcontentsline{toc}{section}{Grafana}
+Da die \emph{Prometheus Web UI} eher eingeschränkt mit Graphen und
+Visualisierung der Daten umgehen kann und eher eine Testplattform für
+\emph{PromQL-Anfragen} darstellt wird für den Zweck der
+Visualisierung eine weitere Plattform verwendet:
+\emph{Grafana}\cite{GRAFANA}.
 \section*{Configuration-Management}
 \addcontentsline{toc}{section}{Configuration-Management}
 \section*{Wahl der Hardware}
