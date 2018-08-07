@@ -1075,9 +1075,26 @@ Da die \emph{Prometheus Web UI} eingeschränkt mit Graphen und
 Visualisierung der Daten umgehen kann und eher eine Testplattform für
 \emph{PromQL-Anfragen} darstellt wird für den Zweck der
 Visualisierung eine weitere Plattform verwendet:
-\emph{Grafana}\cite{GRAFANA}. 
+\emph{Grafana}\cite{GRAFANA}. \emph{Grafana} zeichnet sich durch eine
+hohe Erweiterbarkeit, vollen \emph{Prometheus}\hyp{}Support und einer
+Vielzahl an Konfigurationsmöglichkeiten aus. Der Transport der Daten von
+\emph{Prometheus} zu \emph{Grafana} findet via \gls{restapi} und der von
+\emph{Prometheus} unterstützten Query\hyp{}Language \emph{PromQL} statt
+(\autoref{fig:prometheusgrafana} zeigt \emph{Grafanas} Platz in der
+\emph{Prometheus}\hyp{}Landschaft).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/prometheus_grafana.pdf}
+    \caption{Eingliederung von Grafana in Prometheus}\label{fig:prometheusgrafana}
+\end{figure}
+Ein weiteres Merkmal von \emph{Grafana} sind \emph{Grafanas}
+Provisionierungseigenschaften. Durch diverse Einstellungen in
+\emph{Grafanas} Konfigurationsdateien und Umgebungsvariablen lässt sich
+Grafana gut in Cloud\hyp{}Umgebungen ausrollen (Umgebungsvariablen sind
+temporäre oder permanente Variablen im Betriebssystem).
 \section*{Configuration-Management}
 \addcontentsline{toc}{section}{Configuration-Management}
+
 \section*{Wahl der Hardware}
 \addcontentsline{toc}{section}{Wahl der Hardware}
 \chapter*{Projektumsetzung}
