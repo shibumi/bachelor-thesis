@@ -1092,8 +1092,87 @@ Provisionierungseigenschaften. Durch diverse Einstellungen in
 \emph{Grafanas} Konfigurationsdateien und Umgebungsvariablen lässt sich
 Grafana gut in Cloud\hyp{}Umgebungen ausrollen (Umgebungsvariablen sind
 temporäre oder permanente Variablen im Betriebssystem).
-\section*{Configuration-Management}
-\addcontentsline{toc}{section}{Configuration-Management}
+\section*{Konfigurationsmanagement}
+\addcontentsline{toc}{section}{Konfigurationsmanagement}
+In der Vergangenheit wurden Rechnersysteme zunehmend vertikal skaliert,
+das heißt die technischen Ressourcen des Rechnersystems wurden angehoben
+(beispielsweise der \gls{ram}). In den letzten Jahren wurde zunehmends
+festgestellt, dass diese Vorgehensweise nicht nur sehr kostenintensiv
+ist, sondern auch nicht besonders zur Ausfallsicherheit beiträgt. Die
+Antwort auf dieses Problem ist horizontale Skalierung. Bei horizontaler
+Skalierung werden weitere Instanzen von Rechnersystemen der Anwendung
+hinzugefügt. Dieser Ansatz ermöglicht ausfallsichere und äußerst
+performante Infrastruktur (zum Beispiel sind heutige Cloud\hyp{}Systeme
+de facto alle horizontal skaliert). Diese horizontale Skalierung hat
+allerdings auch andere Ansprüche. So wächst die Anzahl der zu
+betreuenden Systemen rapide an.  Damals wurden solche Systeme noch von
+Menschen gepflegt, konfiguriert und installiert. Durch die schiere Masse
+der neuen Systeme ist das nun unmöglich und zu kostenintensiv geworden.
+Daraufhin wurden Anwendungen ins Leben gerufen, welche die Arbeiten an
+mehreren Systemen vereinfachen sollen. Die zwei Leitbegriffe für solche
+Anwendungen sind \emph{Orchestrierung} und
+\emph{Konfigurationsmanagement}. Bei der \emph{Orchestrierung} geht es
+darum eine hohe Anzahl von Systemen zu steuern, also gewisse Aufgaben
+auf den jeweiligen Systemen anzustoßen.  \emph{Konfigurationsmanagement}
+dagegen umfasst die Installation und Konfiguration der Systeme, im
+englischsprachigen Raum zusammengefasst \emph{Deployment} genannt. Da im
+Rechenzentrum der \gls{tuc} zur Zeit das auf der Programmiersprache
+\emph{Python} basierende Orchestrierungs\hyp{} und
+Konfigurationsmanagementwerkzeug \emph{Ansible} dominiert, beschränkt
+sich diese Arbeit auf die Verwendung von \emph{Ansible}. Es gibt jedoch
+andere populäre Werkzeuge. Darunter fallen beispielsweise
+\emph{Puppet}, \emph{Saltstack} und \emph{Chef}.
+\section*{Ansible}
+\addcontentsline{toc}{section}{Ansible}
+Die Entwicklung an \emph{Ansible} startete im Februar 2012 unter Michael
+DeHaan als Opensource\hyp{}Anwendung\cite{ANSIBLE_ORIGINS}. Ein Jahr
+später ging aus dem Projekt die Firma \emph{AnsibleWorks} hervor, welche
+neben der Entwicklung von Ansible professionellen Support für die
+Software anbietet und auch an einer webbasierten Benutzerschnittstelle
+namens \emph{Tower} arbeitet\cite{ANSIBLEWORKS}. Im Jahr 2015 wurde die
+Firma durch den großen Linux\hyp{}Dienstleister \emph{Red Hat}
+übernommen\cite{ANSIBLEREDHAT}. Wenig später begann die
+Opensource\hyp{}Gemeinschaft damit \emph{Ansible} um unzählige Module zu
+erweitern und so den Funktionsumfang zu vergrößern.
+\subsection*{Funktionsweise}
+\addcontentsline{toc}{subsection}{Funktionsweise}
+\emph{Ansible} arbeitet mit Templates zur Orchestrierung und
+Konfiguration von Systemen. Die Auszeichnungssprache für die
+Datenstrukturen, welche die Templates befüllen, heißt \gls{yaml} (oft
+auch nur mit YML abgekürzt). \gls{yaml} zeichnet sich durch für Menschen
+einfache Lesbarkeit und die Möglichkeit Kommentare einzufügen
+aus\cite{YAML_WIKI}. Außerdem besteht die Möglichkeit in der
+Programmiersprache \emph{Python} geschriebene Module mit in \gls{yaml}
+aufgeschrieben Anweisungen zu nutzen. Diese Module sind quelloffen und
+werden von einer Community um \emph{Ansible} und der Firma \emph{Red
+Hat} gepflegt. Die zu pflegenden Systeme, nachfolgend nur noch als
+Zielsysteme bezeichnet, sind in \emph{Ansible} in Gruppen zu
+organisieren. Anhand vom Namen der Gruppe und des Zielsystems lassen
+sich dann unterschiedliche vom Nutzer definierte Daten laden. Diese
+Daten werden dann in die mit \gls{yaml} verfassten Aufgaben eingefügt.
+Auf diese Weise können komplexe Gebilde von Systemen abgebildet werden
+und Gemeinsamkeiten in der Orchestrierung und Konfiguration effektiv ausgenutzt werden.
+Bei einzelnen Konfigurationsdateien wird die auf \emph{Python} basierte Template\hyp{}Engine
+\emph{Jinja2} benutzt\cite{JINJA2}. Durch \emph{Jinja2} lassen sich komplexe
+Konfigurationsdateien auf den Zielsystemen in Form von Templates
+ausdrücken. Das Ziel ist ein Template für mehrere
+Konfigurationsvarianten einer Konfigurationsdatei zu haben. Diese
+Templates werden mit Datenstrukturen in \gls{yaml} gefüttert.
+Um die Orchestrierung oder Konfiguration zu starten reicht es wenn sich
+\emph{Ansible} auf dem System, welches zur Pflege eingesetzt werden
+soll, befindet. Nachfolgend wird dieses System als Managementsystem
+bezeichnet. Das Managementsystem verbindet sich zu den einzelnen
+Zielsystemen via dem Protokoll \gls{ssh} und arbeitet die in
+\gls{yaml}\hyp{}Dateien festgelegten Aufgaben ab. Dies geschieht durch
+die Verwendung der Sprache \emph{Python} oder einfach durch Kommandos in
+der entfernten Kommandozeile auf den Zielsystemen. Durch
+diese Vorgehensweise arbeitet \emph{Ansible} \emph{agentless}, also ohne
+einem Agenten, welcher sich auf dem Zielsystem befinden müsste. Dies
+ermöglicht den Einsatz von \emph{Ansible} auch auf Systemen mit
+eingeschränkter Erweiterbarkeit (beispielsweise Switches oder Ruuter).
+\subsection*{Organisationsstruktur}
+\addcontentsline{toc}{subsection}{Organisationsstruktur}
+
 
 \section*{Wahl der Hardware}
 \addcontentsline{toc}{section}{Wahl der Hardware}
