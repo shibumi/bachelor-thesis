@@ -1169,9 +1169,46 @@ der entfernten Kommandozeile auf den Zielsystemen. Durch
 diese Vorgehensweise arbeitet \emph{Ansible} \emph{agentless}, also ohne
 einem Agenten, welcher sich auf dem Zielsystem befinden müsste. Dies
 ermöglicht den Einsatz von \emph{Ansible} auch auf Systemen mit
-eingeschränkter Erweiterbarkeit (beispielsweise Switches oder Ruuter).
+eingeschränkter Erweiterbarkeit (beispielsweise Switches oder Router).
 \subsection*{Organisationsstruktur}
 \addcontentsline{toc}{subsection}{Organisationsstruktur}
+\emph{Ansible} hat eine definierte Struktur zur Speicherung der
+Konfigurationsdateien, Aufgaben, Datenstrukturen für die Templates und
+Templates. Dabei bedient sich \emph{Ansible} bei Wörtern aus der
+Schauspielerei um den Einstieg in die Software zu erleichtern.
+\emph{Playbooks} (deutsch: Drehbücher) werden verwendet um einzelnen
+Hosts \emph{Roles} (deutsch: Rollen) zu zuweisen. Die nötigen Daten zum
+Abspielen dieser Rollen finden sich im \emph{Inventory} (deutsch:
+Inventar) zu dem die Hosts ebenfalls gehören. Das
+\autoref{lst:ansiblestructure} zeigt die Organisationsstruktur eines
+solchen \emph{Ansible} Projekts. Die Datei \emph{ansible.cfg} ist die
+Konfigurationsdatei für \emph{Ansible} und definiert den Pfad zum
+Inventar, den Rollen und den \emph{Playbooks}. Die Datei \emph{hosts}
+beinhaltet alle Auflistung aller Zielsysteme mit Eingliederung in
+Gruppen und Subgruppen. Auf diese Weise lassen sich komplexe
+Installationen aus Zielsystemen hierarchisch gliedern und
+Gemeinsamkeiten fest machen.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Organisationsstruktur eines Ansible
+Projekts},label={lst:ansiblestructure}]
+├── ansible.cfg
+├── group_vars
+├── host_vars
+├── hosts
+├── playbooks
+│  └── configure_hosts.yml
+└── roles
+   └── hello_world
+      ├── defaults
+      │  └── main.yml
+      ├── files
+      │  └── static_file.txt
+      ├── tasks
+      │  └── main.yml
+      └── templates
+         └── configuration.j2
+\end{lstlisting}
+\end{minipage}
 
 
 \section*{Wahl der Hardware}
