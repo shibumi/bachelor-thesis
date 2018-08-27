@@ -1201,8 +1201,14 @@ Unterordnern \emph{defaults}, \emph{files}, \emph{tasks} und
 Standardbelegungen für Variablen zur Initialisierung. Der Ordner
 \emph{files} umfasst statische Dateien, welche auf den Zielsystemen
 installiert werden sollen. Die letzten beiden Ordner \emph{tasks} und
-\emph{templates} umfassen die eigentliche Logik zur Konfiguration und
-\emph{Jinja2}\hyp{}Templates.
+\emph{templates} umfassen die eigentliche Logik zur Konfiguration (die
+abzuarbeitenden Aufgabenschritte) und \emph{Jinja2}\hyp{}Templates. Um
+eine Konfiguration zu starten würde der Administrator das
+\emph{Playbook} {configure\_hosts.yml} mit dem Kommando
+\emph{ansible-playbook playbooks/configure\_hosts.yml} aufrufen.
+\emph{Ansible} würde daraufhin das zu den Hosts gehörende Inventar
+heraussuchen und die in den Rollen und Templates vorhandenen Variablen
+durch Werte aus den \emph{host\_vars} oder \emph{group\_vars} ersetzen.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Organisationsstruktur eines Ansible
 Projekts},label={lst:ansiblestructure}]
@@ -1225,6 +1231,84 @@ Projekts},label={lst:ansiblestructure}]
             `-- configuration.j2
 \end{lstlisting}
 \end{minipage}
+\subsection*{Dateistruktur}
+\addcontentsline{toc}{subsection}{Dateistruktur}
+\emph{Ansible} nutzt als zentrale Dateistruktur die Auszeichnungssprache
+\gls{yaml} und ergänzt diese durch Elemente der
+Python\hyp{}Template\hyp{}Engine \emph{Jinja2}. \gls{yaml} unterstützt
+gängige Datenstrukturen wie in etwa Listen und Wörterbücher
+(Dictionaries) und Kombinationen davon sowie Kommentare. Höhere
+Logikebenen werden durch \emph{Jinja2} erreicht (If/Else,
+For\hyp{}Schleifen, While\hyp{}Schleifen etc). Dadurch ist \emph{Jinja2}
+in der Theorie Turing-Vollständig. Das \autoref{lst:ansiblessh} ist ein
+Beispiel für die Dateistruktur eines \emph{Ansible Tasks}. Der
+\emph{Task} verteilt \gls{ssh}\hyp{}Schlüssel auf eine beliebige Anzahl
+von Zielsystemen.  \gls{yaml}\hyp{}Dateien beginnen stets mit drei
+Querstrichen und enden mit drei Punkten.  Mittlerweile ist dies jedoch
+optional und \emph{Ansible} erkennt \gls{yaml}\hyp{}Dateien ohne diese
+Markierungen (meistens an der Dateiendung \emph{.yml}). \emph{Ansible
+Tasks} bestehen aus einer Liste von Dictionaries. Jeder Listeneintrag
+stellt eine Aufgabe dar, welche \emph{Ansible} abzuarbeiten hat.
+Initialisiert wird ein solcher Eintrag mit dem Namen der Aufgabe und
+einer Abfolge von weiteren Schlüssel\hyp{}Wert\hyp{}Paaren. Bei den
+Paaren handelt es sich um fest definierte und in Python verfasste
+\emph{Ansible Module}. In dem Beispiel \autoref{lst:ansiblessh} sind
+dies die Module \emph{file} und \emph{template}. Das
+\emph{file}\hyp{}Modul dient zum Erstellen von Ordnern, platzieren von
+statischen Dateien oder anlegen von Dateien mit statischen Inhalt.
+Diesem Modul werden eine Anzahl von Parametern übergeben. In diesem Fall
+ein Pfad auf einem Linux\hyp{}System, der gewollte Zustand
+\emph{directory} sowie ein Besitzer, eine Gruppe und eine Konfiguration
+der Dateiberechtigung. \emph{0700} bedeutet volle
+Lese\hyp{},Schreib\hyp{} und Ausführrechte für den Besitzer der Datei
+oder des Ordners. Dem zur Folge erstellt diese Zeile einen Ordner mit
+den im vorherigen Satz erwähnten Dateirechten und dem Besitzer
+\emph{root}. Das \emph{template}\hyp{}Modul hingegen liest ein lokales
+\emph{Jinja2}\hyp{}Template ein, wertet dieses aus und hinterlegt es auf
+dem Zielsystem mit den Dateirechten \emph{0600} (Schreib\hyp{} und
+Leserechte) für den Benutzer \emph{root} in dem Pfad
+\emph{/root/.ssh/authorized\_keys}. Das \autoref{lst:ansiblejinja2}
+zeigt das zum \emph{Task} gehörende \emph{Jinja2}\hyp{}Template. Die
+erste Zeile im Template konfiguriert \emph{Jinja2} so, dass alle
+Leerzeichen oder Tabs am Anfang einer Zeile gelöscht werden. In Zeile 2
+ist der Anfang einer For\hyp{}Schleife in \emph{Jinja2}\hyp{}Syntax
+abgebildet. In dieser For\hyp{}Schleife wird über die Liste
+\emph{root\_ssh\_keys} iteriert und jede Iteration wird der Variable
+\emph{user} als Wert zugewiesen. Der vertikale Strich startet einen
+Filter. In diesem Fall der Filter \emph{sort}. Die Liste wird durch
+diesen Filter vor dem Schleifendurchlauf sortiert. Der horizontale
+Strich am Ende der Anweisung weist die Schleife an alle Leerzeichen oder
+Tabs am Ende der generierten Zeile zu entfernen. Innerhalb der
+For\hyp{}Schleife wird die Funktion \emph{lookup} aufgerufen, welche
+eine Information auf dem lokalen Dateisystem einliest. Als Argument für
+die Funktion wird angegeben, dass die Information aus einer Datei
+bezogen werden soll und der Pfad zu dieser Datei wird aus der
+\emph{user}\hyp{}Schleifenvariable und dem String \emph{../pubkeys/}
+zusammengebaut. Die letzte Zeile beendet die Schleife.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Beispiel eines Ansible Tasks},label={lst:ansiblessh}]
+---
+
+- name: ensure /root/.ssh exists
+  file: path=/root/.ssh state=directory owner=root group=root mode=0700
+
+- name: add authorized keys for root
+  template: src=authorized_keys.j2 dest=/root/.ssh/authorized_keys owner=root group=root mode=0600
+
+...
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Beispiel eines Jinja2-Templates},label={lst:ansiblejinja2}]
+#jinja2: lstrip_blocks: True
+{% for user in root_ssh_keys | sort -%}
+	{{ lookup('file', '../pubkeys/' + user) }}
+{% endfor %}
+\end{lstlisting}
+\end{minipage}
+
+\subsection*{Sicherheit}
+\addcontentsline{toc}{subsection}{Sicherheit}
 
 
 \section*{Wahl der Hardware}
