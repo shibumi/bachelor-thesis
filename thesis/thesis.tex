@@ -1284,7 +1284,12 @@ eine Information auf dem lokalen Dateisystem einliest. Als Argument für
 die Funktion wird angegeben, dass die Information aus einer Datei
 bezogen werden soll und der Pfad zu dieser Datei wird aus der
 \emph{user}\hyp{}Schleifenvariable und dem String \emph{../pubkeys/}
-zusammengebaut. Die letzte Zeile beendet die Schleife.
+zusammengebaut. Die letzte Zeile beendet die Schleife. Gefüttert wird
+dieses Template durch das \autoref{lst:ansiblessh2}. Das
+\autoref{lst:ansiblessh2} wird dazu in den Ordnern \emph{group\_vars}
+oder \emph{host\_vars} abgelegt und definiert die Liste
+\emph{root\_ssh\_keys} mit den beiden Einträgen \emph{chris.pub} und
+\emph{test.pub}
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Beispiel eines Ansible Tasks},label={lst:ansiblessh}]
 ---
@@ -1306,15 +1311,47 @@ zusammengebaut. Die letzte Zeile beendet die Schleife.
 {% endfor %}
 \end{lstlisting}
 \end{minipage}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Daten für das Jinja2-Template Beispiel},label={lst:ansiblessh2}]
+---
 
+root_ssh_keys:
+  - chris.pub
+  - test.pub
+
+...
+\end{lstlisting}
+\end{minipage}
 \subsection*{Sicherheit}
 \addcontentsline{toc}{subsection}{Sicherheit}
-
-
+\emph{Ansible} nutzt für alle Verbindungen das
+Fernadministrationsprotokoll \glsfirst{ssh}. Dadurch ist die Integrität,
+Sicherheit und Authentizität der übertragenen Daten sichergestellt.
+\gls{ssh} verwendet dazu ein asynchrones Verschlüsselungsverfahren. Auf
+dem Client wird ein Schlüsselpaar generiert. Üblicherweise durch moderne
+kryptografisch sichere Verfahren wie \gls{rsa} oder Elliptischen Kurven.
+Der öffentliche Schlüssel wird auf dem Zielsystem platziert, meistens
+geschieht dies durch vorheriges Einloggen auf dem Zielsystem mit einem
+Passwort. Bei der Verbindung vom Client zum Zielsystem wird durch das
+asynchrone Verfahren die Authentizität des Servers und des Clients
+bestätigt und der Zugriff gewährt. Um bestimmte Daten auch auf dem
+lokalen Dateisystem des Managementsystems zu verschlüsseln wird
+\emph{Ansible\hyp{}Vault} verwendet. \emph{Ansible\hyp{}Vault} ist ein
+Mechanismus um Dateien mit einem symmetrischen Schlüssel zu
+verschlüsseln. Als Algorithmus wird das Verschlüsselungsverfahren
+\gls{aes} verwendet\cite{ANSIBLEVAULT}.
 \section*{Wahl der Hardware}
 \addcontentsline{toc}{section}{Wahl der Hardware}
 \chapter*{Projektumsetzung}
 \addcontentsline{toc}{chapter}{Projektumsetzung}
+\section*{Erfüllung der Anforderungen}
+\addcontentsline{toc}{section}{Erfüllung der Anforderungen}
+\section*{Entwicklungsprozess}
+\addcontentsline{toc}{section}{Entwicklungsprozess}
+\section*{Systemarchitektur}
+\addcontentsline{toc}{section}{Systemarchitektur}
+\section*{Das entwickelte System}
+\addcontentsline{toc}{section}{Das entwickelte System}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
