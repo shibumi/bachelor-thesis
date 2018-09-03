@@ -683,13 +683,23 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
                 }\\\bottomrule
 \end{tabular}
 \end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA8: Native 1 Gigabit Ethernet Schnittstelle} & \textbf{Priorität: SOLL} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+    Die Hardware der Messpunkte \textbf{SOLL} über eine native 1 Gigabit
+    Ethernet Schnittstelle verfügen.
+    }\\\bottomrule
+\end{tabular}
+\end{center}
+
 \subsection*{Nicht-funktionale Anforderungen}
 \addcontentsline{toc}{subsection}{Nicht-funktionale Anforderungen}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{NFA1: Wahl der Programmiersprache} & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{NFA1: Wahl der Programmiersprache} & \textbf{Priorität: SOLL} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-        Das System \textbf{MUSS} in einer dem Rechenzentrum der
+        Das System \textbf{SOLL} in einer dem Rechenzentrum der
         \gls{tuc} gängigen Programmiersprache entwickelt werden.
         Folgende Programmiersprachen werden im Rechenzentrum der
         \gls{tuc} täglich benutzt:
@@ -706,32 +716,41 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{NFA2: Niedrige Beschaffungskosten} & \textbf{Priorität: SOLL} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Hardware des Systems \textbf{SOLL} möglichst günstig in der Beschaffung
+    Die Hardware der Messpunkte \textbf{SOLL} möglichst günstig in der Beschaffung
     sein.
     }\\\bottomrule
 \end{tabular}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{NFA3: Native 1 Gigabit Ethernet Schnittstelle} & \textbf{Priorität: SOLL} \\\midrule
+    \textbf{NFA3: Sicherheit} & \textbf{Priorität: SOLL} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Hardware des Systems \textbf{SOLL} über eine native 1 Gigabit
-    Ethernet Schnittstelle verfügen.
-    }\\\bottomrule
+        Das System \textbf{SOLL} sicher konzipiert sein.
+        Alle Übertragungen, welche sensible Daten übertragen,  \textbf{SOLLEN} mit gängigen
+        als sicher eingestuften Algorithmen verschlüsselt sein.
+        }\\\bottomrule
 \end{tabular}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{NFA4: Sicherheit} & \textbf{Priorität: MUSS} \\\midrule
+    \textbf{NFA4: Horizontale Skalierbarkeit} & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-        Das System \textbf{MUSS} sicher konzipiert sein.
-        Alle Übertragungen müssen \textbf{MÜSSEN} mit gängigen
-        als sicher eingestuften Algorithmen verschlüsselt sein,
-        ausgenommen die Testverbindungen, die keine Verschlüsselung
-        vorsehen.
+        Das zu entwickelnde System \textbf{MUSS} horizontal skalierbar
+        sein.
         }\\\bottomrule
 \end{tabular}
 \end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{NFA5: Kontrollierbarkeit} & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+        Das zu entwickelnde System \textbf{MUSS} bei wachsendem
+        Komplexitätsgrad und Anzahl von Messpunkten steuerbar und
+        kontrollierbar bleiben.
+        }\\\bottomrule
+\end{tabular}
+\end{center}
+
 \section*{Systemarchitektur}
 \addcontentsline{toc}{section}{Systemarchitektur}
 Auf Grundlage der Problemstellung und der Anforderungen ergibt sich die
@@ -1342,6 +1361,48 @@ verschlüsseln. Als Algorithmus wird das Verschlüsselungsverfahren
 \gls{aes} verwendet\cite{ANSIBLEVAULT}.
 \section*{Wahl der Hardware}
 \addcontentsline{toc}{section}{Wahl der Hardware}
+Da das zu entwickelnde System horizontal skalierbar sein soll (siehe
+Nicht-Funktionale Anforderung 4 (NFA4)) soll das System auch günstig in
+der Anschaffung sein (NFA2). Dem kommt zu Gute, dass die Software auf den
+Messpunkten nicht viele Hardware\hyp{}Ressourcen benötigt. Es wird
+lediglich genug Speicher für ein kleines Linux mit einigen
+Kernkomponenten wie \emph{openSSH} und der eigentlichen Software für die
+Messpunkte benötigt. Durch die niedrigen Beschaffungskosten fallen somit
+bereits größere Computersysteme in Form von Server\hyp{}Racks oder
+Tower\hyp{}PC\hyp{}Einheiten weg. Übrig bleibt die Klasse der
+Einplatinenrechner. Einplatinenrechner erfreuen sich in den letzten
+Jahren immer größerer Beliebtheit und liegen in einem Budget\hyp{}Level
+von 10€ bis 100€. Nachfolgend werden die zwei Einplatinenrechner
+\emph{Raspberry Pi 3B+} und \emph{Odroid XU4} verglichen.
+Der \emph{Raspberry Pi 3B+} kommt mit folgenden Spezifikationen\cite{RASPI}:
+\begin{itemize}
+    \item SoC: Broadcom BCM2837B0 quad-core A53 (ARMv8) 64-bit @ 1.4GHz
+    \item GPU: Broadcom Videocore-IV
+    \item RAM: 1GB LPDDR2 SDRAM
+    \item Netzwerk: Gigabit Ethernet (via USB channel), 2.4GHz and 5GHz 802.11b/g/n/ac Wi-Fi
+    \item Bluetooth: Bluetooth 4.2, Bluetooth Low Energy (BLE)
+    \item Speicher: Micro-SD
+    \item GPIO: 40-pin GPIO header
+    \item Anschlüsse: HDMI, 3.5mm analogue audio-video jack, 4x USB 2.0, Ethernet, Camera Serial Interface
+        (CSI), Display Serial Interface (DSI)
+    \item Dimensionen: 82mm x 56mm x 19.5mm, 50g Gewicht
+    \item Preis: 32.88 Britische Pfund\cite{RASPI_PRICE} (36.45€ Stand: 2018-09-03)
+\end{itemize}
+Im Gegenzug dazu die \emph{Odroid XU4} Spezifikationen\cite{ODROID}:
+\begin{itemize}
+    \item SoC: Samsung Exynos5422 Cortex™-A15 2Ghz and Cortex™-A7 Octa core CPUs
+    \item GPU: Mali-T628 MP6(OpenGL ES 3.1/2.0/1.1 and OpenCL 1.2 Full profile)
+    \item RAM: 2Gbyte LPDDR3 RAM PoP stacked
+    \item Netzwerk: Gigabit Ethernet, kein WLAN
+    \item Bluetooth: nicht vorhanden
+    \item Speicher: Micro-SD
+    \item GPIO: 30-pin GPIO header\cite{ODROID_GPIO}
+    \item Anschlüsse: 2x USB 3.0, 1x USB 2.0, HDMI 1.4a
+    \item Dimensionen: 83mm x 58mm x 20 mm
+    \item Preis: 59 US Dollar\cite{ODROID_PRICE} (50,80€ Stand: 2018-09-03)
+\end{itemize}
+
+
 \chapter*{Projektumsetzung}
 \addcontentsline{toc}{chapter}{Projektumsetzung}
 \section*{Erfüllung der Anforderungen}
