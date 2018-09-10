@@ -1422,9 +1422,11 @@ Im Gegenzug dazu die \emph{Odroid XU4} Spezifikationen\cite{ODROID}:
 Die folgenden Unterkapitel umfassen die Umsetzung eines ersten
 Prototyps. Dazu gehören das Erfüllen der Anforderungen, das Aufsetzen
 eines ersten Test- und Entwicklungssystem, der Entwicklungsprozess
-und einen ersten Prototypen.
+und der erste Prototype.
 \section*{Erfüllung der Anforderungen}
 \addcontentsline{toc}{section}{Erfüllung der Anforderungen}
+Nachfolgend sind die evaluierten Anforderungen und deren Umsetzung
+spezifiziert.
 \tabulinesep=1.2mm
 \begin{center}
     \begin{tabu}{X[-1] X}
@@ -1460,9 +1462,91 @@ und einen ersten Prototypen.
     \captionof{table}{Umsetzung der Nicht-Funktionalen Anforderungen}
     \label{table:mapping2}
 \end{center}
-
 \section*{Test- und Entwicklungssystem}
 \addcontentsline{toc}{section}{Test- und Entwicklungssystem}
+Da die benötigte Hardware zu Projektanfang noch nicht zur Verfügung
+stand, galt es ein Test\hyp{} und Entwicklungssystem aufzubauen. Als
+Grundlage für dieses Test\hyp{} und Entwicklungssystem dient die
+Software \emph{Vagrant}\cite{VAGRANT} der Firma \emph{Hashicorp}. \emph{Hashicorp} ist
+eine in San Fransisco im Jahr 2012 gegründete Firma, welche sich auf den
+Einsatz und Entwicklung von Opensource Software
+spezialisiert\cite{HASHICORP}. Der Fokus der Firma liegt auf
+Automatisierung, Deployment und der Orchestrierung von
+Softwaresystemen in der Cloud. Die Software ist auch ohne
+eine Cloud\hyp{}Umgebung anwendbar. Für die Test\hyp{} und
+Entwicklungsumgebung wird nur auf das Produkt \emph{Vagrant} der Produktpalette von
+\emph{Hashicorp}, gemeinhin auch als \emph{Hashicorp-Toolchain} bekannt,
+zurückgegriffen. Das Werkzeug \emph{Vagrant} bietet einen
+Abstraktionsschicht über die gängigen Virtualisierungsplattformen wie in
+etwa \emph{Virtualbox}, \emph{VMWare}, \emph{Qemu} aber auch über
+Cloud\hyp{}Plattformen wie zum Beispiel \emph{Google Cloud},
+\emph{Amazon AWS} und \emph{Openstack}. \emph{Vagrant} selbst ist eine
+statisch gebaute aus \emph{Golang} kompilierte Binärdatei, dies
+erleichtert das Deployment auf allen gängigen Systemen. Außerdem
+zeichnet sich \emph{Vagrant} durch eine enge Verzahnung mit
+Automatisierungswerkzeugen aus, darunter auch
+\emph{Ansible}\cite{VAGRANT_DOCS}. \emph{Vagrant} abstrahiert die
+Virtualisierungsplattform über einen \emph{Ruby}\hyp{}Interpreter. Es
+wird eine Datei in der Programmiersprache \emph{ruby} angelegt, über
+welche die Anzahl der virtuellen Maschinen und dessen Orchestrierung
+organisiert wird. Diese \emph{Ruby} datei wird von \emph{Vagrant}
+eingelesen und \emph{Vagrant} dockt über die APIs an den jeweiligen
+\emph{Provider} an und spawned die virtuellen Maschinen. Der Dateiname
+einer solchen Datei ist immer \emph{Vagrantfile}. \emph{Vagrantfiles}
+sind austauschbar und ermöglichen so ein reproduzierbares und
+automatisiertes Aufsetzen einer Testumgebung in wenigen Schritten. Ein
+weiterer Grund für den Einsatz von \emph{Vagrant} ist die Vielzahl an
+fertigen \emph{Images} (Speicherabbildern von Betriebssystemen). Anstatt
+ein benötigtes Betriebssystem manuell in einer VM zu installieren ist es
+möglich direkt über \emph{Vagrant} fertige \emph{Images} für gängige
+Linux\hyp{}Distributionen zu ziehen. Dies beschleunigt den
+Entwicklungsprozess ungemein, da der Entwickler sich voll auf die
+Anwendung konzentrieren kann und seine Zeit nicht mit dem Installieren
+von Betriebssystemen verschwendet. Das \autoref{lst:vagrantfile} zeigt
+die \emph{Vagrantfile} zum erzeugen der Test\hyp{} und
+Entwicklungsumgebung. In Zeile 1 wird eine For\hyp{}Schleife erzeugt,
+welche 2 virtuelle Maschinen erzeugt. Die erste virtuelle Maschine trägt
+den Namen \emph{puppetmaster} (Zeile 2) und wird mit einem \emph{Ubuntu
+Bionic Beaver} (\emph{Ubuntu LTS 18.04}) konfiguriert (Zeile 3). \emph{Ubuntu} ist
+ein Linux\hyp{}Derivat von der bekannteren Linux\hyp{}Distribution
+\emph{Debian}. In Zeile 4 wird ein privates Netzwerk für die virtuelle
+Maschine erzeugt. Die virtuelle Maschine bekommt demnach die
+IP\hyp{}Adresse \textbf{192.168.33.10}. In den Zeilen 6 bis
+einschließlich Zeile 8 wird eine zweite VM erzeugt und konfiguriert mit
+dem Namen \emph{node1}, dem selben Betriebssystemabbild und der
+IP\hyp{}Adresse \textbf{192.168.33.11}. Die virtuellen Maschinen liegen
+beide im selben Netzwerk damit sie sich gegenseitig erreichen können.
+Der Wirt\hyp{}Host auf dem die virtuellen Maschinen laufen ist ebenfalls
+durch ein Interface zu den beiden Maschinen verbunden. Anhand dieser
+\emph{Vagrantfile} ist es möglich die Testumgebung auf jedem System zu
+starten auf dem \emph{Vagrant} installiert ist. Dazu muss lediglich die
+\emph{Vagrantfile} in einen Ordner abgelegt werden und über die
+Kommandozeile \emph{Vagrant} gestartet werden. Dies geschieht über das
+Kommando: \emph{vagrant up}. \emph{Vagrant} lädt durch diesen Befehl das
+benötigte Betriebssystemabbild herunter, konfiguriert die virtuellen
+Maschinen mit dem Standard\hyp{}Provider \emph{Virtualbox} und
+konfiguriert das Netzwerk für die Maschinen. Wenn die Maschinen
+gestartet sind kann über den Befehl \emph{vagrant ssh <name der vm>} auf
+die virtuelle Maschine über das Protokoll \gls{ssh} zugegriffen werden.
+Durch diese Vorgehensweise lässt sich das Testsystem später auf jeden
+anderen Hypervisor übertragen und die virtuellen Maschinen lassen sich
+über den Befehl \emph{vagrant snapshot} leicht zu einem vorher
+definierten Zustand zurücksetzen.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Vagrantfile der Test- und Entwicklungsumgebung},label={lst:vagrantfile}]
+Vagrant.configure("2") do |config|
+  config.vm.define "puppetmaster" do |puppetmaster|
+    puppetmaster.vm.box = "ubuntu/bionic64"
+    puppetmaster.vm.network "private_network", ip: "192.168.33.10"
+  end
+  config.vm.define "node1" do |node1|
+    node1.vm.box = "ubuntu/bionic64"
+    node1.vm.network "private_network", ip: "192.168.33.11"
+  end
+end
+\end{lstlisting}
+\end{minipage}
+
 \section*{Entwicklungsprozess}
 \addcontentsline{toc}{section}{Entwicklungsprozess}
 \section*{Prototyp}
