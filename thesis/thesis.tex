@@ -19,6 +19,8 @@
 \usepackage{bytefield}
 \usepackage{float}
 \usepackage{eurosym}
+\usepackage{tabu}
+\usepackage{caption}
 \lstset{%
     frame=tb,
     tabsize=4,
@@ -625,8 +627,9 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Die Software muss die Erreichbarkeit mehrerer
         \gls{dns}\hyp{}Server überprüfen können. Ebenfalls muss die
-        Latenz einer \gls{dns}\hyp{}Anfrage gemessen werden können.}\\bottomrule
+        Latenz einer \gls{dns}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA1}\label{table:FA1}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -636,6 +639,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         \gls{http}\hyp{}Server überprüfen können. Ebenfalls muss die
         Latenz einer \gls{http}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA2}\label{table:FA2}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -645,6 +649,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         \gls{https}\hyp{}Server überprüfen können. Ebenfalls muss die
         Latenz einer \gls{https}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA3}\label{table:FA3}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -654,6 +659,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     zwischen einer \gls{cifs}-Abfrage und der Antwort von einem
     \gls{cifs}-Server}\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA4}\label{table:FA4}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -662,6 +668,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         Das System \textbf{MUSS} die gesammelten Performance-Daten
         zur weiteren Auswertung an eine Datenbank übertragen.}\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA5}\label{table:FA5}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -674,6 +681,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         und Port 443 (\gls{https}) erreichbar sein.
         }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA6}\label{table:FA6}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -683,6 +691,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         Durchsatzes vorzunehmen.
                 }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA7}\label{table:FA7}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -692,6 +701,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     Ethernet Schnittstelle verfügen.
     }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Funktionale Anforderung FA8}\label{table:FA8}
 \end{center}
 
 \subsection*{Nicht-funktionale Anforderungen}
@@ -712,6 +722,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         \end{itemize}
     }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Nicht-Funktionale Anforderung NFA1}\label{table:NFA1}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -721,6 +732,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     sein.
     }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Nicht-Funktionale Anforderung NFA2}\label{table:NFA2}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -731,6 +743,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         als sicher eingestuften Algorithmen verschlüsselt sein.
         }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Nicht-Funktionale Anforderung NFA3}\label{table:NFA3}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -740,6 +753,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         sein.
         }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Nicht-Funktionale Anforderung NFA4}\label{table:NFA4}
 \end{center}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
@@ -750,6 +764,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         kontrollierbar bleiben.
         }\\\bottomrule
 \end{tabular}
+    \captionof{table}{Nicht-Funktionale Anforderung NFA5}\label{table:NFA5}
 \end{center}
 
 \section*{Systemarchitektur}
@@ -1402,23 +1417,62 @@ Im Gegenzug dazu die \emph{Odroid XU4} Spezifikationen\cite{ODROID}:
     \item Dimensionen: 83mm x 58mm x 20 mm
     \item Preis: 59 US Dollar\cite{ODROID_PRICE} (\EUR{50,80} Stand: 2018-09-03)
 \end{itemize}
-
-
 \chapter*{Projektumsetzung}
 \addcontentsline{toc}{chapter}{Projektumsetzung}
+Die folgenden Unterkapitel umfassen die Umsetzung eines ersten
+Prototyps. Dazu gehören das Erfüllen der Anforderungen, das Aufsetzen
+eines ersten Test- und Entwicklungssystem, der Entwicklungsprozess
+und einen ersten Prototypen.
 \section*{Erfüllung der Anforderungen}
 \addcontentsline{toc}{section}{Erfüllung der Anforderungen}
+\tabulinesep=1.2mm
+\begin{center}
+    \begin{tabu}{X[-1] X}
+\toprule
+\textbf{Anforderung} & \textbf{Umsetzung}  \\
+\midrule
+        \hyperref[table:FA1]{\textbf{FA1}} & Die Überwachung von \emph{DNS} erfolgt durch den \emph{Prometheus} \emph{Blackbox-Exporter}. \\
+        \hyperref[table:FA2]{\textbf{FA2}} & Die Überwachung von \emph{HTTP} erfolgt durch den \emph{Prometheus} \emph{Blackbox-Exporter}. \\
+        \hyperref[table:FA3]{\textbf{FA3}} & Die Überwachung von \emph{HTTPS} erfolgt durch den \emph{Prometheus} \emph{Blackbox-Exporter}. \\
+        \hyperref[table:FA4]{\textbf{FA4}} & \emph{Prometheus} ist zum Stand vom 01.09.2018 nicht in der Lage \emph{CIFS} zu überwachen. Um die Anforderung zu erfüllen wird der \emph{Prometheus} \emph{Node-Exporter} benutzt und die darunter liegende Bibliothek \emph{ProcFS} um Funktionalität erweitert. \\
+        \hyperref[table:FA5]{\textbf{FA5}} & Die Performance-Daten werden in einer \emph{TSDB} in \emph{Prometheus} gespeichert. \\
+        \hyperref[table:FA6]{\textbf{FA6}} & Die Grafische Aufbereitung erfolgt durch die Plattform \emph{Grafana}. \\
+        \hyperref[table:FA7]{\textbf{FA7}} & Die Bandbreitenmessung erfolgt durch den \emph{Prometheus} \emph{Node-Exporter}. \\
+        \hyperref[table:FA8]{\textbf{FA8}} & Wird erfüllt über die \emph{Odroid XU4} Plattform. \\
+\bottomrule
+    \end{tabu}
+    \captionof{table}{Umsetzung der Funktionalen Anforderungen}
+    \label{table:mapping1}
+\end{center}
+\tabulinesep=1.2mm
+\begin{center}
+    \begin{tabu}{X[-1] X}
+\toprule
+\textbf{Anforderung} & \textbf{Umsetzung}  \\
+\midrule
+        \hyperref[table:NFA1]{\textbf{NFA1}} & Das für das Deployment verwendete Projekt \emph{Ansible} benutzt \emph{Python}. Für die Erweiterung um \emph{CIFS}\hyp{}Support ist nur die Verwendung der Programmiersprache \emph{Golang} möglich. \\
+        \hyperref[table:NFA2]{\textbf{NFA2}} & Die niedrigen Beschaffungskosten sind durch die Wahl der \emph{Odroid XU4} Plattform gegeben. \\
+        \hyperref[table:NFA3]{\textbf{NFA3}} & Die für das Deployment benötigten Passwörter werden mit gängigen Verschlüsselungsverfahren in \emph{Ansible-Vault}  hinterlegt. Die Verbindungen zu den Zielsystemen finden verschlüsselt und mit einer Authentizitätsprüfung statt. \\
+        \hyperref[table:NFA4]{\textbf{NFA4}} & Das System ist horizontal skalierbar durch den Einsatz von \emph{Prometheus} als Cluster einsetzbare Datenbank und \emph{Ansible} als Automatisierungswerkzeug zum Deployment. \\
+        \hyperref[table:NFA5]{\textbf{NFA5}} & Das System bleibt kontrollierbar durch den Einsatz von \emph{Ansible}. \\
+\bottomrule
+    \end{tabu}
+    \captionof{table}{Umsetzung der Nicht-Funktionalen Anforderungen}
+    \label{table:mapping2}
+\end{center}
+
+\section*{Test- und Entwicklungssystem}
+\addcontentsline{toc}{section}{Test- und Entwicklungssystem}
 \section*{Entwicklungsprozess}
 \addcontentsline{toc}{section}{Entwicklungsprozess}
-\section*{Systemarchitektur}
-\addcontentsline{toc}{section}{Systemarchitektur}
-\section*{Das entwickelte System}
-\addcontentsline{toc}{section}{Das entwickelte System}
+\section*{Prototyp}
+\addcontentsline{toc}{section}{Prototyp}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
 \printbibliography{}
 \lstlistoflistings{}
+\listoftables{}
 \listoffigures
 \printglossary{}
 \end{document}
