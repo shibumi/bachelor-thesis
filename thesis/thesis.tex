@@ -143,30 +143,30 @@ gehören:
 sind die drei \emph{Core\hyp{}Router}, welche auf die Gebiete
 Rechenzentrum, Feldgraben und Tannenhöhe verteilt sind.
 \emph{Core\hyp{}Router} stellen das Rückgrat, den Backbone, des Netzes
-der \gls{tuc} dar und verkünden die Routen zwischen den einzelnen am
+der \gls{tuc} dar und leiten den Datenverkehr zwischen den einzelnen am
 Netz angeschlossenen Geräten. Sie trennen außerdem das Netz in logische
 Abschnitte. Zu sehen ist ebenfalls das aktuell existierende
 Monitoring-System, welches einzelne Kerndienste überwacht. Diese
 Kerndienste und das aktuelle Monitoring-System sind im Rechenzentrum
 beheimatet. Dadurch entsteht eine physikalische und auch logische Nähe
 der Systeme. Durch diese Nähe verlässt der Datenverkehr, welcher die
-Kerndienste überprüft niemals das Rechenzentrum. Dies führt dazu, dass
+Kerndienste überprüft, niemals das Rechenzentrum. Dies führt dazu, dass
 einzelne Kerndienste zwar als in Betrieb und fehlerfrei angezeigt
 werden, aber durchaus die Möglichkeit besteht, dass einzelne Dienste
 nicht von jedem Rechner aus erreichbar sind. Da außerdem nur ein binärer
-Zustand ermittelt wird ist unklar wie groß die Latenz zwischen den
+Zustand ermittelt wird, ist unklar, wie groß die Latenz zwischen den
 Diensten und den jeweiligen Endkunden ist. Diese Latenz ist allerdings
-entscheidend und hat Einfluss auf die Produktivität der Endkunden.
+entscheidend und hat Einfluss auf die Nutzererfahrung der Endkunden.
 Besonders Dienste wie \gls{dns} sind auf schnelle Verbindungen
 angewiesen. Eine zu hohe Latenz zwischen einem Client und dem Dienst
 führt unweigerlich zu für den Nutzer spürbaren Konsequenzen (zum
-Beispiel verzögerte Seitenaufrufe beim Web-Browsing). Noch mehr ins
+Beispiel zu verzögerten Seitenaufrufe beim Web-Browsing). Noch mehr ins
 Gewicht fallen Latenzen bei \gls{voip}, dort sind Latenzen oder ein
 Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTERWIKI})
 leicht auszumachen. Was fehlt, ist ein Netz aus verteilten Messpunkten,
 das es ermöglicht, die Erreichbarkeit einzelner Dienste periodisch und
 über einen längeren Zeitraum zu beobachten (siehe \autoref{fig:problemloesung}). Dies
-hätte zwei Vorteile.  Zum einen lässt sich so der Zustand des
+hätte mehrere Vorteile: Zum einen ließe sich so der Zustand des
 Campus-Netzwerks besser erfassen, da Tests nicht nur von einem zentralen
 Monitoring-System aus gestartet werden. Zum anderen können die
 gewonnenen Daten weiter verwertet, grafisch aufbereitet und zum Beispiel
@@ -174,27 +174,27 @@ für die Erstellung von Langzeitstatistiken über die Gesundheit des
 Netzwerks genutzt werden.  Weiterhin könnten im Fall eines Ausfalls die
 zuständigen Netzadministratoren benachrichtigt werden, im Idealfall
 durch gewohnte Kommunikationswege wie Email. Außerdem wäre es durch
-einen dezentralen Aufbau einfacher, dass System beliebig zu skalieren
+einen dezentralen Aufbau einfacher, das System beliebig zu skalieren
 und auf Wachstum und Schrumpfen des Netzes zu reagieren. Mit dem Wandel
 von einem zentralen zu einem dezentralen Monitoring-System entsteht
 allerdings auch mehr Arbeitsaufwand, denn auch diese Systeme müssen
-gewartet werden. Dies umfasst das Platzieren von Konfigurationsdateien,
+gewartet werden. Dies umfasst das Verwalten von Konfigurationsdateien,
 das Aktualisieren und Installieren von Software und die Installation des
-Grundsystems.  Insgesamt gesehen lassen sich daraus folgende
+Grundsystems. Insgesamt lassen sich daraus folgende
 Herausforderungen an diese Arbeit ableiten:
 
 \begin{itemize}
-    \item Es muss eine Hardware gefunden werden, welche sich zum Einsatz
+    \item Es muss eine Hardware gefunden werden, welche sich
           als verteilter Messpunkt eignet.
     \item Es muss eine Monitoring\hyp{}Plattform gebaut oder eine
-          vorhandene Monitoring\hyp{}Plattform erweitert werden, so dass die
-          Monitoring\hyp{}Plattform den Anforderungen aus der
+          vorhandene Monitoring\hyp{}Plattform erweitert werden, so dass
+          sie den Anforderungen aus der
           Problemstellung gerecht wird.
     \item Es muss ein Modell für die gespeicherten Daten gefunden
           werden.
     \item Es muss ein Weg zur Datenvisualisierung gefunden werden.
     \item Das System muss horizontal skalierbar sein. Das heißt, es
-          muss um beliebig viele Messpunkte erweiterbar sein.
+          muss um Messpunkte erweiterbar sein.
     \item Das System muss bei wachsendem Komplexitätsgrad und Anzahl von
           Messpunkten steuerbar und kontrollierbar bleiben.
     \item Das System muss über Rechnernetze kommunizieren.
@@ -223,7 +223,7 @@ Um auf Basis der vorangegangenen Problemstellung eine Lösung zu
 erarbeiten, ist es notwendig, einen groben Überblick über die Grundlagen
 von Computernetzwerken zu bekommen. Als Basis dafür dient das \gls{osi}. Das
 \gls{osi} ist de facto das bis heute gängige Referenzmodell, wenn es
-darum geht, mehrere Systeme mit einander zu vernetzen. Ein solches System
+darum geht, mehrere Systeme miteinander zu vernetzen. Ein solches System
 wird \emph{offenes System} genannt, wenn es den im \gls{osi}
 spezifizierten Standards entspricht\cite[Siehe Abschnitt
 4.1.2]{ITUOSI}. Diese \emph{offenen Systemen} sind mit einem physischen
@@ -254,7 +254,7 @@ welches wiederum in ein \gls{ip}\hyp{}Paket eingebettet ist
 (Vermittlungsschicht). Dieses \gls{ip}\hyp{}Paket enthält die Adresse
 des Empfängers und wird ebenfalls eingebettet in einen
 Ethernet\hyp{}Frame (Sicherungsschicht), welcher wiederum in Form von
-Bits über ein Netzwerkkabel übertragen wird (Bitübertragungsschicht).
+kodierten Bits über ein Netzwerkkabel übertragen wird (Bitübertragungsschicht).
 Dieses Matrjoschka\hyp{}ähnliche Gebilde wird über das physische
 Medium versendet und der Empfänger packt es angefangen bei der
 Bitübertragungsschicht aufsteigend wieder aus.
@@ -292,17 +292,17 @@ allen Servern des frühen Internets und wurden vom \gls{nic} verwaltet
 und mit dem Dateiübertragungsprotokoll \gls{ftp}
 synchronisiert\cite{RFC1034}. In der damaligen Zeit stellte sich dies
 als ein Flaschenhals für das Internet heraus, da die Anzahl der Server
-im Netzwerk exponentiell zunahm. Deshalb werden nur vier Jahre später
+im Netzwerk exponentiell zunahm. Deshalb wurden nur vier Jahre später
 Überarbeitungen von \gls{dns} veröffentlicht. Diese Überarbeitungen
-wurden in den \glspl{rfc} \gls{rfc} 1034 und \gls{rfc} 1035 erläutert
+wurden in den \glspl{rfc} 1034 und 1035 erläutert
 und bilden die Grundlage für \gls{dns} wie es heute bekannt ist und auch
-eingesetzt wird. Der heutige Ansatz verläuft dezentraler als es damals
+eingesetzt wird. Der heutige Ansatz verläuft dezentraler, als es damals
 der Fall gewesen ist. Anstatt die \gls{dns}\hyp{}Einträge auf allen
 Knoten des Internets zu verteilen und zentral vom \gls{nic} aus zu
 steuern, existieren heute mehrere hierarchische Verwaltungsebenen. Dazu
 wird der \gls{fqdn} hierarchisch gegliedert. Ein Beispiel für einen
 \gls{fqdn} ist \emph{akira.rz.tu-clausthal.de}. Die
-\autoref{fig:dnsname} veranschaulicht, die Gliederung dieses \gls{fqdn} in die
+\autoref{fig:dnsname} veranschaulicht die Gliederung dieses \gls{fqdn} in die
 einzelnen Bestandteile.
 \begin{figure}[H]
     \centering
