@@ -795,28 +795,28 @@ Webserver mit der Visualisierungslösung stellt diese Daten für den Nutzer aufb
 \section*{Datenmodell}
 \addcontentsline{toc}{section}{Datenmodell}
 Zur Speicherung der Messdaten steht ein breites Spektrum von Datenbanken
-zur Verfügung. Das Spektrum reicht von traditionellen relationalen
+zur Verfügung. Das Spektrum reicht von traditionellen, relationalen
 Datenbanken, wie zum Beispiel MySQL, bis zu modernen
 NoSQL\hyp{}Datenbanken, wie Key\hyp{}Value\hyp{}Stores und \glspl{tsdb}.
 Dieses Kapitel versucht einen Überblick über alle Datenbanktypen zu
 geben und den passenden Datenbanktyp für das Projekt festzulegen.
 \subsection*{Relationale Datenbanken}
 \addcontentsline{toc}{subsection}{Relationale Datenbanken}
-Bei relationalen Datenbanken handelt es sich um tabellenbasierte
-Datensätze. Als Grundlage dieser Datenbanken dienen Relationen.
-Relationen sind mathematisch bewiesene und damit wohldefinierte
-Beschreibungen von diesen Tabellen. Für Schreib\hyp{} und
-Leseoperationen, auf diesen durch Relationen beschrieben Tabellen, wird
-eine formale Sprache verwendet; die relationale Algebra. Jede Tabelle
-wird beim Relationenmodell als eine Menge untergeordneter Tupel
-aufgefasst\cite[S. 4]{MEIER2013}. Ein weiteres Merkmal von relationalen
-Datenbanken ist die Verwendung von Primärschlüsseln (englisch: primary
-key). Durch Primärschlüsseln ist jeder Eintrag in einer relationalen
-Datenbank einzigartig. Um Datenbankeinträge abzufragen, zu manipulieren
-und in die Datenbank zu transferieren wird die international
-standardisierte Datenbankbeschreibungssprache \gls{sql} eingesetzt. Die
-nachfolgende Tabelle namens \emph{Studenten} beschreibt einen
-Datenbankeintrag in einer relationen Datenbank:
+Bei relationalen Datenbanken handelt es sich um tabellenbasierte Datensätze.
+Als Grundlage dieser Datenbanken dienen Relationen.  Relationen sind
+algrabische Strukturen und damit wohldefinierte Beschreibungen der
+Tabellen. Also in sich selbst abgeschlossene Tautologien. Für Schreib\hyp{} und
+Leseoperationen auf diesen durch Relationen beschrieben Tabellen wird eine
+formale Sprache verwendet: die relationale Algebra. Jede Tabelle wird beim
+Relationenmodell als eine Menge untergeordneter Tupel aufgefasst\cite[S.
+4]{MEIER2013}. Ein weiteres Merkmal von relationalen Datenbanken ist die
+Verwendung von Primärschlüsseln (Englisch: primary key). Durch Primärschlüsseln
+ist jeder Eintrag in einer relationalen Datenbank eindeutig identifizierbar. Um
+Datenbankeinträge abzufragen, zu manipulieren und in die Datenbank zu
+transferieren, wird die international standardisierte
+Datenbankbeschreibungssprache \gls{sql} eingesetzt. Die nachfolgende Tabelle
+namens \emph{Studenten} beschreibt einen Datenbankeintrag in einer relationen
+Datenbank:
 \begin{center}
     \begin{tabular}{l c r}
         \toprule
@@ -830,9 +830,9 @@ Datenbankeintrag in einer relationen Datenbank:
 \end{center}
 In der oben abgebildeten Datenbank ist nur eine Tabelle namens
 \emph{Studenten} vorhanden. Auf dieser Tabelle können mit \gls{sql} diverse
-Operationen durchgeführt werden. Das \autoref{lst:sqlexample} zeigt das hinzufügen von neuen
-Daten, das abrufen von Daten, das manipulieren von Daten und das
-erzeugen einer neuen Tabelle. Als Implementierung wurde \emph{sqlite}
+Operationen durchgeführt werden. Das \autoref{lst:sqlexample} zeigt das Hinzufügen neuer
+Daten, das Abrufen von Daten, das Manipulieren von Daten und das
+Erzeugen einer neuen Tabelle. Als Implementierung wurde \emph{sqlite}
 verwendet. In der ersten Zeile wird durch das \emph{INSERT} Statement
 ein neuer Student zur Tabelle \emph{Studenten} mit der Matrikelnummer 4,
 dem Vornamen Dana und dem Nachnamen Foxtrott hinzugefügt. In der zweiten
@@ -862,7 +862,7 @@ Bekannte Implementierungen für relationale Datenbanken sind:
 \end{itemize}
 \subsection*{NoSQL\hyp{}Datenbanken}
 \addcontentsline{toc}{subsection}{NoSQL\hyp{}Datenbanken}
-NoSQL\hyp{}Datenbanken sind zunächst einmal nur ein grober Sammelbegriff
+NoSQL\hyp{}Datenbanken sind zunächst ein grober Sammelbegriff
 für alle Datenbanken die kein relationales Konzept verfolgen und somit
 nicht durch die Sprache \gls{sql} beschrieben werden können. In den
 meisten Fällen handelt es sich bei NoSQL\hyp{}Datenbanken um einfache
