@@ -338,7 +338,7 @@ Käufer ist Eigentümer der jeweiligen \gls{tld}. Ein Eigentümer
 einer \gls{tld} kann beliebig viele Subdomains erstellen für den
 Eigenbedarf, diese weiterverkaufen oder gar verschenken. Weitere
 wichtige Elemente des \gls{dns}\hyp{}Protokolls sind \emph{Name Server}
-und \emph{Resolver}\cite[Siehe Section 2.4]{RFC1034}.
+und \emph{Resolver}\cite[siehe Section 2.4]{RFC1034}.
 \emph{Name Server} sind Server\hyp{}Programme, welche
 Informationen zur Baumstruktur enthalten. Ergo halten \emph{Name
 Server} Domain\hyp{}\gls{ip}\hyp{}Tabellen für ihre
@@ -358,20 +358,20 @@ Letzteres ist nötig für die \gls{dns}\hyp{}Erweiterungen
 \gls{dns}\hyp{}over\hyp{}\gls{https} (Port 443), welche das Protokoll \gls{dns} um
 Verschlüsselung erweitern\cite{RFC7858}
 (\gls{dns}\hyp{}over\hyp{}\gls{https} ist zum Zeitpunkt dieser Arbeit
-noch nicht endgültig spezifiziert). Dieses Bestreben \gls{dns} sicherer
-zu machen unterstreicht die Wichtigkeit des Protokolls. Das Protokoll
-ist heute maßgeblich an der Funktionalität des Internets beteiligt. Ohne
+noch nicht endgültig spezifiziert). Dieses Bestreben, \gls{dns} sicherer
+zu machen, unterstreicht die Wichtigkeit des Protokolls. Das Protokoll
+ist heute maßgeblich für das Funktionieren  des Internets. Ohne
 \gls{dns} wären diverse vernetzte Anwendungen nicht möglich. Der
-Webbrowser in etwa löst permanent \gls{dns}\hyp{}Anfragen aus. Ist nur
+Webbrowser etwa löst permanent \gls{dns}\hyp{}Anfragen aus. Ist nur
 eine dieser Anfragen fehlerhaft oder stark verzögert ist das für den
 Nutzer augenblicklich zu merken. Im Fall von fehlerhaften Anfragen, wäre
 eine Auflösung der Domain nicht möglich und eine Verbindung zu der
 assoziierten \gls{ip}\hyp{}Adresse würde fehlschlagen. Der Webbrowser
-beispielsweise würde in diesem Fall einen Fehlerbildschirm anzeigen.
+würde in diesem Fall einen Fehlerbildschirm anzeigen.
 Bei stark verzögerten
-\gls{dns}\hyp{}Anfragen dauert der Aufbau einer neuen Seite massiv
+\gls{dns}\hyp{}Anfragen dauert der Aufbau einer neuen Seite 
 länger als üblich. Wie wichtig schnelle Antwortzeiten eines Computers
-sind hat Walter Doherty bereits im Jahre 1982 mit seinem Paper \emph{The
+sind, hat Walter Doherty bereits im Jahre 1982 mit seinem Paper \emph{The
 Economic Value of Rapid Response Time} deutlich gemacht. Doherty
 beobachtete einen signifikanten Anstieg an Benutzerinteraktionen, wenn
 die Latenz der Anfrage (in diesem Fall bezogen auf normale
@@ -379,7 +379,7 @@ Computereingaben) unter einen bestimmten Wert fiel\cite{DOHERTY}.
 Bezogen auf die Latenz von \gls{dns}\hyp{}Anfragen hieße das, dass der
 Benutzer massiv bei seiner Arbeit ausgebremst wird. Dies führt nicht nur
 zu Frustration beim Nutzer, sondern auch zu Verschwendung seiner
-bezahlten Arbeitszeit und damit einer geringeren Produktivität.
+bezahlten Arbeitszeit und damit zu einer geringeren Produktivität.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
 \glsfirst{http} ist ein auf \gls{tcp}/\gls{ip} aufbauendes
@@ -393,11 +393,11 @@ sowie diverse Erweiterungen für das Protokoll hinzu. Darunter
 Erweiterungen für Kompression (um die Datenübertragungsrate zu erhöhen),
 Verschlüsselung, Caching und Authentifikation. Seit 2015 ist die
 aktuelle Version \gls{http}/2, welche in \gls{rfc} 7540 standardisiert
-wird\cite{RFC7540}. \gls{http} ist ein zustandsloses Protokoll,
-dementsprechend werden mehrere Anfragen getrennt von einander und ohne
+werden\cite{RFC7540}. \gls{http} ist ein zustandsloses Protokoll,
+dementsprechend werden mehrere Anfragen getrennt voneinander und ohne
 Kontext zu einander bearbeitet. Es wird keine Session aufgebaut und
 keine Sitzungsinformationen verwaltet. Sitzungsinformationen können
-aber zusätzlich durch \emph{Cookies} übertragen werden. \emph{Cookies}
+zusätzlich durch \emph{Cookies} übertragen werden. \emph{Cookies}
 ergänzen den \gls{http}\hyp{}Header um Sitzungsinformationen, dadurch
 ist eine genaue Zuordnung möglich. Zur Interaktion mit dem Server
 besitzt \gls{http} mehrere Methoden. Die häufigsten sind:
@@ -415,10 +415,10 @@ herauszufinden, welche Methoden ein Server unterstützt, kann die Methode
 Im \autoref{lst:httpanfrage} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
 Verbindungsaufbau an den Host \emph{http://tu-clausthal.de}
 visualisiert. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
-und ended in Zeile 9. Aus Zeile 5 wird ersichtlich, dass es sich um die
+und endet in Zeile 9. Aus Zeile 5 wird ersichtlich, dass es sich um die
 Version 1.1 von \gls{http} handelt und der Client via \emph{GET} den
 Index der Seite \emph{tu-clausthal.de} (siehe Zeile 6) anfragt. Zeile 7
-übermittelt den Namen und Version der Software mit dem diese
+übermittelt den Namen und Version der Software mit, der diese
 \gls{http}\hyp{}Anfrage gesendet worden ist und Zeile 8 definiert,
 welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}. Ab Zeile
 10 beginnt die Antwort des Servers. Dort werden Protokoll und die
@@ -429,12 +429,12 @@ einen neuen \gls{url} verwiesen. Die \gls{url} dient als Pfadangabe zur
 gewünschten Ressource oder Information. Bei \gls{http} haben diese
 Pfadangaben den Präfix \emph{http://}. Zeile 11 gibt
 das aktuelle Datum, die Uhrzeit und die Zeitzone an und Zeile 12 die
-Software des Servers und deren Version. Die Zeilen 14,15 und 16
+Software des Servers und deren Version. Die Zeilen 14 bis 16
 enthalten die Information, dass der Server diverse Encodings unterstützt
 (zum Beispiel Kompression mit dem Kompressionsalgorithmus \emph{gzip}),
 die Länge des übermittelten Inhalts und der Typ des Inhalts sowie dessen
 Zeichenkodierung. Die Zeilen 18 bis 21 enthalten den übermittelten
-Inhalt. Hier gekürzt dargestellt.
+Inhalt, hier gekürzt dargestellt.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Eine HTTP-Anfrage an
 http://tu-clausthal.de},label={lst:httpanfrage}]
@@ -465,8 +465,7 @@ http://tu-clausthal.de},label={lst:httpanfrage}]
 Bei der Verwendung von \gls{http} können folgende Fehlerfälle auftreten:
 \begin{itemize}
     \item Die Verbindung ist zu langsam und der Seitenaufbau erfolgt in
-          einem für den Nutzer zu langsamen Tempo. Dies führt zu
-          Frustration beim Nutzer.
+          einem für den Nutzer zu langsamen Tempo.
     \item Die Verbindung kommt nicht zu Stande, weil der Webserver nicht
           erreichbar ist.
 \end{itemize}
@@ -482,8 +481,8 @@ Für den Verbindungsaufbau wird bei \gls{https} standardmäßig
 Port 433 benutzt\cite[Siehe Section 2.3]{RFC2818}. Als
 \gls{url}\hyp{}Präfix dient \emph{https://}. Bei der Verschlüsselung und
 Herstellung der Datenintegrität bleibt die eigentliche
-\gls{http}\hyp{}Syntax intakt, ergo findet eine Verschlüsselung der
-einzelnen \gls{http}\hyp{}Pakete statt. Dazu verschickt der Client beim
+\gls{http}\hyp{}Syntax intakt, ergo handelt es sich um eine Verschlüsselung der
+einzelnen \gls{http}\hyp{}Pakete. Dazu verschickt der Client beim
 Verbindungsaufbau über Port 433 ein \emph{TLS ClientHello} an den
 Server, woraufhin der \gls{tls}\hyp{}Handshake initiiert wird.
 Dieser Handshake beinhaltet die Überprüfung der Integrität des Servers
@@ -498,7 +497,7 @@ fremde Zertifizierungsstelle, geht der Client davon aus, dass der Server
 die Identität besitzt, die er vorgibt zu haben. Dies ist in so fern
 problematisch, als in der Vergangenheit wiederholt bei
 Zertifizierungsstellen eingebrochen worden ist und private Schlüssel zum
-erstellen von gültigen Zertifikaten gestohlen worden
+signieren von gültigen Zertifikaten gestohlen worden
 sind\cite{PRIVATEKEYSSTOLEN}. Nach der Integritätsprüfung folgt der
 eigentliche Aufbau einer verschlüsselten Verbindung. Für den Aufbau
 existieren derzeit zwei mögliche Verfahren. Zum Einen der
@@ -509,7 +508,7 @@ erzeugt, dieser wird mit dem öffentlichen Schlüssel des Servers
 verschlüsselt und dem Server mitgeteilt. Der Server entschlüsselt den
 symmetrischen Schlüssel unter Zuhilfenahme seines privaten Schlüssels.
 Damit ist eine sichere Verbindung aufgebaut und der Client und der Server
-sind in der Lage sich mit dem symmetrischen Schlüssel
+sind in der Lage, sich mit dem symmetrischen Schlüssel
 verschlüsselte Nachrichten zu senden. Beim
 Diffie\hyp{}Hellman\hyp{}Handshake dagegen werden die öffentlichen
 Schlüssel beider Gesprächspartner ausgetauscht und mit dem jeweiligen im
@@ -522,14 +521,15 @@ neues Schlüsselpaar erzeugt wird. Ergo ist der
 Diffie\hyp{}Hellman\hyp{}Handshake als sicherer anzusehen, da der
 gemeinsame symmetrische Schlüssel niemals übertragen wird (auch nicht
 verschlüsselt) und neue Sessions immer mit einem neuen Schlüssel
-versehen werden. Letzteres ermöglicht \gls{pfs}.  Durch \gls{pfs} ist es
-einem Angreifer mit einem aktuellen privaten Schlüssel nicht möglich,
-ältere aufgezeichnete Verbindungen zu entschlüsseln.
-Die Fehlerfälle bei \gls{https} entsprechen denen von \gls{http} mit
+versehen werden. Letzteres ermöglicht \gls{pfs}. Durch \gls{pfs} ist es
+einem Angreifer nicht möglich ältere aufgezeichnete Verbindungen zu
+entschlüsseln, auch wenn er in den Besitz eines privaten Schlüssels
+gelangt.
+Die Fehlerfälle bei \gls{https} entsprechen denen von \gls{http}, 
 erweitert um einige Fehler bezogen auf \gls{tls}:
 \begin{itemize}
-    \item Das \gls{tls}\hyp{}Zertifikat ist ungültig
-    \item Es kommt keine Verbindung auf Port 443 zu Stande, weil der
+    \item Ein \gls{tls}\hyp{}Zertifikat ist ungültig
+    \item Es kommt keine Verbindung auf Port 443 zustande, weil der
           Webserver kein \gls{https} unterstützt.
 \end{itemize}
 \section*{\glsfirst{cifs}}
@@ -578,9 +578,8 @@ Format}, bei dem das höchstwertige Byte zuerst gespeichert wird.
 Bei der Verwendung von \gls{cifs} können folgende Fehlerfälle auftreten:
 \begin{itemize}
     \item Die Verbindung zum Server, welcher den \gls{cifs}\hyp{}Share
-          anbietet weist eine hohe Latenz auf. Dies führt zu langsamen
-          Schreib\hyp{} und Leseoperationen auf dem Share, was die
-          Produktivität des Nutzers massiv bremst.
+          anbietet, weist eine hohe Latenz auf. Dies führt zu langsamen
+          Schreib\hyp{} und Leseoperationen auf dem Share.
     \item Der \gls{cifs}\hyp{}Share ist nicht erreichbar.
 \end{itemize}
 \chapter*{Herleitung eines Lösungsansatzes}
@@ -625,8 +624,8 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA1: Überwachung von \gls{dns} } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-        Die Software muss die Erreichbarkeit mehrerer
-        \gls{dns}\hyp{}Server überprüfen können. Ebenfalls muss die
+        Die Software \textbf{muss} die Erreichbarkeit mehrerer
+        \gls{dns}\hyp{}Server überprüfen können. Ebenfalls \textbf{muss} die
         Latenz einer \gls{dns}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
     \captionof{table}{Funktionale Anforderung FA1}\label{table:FA1}
@@ -636,8 +635,8 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     \textbf{FA2: Überwachung von \gls{http} } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Die Software \textbf{MUSS} die Erreichbarkeit mehrerer
-        \gls{http}\hyp{}Server überprüfen können. Ebenfalls muss die
-        Latenz einer \gls{http}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
+        \gls{http}\hyp{}Server überprüfen können. Ebenfalls
+        \textbf{muss} die Latenz einer \gls{http}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
     \captionof{table}{Funktionale Anforderung FA2}\label{table:FA2}
 \end{center}
@@ -646,7 +645,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     \textbf{FA3: Überwachung von \gls{https} } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Die Software \textbf{MUSS} die Erreichbarkeit mehrerer
-        \gls{https}\hyp{}Server überprüfen können. Ebenfalls muss die
+        \gls{https}\hyp{}Server überprüfen können. Ebenfalls \textbf{muss} die
         Latenz einer \gls{https}\hyp{}Anfrage gemessen werden können.}\\\bottomrule
 \end{tabular}
     \captionof{table}{Funktionale Anforderung FA3}\label{table:FA3}
@@ -655,9 +654,9 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA4: Überwachung von \gls{cifs} } & \textbf{Priorität: SOLL} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Software \textbf{MUSS} die Zeit messen können, die vergeht
+    Die Software \textbf{MUSS} die Zeit messen können, die 
     zwischen einer \gls{cifs}-Abfrage und der Antwort von einem
-    \gls{cifs}-Server}\\\bottomrule
+    \gls{cifs}-Server} vergeht.\\\bottomrule
 \end{tabular}
     \captionof{table}{Funktionale Anforderung FA4}\label{table:FA4}
 \end{center}
@@ -675,8 +674,8 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     \textbf{FA6: Grafische Aufbereitung } & \textbf{Priorität: MUSS} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Die vom System zur Datenbank gesendeten Performance-Daten
-        \textbf{MÜSSEN} für die Administratoren grafisch in Form von
-        Graphen aufbereitet werden.
+        \textbf{MÜSSEN} für die Administratoren grafisch
+        aufbereitet werden.
         Diese Graphen \textbf{MÜSSEN} via Port 80 (\gls{http})
         und Port 443 (\gls{https}) erreichbar sein.
         }\\\bottomrule
@@ -780,14 +779,14 @@ folgende Aufstellung von Komponenten für die Systemarchitektur:
     \item[Visualisierungslösung] Das Subsystem zur Visualisierung der, von
         den Messsensoren, gewonnenen Messdaten.
     \item[Messensor] Ein verteilter Messpunkt, um die in den
-        Anforderungen spezifizierten Daten, zu gewinnen.
+        Anforderungen spezifizierten Daten zu gewinnen.
 \end{description}
 Aus der Komponentenaufstellung ergeben sich die Assoziationen zwischen
 den einzelnen Komponenten. Das Konfigurationsmanagement umspannt alle
 Komponenten und sorgt für deren Konfiguration, Verwaltung und Kontrolle.
 Die einzelnen Messensoren senden ihre Messdaten zur Datenbank. Der
-Webserver mit der Visualisierungslösung stellt diese Daten, aufbereitet
-für den Nutzer, grafisch dar.
+Webserver mit der Visualisierungslösung stellt diese Daten für den Nutzer aufbereitet
+ grafisch dar.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/network.pdf}
@@ -1113,7 +1112,7 @@ Visualisierung eine weitere Plattform verwendet:
 \emph{Grafana}\cite{GRAFANA}. \emph{Grafana} zeichnet sich durch eine
 hohe Erweiterbarkeit, vollen \emph{Prometheus}\hyp{}Support und einer
 Vielzahl an Konfigurationsmöglichkeiten aus. Der Transport der Daten von
-\emph{Prometheus} zu \emph{Grafana} findet via \gls{restapi} und der von
+\emph{Prometheus} zu \emph{Grafana} findet via \gls{restapi} und der, von
 \emph{Prometheus} unterstützten Query\hyp{}Language \emph{PromQL} statt
 (\autoref{fig:prometheusgrafana} zeigt \emph{Grafanas} Platz in der
 \emph{Prometheus}\hyp{}Landschaft).
