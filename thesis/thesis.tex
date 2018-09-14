@@ -1530,8 +1530,8 @@ Kommando: \emph{vagrant up}. \emph{Vagrant} lädt durch diesen Befehl das
 benötigte Betriebssystemabbild herunter, konfiguriert die virtuellen
 Maschinen mit dem Standard\hyp{}Provider \emph{Virtualbox} und
 konfiguriert das Netzwerk für die Maschinen. Wenn die Maschinen
-gestartet sind kann über den Befehl \emph{vagrant ssh <name der vm>} auf
-die virtuelle Maschine über das Protokoll \gls{ssh} zugegriffen werden.
+gestartet sind kann über den Befehl \emph{vagrant ssh <Name der vm>} auf
+eine der virtuellen Maschinen über das Protokoll \gls{ssh} zugegriffen werden.
 Durch diese Vorgehensweise lässt sich das Testsystem später auf jeden
 anderen Hypervisor übertragen und die virtuellen Maschinen lassen sich
 über den Befehl \emph{vagrant snapshot} leicht zu einem vorher
@@ -1548,6 +1548,57 @@ Vagrant.configure("2") do |config|
     node1.vm.network "private_network", ip: "192.168.33.11"
   end
 end
+\end{lstlisting}
+\end{minipage}
+Bei der Anwendung des Befehls \emph{vagrant ssh} wird eine
+Implementierung des \gls{ssh}\hyp{}Protokolls innerhalb \emph{Vagrants} benutzt. Um
+die globale \gls{ssh}\hyp{}Implementierung zu verwenden ist es nötig den
+von \emph{Vagrant} generierten privaten Schlüssel zu benutzen. Dieser
+liegt im versteckten Verzeichnis: \emph{.vagrant/machines/<VM
+Name>/virtualbox/private_key}. Dazu wird unter dem Betriebssystem
+\emph{Linux} eine \gls{ssh}\hyp{}Konfigurationsdatei erstellt mit dem Pfad
+\emph{/home/<Benutzername>/.ssh/config}. \autoref{lst:sshconfig} zeigt
+eine \gls{ssh}\hyp{}Konfigurationsdatei. Die erste Zeile vergibt einen
+Alias für die gls{ip}\hyp{}Adresse. Auf diese Weise ist es nicht nötig
+einen Eintrag im \gls{dns} vorzunehmen für ein Testsystem. Zeile 2
+spezifiziert die Adresse nochmals. Zeile 3 definiert den Benutzer für
+die \gls{ssh}\hyp{}Verbindung. Zeile 4 leitet die von \gls{ssh}
+gespeicherten \emph{Fingerprints} für die \emph{Host-Zertifikate} nach
+\emph{/dev/null} um. \emph{/dev/null} ist eie Gerätedatei innerhalb des
+\emph{Linux}\hyp{}Betriebssystems zum Verwerfen von Daten\cite{DEVNULL}. Die
+\emph{Fingerprints} der \emph{Host-Zertifikate} werden für die
+Testsysteme verworfen, da bei jedem neu Erstellen die
+Authentizitätsprüfung von \gls{ssh} sonst einen Fehler werfen würde.
+Dies ist für Testzwecke unerwünscht. Zeile 5 schaltet die
+Authentizitätsprüfung definitiv aus. Zeile 6 schaltet die
+Passwort\hyp{}Authentifikation aus, da die Authentifikation nur über
+private und öffentliche Schlüssel läuft. Zeile 7 gibt den
+genauen Standort des privaten Schlüssels an. Zeile 8 konfiguriert
+\gls{ssh} so, dass nur der angegebene private Schlüssel ausprobiert
+wird und die letzte Zeile setzt das \emph{LogLevel} für Fehler auf eine
+hohe Stufe. Dies erleichtert die Fehlersuche bei Problemen mit der
+\gls{ssh}\hyp{}Verbindung.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Beispiel einer SSH Konfigurationsdatei},label={lst:sshconfig}]
+Host puppetmaster 192.168.33.10
+  HostName 192.168.33.10
+  User vagrant
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile /home/chris/thesis/.vagrant/machines/puppetmaster/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+
+Host node1 192.168.33.11
+  HostName 192.168.33.11
+  User vagrant
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile /home/chris/thesis/.vagrant/machines/node1/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
 \end{lstlisting}
 \end{minipage}
 
