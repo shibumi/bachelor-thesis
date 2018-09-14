@@ -28,8 +28,8 @@
     breaklines=true,
 }
 \setcounter{biburllcpenalty}{9001}
-\renewcommand{\lstlistingname}{Snippet}
-\renewcommand{\lstlistlistingname}{Snippets}
+\renewcommand{\lstlistingname}{Quelltext}
+\renewcommand{\lstlistlistingname}{Quelltextverzeichnis}
 \makeglossaries{}
 \input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
@@ -830,7 +830,7 @@ Datenbank:
 \end{center}
 In der oben abgebildeten Datenbank ist nur eine Tabelle namens
 \emph{Studenten} vorhanden. Auf dieser Tabelle können mit \gls{sql} diverse
-Operationen durchgeführt werden. Das \autoref{lst:sqlexample} zeigt das Hinzufügen neuer
+Operationen durchgeführt werden. \autoref{lst:sqlexample} zeigt das Hinzufügen neuer
 Daten, das Abrufen von Daten, das Manipulieren von Daten und das
 Erzeugen einer neuen Tabelle. Als Implementierung wurde \emph{sqlite}
 verwendet. In der ersten Zeile wird durch das \emph{INSERT} Statement
@@ -940,7 +940,7 @@ genannt\cite{PROMETHEUS_STORAGE}. Bevor diese Metriken gespeichert
 werden legt \emph{Prometheus} außerdem einen \gls{wal} an. Der \gls{wal}
 dient zur Wiederherstellung von Daten nach einem Crash. Gelöschte Daten
 werden nicht unwiderruflich gelöscht, sondern in
-\emph{Tombstone}\hyp{}Dateien abgelegt. Das
+\emph{Tombstone}\hyp{}Dateien abgelegt. 
 \autoref{lst:prometheusstorage} zeigt eine
 solche Verzeichnisstruktur. Die \emph{Prometheus}\hyp{}Datenbank
 arbeitet demnach dateibasiert im Gegensatz zu \glspl{blob} in
@@ -1215,7 +1215,7 @@ Schauspielerei um den Einstieg in die Software zu erleichtern.
 \emph{Playbooks} (deutsch: Drehbücher) werden verwendet um einzelnen
 Hosts \emph{Roles} (deutsch: Rollen) zu zuweisen. Die nötigen Daten zum
 Abspielen dieser Rollen finden sich im \emph{Inventory} (deutsch:
-Inventar) zu dem die Hosts ebenfalls gehören. Das
+Inventar) zu dem die Hosts ebenfalls gehören. 
 \autoref{lst:ansiblestructure} zeigt die Organisationsstruktur eines
 solchen \emph{Ansible} Projekts. Die Datei \emph{ansible.cfg} ist die
 Konfigurationsdatei für \emph{Ansible} und definiert den Pfad zum
@@ -1274,7 +1274,7 @@ gängige Datenstrukturen wie in etwa Listen und Wörterbücher
 (Dictionaries) und Kombinationen davon sowie Kommentare. Höhere
 Logikebenen werden durch \emph{Jinja2} erreicht (If/Else,
 For\hyp{}Schleifen, While\hyp{}Schleifen etc). Dadurch ist \emph{Jinja2}
-in der Theorie Turing-Vollständig. Das \autoref{lst:ansiblessh} ist ein
+in der Theorie Turing-Vollständig. \autoref{lst:ansiblessh} ist ein
 Beispiel für die Dateistruktur eines \emph{Ansible Tasks}. Der
 \emph{Task} verteilt \gls{ssh}\hyp{}Schlüssel auf eine beliebige Anzahl
 von Zielsystemen.  \gls{yaml}\hyp{}Dateien beginnen stets mit drei
@@ -1301,7 +1301,7 @@ den im vorherigen Satz erwähnten Dateirechten und dem Besitzer
 \emph{Jinja2}\hyp{}Template ein, wertet dieses aus und hinterlegt es auf
 dem Zielsystem mit den Dateirechten \emph{0600} (Schreib\hyp{} und
 Leserechte) für den Benutzer \emph{root} in dem Pfad
-\emph{/root/.ssh/authorized\_keys}. Das \autoref{lst:ansiblejinja2}
+\emph{/root/.ssh/authorized\_keys}. \autoref{lst:ansiblejinja2}
 zeigt das zum \emph{Task} gehörende \emph{Jinja2}\hyp{}Template. Die
 erste Zeile im Template konfiguriert \emph{Jinja2} so, dass alle
 Leerzeichen oder Tabs am Anfang einer Zeile gelöscht werden. In Zeile 2
@@ -1319,7 +1319,7 @@ die Funktion wird angegeben, dass die Information aus einer Datei
 bezogen werden soll und der Pfad zu dieser Datei wird aus der
 \emph{user}\hyp{}Schleifenvariable und dem String \emph{../pubkeys/}
 zusammengebaut. Die letzte Zeile beendet die Schleife. Gefüttert wird
-dieses Template durch das \autoref{lst:ansiblessh2}. Das
+dieses Template durch \autoref{lst:ansiblessh2}. 
 \autoref{lst:ansiblessh2} wird dazu in den Ordnern \emph{group\_vars}
 oder \emph{host\_vars} abgelegt und definiert die Liste
 \emph{root\_ssh\_keys} mit den beiden Einträgen \emph{chris.pub} und
@@ -1506,7 +1506,7 @@ möglich direkt über \emph{Vagrant} fertige \emph{Images} für gängige
 Linux\hyp{}Distributionen zu ziehen. Dies beschleunigt den
 Entwicklungsprozess ungemein, da der Entwickler sich voll auf die
 Anwendung konzentrieren kann und seine Zeit nicht mit dem Installieren
-von Betriebssystemen verschwendet. Das \autoref{lst:vagrantfile} zeigt
+von Betriebssystemen verschwendet. \autoref{lst:vagrantfile} zeigt
 die \emph{Vagrantfile} zum erzeugen der Test\hyp{} und
 Entwicklungsumgebung. In Zeile 1 wird eine For\hyp{}Schleife erzeugt,
 welche 2 virtuelle Maschinen erzeugt. Die erste virtuelle Maschine trägt
@@ -1601,11 +1601,20 @@ Host node1 192.168.33.11
   LogLevel FATAL
 \end{lstlisting}
 \end{minipage}
-
 \section*{Entwicklungsprozess}
 \addcontentsline{toc}{section}{Entwicklungsprozess}
+Für den Entwicklungsprozess wird die Versionsverwaltung \emph{Git}
+eingesetzt. \emph{Git} ist ein von Linus Torvalds (Dem
+Linux\hyp{}Chef\hyp{}Entwickler) entwickeltes dezentrales
+Versionsverwaltungswerkzeug für Daten\cite{GITWIKI}. Die Verwendung von
+\emph{Git} hat folgende Vorteile:
+\begin{itemize}
+    \item 
+\end{itemize}
 \section*{Prototyp}
 \addcontentsline{toc}{section}{Prototyp}
+\secton*{Betriebstests}
+\addcontentsline{toc}{section}{Betriebstests}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
 \nocite{*}
