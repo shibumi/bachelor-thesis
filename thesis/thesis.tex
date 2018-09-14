@@ -413,7 +413,7 @@ Die Methoden \textbf{DELETE}, \textbf{PUT} sind nur für eine
 herauszufinden, welche Methoden ein Server unterstützt, kann die Methode
 \textbf{OPTIONS} verwendet werden.
 Im \autoref{lst:httpanfrage} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
-Verbindungsaufbau an den Host \emph{http://tu-clausthal.de}
+Verbindungsaufbau an den Host \url{http://tu-clausthal.de}
 visualisiert. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
 und endet in Zeile 9. Aus Zeile 5 wird ersichtlich, dass es sich um die
 Version 1.1 von \gls{http} handelt und der Client via \emph{GET} den
@@ -1301,7 +1301,7 @@ den im vorherigen Satz erwähnten Dateirechten und dem Besitzer
 \emph{Jinja2}\hyp{}Template ein, wertet dieses aus und hinterlegt es auf
 dem Zielsystem mit den Dateirechten \emph{0600} (Schreib\hyp{} und
 Leserechte) für den Benutzer \emph{root} in dem Pfad
-\emph{/root/.ssh/authorized\_keys}. \autoref{lst:ansiblejinja2}
+\path{/root/.ssh/authorized\_keys}. \autoref{lst:ansiblejinja2}
 zeigt das zum \emph{Task} gehörende \emph{Jinja2}\hyp{}Template. Die
 erste Zeile im Template konfiguriert \emph{Jinja2} so, dass alle
 Leerzeichen oder Tabs am Anfang einer Zeile gelöscht werden. In Zeile 2
@@ -1554,17 +1554,17 @@ Bei der Anwendung des Befehls \emph{vagrant ssh} wird eine
 Implementierung des \gls{ssh}\hyp{}Protokolls innerhalb \emph{Vagrants} benutzt. Um
 die globale \gls{ssh}\hyp{}Implementierung zu verwenden ist es nötig den
 von \emph{Vagrant} generierten privaten Schlüssel zu benutzen. Dieser
-liegt im versteckten Verzeichnis: \emph{.vagrant/machines/<VM
-Name>/virtualbox/private_key}. Dazu wird unter dem Betriebssystem
+liegt im versteckten Verzeichnis: \path{.vagrant/machines/<VM
+Name>/virtualbox/private\_key}. Dazu wird unter dem Betriebssystem
 \emph{Linux} eine \gls{ssh}\hyp{}Konfigurationsdatei erstellt mit dem Pfad
-\emph{/home/<Benutzername>/.ssh/config}. \autoref{lst:sshconfig} zeigt
+\path{/home/<Benutzername>/.ssh/config}. \autoref{lst:sshconfig} zeigt
 eine \gls{ssh}\hyp{}Konfigurationsdatei. Die erste Zeile vergibt einen
 Alias für die gls{ip}\hyp{}Adresse. Auf diese Weise ist es nicht nötig
 einen Eintrag im \gls{dns} vorzunehmen für ein Testsystem. Zeile 2
 spezifiziert die Adresse nochmals. Zeile 3 definiert den Benutzer für
 die \gls{ssh}\hyp{}Verbindung. Zeile 4 leitet die von \gls{ssh}
 gespeicherten \emph{Fingerprints} für die \emph{Host-Zertifikate} nach
-\emph{/dev/null} um. \emph{/dev/null} ist eie Gerätedatei innerhalb des
+\path{/dev/null} um. \path{/dev/null} ist eie Gerätedatei innerhalb des
 \emph{Linux}\hyp{}Betriebssystems zum Verwerfen von Daten\cite{DEVNULL}. Die
 \emph{Fingerprints} der \emph{Host-Zertifikate} werden für die
 Testsysteme verworfen, da bei jedem neu Erstellen die
@@ -1606,14 +1606,34 @@ Host node1 192.168.33.11
 Für den Entwicklungsprozess wird die Versionsverwaltung \emph{Git}
 eingesetzt. \emph{Git} ist ein von Linus Torvalds (Dem
 Linux\hyp{}Chef\hyp{}Entwickler) entwickeltes dezentrales
-Versionsverwaltungswerkzeug für Daten\cite{GITWIKI}. Die Verwendung von
-\emph{Git} hat folgende Vorteile:
+Versionsverwaltungswerkzeug für Daten\cite{GITWIKI}. Eine
+Versionsverwaltung hat den Vorteil, dass alle Entwicklungsschritte
+chronologisch und inhaltlich nachvollziehbar sind und die Herkunft jedes
+Entwicklungsschrittes klardokumentiert ist. Dazu werden die
+Entwicklungsschritte möglichst atomar, also nicht weiter inhaltlich
+zerlegbar, in das Versionsverwaltungswerkzeug zusammen mit Informationen
+über den Entwickler und einer Beschreibung des \emph{Commits}, des
+Entwicklungsschrittes, eingecheckt\cite{GITBOOK}. Die speziellen
+Vorteile von \emph{Git} sind:
 \begin{itemize}
-    \item 
+    \item Ein Dezentraler Ansatz.
+    \item Performance.
+    \item Einfache Verwendung von \emph{Branches}, Entwicklungszweigen,
+        um mehrere Entwicklungswege logisch zu trennen und später wieder
+        zusammen zu führen.
+    \item Opensource. Das Werkzeug \emph{Git} ist quelloffen und damit
+        für jede Person einsehbar und erweiterbar.
 \end{itemize}
+Durch den dezentralen Ansatz muss der Entwickler außerdem nicht
+\emph{online} sein um zu arbeiten. Auch ohne einen Internetzugang lässt
+sich effektiv auf dem eigenen lokalen \emph{Repository}, den
+Entwicklungsordner, arbeiten. Die Unterschiede zwischen den einzelnen
+Revisionen oder \emph{Commits} werden durch die lokale Speicherung von
+\glspl{blob} erfasst. Das gesamte \emph{Repository} kann auf einen oder
+mehrere entfernte Server gesichert werden\cite{GITOTTO}.
 \section*{Prototyp}
 \addcontentsline{toc}{section}{Prototyp}
-\secton*{Betriebstests}
+\section*{Betriebstests}
 \addcontentsline{toc}{section}{Betriebstests}
 \chapter*{Fazit}
 \addcontentsline{toc}{chapter}{Fazit}
