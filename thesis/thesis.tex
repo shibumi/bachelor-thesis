@@ -862,82 +862,80 @@ Bekannte Implementierungen für relationale Datenbanken sind:
 \end{itemize}
 \subsection*{NoSQL\hyp{}Datenbanken}
 \addcontentsline{toc}{subsection}{NoSQL\hyp{}Datenbanken}
-NoSQL\hyp{}Datenbanken sind zunächst ein grober Sammelbegriff
-für alle Datenbanken die kein relationales Konzept verfolgen und somit
-nicht durch die Sprache \gls{sql} beschrieben werden können. In den
-meisten Fällen handelt es sich bei NoSQL\hyp{}Datenbanken um einfache
+NoSQL\hyp{}Datenbanken sind zunächst ein grober Sammelbegriff für alle
+Datenbanken die kein relationales Konzept verfolgen und somit nicht
+durch die Sprache \gls{sql} beschrieben werden können. In den meisten
+Fällen handelt es sich bei NoSQL\hyp{}Datenbanken um einfache
 Key\hyp{}Value\hyp{}Stores. Key\hyp{}Value\hyp{}Stores sind Ansammlungen
 von Daten in Tupeln mit einem Schlüssel und einem Wert. Sie ähneln
 demnach also einem Wörterbuch.  Meist sind diese Ansammlungen von Tupeln
-in großen Binärdateien (\gls{blob})
-oder sogar in einfachen Textdateien gespeichert. Ein Beispiel für eine
-Key\hyp{}Value\hyp{}Datenbank ist \emph{Dynamo} von der
-Firma \emph{Amazon}. Doch NoSQL\hyp{}Datenbanken umfassen
-nicht nur Key\hyp{}Value\hyp{}Stores. Es existieren auch
+in großen Binärdateien (\gls{blob}) oder sogar in einfachen Textdateien
+gespeichert. Ein Beispiel für eine Key\hyp{}Value\hyp{}Datenbank ist
+\emph{Dynamo} von der Firma \emph{Amazon}. Doch NoSQL\hyp{}Datenbanken
+umfassen nicht nur Key\hyp{}Value\hyp{}Stores. Es existieren auch
 NoSQL\hyp{}Datenbanken zum Speichern von Graphen, großen Mengen an
 Dokumenten, wie \emph{IBM Notes}, Spaltenorientierten Datenbanken wie
-\emph{Apache Cassandra} und der \glsfirst{tsdb}.  \glspl{tsdb} kommen
-bei jedem Gebiet zum Einsatz, wo große Mengen zeitlichabhängiger Daten
- werden müssen.
-\glspl{tsdb} sammeln große Datenmengen und benutzen einen Zeitstempel
-als Index für diese Daten. Die gewonnenen Daten werden demnach einem
-festen Zeitpunkt zugeordnet. Dies macht eine \gls{tsdb} besonders
-beliebt als Datenbank für Wetterdaten, Aktienhandelsdaten, Messdaten oder
-sonstige Daten die abhängig von der Zeit und in besonders großen Mengen
-gespeichert werden sollen. Beispiele für \glspl{tsdb} sind
-\emph{InfluxDB} und die \gls{tsdb} im Monitoring-System
-\emph{Prometheus}. Trotz dieser Kategorisierungen haben
-NoSQL\hyp{}Datenbanken mehrere gemeinsame Eigenschaften. So verbindet
-sie der Verzicht von Eigenschaften relationaler Datenbanken für
-höhere Skalierbarkeit\cite[S. 13]{TSDB}. Durch diesen Tausch sind
-NoSQL\hyp{}Datenbanken simpler aufgebaut und haben weniger
-Ansprüche an die gespeicherten Daten. Es müssen keine Datentypen
-eingehalten oder sonstige Relationen zwischen Daten gewährleistet
-werden. Alle Daten werden in einer Tabelle gespeichert, welche sich beliebig groß
-horizontal mit mehr Rechenpower skalieren lässt. Dies äußert sich einer
-hohen Leistung, Skalierbarkeit und Flexibilität von
+\emph{Apache Cassandra} und der \glsfirst{tsdb}. \glspl{tsdb} kommen bei
+jedem Gebiet zum Einsatz, wo große Mengen zeitlichabhängiger Daten
+gespeichert werden müssen. \glspl{tsdb} sammeln große Datenmengen und
+benutzen einen Zeitstempel als Index für diese Daten. Die gewonnenen
+Daten werden demnach einem festen Zeitpunkt zugeordnet. Dies macht eine
+\gls{tsdb} besonders beliebt als Datenbank für Wetterdaten,
+Aktienhandelsdaten, Messdaten oder sonstige Daten die abhängig von der
+Zeit und in besonders großen Mengen gespeichert werden sollen. Beispiele
+für \glspl{tsdb} sind \emph{InfluxDB} und die \gls{tsdb} im
+Monitoring-System \emph{Prometheus}. Trotz dieser Kategorisierungen
+haben NoSQL\hyp{}Datenbanken mehrere gemeinsame Eigenschaften. So
+verbindet sie der Verzicht von Eigenschaften relationaler Datenbanken
+für höhere Skalierbarkeit\cite[S. 13]{TSDB}. Dadurch sind
+NoSQL\hyp{}Datenbanken simpler aufgebaut und haben weniger Ansprüche an
+die gespeicherten Daten. Es müssen keine Datentypen eingehalten oder
+sonstige Relationen zwischen Daten gewährleistet werden. Alle Daten
+werden in einer Tabelle gespeichert, welche sich beliebig horizontal
+durch Verwendung von mehr Rechenzeit skalieren lässt. Dies äußert sich
+in einer hohen Leistung, Skalierbarkeit und Flexibilität von
 NoSQL\hyp{}Datenbanken\cite{NOSQL}.
 \subsection*{Datenmodell}
 Es werden folgende Informationen als Daten erwartet:
 \begin{itemize}
     \item Ein sekundengenauer Zeitstempel.
-    \item Der \gls{dns}\hyp{}Eintrag des Messknoten oder die
-        \gls{ip}\hyp{}Adresse
+    \item Der \gls{dns}\hyp{}Eintrag oder die
+        \gls{ip}\hyp{}Adresse des Messknotens
     \item Die Messdaten
 \end{itemize}
 Da die Informationen nicht sonderlich komplex sind, bietet sich eine
-NoSQL\hyp{}Datenbank an. Eine NoSQL\hyp{}Datenbank hat den Vorteil, dass
-sich die Datenbank einfacher skalieren lässt und performanter ist. Durch
-die strikte Relation zwischen Messdaten und sekundengenauen Zeitstempel
-fällt die Wahl auf eine \gls{tsdb}. Folgende
-\gls{tsdb}\hyp{}Implementierungen stehen zur näheren Auswahl:
+NoSQL\hyp{}Datenbank für die Speicherung an. Eine NoSQL\hyp{}Datenbank
+hat den Vorteil, dass sich die Datenbank einfacher skalieren lässt und
+performanter ist. Durch die strikte Relation zwischen Messdaten und
+ihrem sekundengenauen Zeitstempel fällt die Wahl auf eine \gls{tsdb}.
+Folgende \gls{tsdb}\hyp{}Implementierungen stehen zur näheren Auswahl:
 \begin{itemize}
     \item \emph{InfluxDB}\cite{INFLUXDB}
     \item \emph{OpenTSDB}\cite{OPENTSDB}
     \item \emph{Prometheus}\cite{PROMETHEUS}
 \end{itemize}
-\emph{InfluxDB} und \emph{openTSDB} sind beides generische Vertreter von
+\emph{InfluxDB} und \emph{OpenTSDB} sind beides generische Vertreter von
 einer \gls{tsdb} und vielseitig einsetzbar. Interessant für dieses
 Projekt ist jedoch \emph{Prometheus}. \emph{Prometheus} beschränkt sich
-auf Monitoringdaten, bietet jedoch diverse Vorzüge zu den anderen beiden
+auf Monitoringdaten, bietet jedoch diverse Vorzüge gegenüber den anderen beiden
 großen Vertretern von \glspl{tsdb} (Details zum internen Aufbau
 und den Vorteilen von \emph{Prometheus} sind im Kapitel
 \emph{Prometheus} zu finden). Daten werden in \emph{Prometheus} als
 Tupel aus 64\hyp{}bit Fließkommazahlen und einem Millisekunden genauen
-Timestamp gespeichert\cite{PROMETHEUS_DATA_MODEL}. Diese Tupel werden
+Zeitstempel gespeichert\cite{PROMETHEUS_DATA_MODEL}. Diese Tupel werden
 mit einem Identifikator versehen. Dieser Identifikator besteht aus
 einem eindeutigen Namen für die Metrik und einem
-Key\hyp{}Value\hyp{}Store (siehe \autoref{lst:prometheusdataformat} Zeile 1. Für ein
+Key\hyp{}Value\hyp{}Store (siehe \autoref{lst:prometheusdataformat} Zeile 1; für ein
 Beispiel siehe Zeile 2). Die Keys werden auch \emph{Labels} genannt.
-Anhand von diesen \emph{Labels} ist es möglich Daten einer Metrik weiter
+Anhand dieser \emph{Labels} ist es möglich, Daten einer Metrik 
 zu filtern. Zwei Stunden werden diese Metriken von \emph{Prometheus}
 gesammelt bis sie, zusammen mit Metadaten und einer Indexdatei, in einem
 Verzeichnis abgelegt werden. Metadaten sind Informationen über die
 gesammelten Daten, darunter fallen \emph{Labels}. Die Indexdatei
-speichert die Relation zwischen den Metriknamen und den Metriken die
+speichert die Relation zwischen den Metriknamen und den Metriken, die
 gestückelt abgelegt werden. Diese Stückelungen werden auch \emph{Chunks}
 genannt\cite{PROMETHEUS_STORAGE}. Bevor diese Metriken gespeichert
-werden legt \emph{Prometheus} außerdem einen \gls{wal} an. Der \gls{wal}
+werden, legt \emph{Prometheus} außerdem einen \gls{wal} an. Der \gls{wal}
 dient zur Wiederherstellung von Daten nach einem Crash. Gelöschte Daten
 werden nicht unwiderruflich gelöscht, sondern in
 \emph{Tombstone}\hyp{}Dateien abgelegt. 
@@ -981,14 +979,14 @@ http_requests_total{service="service", server="www.tu-clausthal.de", env="produc
 \section*{Prothemeus}
 \addcontentsline{toc}{section}{Prometheus}
 Bei \emph{Prometheus} handelt es sich um keine reine \gls{tsdb}.
-\emph{Prometheus} ist viel mehr eine auf Monitoringdaten spezialisierte
+\emph{Prometheus} ist vielmehr eine auf Monitoringdaten spezialisierte
 und mit diversen Komponenten erweiterbare Monitoringanwendung. In diesem
 Kapitel wird der interne Aufbau von \emph{Prometheus}, dessen
 Komponenten und deren Zusammenspiel näher erläutert. \emph{Prometheus}
 wurde ursprünglich im Jahr 2012 von Mitarbeitern des Online-Musikdiensts
-\emph{Soundcloud} entwickelt\cite{PROMETHEUS_OVERVIEW} und im Jahre 2015
+\emph{Soundcloud} entwickelt\cite{PROMETHEUS_OVERVIEW} und im Jahr 2015
 als Opensource Software freigegeben. \emph{Prometheus} entstand aus der
-Not heraus Hunderte von Mikroservices und Tausende von Service\hyp{}Instanzen
+Not heraus, hunderte von Mikroservices und tausende von Service\hyp{}Instanzen
 in einem firmeninternen Container\hyp{}Cluster zu
 überwachen\cite{PROMETHEUS_YOUTUBE}. Seitdem setzt sich
 \emph{Prometheus} besonders im Cloud\hyp{}Bereich durch und wurde 2016
@@ -999,7 +997,7 @@ Cloud\hyp{}Software im Opensource\hyp{}Bereich.
 \addcontentsline{toc}{subsection}{Komponenten}
 Die meisten \emph{Prometheus}\hyp{}Komponenten sind in der Sprache
 \emph{Go} (auch bekannt als \emph{Golang}) geschrieben. \emph{Go} ist
-eine von der Firma \emph{Google} entwickelte kompilierbare
+eine von der Firma \emph{Google} entwickelte, kompilierbare
 Programmiersprache, welche sich vorallem dadurch auszeichnet, dass sie
 sicherer als die Programmiersprache \emph{C} ist und eine gute
 Portierbarkeit aufgrund von statischen Binärdateien besitzt. Durch diese
@@ -1010,7 +1008,7 @@ Server} beinhaltet eine \gls{tsdb}, einen \gls{http}\hyp{}Server und ein
 Modul zum Anfordern von Messdaten (im weiteren Verlauf
 \emph{Retrieval} genannt). Die \gls{tsdb} wurde bereits im Kapitel
 Datenmodell erläutert. Der \gls{http}\hyp{}Server bietet eine grafische
-Oberfläche an um Queries auf der \gls{tsdb} zu testen, inklusive
+Oberfläche an, um Queries auf der \gls{tsdb} zu testen, inklusive
 dem Anzeigen von Graphen. \autoref{fig:prometheuswebui} zeigt
 die grafische Oberfläche mit einem Beispiel\hyp{}Query und Graphen.
 Außerdem bietet der \gls{http}\hyp{}Server
@@ -1023,7 +1021,7 @@ wenn Messdaten, vom Benutzer bestimmte, Richtwerte überschreiten.
 Unterstützt werden vom \emph{Alertmanager} direkt keine
 Kommunikationswege. Viel mehr wird Fremdsoftware, beispielsweise für den
 Mailtransfer, an den \emph{Alertmanger} angedockt. Das
-\emph{Pushgateway} bietet einen statischen Bezugspunkt und Puffer von dem der
+\emph{Pushgateway} bietet einen statischen Bezugspunkt und Puffer, von dem der
 \emph{Prometheus Server} mit dem \emph{Retrieval}\hyp{}Modul Messdaten
 abholen kann. Dies ist nützlich, wenn der \emph{Prometheus Server}, statt
 die Messdaten abzuholen, die Messdaten zugeschoben bekommen soll. Diese Messdaten
@@ -1040,20 +1038,20 @@ für \emph{Exporter} sind:
     \item \emph{Blackbox Exporter}
 \end{itemize}
 \emph{Node Exporter} werden auf Hosts platziert und liefern allgemeine
-Messdaten über diesen Host. Außerdem werden diverse Services die auf dem
-Host laufen automatisch erkannt und Messdaten für diese Services zur
+Messdaten über diesen Host. Außerdem werden diverse Services, die auf dem
+Host laufen, automatisch erkannt und Messdaten für diese Services zur
 Verfügung gestellt. Wenn beispielsweise ein \gls{http}\hyp{}Server auf
-Port 80 diesem Host läuft, sammelt der sich auf dem Host befindliche \emph{Node
+Port 80 dieses Hosts läuft, sammelt der sich auf dem Host befindliche \emph{Node
 Exporter} automatisch Messdaten über den Service und bietet diese dem
 \emph{Prometheus Server} über einen eigenen \gls{http}\hyp{}Server an.
 Der \emph{Blackbox Exporter} andererseits baut zwar ebenfalls einen
 \gls{http}\hyp{}Server als Quelle für den \emph{Prometheus Server} auf,
 aber Daten werden nicht über lokale Services gesammelt. Stattdessen
 werden von dem \emph{Blackbox Exporter} aus diverse Tests durchgeführt,
-wie beispielsweise die Erreichbar von Kerndiensten wie \gls{dns}.
+wie beispielsweise die Erreichbarkeit von Kerndiensten wie \gls{dns}.
 Die \autoref{fig:prometheus} zeigt den internen Aufbau des
-\emph{Prometheus Server} und dessen Zusammenspiel mit den einzelnen
-Komponenten. Alle Verbindungen außerhalb des \emph{Prometheus Server}
+\emph{Prometheus Servers} und dessen Zusammenspiel mit den einzelnen
+Komponenten. Alle Verbindungen außerhalb des \emph{Prometheus Servers}
 sind \gls{http}\hyp{}Anfragen einer \gls{restapi}. Alle Komponenten sind
 statische Binärdateien und geschrieben in der Sprache \emph{Go}.
 \begin{figure}[H]
@@ -1079,14 +1077,14 @@ und weiter auswerten oder filtern\cite{PROMETHEUS_PROMQL}. Dies ist insbesondere
 grafische Darstellung der Messdaten relevant. Dazu unterstützt die
 \emph{PromQL} vier verschiedene Datentypen\cite{PROMETHEUS_PROMQL}:
 \begin{description}
-    \item[Instant Vector] ein Set von Messdaten mit selben
+    \item[Instant Vector] ein Set von Messdaten mit demselben
         Zeitstempel.
     \item[Range Vector] eine Auswahl von Messdaten über einen größeren
         Zeitraum.
     \item[Scalar] ein Fließkommawert.
     \item[String] ein Array von Chars (zurzeit unbenutzt).
 \end{description}
-Der \emph{Instant Vector} besteht aus einem eindeutigen Namen einer
+Der \emph{Instant Vector} besteht aus einem eindeutigen Namen, einer
 Metrik und einem Key\hyp{}Value\hyp{}Store (siehe auch
 \autoref{lst:prometheusdataformat}). Innerhalb eines \emph{Instant
 Vectors} lassen sich reguläre Ausdrücke (Regex)
@@ -1107,7 +1105,7 @@ weiteren Funktionen, um beispielsweise den Durchschnitt über einen
 \addcontentsline{toc}{section}{Grafana}
 Da die \emph{Prometheus Web UI} eingeschränkt mit Graphen und
 Visualisierung der Daten umgehen kann und eher eine Testplattform für
-\emph{PromQL-Anfragen} darstellt wird für den Zweck der
+\emph{PromQL-Anfragen} darstellt, wird für den Zweck der
 Visualisierung eine weitere Plattform verwendet:
 \emph{Grafana}\cite{GRAFANA}. \emph{Grafana} zeichnet sich durch eine
 hohe Erweiterbarkeit, vollen \emph{Prometheus}\hyp{}Support und einer
@@ -1129,14 +1127,14 @@ temporäre oder permanente Variablen im Betriebssystem).
 \section*{Konfigurationsmanagement}
 \addcontentsline{toc}{section}{Konfigurationsmanagement}
 In der Vergangenheit wurden Rechnersysteme zunehmend vertikal skaliert,
-das heißt die technischen Ressourcen des Rechnersystems wurden angehoben
+das heißt, die technischen Ressourcen des Rechnersystems wurden angehoben
 (beispielsweise der \gls{ram}). In den letzten Jahren wurde zunehmends
 festgestellt, dass diese Vorgehensweise nicht nur sehr kostenintensiv
 ist, sondern auch nicht besonders zur Ausfallsicherheit beiträgt. Die
 Antwort auf dieses Problem ist horizontale Skalierung. Bei horizontaler
 Skalierung werden weitere Instanzen von Rechnersystemen der Anwendung
 hinzugefügt. Dieser Ansatz ermöglicht ausfallsichere und äußerst
-performante Infrastruktur (zum Beispiel sind heutige Cloud\hyp{}Systeme
+performante Infrastrukturen (zum Beispiel sind heutige Cloud\hyp{}Systeme
 de facto alle horizontal skaliert). Diese horizontale Skalierung hat
 allerdings auch andere Ansprüche. So wächst die Anzahl der zu
 betreuenden Systemen rapide an.  Damals wurden solche Systeme noch von
@@ -1146,7 +1144,7 @@ Daraufhin wurden Anwendungen ins Leben gerufen, welche die Arbeiten an
 mehreren Systemen vereinfachen sollen. Die zwei Leitbegriffe für solche
 Anwendungen sind \emph{Orchestrierung} und
 \emph{Konfigurationsmanagement}. Bei der \emph{Orchestrierung} geht es
-darum eine hohe Anzahl von Systemen zu steuern, also gewisse Aufgaben
+darum, eine hohe Anzahl von Systemen zu steuern, also gewisse Aufgaben
 auf den jeweiligen Systemen anzustoßen.  \emph{Konfigurationsmanagement}
 dagegen umfasst die Installation und Konfiguration der Systeme, im
 englischsprachigen Raum zusammengefasst \emph{Deployment} genannt. Da im
@@ -1166,7 +1164,7 @@ Software anbietet und auch an einer webbasierten Benutzerschnittstelle
 namens \emph{Tower} arbeitet\cite{ANSIBLEWORKS}. Im Jahr 2015 wurde die
 Firma durch den großen Linux\hyp{}Dienstleister \emph{Red Hat}
 übernommen\cite{ANSIBLEREDHAT}. Wenig später begann die
-Opensource\hyp{}Gemeinschaft damit \emph{Ansible} um unzählige Module zu
+Opensource\hyp{}Gemeinschaft damit, \emph{Ansible} um unzählige Module zu
 erweitern und so den Funktionsumfang zu vergrößern.
 \subsection*{Funktionsweise}
 \addcontentsline{toc}{subsection}{Funktionsweise}
@@ -1174,25 +1172,25 @@ erweitern und so den Funktionsumfang zu vergrößern.
 Konfiguration von Systemen. Die Auszeichnungssprache für die
 Datenstrukturen, welche die Templates befüllen, heißt \gls{yaml} (oft
 auch nur mit YML abgekürzt). \gls{yaml} zeichnet sich durch für Menschen
-einfache Lesbarkeit und die Möglichkeit Kommentare einzufügen
-aus\cite{YAML_WIKI}. Außerdem besteht die Möglichkeit in der
+einfache Lesbarkeit und die Möglichkeit, Kommentare einzufügen,
+aus\cite{YAML_WIKI}. Außerdem besteht die Möglichkeit, in der
 Programmiersprache \emph{Python} geschriebene Module mit in \gls{yaml}
 aufgeschrieben Anweisungen zu nutzen. Diese Module sind quelloffen und
 werden von einer Community um \emph{Ansible} und der Firma \emph{Red
 Hat} gepflegt. Die zu pflegenden Systeme, nachfolgend nur noch als
 Zielsysteme bezeichnet, sind in \emph{Ansible} in Gruppen zu
 organisieren. Anhand vom Namen der Gruppe und des Zielsystems lassen
-sich unterschiedliche vom Nutzer definierte Daten laden. Diese
+sich unterschiedliche vom Administrator definierte Daten laden. Diese
 Daten werden in die mit \gls{yaml} verfassten Aufgaben eingefügt.
 Auf diese Weise können komplexe Gebilde von Systemen abgebildet werden
 und Gemeinsamkeiten in der Orchestrierung und Konfiguration effektiv ausgenutzt werden.
 Bei einzelnen Konfigurationsdateien wird die auf \emph{Python} basierte Template\hyp{}Engine
 \emph{Jinja2} benutzt\cite{JINJA2}. Durch \emph{Jinja2} lassen sich komplexe
 Konfigurationsdateien auf den Zielsystemen in Form von Templates
-ausdrücken. Das Ziel ist ein Template für mehrere
+ausdrücken. Das Ziel ist, ein Template für mehrere
 Konfigurationsvarianten einer Konfigurationsdatei zu haben. Diese
 Templates werden mit Datenstrukturen in \gls{yaml} gefüttert.
-Um die Orchestrierung oder Konfiguration zu starten reicht es wenn sich
+Um die Orchestrierung oder Konfiguration zu starten, reicht es, wenn sich
 \emph{Ansible} auf dem System, welches zur Pflege eingesetzt werden
 soll, befindet. Nachfolgend wird dieses System als Managementsystem
 bezeichnet. Das Managementsystem verbindet sich zu den einzelnen
@@ -1201,7 +1199,7 @@ Zielsystemen via dem Protokoll \gls{ssh} und arbeitet die in
 die Verwendung der Sprache \emph{Python} oder einfach durch Kommandos in
 der entfernten Kommandozeile auf den Zielsystemen. Durch
 diese Vorgehensweise arbeitet \emph{Ansible} \emph{agentless}, also ohne
-einem Agenten, welcher sich auf dem Zielsystem befinden müsste. Dies
+einem Agenten auf dem Zielsystem. Dies
 ermöglicht den Einsatz von \emph{Ansible} auch auf Systemen mit
 eingeschränkter Erweiterbarkeit (beispielsweise Switches oder Router).
 Außerdem arbeitet \emph{Ansible} idempotent, dadurch lassen sich
@@ -1211,11 +1209,11 @@ Aufgaben beliebig oft ausführen und führen immer zum gleichen Ergebnis.
 \emph{Ansible} hat eine definierte Struktur zur Speicherung der
 Konfigurationsdateien, Aufgaben, Datenstrukturen für die Templates und
 Templates. Dabei bedient sich \emph{Ansible} bei Wörtern aus der
-Schauspielerei um den Einstieg in die Software zu erleichtern.
-\emph{Playbooks} (deutsch: Drehbücher) werden verwendet um einzelnen
-Hosts \emph{Roles} (deutsch: Rollen) zu zuweisen. Die nötigen Daten zum
-Abspielen dieser Rollen finden sich im \emph{Inventory} (deutsch:
-Inventar) zu dem die Hosts ebenfalls gehören. 
+Schauspielerei, um den Einstieg in die Software zu erleichtern.
+\emph{Playbooks} (Deutsch: Drehbücher) werden verwendet, um einzelnen
+Hosts \emph{Roles} (Deutsch: Rollen) zu zuweisen. Die nötigen Daten zum
+Abspielen dieser Rollen befinden sich im \emph{Inventory} (Deutsch:
+Inventar), zu dem die Hosts ebenfalls gehören. 
 \autoref{lst:ansiblestructure} zeigt die Organisationsstruktur eines
 solchen \emph{Ansible} Projekts. Die Datei \emph{ansible.cfg} ist die
 Konfigurationsdatei für \emph{Ansible} und definiert den Pfad zum
