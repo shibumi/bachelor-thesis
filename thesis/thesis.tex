@@ -1601,9 +1601,12 @@ Host node1 192.168.33.11
 \end{minipage}
 \section*{Entwicklungsprozess}
 \addcontentsline{toc}{section}{Entwicklungsprozess}
-Für den Entwicklungsprozess wird die Versionsverwaltung \emph{Git}
-eingesetzt. \emph{Git} ist ein von Linus Torvalds (Dem
-Linux\hyp{}Chef\hyp{}Entwickler) entwickeltes dezentrales
+\subsection*{Versionsverwaltung}
+\addcontentsline{toc}{subsection}{Versionsverwaltung}
+Für den Entwicklungsprozess, des Konfigurationsmanagement und der
+Erweiterung des Quellcodes von \emph{Prometheus} um \gls{cifs}, wird die
+Versionsverwaltung \emph{Git} eingesetzt. \emph{Git} ist ein von Linus
+Torvalds (dem Linux\hyp{}Chef\hyp{}Entwickler) entwickeltes dezentrales
 Versionsverwaltungswerkzeug für Daten\cite{GITWIKI}. Eine
 Versionsverwaltung hat den Vorteil, dass alle Entwicklungsschritte
 chronologisch und inhaltlich nachvollziehbar sind und die Herkunft jedes
@@ -1622,13 +1625,52 @@ Vorteile von \emph{Git} sind:
     \item Opensource. Das Werkzeug \emph{Git} ist quelloffen und damit
         für jede Person einsehbar und erweiterbar.
 \end{itemize}
-Durch den dezentralen Ansatz muss der Entwickler außerdem nicht
+Durch den dezentralen Ansatz muss der Entwickler nicht
 \emph{online} sein um zu arbeiten. Auch ohne einen Internetzugang lässt
 sich effektiv auf dem eigenen lokalen \emph{Repository}, den
 Entwicklungsordner, arbeiten. Die Unterschiede zwischen den einzelnen
-Revisionen oder \emph{Commits} werden durch die lokale Speicherung von
-\glspl{blob} erfasst. Das gesamte \emph{Repository} kann auf einen oder
-mehrere entfernte Server gesichert werden\cite{GITOTTO}.
+Revisionen oder \emph{Commits} werden, durch die lokale Speicherung als
+\glspl{blob}, erfasst. Das gesamte \emph{Repository} kann auf einen oder
+mehrere entfernte Server gesichert werden\cite{GITOTTO}. Außerdem kann
+durch die Verwendung von \emph{Branches} (Deutsch: Zweige) die
+Entwicklung von unterschiedlichen Funktionen zur selben Zeit erfolgen
+ohne, dass die unterschiedlichen Entwicklungszweige (Englisch:
+\emph{Feature Branch}) sich gegenseitig in
+die Quere kommen. Ist die Entwicklung an der Funktion abgeschlossen wird
+der Entwicklungszweig wieder mit dem ursprünglichen Hauptzweig (auch
+\emph{Master} genannt) vereinigt. \autoref{lst:gitexample} zeigt einige
+Beispiele für den \emph{Git Terminal Client}. In Zeile 1 wird das
+\emph{Repository} von einem entfernten Server geklont und in Zeile 2
+wird eine Datei des \emph{Repositories} verändert. Diese Veränderung
+wird in Zeile 3 in die \emph{Staging}\hyp{}Ebene übernommen. Die
+\emph{Staging}\hyp{}Ebene ist ein interner Bereich von \emph{Git} in dem
+Änderungen am \emph{Repository} vorgemerkt werden\cite{PROGIT}. Mit dem
+Kommando \emph{git commit} wird die Änderung in die Historie übernommen
+und mit einem Kommentar des Autors versehen. \emph{git push} sendet die
+Änderungen an einen oder mehrere entfernte Server. \emph{git log} zeigt
+den Entwicklungsverlauf an. Es werden alle Änderungen erfasst mit
+zusätzlichen Metadaten. Diese Metadaten beinhalten: die eindeutige
+Nummer der Änderung, der Entwicklungszweig, der Name des Autors und
+seine Email\hyp{}Adresse, ein Zeitstempel und ein Kommentar zu der
+Änderung.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Beispiele für die Verwendung des
+Git-Clients},label={lst:gitexample}]
+$ git clone https://gitlab.rz.tu-clausthal.de/cre13/Ansible-Monitoring
+$ vim ansible.cfg
+$ git add ansible.cfg
+$ git commit -m "ansible.cfg um weitere Optionen erweitert"
+$ git push origin master
+$ git log
+commit 560920bb5f090aeb20a370b90472e45fba346417 (HEAD -> master)
+Author: Christian Rebischke <christian.rebischke@tu-clausthal.de>
+Date:   Tue Sep 25 17:07:50 2018 +0200
+
+    ansible.cfg um weitere Optionen erweitert
+
+[..]
+\end{lstlisting}
+\end{minipage}
 \section*{Prototyp}
 \addcontentsline{toc}{section}{Prototyp}
 \section*{Betriebstests}
