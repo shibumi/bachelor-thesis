@@ -217,12 +217,16 @@ Herausforderungen an diese Arbeit ableiten:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/problemstellung.pdf}
-    \caption{Veranschaulichung der Problemstellung}\label{fig:problemstellung}
+    \caption{Veranschaulichung der Problemstellung anhand der aktuellen
+    Netzstruktur der TU Clausthal ohne die Anbindungen Goslar und Celle
+    über das öffentliche Internet.}\label{fig:problemstellung}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/problemloesung.pdf}
-    \caption{Veranschaulichung der Problemlösung}\label{fig:problemloesung}
+    \caption{Veranschaulichung der Problemlösung anhand der aktuellen
+    Netzstruktur der TU Clausthal ohne die Anbindungen Goslar und Celle
+    über das öffentliche Internet.}\label{fig:problemloesung}
 \end{figure}
 \chapter*{Technische Grundlagen}
 \addcontentsline{toc}{chapter}{Technische Grundlagen}
@@ -246,32 +250,39 @@ zeigt eine solche Verbindung mehrerer \emph{offener Systeme}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/open_systems.pdf}
-    \caption{Veranschaulichung der Assoziationen verschiedenener offener
-    Systeme mit diversen Anwendungen über ein physisches Medium}\label{fig:opensystems}
+    \caption{Vereinfachte Darstellung der Assoziationen verschiedenener offener
+    Systeme mit diversen Anwendungen über ein physisches Medium.}\label{fig:opensystems}
 \end{figure}
 Innerhalb eines dieser \emph{offener Systeme} sind sieben
 Netzwerkschichten oder auch \emph{OSI-Schichten} definiert\cite[Siehe
 Abschnitt 6.1.2]{ITUOSI}. Zur
-Kommunikation zwischen zwei \emph{offenen Systemen} wird mindestens eine
-Schicht durchlaufen, in den meisten Fällen jedoch mehrere Schichten.
+Kommunikation zwischen zwei \emph{offenen Systemen} werden mindestens
+die beiden untersten Schichten durchlaufen, die Bitübertragungsschicht
+für den Transport der Bits und die Sicherungsschicht für den Zugriff auf
+den Bittransport.
 \autoref{fig:osi} listet alle sieben Schichten, deren Protokolle,
 Einheiten und Einordnung auf. Die Funktionsweise des \gls{osi} lässt
 sich am besten durch ein kurzes Beispiel erklären:
 
-Es wird angenommen, dass mit einem Laptop eine Website aufgerufen wird.
-Nachfolgend wird nur der Netzverkehr zwischen dem Client und dem Server
+Es wird angenommen, dass von einem Laptop eine Website aufgerufen wird.
+Nachfolgend wird nur der Netzverkehr zwischen dem Laptop und dem
+Web\hyp{}Server
 betrachtet. Wenn der Client eine \gls{http}\hyp{}basierte Website
 aufrufen möchte, sendet dieser eine \gls{http}\hyp{}Anfrage in Form von
-\gls{http}\hyp{}Daten (Anwendungsschicht). Diese \gls{http}\hyp{}Daten
-werden wiederum in ein \gls{tcp}\hyp{}Segment eingebettet (Transportschicht),
-welches wiederum in ein \gls{ip}\hyp{}Paket eingebettet ist
-(Vermittlungsschicht). Dieses \gls{ip}\hyp{}Paket enthält die Adresse
-des Empfängers und wird ebenfalls eingebettet in einen
-Ethernet\hyp{}Frame (Sicherungsschicht), welcher wiederum in Form von
-kodierten Bits über ein Netzwerkkabel übertragen wird (Bitübertragungsschicht).
+eines
+\gls{http}\hyp{}Requests, der den Beginn des \gls{http}\hyp{}Protokolls
+darstellt (Anwendungsschicht). Diese \gls{http}\hyp{}Daten
+werden wiederum in über \gls{tcp} in 64 Kilobyte große
+\gls{tcp}\hyp{}Pakete verpackt (Transportschicht),
+welches wiederum über 64 Kilobyte große Pakete des
+\gls{ip}\hyp{}Protokolls dem Ziel zugestellt werden
+(Vermittlungsschicht). Diese \gls{ip}\hyp{}Pakete enthalten die Adresse
+des Empfängers und werden in viele Ethernet-Datenrahmen mit einer Länge
+von 1500 Bytes eingebettet (Sicherungsschicht), welche in Form von
+kodierten Bits über ein Netzwerkkabel übertragen werden (Bitübertragungsschicht).
 Dieses Matrjoschka\hyp{}ähnliche Gebilde wird über das physische
-Medium versendet und der Empfänger packt es angefangen bei der
-Bitübertragungsschicht aufsteigend wieder aus.
+Medium bitseriell versendet und der Empfänger packt es, angefangen bei der
+Bitübertragungsschicht, aufsteigend wieder aus.
 
 \textbf{Anmerkung}: Es handelt sich hierbei um eine starkvereinfachte
 Darstellung. In der Realität kommen diverse andere Faktoren dazu, wie in
@@ -280,6 +291,7 @@ etwa:
     \item Das Auflösen eines Hostnamen mit \gls{dns}
     \item Das Routing über \gls{ip}
     \item Der Aufbau einer Session mit \gls{tcp}
+    \item Der ungesicherte Transport mit \gls{udp}
 \end{itemize}
 \begin{figure}[H]
     \centering
@@ -295,9 +307,9 @@ steigender Anzahl von Knoten im Netzwerk immer unübersichtlicher wurde.
 Hinzukommend sind \gls{ip}\hyp{}Adressen für den Menschen schwer zu
 merken. Mit dieser Problemstellung als Grundlage arbeitete der Ingenieur
 Peter Mockapetris an einem ersten Lösungsansatz: \glsfirst{dns}.
-Bei \gls{dns} handelt es sich um einen mehr als 20 Jahre alten
+Bei \gls{dns} handelt es sich um einen mehr als 30 Jahre alten
 Verzeichnisdienst, welcher über das gleichnamige Protokoll für Menschen
-merkbare Internetadressen auf \gls{ip}\hyp{}Adressen abbildet.
+merkbare symbolische Namen auf \gls{ip}\hyp{}Adressen abbildet.
 \gls{dns} wurde erstmalig im Jahr 1983 in den beiden \glspl{rfc}
 \gls{rfc} 882\cite{RFC0882} und \gls{rfc} 883\cite{RFC0883} beschrieben.
 Damals befanden sich die \gls{dns}\hyp{}Einträge, die Abbildungen von
@@ -326,15 +338,14 @@ einzelnen Bestandteile.
 \end{figure}
 Eine Angabe des Hostname oder einer Third-Level
 Domain ist optional. Es können auch weitere Domains hinzugefügt werden.
-So ist auch eine Sixth-Level Domain möglich. Die maximale Anzahl der
+So ist zum Beispiel auch eine 6th-Level Domain möglich. Die maximale Anzahl der
 Subdomains ist in keinem der \gls{dns} \glspl{rfc} spezifiziert. Deshalb
 ist die maximale Anzahl abhängig vom \gls{dns}\hyp{}Server, der die
 Domains ausliefert. Nach \gls{rfc} 1035 ist die maximale Länge eines
 \gls{fqdn} aber auf 255 Bytes begrenzt\cite[siehe Section
 2.3.4]{RFC1035}, was die maximale Anzahl von Subdomains zumindest stark
 einschränkt. Der Begriff Subdomain umfasst alle Domains unter der
-\gls{tld}. \glspl{fqdn} sind nicht nur hierarchisch strukturiert, sondern
-unterliegen zusätzlich einer Baumstruktur. Dessen Wurzel ist die
+\gls{tld}. \glspl{fqdn} unterliegen einer Baumstruktur. Dessen Wurzel ist die
 \emph{Root Domain}, meistens symbolisiert durch einen einfachen Punkt.
 Eine Ebene direkt darunter sind die \glspl{tld}. Diese
 werden in der Regel von den \glspl{nic} einzelner Länder verwaltet. Von
@@ -347,51 +358,55 @@ In den letzten 5 Jahren kamen auch noch neue \glspl{tld} hinzu, welche
 nicht an Länder geknüpft sind. Darunter fallen Markennamen wie
 \emph{BMW}, \emph{Audi} oder \emph{Deutschepost} oder markenfreie Namen
 wie \emph{academy}, \emph{fun} oder \emph{house}\cite{NEWTLDLIST}. Die
-Vergabe der \glspl{tld} verlief direkt über die \gls{icann}. Der jeweilige
-Käufer ist Eigentümer der jeweiligen \gls{tld}. Ein Eigentümer
-einer \gls{tld} kann beliebig viele Subdomains erstellen für den
+Vergabe der \glspl{tld} erfolgte direkt über die \gls{icann}. Der jeweilige
+Käufer ist Nutzer der jeweiligen \gls{tld}, solange er die jährlichen
+Gebühren dafür bezahlt. Ein Nutzer einer \gls{tld} kann beliebig viele Subdomains erstellen für den
 Eigenbedarf, diese weiterverkaufen oder gar verschenken. Weitere
 wichtige Elemente des \gls{dns}\hyp{}Protokolls sind \emph{Name Server}
 und \emph{Resolver}\cite[siehe Section 2.4]{RFC1034}.
 \emph{Name Server} sind Server\hyp{}Programme, welche
-Informationen zur Baumstruktur enthalten. Ergo halten \emph{Name
+Informationen zur Namensauflösung enthalten. Ergo halten \emph{Name
 Server} Domain\hyp{}\gls{ip}\hyp{}Tabellen für ihre
-hierarchische Ebene vor. Wenn kein Eintrag zu dem angefragten \gls{fqdn}
+hierarchische Ebene vor und cachen sonstige Abbildungen, wie in etwa die
+Abbildung von \gls{dns}\hyp{}Name auf \gls{ip}\hyp{}Adressen, die durch sie
+hindurch geschleust werden. Wenn kein Eintrag zu dem angefragten \gls{fqdn}
 existiert, wird der nächsthöhere \gls{dns}\hyp{}Server gefragt. An
-oberster Stelle stehen 13 \emph{Root Nameserver
-Server}\cite{ROOTNAMESERVER}. Die \emph{Root
-Name Server} umfassen die Namen und \gls{ip}\hyp{}Adressen aller
+oberster Stelle steht ein \emph{Root Nameserver
+Cluster}\cite{ROOTNAMESERVER}. Die \emph{Root
+Name Server} kennen die Namen und \gls{ip}\hyp{}Adressen aller
 \emph{Name Server} die für die \gls{tld} verantwortlich sind.
 \emph{Resolver} übernehmen die Rolle des Clients, sie senden
 \gls{dns}\hyp{}Anfragen an \emph{Name Server}. Diese
 Anfragen erfolgen in den meisten Fällen über das \gls{udp} an den Zielport
-53\cite[Siehe Section 4.2.1]{RFC1035}. Es ist allerdings auch \gls{dns}
+53 des Name\hyp{}Servers\cite[Siehe Section 4.2.1]{RFC1035}. Es ist allerdings auch \gls{dns}
 über \gls{tcp} spezifiziert\cite[Siehe Section 4.2.2]{RFC1035}.
 Letzteres ist nötig für die \gls{dns}\hyp{}Erweiterungen
 \gls{dns}\hyp{}over\hyp{}\gls{tls} (Port 853) und
-\gls{dns}\hyp{}over\hyp{}\gls{https} (Port 443), welche das Protokoll \gls{dns} um
-Verschlüsselung erweitern\cite{RFC7858}
+\gls{dns}\hyp{}over\hyp{}\gls{https} (Port 443), welche das Protokoll
+\gls{https} für
+\gls{dns} nutzt und somit Verschlüsselung und Authentifizierung bereitstellt \cite{RFC7858}
 (\gls{dns}\hyp{}over\hyp{}\gls{https} ist zum Zeitpunkt dieser Arbeit
-noch nicht endgültig spezifiziert). Dieses Bestreben, \gls{dns} sicherer
-zu machen, unterstreicht die Wichtigkeit des Protokolls. Das Protokoll
-ist heute maßgeblich für das Funktionieren  des Internets. Ohne
-\gls{dns} wären diverse vernetzte Anwendungen nicht möglich. Der
-Webbrowser etwa löst permanent \gls{dns}\hyp{}Anfragen aus. Ist nur
+noch nicht endgültig spezifiziert). Dieses Bestreben, das
+\gls{dns}\hyp{}Protokoll sicherer
+zu machen, unterstreicht dessen Wichtigkeit für das Internet. Ohne
+\gls{dns} wären diverse vernetzte Anwendungen nicht möglich. Jeder
+Webbrowser oder Mailclient beispielsweise erzeugt diverse
+Namensauflösungen durch den lokalen Resolver. Ist nur
 eine dieser Anfragen fehlerhaft oder stark verzögert ist das für den
 Nutzer augenblicklich zu merken. Im Fall von fehlerhaften Anfragen, wäre
 eine Auflösung der Domain nicht möglich und eine Verbindung zu der
 assoziierten \gls{ip}\hyp{}Adresse würde fehlschlagen. Der Webbrowser
 würde in diesem Fall einen Fehlerbildschirm anzeigen.
 Bei stark verzögerten
-\gls{dns}\hyp{}Anfragen dauert der Aufbau einer neuen Seite 
-länger als üblich. Wie wichtig schnelle Antwortzeiten eines Computers
+\gls{dns}\hyp{}Auflösungen dauert der Aufbau einer frisch angeforderten
+Web\hyp{}Seite länger als üblich. Wie wichtig schnelle Antwortzeiten eines Computers
 sind, hat Walter Doherty bereits im Jahre 1982 mit seinem Paper \emph{The
 Economic Value of Rapid Response Time} deutlich gemacht. Doherty
 beobachtete einen signifikanten Anstieg an Benutzerinteraktionen, wenn
 die Latenz der Anfrage (in diesem Fall bezogen auf normale
 Computereingaben) unter einen bestimmten Wert fiel\cite{DOHERTY}.
 Bezogen auf die Latenz von \gls{dns}\hyp{}Anfragen hieße das, dass der
-Benutzer massiv bei seiner Arbeit ausgebremst wird. Dies führt nicht nur
+Benutzer bei zu hoher Latenz massiv bei seiner Arbeit ausgebremst wird. Dies führt nicht nur
 zu Frustration beim Nutzer, sondern auch zu Verschwendung seiner
 bezahlten Arbeitszeit und damit zu einer geringeren Produktivität.
 \section*{\glsfirst{http}}
