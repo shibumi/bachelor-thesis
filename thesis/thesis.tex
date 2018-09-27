@@ -34,7 +34,7 @@
 \input{glossaries.tex}
 \title{Evaluierung eines Messpunkte-Clusters für Netzwerktests auf dem
 Campus der TU Clausthal}
-\author{Christian, Rebischke\\
+\author{Christian Rebischke\\
 \gls{tuc}\\
 Rechenzentrum\\
 Matrikelnummer: 432108 \\
@@ -80,7 +80,8 @@ Christian Rebischke
 \tableofcontents
 \chapter*{Vorwort}
 \addcontentsline{toc}{chapter}{Vorwort}
-Es gibt nun mehr als 20 Jahren das Internet und keine Technologie
+Es gibt nun das Internet seit circa 45 Jahren und das \gls{www} seit 24
+Jahren und keine Technologie
 ist über so kurze Zeit so alltäglich geworden. Das Internet hat es
 geschafft, Einzug zu erhalten in Arbeit, Privatleben und auch Forschung
 und Lehre. Nahezu in allen wissenschaftlichen Diszplinen spielt das
@@ -137,12 +138,14 @@ gehören:
     \end{itemize}
     \item \gls{cifs}
     \item \gls{voip}
+    \item \gls{smtp}
 \end{itemize}
 
 \autoref{fig:problemstellung} zeigt die aktuelle Netzstruktur der \gls{tuc}. Zu sehen
 sind die drei \emph{Core\hyp{}Router}, welche auf die Gebiete
 Rechenzentrum, Feldgraben und Tannenhöhe verteilt sind.
-\emph{Core\hyp{}Router} stellen das Rückgrat, den Backbone, des Netzes
+\emph{Core\hyp{}Router} stellen das Rückgrat, den Backbone, des
+\gls{lan}
 der \gls{tuc} dar und leiten den Datenverkehr zwischen den einzelnen am
 Netz angeschlossenen Geräten. Sie trennen außerdem das Netz in logische
 Abschnitte. Zu sehen ist ebenfalls das aktuell existierende
@@ -150,20 +153,24 @@ Monitoring-System, welches einzelne Kerndienste überwacht. Diese
 Kerndienste und das aktuelle Monitoring-System sind im Rechenzentrum
 beheimatet. Dadurch entsteht eine physikalische und auch logische Nähe
 der Systeme. Durch diese Nähe verlässt der Datenverkehr, welcher die
-Kerndienste überprüft, niemals das Rechenzentrum. Dies führt dazu, dass
+Kerndienste überprüft, niemals die LANs des Rechenzentrum. Dies führt dazu, dass
 einzelne Kerndienste zwar als in Betrieb und fehlerfrei angezeigt
 werden, aber durchaus die Möglichkeit besteht, dass einzelne Dienste
-nicht von jedem Rechner aus erreichbar sind. Da außerdem nur ein binärer
+nicht von jedem Rechner der \gls{tuc} der \gls{tuc}
 Zustand ermittelt wird, ist unklar, wie groß die Latenz zwischen den
 Diensten und den jeweiligen Endkunden ist. Diese Latenz ist allerdings
 entscheidend und hat Einfluss auf die Nutzererfahrung der Endkunden.
-Besonders Dienste wie \gls{dns} sind auf schnelle Verbindungen
-angewiesen. Eine zu hohe Latenz zwischen einem Client und dem Dienst
+Besonders Dienste wie \gls{dns} sind auf Verbindungen mit einer geringen
+Latenz (der Zeit zwischen dem Absenden des ersten Bytes eines Pakets und
+dessen Empfang) angewiesen. Eine zu hohe Latenz zwischen einem Client und dem Dienst
 führt unweigerlich zu für den Nutzer spürbaren Konsequenzen (zum
 Beispiel zu verzögerten Seitenaufrufe beim Web-Browsing). Noch mehr ins
 Gewicht fallen Latenzen bei \gls{voip}, dort sind Latenzen oder ein
 Jitter (die Varianz der Laufzeit der Datenpakete\cite{JITTERWIKI})
-leicht auszumachen. Was fehlt, ist ein Netz aus verteilten Messpunkten,
+leicht auszumachen. Außerdem ist anzumerken, dass bei \gls{voip} eine
+Mindestbandbreite vorhanden ist, da sonst der Codec (Deutsch:
+Dekodierer) schlecht arbeitet. Was fehlt, ist ein System aus verteilten
+Messpunkten in den \glspl{lan} der \gls{tuc},
 das es ermöglicht, die Erreichbarkeit einzelner Dienste periodisch und
 über einen längeren Zeitraum zu beobachten (siehe \autoref{fig:problemloesung}). Dies
 hätte mehrere Vorteile: Zum einen ließe sich so der Zustand des
@@ -171,9 +178,13 @@ Campus-Netzwerks besser erfassen, da Tests nicht nur von einem zentralen
 Monitoring-System aus gestartet werden. Zum anderen können die
 gewonnenen Daten weiter verwertet, grafisch aufbereitet und zum Beispiel
 für die Erstellung von Langzeitstatistiken über die Gesundheit des
-Netzwerks genutzt werden.  Weiterhin könnten im Fall eines Ausfalls die
+Netzwerks genutzt werden. Der Zustand des Netzwerkes wird somit als
+Funktion der Zeit angesehen. Weiterhin könnten im Fall eines Ausfalls die
 zuständigen Netzadministratoren benachrichtigt werden, im Idealfall
-durch gewohnte Kommunikationswege wie Email. Außerdem wäre es durch
+durch gewohnte Kommunikationswege wie Email, aber auch durch neue
+Kommunikationswege wie in etwa das Absetzen von Tweets oder
+Chatnachrichten (beispielsweise an den Chat\hyp{}Server der \gls{tuc}:
+\url{https://chat.rz.tu-clausthal.de}). Außerdem wäre es durch
 einen dezentralen Aufbau einfacher, das System beliebig zu skalieren
 und auf Wachstum und Schrumpfen des Netzes zu reagieren. Mit dem Wandel
 von einem zentralen zu einem dezentralen Monitoring-System entsteht
@@ -184,11 +195,12 @@ Grundsystems. Insgesamt lassen sich daraus folgende
 Herausforderungen an diese Arbeit ableiten:
 
 \begin{itemize}
-    \item Es muss eine Hardware gefunden werden, welche sich
-          als verteilter Messpunkt eignet.
-    \item Es muss eine Monitoring\hyp{}Plattform gebaut oder eine
-          vorhandene Monitoring\hyp{}Plattform erweitert werden, so dass
-          sie den Anforderungen aus der
+    \item Es müssen Server im Campusnetz gefunden werden, welche sich
+          als verteilter Messpunkt eignen oder diese durch den Einsatz
+          von neuer Hardware im Campusnetz platziert werden.
+    \item Es muss eine Software\hyp{}Plattform gebaut oder eine
+          vorhandene Software\hyp{}Plattform erweitert werden, so dass
+          sie den Anforderungen bezüglich Monitoring aus der
           Problemstellung gerecht wird.
     \item Es muss ein Modell für die gespeicherten Daten gefunden
           werden.
@@ -197,7 +209,9 @@ Herausforderungen an diese Arbeit ableiten:
           muss um Messpunkte erweiterbar sein.
     \item Das System muss bei wachsendem Komplexitätsgrad und Anzahl von
           Messpunkten steuerbar und kontrollierbar bleiben.
-    \item Das System muss über Rechnernetze kommunizieren.
+    \item Das System muss über \gls{tcp}/\gls{ip} basierte Rechnernetze
+          kommunizieren. Dies schließt die Kommunikation über
+          \glspl{vlan} oder \glspl{vxlan} mit ein.
 \end{itemize}
 
 \begin{figure}[H]
