@@ -266,7 +266,7 @@ sich am besten durch ein kurzes Beispiel erklären:
 
 Es wird angenommen, dass von einem Laptop eine Website aufgerufen wird.
 Nachfolgend wird nur der Netzverkehr zwischen dem Laptop und dem
-Web\hyp{}Server
+Webserver
 betrachtet. Wenn der Client eine \gls{http}\hyp{}basierte Website
 aufrufen möchte, sendet dieser eine \gls{http}\hyp{}Anfrage in Form von
 eines
@@ -399,7 +399,7 @@ assoziierten \gls{ip}\hyp{}Adresse würde fehlschlagen. Der Webbrowser
 würde in diesem Fall einen Fehlerbildschirm anzeigen.
 Bei stark verzögerten
 \gls{dns}\hyp{}Auflösungen dauert der Aufbau einer frisch angeforderten
-Web\hyp{}Seite länger als üblich. Wie wichtig schnelle Antwortzeiten eines Computers
+Webseite länger als üblich. Wie wichtig schnelle Antwortzeiten eines Computers
 sind, hat Walter Doherty bereits im Jahre 1982 mit seinem Paper \emph{The
 Economic Value of Rapid Response Time} deutlich gemacht. Doherty
 beobachtete einen signifikanten Anstieg an Benutzerinteraktionen, wenn
@@ -412,10 +412,10 @@ bezahlten Arbeitszeit und damit zu einer geringeren Produktivität.
 \section*{\glsfirst{http}}
 \addcontentsline{toc}{section}{\glsfirst{http}}
 \glsfirst{http} ist ein auf \gls{tcp}/\gls{ip} aufbauendes
-Datenübertragungsprotokoll, welcher auf der Andwendungsschicht des
+Datenübertragungsprotokoll, welches in der Andwendungsschicht des
 \gls{osi} operiert. Der am meisten verbreiteste Anwendungszweck für das
 Protokoll ist das Ausliefern von Webseiten über Port 80. \gls{http}
-wurde erstmals im Jahre 1996 als \gls{rfc} 1945 spezifiziert, nachdem
+wurde erstmals im Jahre 1996 als \gls{rfc} 1945 spezifiziert, nachdem 
 es bereits fast sechs Jahre im Internet im Einsatz gewesen
 war\cite{RFC1945}. Im Laufe der Jahre kamen weitere Versionen,
 sowie diverse Erweiterungen für das Protokoll hinzu. Darunter
@@ -425,17 +425,31 @@ aktuelle Version \gls{http}/2, welche in \gls{rfc} 7540 standardisiert
 werden\cite{RFC7540}. \gls{http} ist ein zustandsloses Protokoll,
 dementsprechend werden mehrere Anfragen getrennt voneinander und ohne
 Kontext zu einander bearbeitet. Es wird keine Session aufgebaut und
-keine Sitzungsinformationen verwaltet. Sitzungsinformationen können
-zusätzlich durch \emph{Cookies} übertragen werden. \emph{Cookies}
-ergänzen den \gls{http}\hyp{}Header um Sitzungsinformationen, dadurch
-ist eine genaue Zuordnung möglich. Zur Interaktion mit dem Server
-besitzt \gls{http} mehrere Methoden. Die häufigsten sind:
+keine Sitzungsinformationen verwaltet. Persistente Sitzungsinformationen 
+werden durch \emph{Cookies} übertragen. \emph{Cookies} sind im
+\gls{http}\hyp{}Header des \gls{http}\hyp{}Response befindliche
+Schlüssel\hyp{}Werte\hyp{}Paare,
+welche der Sitzung eine eindeutige \emph{Session ID}
+zuweisen\cite{RFC2965}\cite{RFC6265}\cite{RFC2109}.
+Zur Interaktion mit dem Server besitzt \gls{http} mehrere Methoden. Die häufigsten sind:
 \begin{description}
-    \item[GET] für einfache Anfragen
-    \item[POST] um Informationen wie beispielsweise Logindaten an den
-        Server zu senden.
+    \item[GET] um an mit der \gls{url} verknüpfte Informationen zu
+        kommen. Die Antwort auf einen \textbf{GET}\hyp{}Aufruf
+        beinhaltet den Header und den Body des
+        \gls{http}\hyp{}Response\cite[Siehe Section 9.3]{RFC2616}.
+    \item[POST] wird benutzt um Informationen an den Server zu senden.
+        Diese Informationen werden im \gls{http}\hyp{}Header als
+        Schlüssel\hyp{}Wert\hyp{}Paare übermittelt\cite[Siehe Section
+        9.5]{RFC2616}. Dies eignet sich besonders für kritische Informationen, wie zum Beispiel
+        Passwörter. Da der \gls{http}\hyp{}Header bei \gls{https}
+        verschlüsselt wird. Die eigentliche Funktion des
+        \textbf{POST}\hyp{}Aufrufs ist dem Server überlassen\cite[Siehe
+        Section 9.3]{RFC2616}
     \item[HEAD] ähnlich wie \textbf{GET} mit dem Unterschied, dass
-        der Server bei einer Antwort keinen Inhalt mitliefert.
+        der Server bei einer Antwort keinen Inhalt mitliefert. Es wird
+        nur der \gls{http}\hyp{}Header übertragen\cite[Siehe Section
+        9.4]{RFC2616}, welcher meistens
+        einen Titel und eine Kurzbeschreibung der Webseite umfasst.
 \end{description}
 Die Methoden \textbf{DELETE}, \textbf{PUT} sind nur für eine
 \gls{restapi} relevant und umfassen das Löschen und hinzufügen. Um
@@ -443,19 +457,19 @@ herauszufinden, welche Methoden ein Server unterstützt, kann die Methode
 \textbf{OPTIONS} verwendet werden.
 Im \autoref{lst:httpanfrage} ist eine \gls{http}\hyp{}Anfrage mit Antwort und
 Verbindungsaufbau an den Host \url{http://tu-clausthal.de}
-visualisiert. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
+dargestellt. Die eigentliche \gls{http}\hyp{}Anfrage beginnt ab Zeile 5
 und endet in Zeile 9. Aus Zeile 5 wird ersichtlich, dass es sich um die
 Version 1.1 von \gls{http} handelt und der Client via \emph{GET} den
 Index der Seite \emph{tu-clausthal.de} (siehe Zeile 6) anfragt. Zeile 7
 übermittelt den Namen und Version der Software mit, der diese
 \gls{http}\hyp{}Anfrage gesendet worden ist und Zeile 8 definiert,
 welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}. Ab Zeile
-10 beginnt die Antwort des Servers. Dort werden Protokoll und die
+10 beginnt der \gls{http}\hyp{}Response des  Servers. Dort werden Protokoll und die
 Version nochmal bestätigt und in diesem Beispiel ein Statuscode
 hinzugefügt (301 weist daraufhin, dass der Inhalt der Seite verschoben
 worden ist und an einem neuen Ort liegt (siehe Zeile 13)). Dazu wird auf
 einen neuen \gls{url} verwiesen. Die \gls{url} dient als Pfadangabe zur
-gewünschten Ressource oder Information. Bei \gls{http} haben diese
+gewünschten Web\hyp{}Ressource oder Datei. Bei \gls{http} haben diese
 Pfadangaben den Präfix \emph{http://}. Zeile 11 gibt
 das aktuelle Datum, die Uhrzeit und die Zeitzone an und Zeile 12 die
 Software des Servers und deren Version. Die Zeilen 14 bis 16
@@ -491,12 +505,21 @@ http://tu-clausthal.de},label={lst:httpanfrage}]
 * Connection #0 to host tu-clausthal.de left intact
 \end{lstlisting}
 \end{minipage}
-Bei der Verwendung von \gls{http} können folgende Fehlerfälle auftreten:
+Bei der Verwendung von \gls{http} können unter anderem folgende Fehlerfälle auftreten:
 \begin{itemize}
-    \item Die Verbindung ist zu langsam und der Seitenaufbau erfolgt in
-          einem für den Nutzer zu langsamen Tempo.
-    \item Die Verbindung kommt nicht zu Stande, weil der Webserver nicht
-          erreichbar ist.
+    \item Eine zu geringe Bandbreite oder eine zu hohe Latenz führen zu
+        erheblichen Einschränkungen beim Seitenaufbau und damit in einem
+        für den Nutzer zu langsamen Tempo. Im schlimmsten Fall kommt es
+        zu einem Timeout und es wird der \gls{http}\hyp{}Statuscode 408
+        zurückgegeben\cite[Siehe Section 10.4.9]{RFC2068}.
+    \item Der Webserver ist nicht in der Lage die Anfrage zu
+        verarbeiten. Dieser Fehler terminiert mit dem Statuscode
+        503\cite[Siehe Section 10.5.4]{RFC2068}.
+    \item Die mit der angegebenen \gls{url} verknüpfte
+        Web\hyp{}Ressource konnte nicht gefunden werden. Als Statuscode
+        wird 404 verwendet\cite[Siehe Section 10.4.5]{RFC2068}.
+
+Weitere Fehler und Statuscodes können dem \gls{rfc} 2068 entnommen werden\cite[Siehe Section 10]{RFC2068}.
 \end{itemize}
 \section*{\glsfirst{https}}
 \addcontentsline{toc}{section}{\glsfirst{https}}
@@ -510,34 +533,34 @@ Für den Verbindungsaufbau wird bei \gls{https} standardmäßig
 Port 433 benutzt\cite[Siehe Section 2.3]{RFC2818}. Als
 \gls{url}\hyp{}Präfix dient \emph{https://}. Bei der Verschlüsselung und
 Herstellung der Datenintegrität bleibt die eigentliche
-\gls{http}\hyp{}Syntax intakt, ergo handelt es sich um eine Verschlüsselung der
-einzelnen \gls{http}\hyp{}Pakete. Dazu verschickt der Client beim
+\gls{http}\hyp{}Syntax wie sie ist, ergo handelt es sich um eine Verschlüsselung der
+einzelnen \gls{http}\hyp{}Pakete für Request und Response. Dazu verschickt der Client beim
 Verbindungsaufbau über Port 433 ein \emph{TLS ClientHello} an den
-Server, woraufhin der \gls{tls}\hyp{}Handshake initiiert wird.
-Dieser Handshake beinhaltet die Überprüfung der Integrität des Servers
+Server, woraufhin ein \gls{tls}\hyp{}Handshake initiiert wird.
+Dieser Handshake beinhaltet die Überprüfung der Integrität des WebServers
 unter Betrachtung des \gls{tls}\hyp{}Zertifikats. Das Zertifikat ist
 ein öffentlicher Schlüssel, welcher mit einer
 digitalen Signatur einer Zertifizierungsstelle beglaubigt worden ist.
 Der Client besitzt eine Datenbank mit gültigen Zertifizierungsstellen
-und vergleicht so das signierte Zertifikat des Servers mit dem
-Zertifikat einer Zertifizierungsstelle. Wurden keine Mängel
+und vergleicht so das signierte Zertifikat des Servers mit allen
+gespeicherten Zertifizierungsstellen. Wurden keine Mängel
 festgestellt, beispielsweise ein abgelaufenes Zertifikat oder eine
 fremde Zertifizierungsstelle, geht der Client davon aus, dass der Server
 die Identität besitzt, die er vorgibt zu haben. Dies ist in so fern
 problematisch, als in der Vergangenheit wiederholt bei
 Zertifizierungsstellen eingebrochen worden ist und private Schlüssel zum
-signieren von gültigen Zertifikaten gestohlen worden
+Signieren von gültigen Zertifikaten gestohlen worden
 sind\cite{PRIVATEKEYSSTOLEN}. Nach der Integritätsprüfung folgt der
 eigentliche Aufbau einer verschlüsselten Verbindung. Für den Aufbau
-existieren derzeit zwei mögliche Verfahren. Zum Einen der
-\gls{rsa}\hyp{}Handshake und zum Anderen der
+existieren derzeit zwei mögliche Verfahren. Zum einen der
+\gls{rsa}\hyp{}Handshake und zum anderen der
 Diffie\hyp{}Hellman\hyp{}Handshake\cite{TLS}. Beim
 \gls{rsa}\hyp{}Handshake wird vom Client ein symmetrischer Schlüssel
 erzeugt, dieser wird mit dem öffentlichen Schlüssel des Servers
-verschlüsselt und dem Server mitgeteilt. Der Server entschlüsselt den
+verschlüsselt und das Ergebnis an den Server übermittelt. Der Server entschlüsselt den
 symmetrischen Schlüssel unter Zuhilfenahme seines privaten Schlüssels.
 Damit ist eine sichere Verbindung aufgebaut und der Client und der Server
-sind in der Lage, sich mit dem symmetrischen Schlüssel
+sind in der Lage, sich mit Hilfe des symmetrischen Schlüssels
 verschlüsselte Nachrichten zu senden. Beim
 Diffie\hyp{}Hellman\hyp{}Handshake dagegen werden die öffentlichen
 Schlüssel beider Gesprächspartner ausgetauscht und mit dem jeweiligen im
@@ -546,12 +569,12 @@ Schlüssel berechnet. Dieser symmetrische Schlüssel verlässt im Gegensatz
 zum \gls{rsa}\hyp{}Handshake niemals den Server oder Client. Außerdem
 ist es möglich, für jede Session einen neuen flüchtigen symmetrischen Key
 zu erzeugen. Dies wird ermöglicht, in dem bei jeder neuen Session ein
-neues Schlüsselpaar erzeugt wird. Ergo ist der
+neues Schlüsselpaar erzeugt wird. Deshalb ist der
 Diffie\hyp{}Hellman\hyp{}Handshake als sicherer anzusehen, da der
 gemeinsame symmetrische Schlüssel niemals übertragen wird (auch nicht
 verschlüsselt) und neue Sessions immer mit einem neuen Schlüssel
 versehen werden. Letzteres ermöglicht \gls{pfs}. Durch \gls{pfs} ist es
-einem Angreifer nicht möglich ältere aufgezeichnete Verbindungen zu
+einem Angreifer nicht möglich, ältere aufgezeichnete Verbindungen zu
 entschlüsseln, auch wenn er in den Besitz eines privaten Schlüssels
 gelangt.
 Die Fehlerfälle bei \gls{https} entsprechen denen von \gls{http}, 
