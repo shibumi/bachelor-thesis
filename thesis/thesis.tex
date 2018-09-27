@@ -638,7 +638,7 @@ Bei der Verwendung von \gls{cifs} können folgende Fehlerfälle auftreten:
 \addcontentsline{toc}{chapter}{Herleitung eines Lösungsansatzes}
 \section*{Anforderungsanalyse}
 \addcontentsline{toc}{section}{Anforderungsanalyse}
-Nachfolgend werden die ermittelten funktionalen und nichthyp{}funktionalen
+Nachfolgend werden die ermittelten funktionalen und nicht\hyp{}funktionalen
 Anforderungen erläutert. Funktionale Anforderungen stellen das
 ``eigentliche Systemverhalten und die jeweiligen Funktionen des zu
 erstellenden Produkts''\cite[S. 20]{BPSE} dar, also die grundlegenden
@@ -706,7 +706,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA4: Überwachung von \gls{cifs} } & \textbf{Priorität: SOLL} \\\midrule
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-    Die Software \textbf{MUSS} die Zeit messen können, die
+    Die Software \textbf{SOLL} die Zeit messen können, die
     zwischen einer \gls{cifs}-Abfrage und der Antwort von einem
     \gls{cifs}-Server vergeht.}\\\bottomrule
 \end{tabular}
@@ -753,6 +753,17 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     }\\\bottomrule
 \end{tabular}
     \captionof{table}{Funktionale Anforderung FA8}\label{table:FA8}
+\end{center}
+\begin{center}
+\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
+    \textbf{FA9: Kontrollierbarkeit} & \textbf{Priorität: MUSS} \\\midrule
+	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
+        Das zu entwickelnde System \textbf{MUSS} bei wachsendem
+        Komplexitätsgrad und Anzahl von Messpunkten steuerbar und
+        kontrollierbar bleiben.
+        }\\\bottomrule
+\end{tabular}
+    \captionof{table}{Funktionale Anforderung FA9}\label{table:FA9}
 \end{center}
 
 \subsection*{Nicht-funktionale Anforderungen}
@@ -805,17 +816,6 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
         }\\\bottomrule
 \end{tabular}
     \captionof{table}{Nicht-Funktionale Anforderung NFA4}\label{table:NFA4}
-\end{center}
-\begin{center}
-\begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
-    \textbf{NFA5: Kontrollierbarkeit} & \textbf{Priorität: MUSS} \\\midrule
-	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
-        Das zu entwickelnde System \textbf{MUSS} bei wachsendem
-        Komplexitätsgrad und Anzahl von Messpunkten steuerbar und
-        kontrollierbar bleiben.
-        }\\\bottomrule
-\end{tabular}
-    \captionof{table}{Nicht-Funktionale Anforderung NFA5}\label{table:NFA5}
 \end{center}
 
 \section*{Systemarchitektur}
@@ -1495,6 +1495,7 @@ spezifiziert.
         \hyperref[table:FA6]{\textbf{FA6}} & Die Grafische Aufbereitung erfolgt durch die Plattform \emph{Grafana}. \\
         \hyperref[table:FA7]{\textbf{FA7}} & Die Bandbreitenmessung erfolgt durch den \emph{Prometheus} \emph{Node-Exporter}. \\
         \hyperref[table:FA8]{\textbf{FA8}} & Wird erfüllt über die \emph{Odroid XU4} Plattform. \\
+        \hyperref[table:FA9]{\textbf{FA9}} & Das System bleibt kontrollierbar durch den Einsatz von \emph{Ansible}. \\
 \bottomrule
     \end{tabu}
     \captionof{table}{Umsetzung der Funktionalen Anforderungen}
@@ -1510,7 +1511,6 @@ spezifiziert.
         \hyperref[table:NFA2]{\textbf{NFA2}} & Die niedrigen Beschaffungskosten sind durch die Wahl der \emph{Odroid XU4} Plattform gegeben. \\
         \hyperref[table:NFA3]{\textbf{NFA3}} & Die für das Deployment benötigten Passwörter werden mit gängigen Verschlüsselungsverfahren in \emph{Ansible-Vault}  hinterlegt. Die Verbindungen zu den Zielsystemen finden verschlüsselt und mit einer Authentizitätsprüfung statt. \\
         \hyperref[table:NFA4]{\textbf{NFA4}} & Das System ist horizontal skalierbar durch den Einsatz von \emph{Prometheus} als Cluster einsetzbare Datenbank und \emph{Ansible} als Automatisierungswerkzeug zum Deployment. \\
-        \hyperref[table:NFA5]{\textbf{NFA5}} & Das System bleibt kontrollierbar durch den Einsatz von \emph{Ansible}. \\
 \bottomrule
     \end{tabu}
     \captionof{table}{Umsetzung der Nicht-Funktionalen Anforderungen}
