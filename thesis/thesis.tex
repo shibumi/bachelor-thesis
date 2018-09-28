@@ -589,7 +589,7 @@ erweitert um einige Fehler bezogen auf \gls{tls}:
 \gls{cifs} ist ein von der Firma Microsoft 1996 eingeführtes
 Datentransferprotokoll auf Basis von \gls{smb}\cite{SMBWIKI} und
 \gls{netbios} über \gls{tcp}/\gls{ip}. Das Protokoll ist nicht nur auf
-Dateitransfer beschränkt, sondern kann auch für Druckerfreigaben,
+beschränkt, sondern kann auch für Druckerfreigaben,
 Windows-RPC (ein von Microsoft eingeführtes Protokoll, um Code aus der
 Ferne auszuführen) und den NT-Domänendienst (ein von Microsoft
 eingeführter Dienst zur Authentifizierung von Computern und Nutzern)
@@ -600,12 +600,12 @@ sessionbehaftetes Protokoll. Der \gls{cifs}\hyp{}Server ordnet also
 jeder Verbindung eine Sitzung zu, die einem Client genau zugeordnet
 werden kann. Darüber sind diverse Operationen möglich wie
 Authentifizierung, Verschlüsselung oder \emph{Locking}\cite[S.
-16]{MSSMB}. Beim \emph{Locking} wird der Zugriff auf eine Datei
-beschränkt, um deren Korruption zu vermeiden, welche passieren kann, wenn
-mehrere Nutzer auf die gleiche Datei schreiben. Um dies zu verhindern,
+16]{MSSMB}. Beim \emph{Locking} wird der Zugriff auf einen Nutzer
+beschränkt, um deren Beschädigung durch mehrfaches Schreiben an
+derselben Stelle  zu vermeiden. Um dies zu verhindern,
 setzt der \gls{cifs}\hyp{}Server ein \emph{Lock} auf diese Datei und
 lässt nur einen Client in diese Datei schreiben. Der eigentliche
-Transfer der Dateien wird mit \gls{tcp} vor Korruption geschützt.
+Transfer der Dateien wird mit \gls{tcp} vor Datenübertragungsfehlern geschützt.
 Die von der \gls{iana} für \gls{cifs} vergebene Portnummer ist:
 445\cite[S. 19]{MSSMB}. Desweiteren hat \gls{tcp} den Vorteil, dass es
 \emph{full-duplex} ist. \emph{Full-duplex} bedeutet, dass \gls{tcp} in
@@ -625,7 +625,7 @@ Format}, bei dem das höchstwertige Byte zuerst gespeichert wird.
         \bitbox{32}{SMB Nachricht}\\
         \bitbox{32}{\ldots}
     \end{bytefield}
-    \caption{Aufbau eines \gls{smb}\hyp{}Pakets}\label{fig:smbbytefield}
+    \caption{Aufbau eines \gls{smb}\hyp{}Pakets in der TCP-Nutzlast}\label{fig:smbbytefield}
 \end{figure}
 Bei der Verwendung von \gls{cifs} können folgende Fehlerfälle auftreten:
 \begin{itemize}
@@ -830,7 +830,7 @@ folgende Aufstellung von Komponenten für die Systemarchitektur:
         der Visualisierungslösung.
     \item[Visualisierungslösung] Das Subsystem zur Visualisierung der, von
         den Messsensoren, gewonnenen Messdaten.
-    \item[Messensor] Ein verteilter Messpunkt, um die in den
+    \item[Messsensor] Ein verteilter Messpunkt, um die in den
         Anforderungen spezifizierten Daten zu gewinnen.
 \end{description}
 Aus der Komponentenaufstellung ergeben sich die Assoziationen zwischen
