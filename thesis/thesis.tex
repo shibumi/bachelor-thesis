@@ -760,7 +760,8 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
         Das zu entwickelnde System \textbf{MUSS} bei wachsendem
         Komplexitätsgrad und Anzahl von Messpunkten steuerbar und
-        kontrollierbar bleiben.
+        kontrollierbar bleiben. Dies betrifft auch die Komponenten
+        Datenbank und Visualisierungslösung.
         }\\\bottomrule
 \end{tabular}
     \captionof{table}{Funktionale Anforderung FA9}\label{table:FA9}
@@ -836,6 +837,16 @@ folgende Aufstellung von Komponenten für die Systemarchitektur:
 Aus der Komponentenaufstellung ergeben sich die Assoziationen zwischen
 den einzelnen Komponenten. Das Konfigurationsmanagement umspannt alle
 Komponenten und sorgt für deren Konfiguration, Verwaltung und Kontrolle.
+Dadurch ist es möglich die \gls{mttr} so kurz wie möglich zu halten. Die
+\gls{mttr} bezeichnet die mittlere Zeit die benötigt wird um ein System
+im Fehlerfall wiederherzustellen\cite{MTTR}. Nur durch den Einsatz von
+Konfigurationsmanagement auf allen Systemkomponenten ist es möglich
+diese, im Falle eines Systemausfalls, innerhalb
+wenigen Minuten automatisiert aus den Konfigurationsdateien wieder
+herzustellen. Außerdem ergibt sich durch die Verwendung eines
+Konfigurationsmanagement mit Versionsverwaltung eine Historie der
+Veränderungen an dieser Komponente. Die Konfiguration ist
+nachvollziehbar und identisch reproduzierbar.
 Die einzelnen Messensoren senden ihre Messdaten zur Datenbank. Der
 Webserver mit der Visualisierungslösung stellt diese Daten für den Nutzer aufbereitet
  grafisch dar.
