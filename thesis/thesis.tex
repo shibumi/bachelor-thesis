@@ -957,11 +957,32 @@ Beispielsweise verzichten NoSQL\hyp{}Datenbanken auf Eigenschaften von
 relationalen Datenbanken um die Skalierbarkeit zu erhöhen\cite[S. 13]{TSDB}. Dadurch sind
 NoSQL\hyp{}Datenbanken simpler aufgebaut und haben weniger Ansprüche an
 die gespeicherten Daten. Es müssen keine Datentypen eingehalten oder
-sonstige Relationen zwischen Daten gewährleistet werden. Alle Daten
-werden in einer Tabelle gespeichert, welche sich beliebig horizontal
-durch Verwendung von mehr Rechenzeit skalieren lässt. Dies äußert sich
-in einer hohen Leistung, Skalierbarkeit und Flexibilität von
-NoSQL\hyp{}Datenbanken\cite{NOSQL}.
+sonstige Relationen zwischen Daten gewährleistet werden, insbesondere
+gibt es auch keine ACID\hyp{}Eigenschaften. Die Kurzform ACID 
+bedeutet\cite{NOSQLKRAMER}\cite{SQLLEIPZIG}:
+\begin{description}
+    \item[Atomarität] Entweder komplette Ausführung der Transaktion oder
+        keine Ausführung.
+    \item[Konsistenzerhaltung] Wenn die Datenbank vor der Transaktion in
+        sich in einem konsistenten Zustand befand, soll sich die
+        Datenbank nach der Transaktion immer noch in einem konsistenten
+        Zustand befinden.
+    \item[Isolation] Transaktionen sind voneinander isoliert. Dies
+        bedeutet, dass laufende Transaktionen sich nicht gegenseitig
+        beeinflussen können.
+    \item[Dauerhaftigkeit] Abgeschlossene Transaktionen sind garantiert
+        dauerhaft in der Datenbank gespeichert.
+\end{description}
+Stattdessen kommt in NoSQL\hyp{}Datenbanken das BASE\hyp{}Paradigma zum
+Einsatz. BASE ist die Kurzform für \emph{basically available, soft
+state, eventually consistent} (Deutsch: Grundsätzlich verfügbar, weicher
+Zustand, eventuell konsistent). Im Gegensatz zu pessimistischen
+\gls{sql}\hyp{}Datenbanken verfolgen NoSQL\hyp{}Datenbanken ein
+optimistisches Paradigma\cite[Siehe Seite 51]{BASE} und akzeptieren ein
+schwächeres Konsistenzmodell.  NoSQL\hyp{}Datenbanken sind im
+wesentlichen schemafrei\cite{NOSQLKRAMER}. Durch diesen Verzicht von
+Konsistenz erreichen NoSQL\hyp{}Datenbanken eine hohe Leistung,
+Skalierbarkeit und Flexibilität\cite[Siehe Seite 11]{NOSQLPERFORMANCE}.
 \subsection*{Datenmodell}
 Es werden folgende Informationen als Daten erwartet:
 \begin{itemize}
