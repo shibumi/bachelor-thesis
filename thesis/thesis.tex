@@ -855,8 +855,8 @@ Webserver mit der Visualisierungslösung stellt diese Daten für den Nutzer aufb
     \includegraphics[width=0.8\textwidth]{figures/network.pdf}
     \caption{Zusammenspiel aller Systemkomponenten}\label{fig:network}
 \end{figure}
-\section*{Datenmodell}
-\addcontentsline{toc}{section}{Datenmodell}
+\section*{Datenbanken}
+\addcontentsline{toc}{section}{Datenbanken}
 Zur Speicherung der Messdaten steht ein breites Spektrum von Datenbanken
 zur Verfügung. Das Spektrum reicht von traditionellen, relationalen
 Datenbanken, wie zum Beispiel MySQL, bis zu modernen
@@ -978,59 +978,86 @@ Einsatz. BASE ist die Kurzform für \emph{basically available, soft
 state, eventually consistent} (Deutsch: Grundsätzlich verfügbar, weicher
 Zustand, eventuell konsistent). Im Gegensatz zu pessimistischen
 \gls{sql}\hyp{}Datenbanken verfolgen NoSQL\hyp{}Datenbanken ein
-optimistisches Paradigma\cite[Siehe Seite 51]{BASE} und akzeptieren ein
-schwächeres Konsistenzmodell.  NoSQL\hyp{}Datenbanken sind im
+optimistisches Paradigma\cite[Siehe Seite 51]{BASE} und akzeptieren
+einen möglichen Zustand der Inkonsistenz. Außerdem sind NoSQL\hyp{}Datenbanken im
 wesentlichen schemafrei\cite{NOSQLKRAMER}. Durch diesen Verzicht von
-Konsistenz erreichen NoSQL\hyp{}Datenbanken eine hohe Leistung,
+ACID\hyp{}Eigenschaften erreichen NoSQL\hyp{}Datenbanken eine hohe Leistung,
 Skalierbarkeit und Flexibilität\cite[Siehe Seite 11]{NOSQLPERFORMANCE}.
-\subsection*{Datenmodell}
+\subsection*{Erwartete Daten und Wahl der geeigneten Datenbank}
+\addcontentsline{toc}{subsection}{Erwartete Daten und Wahl der
+geeigneten Datenbank}
 Es werden folgende Informationen als Daten erwartet:
 \begin{itemize}
     \item Ein sekundengenauer Zeitstempel.
-    \item Der \gls{dns}\hyp{}Eintrag oder die
-        \gls{ip}\hyp{}Adresse des Messknotens
-    \item Die Messdaten
+    \item Der \gls{fqdn} oder die \gls{ip}\hyp{}Adresse des Messknotens
+    \item Die Messdaten. Dies können sowohl boolesche Werte sein, als
+        aber auch diverse Metriken wie Latenz oder CPU\hyp{}Auslastung.
 \end{itemize}
-Da die Informationen nicht sonderlich komplex sind, bietet sich eine
-NoSQL\hyp{}Datenbank für die Speicherung an. Eine NoSQL\hyp{}Datenbank
-hat den Vorteil, dass sich die Datenbank einfacher skalieren lässt und
-performanter ist. Durch die strikte Relation zwischen Messdaten und
+Durch die strikte Abhängigkeit zwischen Messdaten und
 ihrem sekundengenauen Zeitstempel fällt die Wahl auf eine \gls{tsdb}.
+\glspl{tsdb} gehören zur Gruppe der NoSQL\hyp{}Datenbanken.
 Folgende \gls{tsdb}\hyp{}Implementierungen stehen zur näheren Auswahl:
 \begin{itemize}
     \item \emph{InfluxDB}\cite{INFLUXDB}
     \item \emph{OpenTSDB}\cite{OPENTSDB}
     \item \emph{Prometheus}\cite{PROMETHEUS}
 \end{itemize}
-\emph{InfluxDB} und \emph{OpenTSDB} sind beides generische Vertreter von
+\emph{InfluxDB} und \emph{OpenTSDB} sind beides Vertreter von
 einer \gls{tsdb} und vielseitig einsetzbar. Interessant für dieses
 Projekt ist jedoch \emph{Prometheus}. \emph{Prometheus} beschränkt sich
-auf Monitoringdaten, bietet jedoch diverse Vorzüge gegenüber den anderen beiden
-großen Vertretern von \glspl{tsdb} (Details zum internen Aufbau
-und den Vorteilen von \emph{Prometheus} sind im Kapitel
-\emph{Prometheus} zu finden). Daten werden in \emph{Prometheus} als
-Tupel aus 64\hyp{}bit Fließkommazahlen und einem Millisekunden genauen
-Zeitstempel gespeichert\cite{PROMETHEUS_DATA_MODEL}. Diese Tupel werden
-mit einem Identifikator versehen. Dieser Identifikator besteht aus
-einem eindeutigen Namen für die Metrik und einem
-Key\hyp{}Value\hyp{}Store (siehe \autoref{lst:prometheusdataformat} Zeile 1; für ein
-Beispiel siehe Zeile 2). Die Keys werden auch \emph{Labels} genannt.
-Anhand dieser \emph{Labels} ist es möglich, Daten einer Metrik 
-zu filtern. Zwei Stunden werden diese Metriken von \emph{Prometheus}
-gesammelt bis sie, zusammen mit Metadaten und einer Indexdatei, in einem
-Verzeichnis abgelegt werden. Metadaten sind Informationen über die
-gesammelten Daten, darunter fallen \emph{Labels}. Die Indexdatei
-speichert die Relation zwischen den Metriknamen und den Metriken, die
-gestückelt abgelegt werden. Diese Stückelungen werden auch \emph{Chunks}
+auf Monitoringdaten und erweitert eine \gls{tsdb} um ein ganzes
+Ökosystem zum Überwachen von Servern, Container und Netzwerken.
+Darunter fallen diverse Werkzeuge zum Sammeln von Daten, als auch
+Software für das \emph{Alerting} von Administratoren im Fehlerfall.
+Beispiele für Firmen die \emph{Prometheus} nutzen sind:
+\emph{Soundcloud} (eine große Musikplattform für Künstler), \emph{Docker
+Inc.} (die Firma hinter der Container\hyp{}Technologie Docker),
+\emph{DigitalOcean} (ein weltweit erfolgreicher Hoster von virtuellen Maschinen
+und Container), \emph{Jodel} (eine unter Studenten beliebte anonyme
+Microblogging\hyp{}Plattform)\cite{PROMETHEUS}.
+
+\section*{Prothemeus}
+\addcontentsline{toc}{section}{Prometheus}
+Bei \emph{Prometheus} handelt es sich um keine reine \gls{tsdb}.
+\emph{Prometheus} ist vielmehr eine auf Monitoringdaten spezialisierte
+und mit diversen Komponenten erweiterbare Monitoringanwendung. In diesem
+Kapitel wird der interne Aufbau von \emph{Prometheus}, dessen
+Komponenten und deren Zusammenspiel näher erläutert. \emph{Prometheus}
+wurde ursprünglich im Jahr 2012 von Mitarbeitern des Online-Musikdiensts
+\emph{Soundcloud} entwickelt\cite{PROMETHEUS_OVERVIEW} und im Jahr 2015
+als Opensource Software freigegeben. \emph{Prometheus} entstand aus der
+Not heraus, hunderte von Mikroservices und tausende von Service\hyp{}Instanzen
+in einem firmeninternen Container\hyp{}Cluster zu
+überwachen\cite{PROMETHEUS_YOUTUBE}. Seitdem setzt sich
+\emph{Prometheus} besonders im Cloud\hyp{}Bereich durch und wurde 2016
+sogar in die \emph{Cloud Native Computing Foundation}
+aufgenommen\cite{CNCF}, einer Organisation zur Förderung von
+Cloud\hyp{}Software im Opensource\hyp{}Bereich.
+
+\subsection*{Datenspeicherung in Prometheus}
+\addcontentsline{toc}{subsection}{Datenspeicherung in Prometheus}
+Daten werden in \emph{Prometheus} als Tupel aus 64\hyp{}bit
+Fließkommazahlen und einem Millisekunden genauen Zeitstempel
+gespeichert\cite{PROMETHEUS_DATA_MODEL}. Diese Tupel werden mit einem
+Identifikator versehen. Dieser Identifikator besteht aus einem
+eindeutigen Namen für die Metrik und einem Key\hyp{}Value\hyp{}Store
+(siehe \autoref{lst:prometheusdataformat} Zeile 1; für ein Beispiel
+siehe Zeile 2). Die Keys werden auch \emph{Labels} genannt.  Anhand
+dieser \emph{Labels} ist es möglich, Daten einer Metrik zu filtern. Zwei
+Stunden werden diese Metriken von \emph{Prometheus} gesammelt bis sie,
+zusammen mit Metadaten und einer Indexdatei, in einem Verzeichnis
+abgelegt werden. Metadaten sind Informationen über die gesammelten
+Daten, darunter fallen \emph{Labels}. Die Indexdatei speichert die
+Relation zwischen den Metriknamen und den Metriken, die gestückelt
+abgelegt werden. Diese Stückelungen werden auch \emph{Chunks}
 genannt\cite{PROMETHEUS_STORAGE}. Bevor diese Metriken gespeichert
-werden, legt \emph{Prometheus} außerdem einen \gls{wal} an. Der \gls{wal}
-dient zur Wiederherstellung von Daten nach einem Crash. Gelöschte Daten
-werden nicht unwiderruflich gelöscht, sondern in
-\emph{Tombstone}\hyp{}Dateien abgelegt. 
-\autoref{lst:prometheusstorage} zeigt eine
-solche Verzeichnisstruktur. Die \emph{Prometheus}\hyp{}Datenbank
-arbeitet demnach dateibasiert im Gegensatz zu \glspl{blob} in
-\gls{sql}\hyp{}basierten Datenbanken.
+werden, legt \emph{Prometheus} außerdem einen \gls{wal} an. Der
+\gls{wal} dient zur Wiederherstellung von Daten nach einem Crash.
+Gelöschte Daten werden nicht unwiderruflich gelöscht, sondern in
+\emph{Tombstone}\hyp{}Dateien abgelegt.  \autoref{lst:prometheusstorage}
+zeigt eine solche Verzeichnisstruktur. Die
+\emph{Prometheus}\hyp{}Datenbank arbeitet demnach dateibasiert im
+Gegensatz zu \glspl{blob} in \gls{sql}\hyp{}basierten Datenbanken.
 \emph{Prometheus}.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Prometheus Datenformat und
@@ -1040,7 +1067,7 @@ http_requests_total{service="service", server="www.tu-clausthal.de", env="produc
 \end{lstlisting}
 \end{minipage}
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[caption={Beispiel für das Prometheus Datenmodell},label={lst:prometheusstorage}]
+\begin{lstlisting}[caption={Beispiel für die Datenspeicherung in Prometheus},label={lst:prometheusstorage}]
 ./data/01BKGV7JBM69T2G1BGBGM6KB12
 ./data/01BKGV7JBM69T2G1BGBGM6KB12/meta.json
 ./data/01BKGV7JBM69T2G1BGBGM6KB12/wal
@@ -1064,23 +1091,7 @@ http_requests_total{service="service", server="www.tu-clausthal.de", env="produc
 ./data/01BKGV7JC0RY8A6MACW02A2PJD/tombstones
 \end{lstlisting}
 \end{minipage}
-\section*{Prothemeus}
-\addcontentsline{toc}{section}{Prometheus}
-Bei \emph{Prometheus} handelt es sich um keine reine \gls{tsdb}.
-\emph{Prometheus} ist vielmehr eine auf Monitoringdaten spezialisierte
-und mit diversen Komponenten erweiterbare Monitoringanwendung. In diesem
-Kapitel wird der interne Aufbau von \emph{Prometheus}, dessen
-Komponenten und deren Zusammenspiel näher erläutert. \emph{Prometheus}
-wurde ursprünglich im Jahr 2012 von Mitarbeitern des Online-Musikdiensts
-\emph{Soundcloud} entwickelt\cite{PROMETHEUS_OVERVIEW} und im Jahr 2015
-als Opensource Software freigegeben. \emph{Prometheus} entstand aus der
-Not heraus, hunderte von Mikroservices und tausende von Service\hyp{}Instanzen
-in einem firmeninternen Container\hyp{}Cluster zu
-überwachen\cite{PROMETHEUS_YOUTUBE}. Seitdem setzt sich
-\emph{Prometheus} besonders im Cloud\hyp{}Bereich durch und wurde 2016
-sogar in die \emph{Cloud Native Computing Foundation}
-aufgenommen\cite{CNCF}, einer Organisation zur Förderung von
-Cloud\hyp{}Software im Opensource\hyp{}Bereich.
+
 \subsection*{Komponenten}
 \addcontentsline{toc}{subsection}{Komponenten}
 Die meisten \emph{Prometheus}\hyp{}Komponenten sind in der Sprache
