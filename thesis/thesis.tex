@@ -1036,7 +1036,16 @@ unterstützt\cite{KUBERNETES}. Seitdem setzt sich
 \emph{Prometheus} besonders im Cloud\hyp{}Bereich durch und wurde 2016
 sogar in die \emph{Cloud Native Computing Foundation}
 aufgenommen\cite{CNCF}, einer Organisation zur Förderung von
-Cloud\hyp{}Software im Opensource\hyp{}Bereich.
+Cloud\hyp{}Software im Opensource\hyp{}Bereich. Bekannte Mitglieder der
+\emph{Cloud Native Computing Foundation} sind\cite{CNCFLANDSCAPE}:
+\begin{itemize}
+    \item Amazon AWS (Platinum Member)
+    \item Microsoft Azure (Platinum Member)
+    \item Alibaba Cloud (Platinum Member)
+    \item Google Cloud (Platinum Member)
+    \item Openstack (Opensource Member)
+    \item RedHat (Platinum Member)
+\end{itemize}
 
 \subsection*{Datenspeicherung in Prometheus}
 \addcontentsline{toc}{subsection}{Datenspeicherung in Prometheus}
@@ -1113,7 +1122,23 @@ Programmiersprache, welche sich vorallem dadurch auszeichnet, dass sie
 sicherer als die Programmiersprache \emph{C} ist und eine gute
 Portierbarkeit aufgrund von statischen Binärdateien besitzt. Durch diese
 Eigenschaften setzt sich \emph{Go} immer stärker inbesondere im
-Cloud\hyp{}Bereich durch\cite{INFOWORLD}. \emph{Prometheus}'
+Cloud\hyp{}Bereich und im \emph{Kubernetes}\hyp{}Umfeld durch\cite{INFOWORLD}.
+So schreibt der \emph{Go}\hyp{}Blog, dass \emph{Go} mittlerweile von
+allen global agierenden Cloud\hyp{}Firmen eingesetzt wird, darunter
+\emph{Amazon AWS}, \emph{Microsoft Azure} und \emph{Google Cloud}. Das
+Branchenanalyseunternehmen \emph{RedMonk} listet eine Vielzahl von
+\emph{Go}\hyp{}basierten Softwareprodukten darunter:
+\begin{itemize}
+    \item Docker
+    \item Kubernetes (Der \emph{Amazon AWS} Dienst \emph{Amazon EKS} nutzt
+        beispielsweise Kubernetes und Docker)
+    \item gRPC
+    \item fluentd
+    \item Grafana
+\end{itemize}
+Alle diese Softwareprodukte werden gefördert durch die \emph{Cloud
+Native Computing Foundation}\cite{CNCFLANDSCAPE}.
+\emph{Prometheus}'
 Kernkomponente ist der \emph{Prometheus Server}. Der \emph{Prometheus
 Server} beinhaltet eine \gls{tsdb}, einen \gls{http}\hyp{}Server und ein
 Modul zum Anfordern von Messdaten (im weiteren Verlauf
