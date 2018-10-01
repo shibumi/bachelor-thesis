@@ -1028,7 +1028,11 @@ wurde ursprünglich im Jahr 2012 von Mitarbeitern des Online-Musikdiensts
 als Opensource Software freigegeben. \emph{Prometheus} entstand aus der
 Not heraus, hunderte von Mikroservices und tausende von Service\hyp{}Instanzen
 in einem firmeninternen Container\hyp{}Cluster zu
-überwachen\cite{PROMETHEUS_YOUTUBE}. Seitdem setzt sich
+überwachen\cite{PROMETHEUS_YOUTUBE}. Dieser Cluster war anfangs eine
+komplette Eigenentwicklung\cite{PROMETHEUS_YOUTUBE}, wurde jedoch später gegen den
+Cluster\hyp{}Scheduler Kubernetes ersetzt\cite{KUBERNETESSOUNDCLOUD}, welcher gängige
+Container\hyp{}Technologien wie beispielsweise Docker
+unterstützt\cite{KUBERNETES}. Seitdem setzt sich
 \emph{Prometheus} besonders im Cloud\hyp{}Bereich durch und wurde 2016
 sogar in die \emph{Cloud Native Computing Foundation}
 aufgenommen\cite{CNCF}, einer Organisation zur Förderung von
@@ -1038,27 +1042,35 @@ Cloud\hyp{}Software im Opensource\hyp{}Bereich.
 \addcontentsline{toc}{subsection}{Datenspeicherung in Prometheus}
 Daten werden in \emph{Prometheus} als Tupel aus 64\hyp{}bit
 Fließkommazahlen und einem Millisekunden genauen Zeitstempel
-gespeichert\cite{PROMETHEUS_DATA_MODEL}. Diese Tupel werden mit einem
-Identifikator versehen. Dieser Identifikator besteht aus einem
-eindeutigen Namen für die Metrik und einem Key\hyp{}Value\hyp{}Store
-(siehe \autoref{lst:prometheusdataformat} Zeile 1; für ein Beispiel
-siehe Zeile 2). Die Keys werden auch \emph{Labels} genannt.  Anhand
-dieser \emph{Labels} ist es möglich, Daten einer Metrik zu filtern. Zwei
-Stunden werden diese Metriken von \emph{Prometheus} gesammelt bis sie,
-zusammen mit Metadaten und einer Indexdatei, in einem Verzeichnis
-abgelegt werden. Metadaten sind Informationen über die gesammelten
-Daten, darunter fallen \emph{Labels}. Die Indexdatei speichert die
+gespeichert\cite{PROMETHEUS_DATA_MODEL}, im
+\emph{Prometheus}\hyp{}Umfeld auch Metrik genannt. Diese Tupel werden
+mit einem Identifikator versehen. Dieser Identifikator besteht aus einem
+eindeutigen Namen für die Metrik (zum Beispiel die Latenz in
+Millisekunden) und einem Key\hyp{}Value\hyp{}Store (siehe
+\autoref{lst:prometheusdataformat} Zeile 1; für ein Beispiel siehe Zeile
+2). Die Keys werden auch \emph{Labels} genannt. Anhand dieser
+\emph{Labels} ist es möglich, Daten einer Metrik zu filtern. Zwei
+Stunden werden diese Metriken von \emph{Prometheus} standardmäßig
+gesammelt bis sie, zusammen mit Metadaten und einer Indexdatei, in
+Dateien in einem Verzeichnis abgelegt werden. Metadaten sind
+Informationen über die gesammelten Daten, darunter fallen die
+\emph{Labels}, welche beispielsweise Informationen zur Herkunft der
+gesammelten Metrik beinhalten können. Die Indexdatei speichert die
 Relation zwischen den Metriknamen und den Metriken, die gestückelt
 abgelegt werden. Diese Stückelungen werden auch \emph{Chunks}
-genannt\cite{PROMETHEUS_STORAGE}. Bevor diese Metriken gespeichert
-werden, legt \emph{Prometheus} außerdem einen \gls{wal} an. Der
-\gls{wal} dient zur Wiederherstellung von Daten nach einem Crash.
-Gelöschte Daten werden nicht unwiderruflich gelöscht, sondern in
-\emph{Tombstone}\hyp{}Dateien abgelegt.  \autoref{lst:prometheusstorage}
-zeigt eine solche Verzeichnisstruktur. Die
-\emph{Prometheus}\hyp{}Datenbank arbeitet demnach dateibasiert im
-Gegensatz zu \glspl{blob} in \gls{sql}\hyp{}basierten Datenbanken.
-\emph{Prometheus}.
+genannt\cite{PROMETHEUS_STORAGE} und ermöglichen eine Isolation
+einzelner Transaktionen, vergleichbar mit dem ACID\hyp{} Paradigma bei
+relationalen Datenbanken. Bevor Metriken gespeichert werden, legt
+\emph{Prometheus} außerdem einen \gls{wal} an. Der \gls{wal} dient zur
+Wiederherstellung von Daten nach einem Crash, beispielsweise ein
+Stromausfall. In diesem Fall werden die zwischengespeicherten und noch
+nicht umgesetzten Transaktionen auf Konsistenz geprüft und in die
+\gls{tsdb} übertragen.  Gelöschte Daten werden nicht unwiderruflich
+gelöscht, sondern in \emph{Tombstone}\hyp{}Dateien abgelegt.
+\autoref{lst:prometheusstorage} zeigt eine solche Verzeichnisstruktur,
+mit einzelnen \emph{Chunks}, \gls{wal}\hyp{}Elementen, Metadaten und
+\emph{Tombstone}\hyp{}Dateien. Die \emph{Prometheus}\hyp{}Datenbank
+arbeitet demnach dateibasiert.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Prometheus Datenformat und
 Beispiel},label={lst:prometheusdataformat}]
