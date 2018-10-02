@@ -1121,8 +1121,8 @@ eine von der Firma \emph{Google} entwickelte, kompilierbare
 Programmiersprache, welche sich vorallem dadurch auszeichnet, dass sie
 sicherer als die Programmiersprache \emph{C} ist und eine gute
 Portierbarkeit aufgrund von statischen Binärdateien besitzt. Durch diese
-Eigenschaften setzt sich \emph{Go} immer stärker inbesondere im
-Cloud\hyp{}Bereich und im \emph{Kubernetes}\hyp{}Umfeld durch\cite{INFOWORLD}.
+Eigenschaften setzt sich \emph{Go} immer stärker, inbesondere im
+Cloud\hyp{}Bereich und im \emph{Kubernetes}\hyp{}Umfeld, durch\cite{INFOWORLD}.
 So schreibt der \emph{Go}\hyp{}Blog, dass \emph{Go} mittlerweile von
 allen global agierenden Cloud\hyp{}Firmen eingesetzt wird, darunter
 \emph{Amazon AWS}, \emph{Microsoft Azure} und \emph{Google
@@ -1136,17 +1136,18 @@ Branchenanalyseunternehmen \emph{RedMonk} listet eine Vielzahl von
     \item gRPC
     \item fluentd
     \item Grafana
+    \item Prometheus
 \end{itemize}
 Alle diese Softwareprodukte werden gefördert durch die \emph{Cloud
 Native Computing Foundation}\cite{CNCFLANDSCAPE}.
-\emph{Prometheus}'
-Kernkomponente ist der \emph{Prometheus Server}. Der \emph{Prometheus
+\autoref{fig:prometheus} zeigt eine Übersicht über die wichtigsten
+\emph{Prometheus} Komponenten.
+\emph{Prometheus}' Kernkomponente ist der \emph{Prometheus Server}. Der \emph{Prometheus
 Server} beinhaltet eine \gls{tsdb}, einen \gls{http}\hyp{}Server und ein
 Modul zum Anfordern von Messdaten (im weiteren Verlauf
-\emph{Retrieval} genannt). Die \gls{tsdb} wurde bereits im Kapitel
-Datenmodell erläutert. Der \gls{http}\hyp{}Server bietet eine grafische
-Oberfläche an, um Queries auf der \gls{tsdb} zu testen, inklusive
-dem Anzeigen von Graphen. \autoref{fig:prometheuswebui} zeigt
+\emph{Retrieval} genannt). Der \gls{http}\hyp{}Server bietet eine grafische
+Oberfläche via \gls{html} an, um Queries auf der \gls{tsdb} zu testen
+und Graphen anzuzeigen. \autoref{fig:prometheuswebui} zeigt
 die grafische Oberfläche mit einem Beispiel\hyp{}Query und Graphen.
 Außerdem bietet der \gls{http}\hyp{}Server
 eine \gls{restapi} an, an der die restlichen Komponenten andocken
@@ -1154,20 +1155,22 @@ können. Weitere Komponenten sind der \emph{Alertmanager}, das
 \emph{Pushgateway}, die \emph{Exporter} und das bereits erläuterte und
 im \emph{Prometheus Server} integrierte \emph{Prometheus Web UI}. Der
 \emph{Alertmanager} ist verantwortlich für das Alarmieren der Benutzer,
-wenn Messdaten, vom Benutzer bestimmte, Richtwerte überschreiten.
+wenn Messdaten vom Benutzer bestimmte Richtwerte überschreiten.
 Unterstützt werden vom \emph{Alertmanager} direkt keine
 Kommunikationswege. Viel mehr wird Fremdsoftware, beispielsweise für den
 Mailtransfer, an den \emph{Alertmanger} angedockt. Das
 \emph{Pushgateway} bietet einen statischen Bezugspunkt und Puffer, von dem der
-\emph{Prometheus Server} mit dem \emph{Retrieval}\hyp{}Modul Messdaten
+\emph{Prometheus Server} mit dem \emph{Prometheus Retrieval}\hyp{}Modul Messdaten
 abholen kann. Dies ist nützlich, wenn der \emph{Prometheus Server}, statt
 die Messdaten abzuholen, die Messdaten zugeschoben bekommen soll. Diese Messdaten
 werden zum \emph{Pushgateway} geschoben und \emph{Prometheus
 Server} holt die Messdaten dort ab. Weitere Komponenten sind die
-\emph{Exporter}. \emph{Exporter} sind Applikationen, die die
-Logik zum Sammeln von Messdaten besitzen und diese via einem
+\emph{Exporter}. \emph{Exporter} sind Applikationen, welche
+Messdaten vom Host über offene Schnittstellen sammeln und diese via einem
 \gls{http}\hyp{}Server dem \emph{Prometheus Server} zur Verfügung
-stellen. Es gibt eine Vielzahl von
+stellen. Die \emph{Exporter} exportieren demnach die gewonnenen Messdaten an das
+\emph{Prometheus Retrieval}\hyp{}Modul, welches die Daten in die
+\gls{tsdb} importiert. Es gibt eine Vielzahl von
 \emph{Exportern} und die Zahl ist stetig steigend. Prominente Beispiele
 für \emph{Exporter} sind:
 \begin{itemize}
@@ -1175,27 +1178,44 @@ für \emph{Exporter} sind:
     \item \emph{Blackbox Exporter}
 \end{itemize}
 \emph{Node Exporter} werden auf Hosts platziert und liefern allgemeine
-Messdaten über diesen Host. Außerdem werden diverse Services, die auf dem
-Host laufen, automatisch erkannt und Messdaten für diese Services zur
-Verfügung gestellt. Wenn beispielsweise ein \gls{http}\hyp{}Server auf
-Port 80 dieses Hosts läuft, sammelt der sich auf dem Host befindliche \emph{Node
-Exporter} automatisch Messdaten über den Service und bietet diese dem
-\emph{Prometheus Server} über einen eigenen \gls{http}\hyp{}Server an.
-Der \emph{Blackbox Exporter} andererseits baut zwar ebenfalls einen
+Messdaten von diesem Host. Außerdem werden diverse Services, die auf dem
+Host laufen, automatisch erkannt (auch bezeichnet als \emph{Service
+Discovery}). Für das sammeln der Performance\hyp{} oder Messdaten greift
+der \emph{Node Exporter} auf Schnittstellen im Kernel des
+Betriebssystems zurück. Der Linux Kernel beispielsweise bietet
+Statistiken und Performance\hyp{}Daten via Dateien in den Ordnern
+\path{/sys/} oder \path{/proc/sys/} an. Der \emph{Node Exporter} liest
+aus diesen Dateien und exportiert die gewonnenen Messdaten über den
+eigenen \gls{http}\hyp{}Server an das \emph{Prometheus
+Retrieval}\hyp{}Modul. Der \emph{Blackbox Exporter} baut ebenfalls einen
 \gls{http}\hyp{}Server als Quelle für den \emph{Prometheus Server} auf,
-aber Daten werden nicht über lokale Services gesammelt. Stattdessen
-werden von dem \emph{Blackbox Exporter} aus diverse Tests durchgeführt,
-wie beispielsweise die Erreichbarkeit von Kerndiensten wie \gls{dns}.
-Die \autoref{fig:prometheus} zeigt den internen Aufbau des
-\emph{Prometheus Servers} und dessen Zusammenspiel mit den einzelnen
-Komponenten. Alle Verbindungen außerhalb des \emph{Prometheus Servers}
-sind \gls{http}\hyp{}Anfragen einer \gls{restapi}. Alle Komponenten sind
-statische Binärdateien und geschrieben in der Sprache \emph{Go}.
+aber Daten werden nicht über das lokale System  gesammelt. Stattdessen
+werden von dem \emph{Blackbox Exporter} aus Tests an entfernten Servern
+unternommen, wie beispielsweise die Erreichbarkeit von
+\gls{dns}\hyp{}Servern oder \gls{smtp}\hyp{}Servern. Dazu sendet der
+\emph{Blackbox Exporter} zum Beispiel \gls{dns}\hyp{}Pakete an einen
+\gls{dns}\hyp{}Server und überprüft so, ob der \gls{dns}\hyp{}Server vom
+\emph{Blackbox Exporter} aus erreichbar ist.  Alle Verbindungen zwischen
+\emph{Prometheus} Komponenten, sind \gls{http}\hyp{}Anfragen einer
+\gls{restapi}. Alle Komponenten sind statische ausführbare Binärdateien
+(\emph{Executables}). Es existieren eine Vielzahl von anderen
+\emph{Exportern} auf die hier nicht näher eingegangen wird. Eine
+vollständige Liste findet sich auf der \emph{Prometheus} Webseite.
+Darunter sind beispielsweise auch \emph{Exporter} um automatisch
+Performance\hyp{}Daten aus der \emph{Amazon AWS} Cloud zu
+exportieren\cite{PROMETHEUS_EXPORTERS}:
+\begin{itemize}
+    \item AWS ECS Exporter\cite{ECS_EXPORTER}
+    \item AWS Health Exporter\cite{AWS_HEALTH}
+    \item AWS SQS Exporter\cite{SQS_EXPORTER}
+\end{itemize}
+Dieses Beispiel unterstreicht die Einsatzfähigkeit und Adoption von
+\emph{Prometheus} im Cloud\hyp{}Bereich.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{figures/prometheus.pdf}
     \caption{Interner Aufbau des Prometheus Server und dessen
-    Komponenten}\label{fig:prometheus}
+    externe Komponenten}\label{fig:prometheus}
 \end{figure}
 \begin{figure}[H]
     \centering
