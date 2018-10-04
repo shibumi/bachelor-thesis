@@ -1240,25 +1240,26 @@ grafische Darstellung der Messdaten relevant. Dazu unterstützt die
     \item[Range Vector] eine Auswahl von Messdaten über einen größeren
         Zeitraum.
     \item[Scalar] ein Fließkommawert.
-    \item[String] ein Array von Chars (zurzeit unbenutzt).
+    \item[String] ein Array von Chars (zurzeit von \emph{Prometheus} unbenutzt).
 \end{description}
-Der \emph{Instant Vector} besteht aus einem eindeutigen Namen, einer
-Metrik und einem Key\hyp{}Value\hyp{}Store (siehe auch
-\autoref{lst:prometheusdataformat}). Innerhalb eines \emph{Instant
-Vectors} lassen sich reguläre Ausdrücke (Regex)
-anwenden. Reguläre Ausdrücke beschreiben anhand von fest definierten
-Zeichen und syntaktischer Regeln eine Menge von
-Zeichenketten\cite{REGEXWIKI}. Für reguläre Ausdrücke verwendet
-\emph{PromQL} die von der Firma \emph{Google} entwickelte Bibliothek
-\emph{RE2}\cite{RE2}. Wird dieser \emph{Instant Vector} um einen
-\emph{Range Selector} erweitert, handelt es sich um einen \emph{Range
-Vector}. Ein \emph{Range Selector} ist eine in eckigen Klammern
-geschriebene Zeitangabe für einen \emph{Instant Vector}. Der \emph{Range
-Selector} wird dem \emph{Instant Vector} nachträglich angefügt.
-Zusätzlich lassen sich diese Vektoren durch weitere Funktionen und
-Operatoren beeinflussen. So bietet \emph{PromQL} eine Vielzahl von
-weiteren Funktionen, um beispielsweise den Durchschnitt über einen
-\emph{Range Vector} zu bilden\cite{PROMETHEUS_PROMQL_FUNCTIONS}.
+Der \emph{Instant Vector} besteht aus einem eindeutigen Namen, einer Metrik und
+einem Key\hyp{}Value\hyp{}Store (siehe auch
+\autoref{lst:prometheusdataformat}). Innerhalb eines \emph{Instant Vectors}
+lassen sich reguläre Ausdrücke (Regex) anwenden. Ein regulärer Ausdruck ist
+eine Zeichenkette, die der Beschreibung von Mengen von anderen Zeichenketten
+mit Hilfe syntaktischer Regeln dient\cite{REGEXWIKI}. Für reguläre Ausdrücke
+verwendet \emph{PromQL} die von der Firma \emph{Google} entwickelte Bibliothek
+\emph{RE2}\cite{RE2}. Wird dieser \emph{Instant Vector} um einen \emph{Range
+Selector} erweitert, handelt es sich um einen \emph{Range Vector}. Ein
+\emph{Range Selector} ist eine in eckigen Klammern geschriebene Zeitangabe für
+einen \emph{Instant Vector}. Der \emph{Range Selector} wird dem \emph{Instant
+Vector} nachträglich angefügt.  Zusätzlich lassen sich diese Vektoren durch
+weitere Funktionen und Operatoren beeinflussen. So bietet \emph{PromQL} eine
+Vielzahl von weiteren Funktionen, um beispielsweise den Durchschnitt über einen
+\emph{Range Vector} zu bilden\cite{PROMETHEUS_PROMQL_FUNCTIONS}. \emph{PromQL}
+ist eine harte Voraussetzung um die \emph{Prometheus GUI} zu bedienen, da
+spätere Queries zur Visualisierung der Messdaten alle in \emph{PromQL}
+geschrieben werden.
 \section*{Grafana}
 \addcontentsline{toc}{section}{Grafana}
 Da die \emph{Prometheus Web UI} eingeschränkt mit Graphen und
@@ -1280,21 +1281,25 @@ Vielzahl an Konfigurationsmöglichkeiten aus. Der Transport der Daten von
 Ein weiteres Merkmal von \emph{Grafana} sind \emph{Grafanas}
 Provisionierungseigenschaften. Durch diverse Einstellungen in
 \emph{Grafanas} Konfigurationsdateien und Umgebungsvariablen lässt sich
-Grafana gut in Cloud\hyp{}Umgebungen ausrollen (Umgebungsvariablen sind
-temporäre oder permanente Variablen im Betriebssystem).
+\emph{Grafana} gut in IaaS\hyp{}Umgebungen (\gls{iaas})
+ausrollen (Umgebungsvariablen sind temporäre oder permanente Variablen im
+Betriebssystem)\cite[Beispiel zum Deployment von Grafana in Amazon
+AWS]{GRAFANA_AWS_DEPLOYMENT}. \emph{Grafana} besitzt beispielsweise nativen
+Support für \emph{Amazon AWS Cloudwatch}\cite{GRAFANA_CLOUDWATCH}.
 \section*{Konfigurationsmanagement}
 \addcontentsline{toc}{section}{Konfigurationsmanagement}
 In der Vergangenheit wurden Rechnersysteme zunehmend vertikal skaliert,
-das heißt, die technischen Ressourcen des Rechnersystems wurden angehoben
-(beispielsweise der \gls{ram}). In den letzten Jahren wurde zunehmends
+das heißt, die technischen Ressourcen des einzelnen Rechnersystems wurden angehoben
+(beispielsweise der \gls{ram}). Es wurde jedoch zunehmends
 festgestellt, dass diese Vorgehensweise nicht nur sehr kostenintensiv
-ist, sondern auch nicht besonders zur Ausfallsicherheit beiträgt. Die
+ist, sondern auch nichts zur Ausfallsicherheit beiträgt. Die
 Antwort auf dieses Problem ist horizontale Skalierung. Bei horizontaler
 Skalierung werden weitere Instanzen von Rechnersystemen der Anwendung
-hinzugefügt. Dieser Ansatz ermöglicht ausfallsichere und äußerst
-performante Infrastrukturen (zum Beispiel sind heutige Cloud\hyp{}Systeme
-de facto alle horizontal skaliert). Diese horizontale Skalierung hat
-allerdings auch andere Ansprüche. So wächst die Anzahl der zu
+hinzugefügt. Dieser Ansatz ermöglicht ausfallsichere und äußerst performante
+Infrastrukturen, vorausgesetzt das zu berechende Problem ist horizontal
+skalierbar. Dies ist der Fall bei voneinander unabhängigen Input. Diese
+horizontale Skalierung hat allerdings auch andere Ansprüche. So wächst die
+Anzahl der zu
 betreuenden Systemen rapide an.  Damals wurden solche Systeme noch von
 Menschen gepflegt, konfiguriert und installiert. Durch die schiere Masse
 der neuen Systeme ist das nun unmöglich und zu kostenintensiv geworden.
