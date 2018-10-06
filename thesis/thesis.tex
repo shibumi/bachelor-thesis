@@ -1330,7 +1330,8 @@ erweitern und so den Funktionsumfang zu vergrößern.
 \subsection*{Funktionsweise}
 \addcontentsline{toc}{subsection}{Funktionsweise}
 \emph{Ansible} arbeitet mit Templates zur Orchestrierung und
-Konfiguration von Systemen. Die Auszeichnungssprache für die
+Konfiguration von Programmpaketen auf Rechnern und Rechner
+hyp{}Konfigurationsdateien. Die Auszeichnungssprache für die
 Datenstrukturen, welche die Templates befüllen, heißt \gls{yaml} (oft
 auch nur mit YML abgekürzt). \gls{yaml} zeichnet sich durch für Menschen
 einfache Lesbarkeit und die Möglichkeit, Kommentare einzufügen,
@@ -1339,38 +1340,52 @@ Programmiersprache \emph{Python} geschriebene Module mit in \gls{yaml}
 aufgeschrieben Anweisungen zu nutzen. Diese Module sind quelloffen und
 werden von einer Community um \emph{Ansible} und der Firma \emph{Red
 Hat} gepflegt. Die zu pflegenden Systeme, nachfolgend nur noch als
-Zielsysteme bezeichnet, sind in \emph{Ansible} in Gruppen zu
-organisieren. Anhand vom Namen der Gruppe und des Zielsystems lassen
-sich unterschiedliche vom Administrator definierte Daten laden. Diese
-Daten werden in die mit \gls{yaml} verfassten Aufgaben eingefügt.
-Auf diese Weise können komplexe Gebilde von Systemen abgebildet werden
+Zielsysteme bezeichnet, können in \emph{Ansible} in Gruppen 
+organisiert werden.
+Als Eingabe für \emph{Ansible} dienen speziell auf \emph{Ansible}
+zugeschnittene \gls{yaml}\hyp{}Dateien. In diesen
+\gls{yaml}\hyp{}Dateien werden Konfigurationsparameter als
+\gls{yaml}\hyp{}Datenstrukturen erfasst. \emph{Ansible} nimmt
+anschließend diese \gls{yaml}\hyp{}Datenstrukturen als Eingabe und führt
+\emph{Python} oder Kommandos auf der Kommandozeile auf dem Zielsystem aus um die spezifizierten
+Konfigurationsparameter auf dem Zielsystem einzupflegen. Je nach Gruppe oder
+Name des Zielsystems lassen sich unterschiedliche
+Konfigurationsparameter in \emph{Ansible} laden.
+Auf diese Weise können komplexe Gebilde von Software\hyp{}Systemen und
+Hardware\hyp{}Konfigurationsparametern abgebildet werden
 und Gemeinsamkeiten in der Orchestrierung und Konfiguration effektiv ausgenutzt werden.
-Bei einzelnen Konfigurationsdateien wird die auf \emph{Python} basierte Template\hyp{}Engine
+Um Konfigurationsdateien für gängige Software wie beispielsweise
+\emph{OpenSSH} oder Webserver wie \emph{Apache2} mit \emph{Ansible}
+dynamisch zu generieren wird die auf \emph{Python} basierte Template\hyp{}Engine
 \emph{Jinja2} benutzt\cite{JINJA2}. Durch \emph{Jinja2} lassen sich komplexe
-Konfigurationsdateien auf den Zielsystemen in Form von Templates
+Konfigurationsdateien von Software auf den Zielsystemen in Form von Templates
 ausdrücken. Das Ziel ist, ein Template für mehrere
 Konfigurationsvarianten einer Konfigurationsdatei zu haben. Diese
-Templates werden mit Datenstrukturen in \gls{yaml} gefüttert.
+Templates werden mit Datenstrukturen in \gls{yaml} erweitert.
 Um die Orchestrierung oder Konfiguration zu starten, reicht es, wenn sich
-\emph{Ansible} auf dem System, welches zur Pflege eingesetzt werden
+\emph{Ansible} auf dem System, welches zur Pflege anderer Rechner und
+deren Software eingesetzt werden
 soll, befindet. Nachfolgend wird dieses System als Managementsystem
 bezeichnet. Das Managementsystem verbindet sich zu den einzelnen
-Zielsystemen via dem Protokoll \gls{ssh} und arbeitet die in
-\gls{yaml}\hyp{}Dateien festgelegten Aufgaben ab. Dies geschieht durch
+Zielsystemen via dem Protokoll \gls{ssh} und arbeitet die auf dem
+Managementsystem befindlichen Aufgaben für das Zielsystem in Form von
+\gls{yaml}\hyp{}Dateien ab. Dies geschieht durch
 die Verwendung der Sprache \emph{Python} oder einfach durch Kommandos in
-der entfernten Kommandozeile auf den Zielsystemen. Durch
+die entfernten Kommandozeilen auf den Zielsystemen. Durch
 diese Vorgehensweise arbeitet \emph{Ansible} \emph{agentless}, also ohne
 einem Agenten auf dem Zielsystem. Dies
 ermöglicht den Einsatz von \emph{Ansible} auch auf Systemen mit
-eingeschränkter Erweiterbarkeit (beispielsweise Switches oder Router).
+eingeschränkter Leistungsfähigkeit (beispielsweise Switches oder Router).
 Außerdem arbeitet \emph{Ansible} idempotent, dadurch lassen sich
 Aufgaben beliebig oft ausführen und führen immer zum gleichen Ergebnis.
+Dies setzt allerdings voraus, das \emph{Ansible} korrekt konfiguriert
+wurde, was nicht immer gelingt.
 \subsection*{Organisationsstruktur}
 \addcontentsline{toc}{subsection}{Organisationsstruktur}
 \emph{Ansible} hat eine definierte Struktur zur Speicherung der
 Konfigurationsdateien, Aufgaben, Datenstrukturen für die Templates und
-Templates. Dabei bedient sich \emph{Ansible} bei Wörtern aus der
-Schauspielerei, um den Einstieg in die Software zu erleichtern.
+Templates. Dabei bedient sich \emph{Ansible} bei Synonymen aus der
+Filmbranche, um den Einstieg in das Werkzeug zu erleichtern.
 \emph{Playbooks} (Deutsch: Drehbücher) werden verwendet, um einzelnen
 Hosts \emph{Roles} (Deutsch: Rollen) zu zuweisen. Die nötigen Daten zum
 Abspielen dieser Rollen befinden sich im \emph{Inventory} (Deutsch:
@@ -1431,7 +1446,7 @@ Projekts},label={lst:ansiblestructure}]
 Python\hyp{}Template\hyp{}Engine \emph{Jinja2}. \gls{yaml} unterstützt
 gängige Datenstrukturen wie in etwa Listen und Wörterbücher
 (Dictionaries) und Kombinationen davon sowie Kommentare. Höhere
-Logikebenen werden durch \emph{Jinja2} erreicht (If/Else,
+Logikebenen werden durch \gls{yaml} und \emph{Jinja2} erreicht (If/Else,
 For\hyp{}Schleifen, While\hyp{}Schleifen etc). Dadurch ist \emph{Jinja2}
 in der Theorie Turing-Vollständig. \autoref{lst:ansiblessh} ist ein
 Beispiel für die Dateistruktur eines \emph{Ansible Tasks}. Der
@@ -1477,8 +1492,8 @@ eine Information auf dem lokalen Dateisystem einliest. Als Argument für
 die Funktion wird angegeben, dass die Information aus einer Datei
 bezogen werden soll und der Pfad zu dieser Datei wird aus der
 \emph{user}\hyp{}Schleifenvariable und dem String \emph{../pubkeys/}
-zusammengebaut. Die letzte Zeile beendet die Schleife. Gefüttert wird
-dieses Template durch \autoref{lst:ansiblessh2}. 
+zusammengebaut. Die letzte Zeile beendet die Schleife. Die Eingabe für
+dieses Template ist in \autoref{lst:ansiblessh2} abgebildet. 
 \autoref{lst:ansiblessh2} wird dazu in den Ordnern \emph{group\_vars}
 oder \emph{host\_vars} abgelegt und definiert die Liste
 \emph{root\_ssh\_keys} mit den beiden Einträgen \emph{chris.pub} und
@@ -1521,7 +1536,7 @@ root_ssh_keys:
 Fernadministrationsprotokoll \glsfirst{ssh}. Dadurch ist die Integrität,
 Sicherheit und Authentizität der übertragenen Daten sichergestellt.
 \gls{ssh} verwendet dazu ein asynchrones Verschlüsselungsverfahren. Auf
-dem Client wird ein Schlüsselpaar generiert. Üblicherweise durch moderne
+dem Client wird ein Schlüsselpaar generiert. Dies erfolgt durch moderne
 kryptografisch sichere Verfahren wie \gls{rsa} oder Elliptischen Kurven.
 Der öffentliche Schlüssel wird auf dem Zielsystem platziert, meistens
 geschieht dies durch vorheriges Einloggen auf dem Zielsystem mit einem
@@ -1535,7 +1550,7 @@ verschlüsseln. Als Algorithmus wird das Verschlüsselungsverfahren
 \gls{aes} verwendet\cite{ANSIBLEVAULT}.
 \section*{Wahl der Hardware}
 \addcontentsline{toc}{section}{Wahl der Hardware}
-Da das zu entwickelnde System horizontal skalierbar sein soll (siehe
+Da das zu entwickelnde Software\hyp{}System horizontal skalierbar sein soll (siehe
 Nicht-Funktionale Anforderung 4 (NFA4)) soll das System auch günstig in
 der Anschaffung sein (NFA2). Dem kommt zu Gute, dass die Software auf den
 Messpunkten nicht viele Hardware\hyp{}Ressourcen benötigt. Es wird
@@ -1550,7 +1565,7 @@ von \EUR{10} bis \EUR{100}. Nachfolgend werden die zwei Einplatinenrechner
 \emph{Raspberry Pi 3B+} und \emph{Odroid XU4} verglichen.
 Der \emph{Raspberry Pi 3B+} kommt mit folgenden Spezifikationen\cite{RASPI}:
 \begin{itemize}
-    \item SoC: Broadcom BCM2837B0 quad-core A53 (ARMv8) 64-bit @ 1.4GHz
+    \item CPU: Broadcom BCM2837B0 quad-core A53 (ARMv8) 64-bit @ 1.4GHz
     \item GPU: Broadcom Videocore-IV
     \item RAM: 1GB LPDDR2 SDRAM
     \item Netzwerk: Gigabit Ethernet (via USB channel), 2.4GHz and 5GHz 802.11b/g/n/ac Wi-Fi
@@ -1564,7 +1579,7 @@ Der \emph{Raspberry Pi 3B+} kommt mit folgenden Spezifikationen\cite{RASPI}:
 \end{itemize}
 Im Gegenzug dazu die \emph{Odroid XU4} Spezifikationen\cite{ODROID}:
 \begin{itemize}
-    \item SoC: Samsung Exynos5422 Cortex™-A15 2Ghz and Cortex™-A7 Octa core CPUs
+    \item CPU: Samsung Exynos5422 Cortex™-A15 2Ghz and Cortex™-A7 Octa core CPUs
     \item GPU: Mali-T628 MP6(OpenGL ES 3.1/2.0/1.1 and OpenCL 1.2 Full profile)
     \item RAM: 2Gbyte LPDDR3 RAM PoP stacked
     \item Netzwerk: Gigabit Ethernet, kein WLAN
@@ -1589,7 +1604,7 @@ und der erste Prototype.
 \section*{Erfüllung der Anforderungen}
 \addcontentsline{toc}{section}{Erfüllung der Anforderungen}
 Nachfolgend sind die evaluierten Anforderungen und deren Umsetzung
-spezifiziert.
+beschrieben.
 \tabulinesep=1.2mm
 \begin{center}
     \begin{tabu}{X[-1] X}
