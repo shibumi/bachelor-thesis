@@ -1307,7 +1307,7 @@ erweitern und so den Funktionsumfang zu vergrößern.
 \subsection{Funktionsweise}
 \emph{Ansible} arbeitet mit Templates zur Orchestrierung und
 Konfiguration von Programmpaketen auf Rechnern und Rechner
-hyp{}Konfigurationsdateien. Die Auszeichnungssprache für die
+\hyp{}Konfigurationsdateien. Die Auszeichnungssprache für die
 Datenstrukturen, welche die Templates befüllen, heißt \gls{yaml} (oft
 auch nur mit YML abgekürzt). \gls{yaml} zeichnet sich durch für Menschen
 einfache Lesbarkeit und die Möglichkeit, Kommentare einzufügen,
@@ -1323,16 +1323,17 @@ zugeschnittene \gls{yaml}\hyp{}Dateien. In diesen
 \gls{yaml}\hyp{}Dateien werden Konfigurationsparameter als
 \gls{yaml}\hyp{}Datenstrukturen erfasst. \emph{Ansible} nimmt
 anschließend diese \gls{yaml}\hyp{}Datenstrukturen als Eingabe und führt
-\emph{Python} oder Kommandos auf der Kommandozeile auf dem Zielsystem aus um die spezifizierten
+\emph{Python} oder Kommandos auf der Kommandozeile auf dem Zielsystem
+aus, um die spezifizierten
 Konfigurationsparameter auf dem Zielsystem einzupflegen. Je nach Gruppe oder
 Name des Zielsystems lassen sich unterschiedliche
 Konfigurationsparameter in \emph{Ansible} laden.
 Auf diese Weise können komplexe Gebilde von Software\hyp{}Systemen und
-Hardware\hyp{}Konfigurationsparametern abgebildet werden
+Hardware\hyp{}Konfigurationsparametern abgebildet
 und Gemeinsamkeiten in der Orchestrierung und Konfiguration effektiv ausgenutzt werden.
 Um Konfigurationsdateien für gängige Software wie beispielsweise
 \emph{OpenSSH} oder Webserver wie \emph{Apache2} mit \emph{Ansible}
-dynamisch zu generieren wird die auf \emph{Python} basierte Template\hyp{}Engine
+dynamisch zu generieren wird die auf \emph{Python} basierende Template\hyp{}Engine
 \emph{Jinja2} benutzt\cite{JINJA2}. Durch \emph{Jinja2} lassen sich komplexe
 Konfigurationsdateien von Software auf den Zielsystemen in Form von Templates
 ausdrücken. Das Ziel ist, ein Template für mehrere
@@ -1346,16 +1347,16 @@ bezeichnet. Das Managementsystem verbindet sich zu den einzelnen
 Zielsystemen via dem Protokoll \gls{ssh} und arbeitet die auf dem
 Managementsystem befindlichen Aufgaben für das Zielsystem in Form von
 \gls{yaml}\hyp{}Dateien ab. Dies geschieht durch
-die Verwendung der Sprache \emph{Python} oder einfach durch Kommandos in
-die entfernten Kommandozeilen auf den Zielsystemen. Durch
+die Verwendung der Sprache \emph{Python} oder einfach durch Kommandos 
+der Kommandozeile der Zielsysteme. Durch
 diese Vorgehensweise arbeitet \emph{Ansible} \emph{agentless}, also ohne
-einem Agenten auf dem Zielsystem. Dies
+einen Agenten auf dem Zielsystem. Dies
 ermöglicht den Einsatz von \emph{Ansible} auch auf Systemen mit
 eingeschränkter Leistungsfähigkeit (beispielsweise Switches oder Router).
 Außerdem arbeitet \emph{Ansible} idempotent, dadurch lassen sich
 Aufgaben beliebig oft ausführen und führen immer zum gleichen Ergebnis.
 Dies setzt allerdings voraus, das \emph{Ansible} korrekt konfiguriert
-wurde, was nicht immer gelingt.
+wurde.
 \subsection{Organisationsstruktur}
 \emph{Ansible} hat eine definierte Struktur zur Speicherung der
 Konfigurationsdateien, Aufgaben, Datenstrukturen für die Templates und
