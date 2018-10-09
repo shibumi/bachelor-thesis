@@ -1590,6 +1590,14 @@ Im Gegenzug dazu die \emph{Odroid XU4} Spezifikationen\cite{ODROID}:
     \item Dimensionen: 83mm x 58mm x 20 mm
     \item Preis: 59 US Dollar\cite{ODROID_PRICE} (\EUR{50,80} Stand: 2018-09-03)
 \end{itemize}
+Der \emph{Raspberry Pi 3B+} überzeugt zwar durch einen niedrigeren
+Preis, jedoch ist es für den \emph{Raspberry Pi 3B+} unmöglich die
+theoretische Leistung von 1 Gbit/s zu erreichen, da der Prozessor nur
+mit einer USB 2.0 Schnittstelle zu der Gigabit Schnittstelle verbunden
+ist. Deshalb limitiert sich die praktische Geschwindigkeit auf maximal
+300 Mbit/s\cite{RASPI}. Da das Projekt jedoch eine native 1 Gigabit
+Schnitstelle voraussetzt (siehe \autoref{table:FA8}), fällt die Wahl auf
+den \emph{Odroid XU4}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/odroid.jpg}
@@ -1640,11 +1648,11 @@ beschrieben.
     \captionof{table}{Umsetzung der Nicht-Funktionalen Anforderungen}
     \label{table:mapping2}
 \end{center}
-\section*{Test- und Entwicklungssystem}
-\addcontentsline{toc}{section}{Test- und Entwicklungssystem}
+\section*{Test- und Entwicklungsumgebung}
+\addcontentsline{toc}{section}{Test- und Entwicklungsumgebung}
 Da die benötigte Hardware zu Projektanfang noch nicht zur Verfügung
-stand, galt es ein Test\hyp{} und Entwicklungssystem aufzubauen. Als
-Grundlage für dieses Test\hyp{} und Entwicklungssystem dient die
+stand, galt es eine Test\hyp{} und Entwicklungsumgebung aufzubauen. Als
+Grundlage für diese Test\hyp{} und Entwicklungsumgebung dient die
 Software \emph{Vagrant}\cite{VAGRANT} der Firma \emph{Hashicorp}. \emph{Hashicorp} ist
 eine in San Fransisco im Jahr 2012 gegründete Firma, welche sich auf den
 Einsatz und Entwicklung von Opensource Software
@@ -1654,13 +1662,18 @@ Softwaresystemen in der Cloud. Die Software ist auch ohne
 eine Cloud\hyp{}Umgebung anwendbar. Für die Test\hyp{} und
 Entwicklungsumgebung wird nur auf das Produkt \emph{Vagrant} der Produktpalette von
 \emph{Hashicorp}, gemeinhin auch als \emph{Hashicorp-Toolchain} bekannt,
-zurückgegriffen. Das Werkzeug \emph{Vagrant} bietet einen
+zurückgegriffen. Das Werkzeug \emph{Vagrant} bietet eine
 Abstraktionsschicht über die gängigen Virtualisierungsplattformen wie in
 etwa \emph{Virtualbox}, \emph{VMWare}, \emph{Qemu} aber auch über
 Cloud\hyp{}Plattformen wie zum Beispiel \emph{Google Cloud},
-\emph{Amazon AWS} und \emph{Openstack}. \emph{Vagrant} selbst ist eine
+\emph{Amazon AWS} und \emph{Openstack}. Die von \emph{Vagrant}
+unterstützten Virtualisierungsplattformen werden in \emph{Vagrant}
+\emph{Provider} genannt. \emph{Vagrant} selbst ist eine
 statisch gebaute aus \emph{Golang} kompilierte Binärdatei, dies
-erleichtert das Deployment auf allen gängigen Systemen. Außerdem
+erleichtert das Deployment auf allen gängigen Systemen.
+Eine Abhängigkeit zu Linux ist deshalb
+nicht gegeben, \emph{Vagrant} ist auch auf \emph{Windows} oder
+\emph{MacOS} einsetzbar\cite{VAGRANT}. Außerdem
 zeichnet sich \emph{Vagrant} durch eine enge Verzahnung mit
 Automatisierungswerkzeugen aus, darunter auch
 \emph{Ansible}\cite{VAGRANT_DOCS}. \emph{Vagrant} abstrahiert die
@@ -1668,20 +1681,21 @@ Virtualisierungsplattform über einen \emph{Ruby}\hyp{}Interpreter. Es
 wird eine Datei in der Programmiersprache \emph{ruby} angelegt, über
 welche die Anzahl der virtuellen Maschinen und dessen Orchestrierung
 organisiert wird. Diese \emph{Ruby} datei wird von \emph{Vagrant}
-eingelesen und \emph{Vagrant} dockt über die APIs an den jeweiligen
-\emph{Provider} an und spawned die virtuellen Maschinen. Der Dateiname
+eingelesen und \emph{Vagrant} dockt über die APIs an die jeweilige
+Virtualisierungsplattform an und startet die virtuellen Maschinen. Der Dateiname
 einer solchen Datei ist immer \emph{Vagrantfile}. \emph{Vagrantfiles}
 sind austauschbar und ermöglichen so ein reproduzierbares und
 automatisiertes Aufsetzen einer Testumgebung in wenigen Schritten. Ein
 weiterer Grund für den Einsatz von \emph{Vagrant} ist die Vielzahl an
-fertigen \emph{Images} (Speicherabbildern von Betriebssystemen). Anstatt
+fertigen \emph{Images} (Speicherabbildern von Betriebssystemen und
+weiterer Software). Anstatt
 ein benötigtes Betriebssystem manuell in einer VM zu installieren ist es
 möglich direkt über \emph{Vagrant} fertige \emph{Images} für gängige
 Linux\hyp{}Distributionen zu ziehen. Dies beschleunigt den
 Entwicklungsprozess ungemein, da der Entwickler sich voll auf die
 Anwendung konzentrieren kann und seine Zeit nicht mit dem Installieren
 von Betriebssystemen verschwendet. \autoref{lst:vagrantfile} zeigt
-die \emph{Vagrantfile} zum erzeugen der Test\hyp{} und
+die Datei namens \emph{Vagrantfile} zum erzeugen der Test\hyp{} und
 Entwicklungsumgebung. In Zeile 1 wird eine For\hyp{}Schleife erzeugt,
 welche 2 virtuelle Maschinen erzeugt. Die erste virtuelle Maschine trägt
 den Namen \emph{puppetmaster} (Zeile 2) und wird mit einem \emph{Ubuntu
@@ -1694,22 +1708,22 @@ einschließlich Zeile 8 wird eine zweite VM erzeugt und konfiguriert mit
 dem Namen \emph{node1}, dem selben Betriebssystemabbild und der
 IP\hyp{}Adresse \textbf{192.168.33.11}. Die virtuellen Maschinen liegen
 beide im selben Netzwerk damit sie sich gegenseitig erreichen können.
-Der Wirt\hyp{}Host auf dem die virtuellen Maschinen laufen ist ebenfalls
-durch ein Interface zu den beiden Maschinen verbunden. Anhand dieser
-\emph{Vagrantfile} ist es möglich die Testumgebung auf jedem System zu
+Sie sind via einer \emph{Bridge} mit dem Host\hyp{}Betriebssystem verbunden.
+Anhand dieser \emph{Vagrantfile} ist es möglich die Testumgebung auf jedem System zu
 starten auf dem \emph{Vagrant} installiert ist. Dazu muss lediglich die
 \emph{Vagrantfile} in einen Ordner abgelegt werden und über die
 Kommandozeile \emph{Vagrant} gestartet werden. Dies geschieht über das
 Kommando: \emph{vagrant up}. \emph{Vagrant} lädt durch diesen Befehl das
 benötigte Betriebssystemabbild herunter, konfiguriert die virtuellen
-Maschinen mit dem Standard\hyp{}Provider \emph{Virtualbox} und
+Maschinen mit der in \emph{Vagrant} vorgegebenen
+Standard\hyp{}Virtualisierungsplattform \emph{Virtualbox} und
 konfiguriert das Netzwerk für die Maschinen. Wenn die Maschinen
 gestartet sind kann über den Befehl \emph{vagrant ssh <Name der vm>} auf
 eine der virtuellen Maschinen über das Protokoll \gls{ssh} zugegriffen werden.
-Durch diese Vorgehensweise lässt sich das Testsystem später auf jeden
-anderen Hypervisor übertragen und die virtuellen Maschinen lassen sich
-über den Befehl \emph{vagrant snapshot} leicht zu einem vorher
-definierten Zustand zurücksetzen.
+Durch diese Vorgehensweise lässt sich die Testumgebung später auf jeden
+anderen Hypervisor mit Emulator übertragen. Über den Befehl
+\emph{vagrant snapshot} lässt sich ein inkrementelles \emph{Image} der
+virtuellen Maschine anlegen. Dieses \emph{Image} dient als Sicherung.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Vagrantfile der Test- und Entwicklungsumgebung},label={lst:vagrantfile}]
 Vagrant.configure("2") do |config|
@@ -1733,16 +1747,16 @@ Name>/virtualbox/private\_key}. Dazu wird unter dem Betriebssystem
 \emph{Linux} eine \gls{ssh}\hyp{}Konfigurationsdatei erstellt mit dem Pfad
 \path{/home/<Benutzername>/.ssh/config}. \autoref{lst:sshconfig} zeigt
 eine \gls{ssh}\hyp{}Konfigurationsdatei. Die erste Zeile vergibt einen
-Alias für die gls{ip}\hyp{}Adresse. Auf diese Weise ist es nicht nötig
-einen Eintrag im \gls{dns} vorzunehmen für ein Testsystem. Zeile 2
+Alias für die \gls{ip}\hyp{}Adresse. Auf diese Weise ist es nicht nötig
+einen Eintrag im \gls{dns} für die Testumgebung vorzunehmen. Zeile 2
 spezifiziert die Adresse nochmals. Zeile 3 definiert den Benutzer für
 die \gls{ssh}\hyp{}Verbindung. Zeile 4 leitet die von \gls{ssh}
 gespeicherten \emph{Fingerprints} für die \emph{Host-Zertifikate} nach
 \path{/dev/null} um. \path{/dev/null} ist eie Gerätedatei innerhalb des
 \emph{Linux}\hyp{}Betriebssystems zum Verwerfen von Daten\cite{DEVNULL}. Die
 \emph{Fingerprints} der \emph{Host-Zertifikate} werden für die
-Testsysteme verworfen, da bei jedem neu Erstellen die
-Authentizitätsprüfung von \gls{ssh} sonst einen Fehler werfen würde.
+Testumgebung verworfen, da bei jedem neu Erstellen die
+Authentizitätsprüfung von \gls{ssh} sonst einen Fehler erzeugen würde.
 Dies ist für Testzwecke unerwünscht. Zeile 5 schaltet die
 Authentizitätsprüfung definitiv aus. Zeile 6 schaltet die
 Passwort\hyp{}Authentifikation aus, da die Authentifikation nur über
@@ -1783,7 +1797,7 @@ Für den Entwicklungsprozess, des Konfigurationsmanagement und der
 Erweiterung des Quellcodes von \emph{Prometheus} um \gls{cifs}, wird die
 Versionsverwaltung \emph{Git} eingesetzt. \emph{Git} ist ein von Linus
 Torvalds (dem Linux\hyp{}Chef\hyp{}Entwickler) entwickeltes dezentrales
-Versionsverwaltungswerkzeug für Daten\cite{GITWIKI}. Eine
+Versionsverwaltungswerkzeug für Dateien\cite{GITWIKI}. Eine
 Versionsverwaltung hat den Vorteil, dass alle Entwicklungsschritte
 chronologisch und inhaltlich nachvollziehbar sind und die Herkunft jedes
 Entwicklungsschrittes klardokumentiert ist. Dazu werden die
