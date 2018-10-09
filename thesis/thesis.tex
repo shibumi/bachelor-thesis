@@ -78,8 +78,7 @@ Clausthal-Zellerfeld, der \today
 \\
 Christian Rebischke
 \tableofcontents
-\chapter*{Vorwort}
-\addcontentsline{toc}{chapter}{Vorwort}
+\chapter{Vorwort}
 Es gibt nun das Internet seit circa 45 Jahren und das \gls{www} seit 24
 Jahren und keine Technologie
 ist über so kurze Zeit so alltäglich geworden. Das Internet hat es
@@ -109,8 +108,7 @@ Monitoring-Systems zur Überwachung der Netzwerkqualität zwischen
 einzelnen Endpunkten und Kernsystemen, die für einen problemlosen
 Netzbetrieb nötig sind. Das Rechenzentrum der \gls{tuc} dient bei dieser
 Bachelorarbeit als Auftraggeber.
-\chapter*{Problemstellung}
-\addcontentsline{toc}{chapter}{Problemstellung}
+\chapter{Problemstellung}
 Das Netz der \gls{tuc} erstreckt sich über mehrere
 Standorte. Teilweise liegen diese Standorte nicht in Clausthal
 selbst, wie beispielsweise das \gls{efzn} in Goslar. Dementsprechend
@@ -228,15 +226,13 @@ Herausforderungen an diese Arbeit ableiten:
     Netzstruktur der TU Clausthal ohne die Anbindungen Goslar und Celle
     über das öffentliche Internet.}\label{fig:problemloesung}
 \end{figure}
-\chapter*{Technische Grundlagen}
-\addcontentsline{toc}{chapter}{Technische Grundlagen}
+\chapter{Technische Grundlagen}
 In diesem Kapitel werden die für die Lösung des Problems nötigen
 technischen Grundlagen erläutert. Außerdem werden die Fehlerfälle für
-die einzelnen Protokolle definiert. Darunter fallen einige wichtige
-Netzwerkprotokolle, sowie eine allgemeine Einführung in
+die einzelnen Protokolle definiert. Unter technische Grundlagen fallen
+einige wichtige Netzwerkprotokolle, sowie eine allgemeine Einführung in
 Computernetzwerke.
-\section*{Netzwerkgrundlagen}
-\addcontentsline{toc}{section}{Netzwerkgrundlagen}
+\section{Netzwerkgrundlagen}
 Um auf Basis der vorangegangenen Problemstellung eine Lösung zu
 erarbeiten, ist es notwendig, einen groben Überblick über die Grundlagen
 von Computernetzwerken zu bekommen. Als Basis dafür dient das \gls{osi}. Das
@@ -299,8 +295,7 @@ etwa:
     \caption{Das OSI-Schichtenmodell mit Protokollbeispielen und
     verwendeten Einheiten}\label{fig:osi}
 \end{figure}
-\section*{\glsfirst{dns}}
-\addcontentsline{toc}{section}{\glsfirst{dns}}
+\section{\glsfirst{dns}}
 Aus Erfahrungen mit dem Internetvorgänger \gls{arpanet} wurde
 abgeleitet, dass ein manuelles Eingeben von \gls{ip}\hyp{}adressen mit
 steigender Anzahl von Knoten im Netzwerk immer unübersichtlicher wurde.
@@ -409,8 +404,7 @@ Bezogen auf die Latenz von \gls{dns}\hyp{}Anfragen hieße das, dass der
 Benutzer bei zu hoher Latenz massiv bei seiner Arbeit ausgebremst wird. Dies führt nicht nur
 zu Frustration beim Nutzer, sondern auch zu Verschwendung seiner
 bezahlten Arbeitszeit und damit zu einer geringeren Produktivität.
-\section*{\glsfirst{http}}
-\addcontentsline{toc}{section}{\glsfirst{http}}
+\section{\glsfirst{http}}
 \glsfirst{http} ist ein auf \gls{tcp}/\gls{ip} aufbauendes
 Datenübertragungsprotokoll, welches in der Andwendungsschicht des
 \gls{osi} operiert. Der am meisten verbreiteste Anwendungszweck für das
@@ -521,8 +515,7 @@ Bei der Verwendung von \gls{http} können unter anderem folgende Fehlerfälle au
 
 Weitere Fehler und Statuscodes können dem \gls{rfc} 2068 entnommen werden\cite[Siehe Section 10]{RFC2068}.
 \end{itemize}
-\section*{\glsfirst{https}}
-\addcontentsline{toc}{section}{\glsfirst{https}}
+\section{\glsfirst{https}}
 Bei \gls{https} handelt es sich um das Protokoll \gls{http} mit einer
 zusätzlichen Schicht zur Verschlüsselung und Herstellung von
 Datenintegrität. Dafür wird das Verschlüsselungsprotokoll \gls{tls}
@@ -584,8 +577,7 @@ erweitert um einige Fehler bezogen auf \gls{tls}:
     \item Es kommt keine Verbindung auf Port 443 zustande, weil der
           Webserver kein \gls{https} unterstützt.
 \end{itemize}
-\section*{\glsfirst{cifs}}
-\addcontentsline{toc}{section}{\glsfirst{cifs}}
+\section{\glsfirst{cifs}}
 \gls{cifs} ist ein von der Firma Microsoft 1996 eingeführtes
 Datentransferprotokoll auf Basis von \gls{smb}\cite{SMBWIKI} und
 \gls{netbios} über \gls{tcp}/\gls{ip}. Das Protokoll ist nicht nur auf
@@ -634,10 +626,8 @@ Bei der Verwendung von \gls{cifs} können folgende Fehlerfälle auftreten:
           Schreib\hyp{} und Leseoperationen auf dem Share.
     \item Der \gls{cifs}\hyp{}Share ist nicht erreichbar.
 \end{itemize}
-\chapter*{Herleitung eines Lösungsansatzes}
-\addcontentsline{toc}{chapter}{Herleitung eines Lösungsansatzes}
-\section*{Anforderungsanalyse}
-\addcontentsline{toc}{section}{Anforderungsanalyse}
+\chapter{Herleitung eines Lösungsansatzes}
+\section{Anforderungsanalyse}
 Nachfolgend werden die ermittelten funktionalen und nicht\hyp{}funktionalen
 Anforderungen erläutert. Funktionale Anforderungen stellen das
 ``eigentliche Systemverhalten und die jeweiligen Funktionen des zu
@@ -670,8 +660,7 @@ folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
 \textbf{Anmerkung}: Das \gls{rfc} 2119 ist im Original in Englisch. Ich
 habe mich zur übersetzung der Schlüsselwörter auf die Übersetzung der
 Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
-\subsection*{Funktionale Anforderungen}
-\addcontentsline{toc}{subsection}{Funktionale Anforderungen}
+\subsection{Funktionale Anforderungen}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{FA1: Überwachung von \gls{dns} } & \textbf{Priorität: MUSS} \\\midrule
@@ -767,8 +756,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     \captionof{table}{Funktionale Anforderung FA9}\label{table:FA9}
 \end{center}
 
-\subsection*{Nicht-funktionale Anforderungen}
-\addcontentsline{toc}{subsection}{Nicht-funktionale Anforderungen}
+\subsection{Nicht-funktionale Anforderungen}
 \begin{center}
 \begin{tabular}{p{0.7\textwidth-\tabcolsep}>{\raggedleft\arraybackslash}p{0.3\textwidth-\tabcolsep}}\toprule
     \textbf{NFA1: Wahl der Programmiersprache} & \textbf{Priorität: SOLL} \\\midrule
@@ -819,8 +807,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
     \captionof{table}{Nicht-Funktionale Anforderung NFA4}\label{table:NFA4}
 \end{center}
 
-\section*{Systemarchitektur}
-\addcontentsline{toc}{section}{Systemarchitektur}
+\section{Systemarchitektur}
 Auf Grundlage der Problemstellung und der Anforderungen ergibt sich die
 folgende Aufstellung von Komponenten für die Systemarchitektur:
 \begin{description}
@@ -855,16 +842,14 @@ Webserver mit der Visualisierungslösung stellt diese Daten für den Nutzer aufb
     \includegraphics[width=0.8\textwidth]{figures/network.pdf}
     \caption{Zusammenspiel aller Systemkomponenten}\label{fig:network}
 \end{figure}
-\section*{Datenbanken}
-\addcontentsline{toc}{section}{Datenbanken}
+\section{Datenbanken}
 Zur Speicherung der Messdaten steht ein breites Spektrum von Datenbanken
 zur Verfügung. Das Spektrum reicht von traditionellen, relationalen
 Datenbanken, wie zum Beispiel MySQL, bis zu modernen
 NoSQL\hyp{}Datenbanken, wie Key\hyp{}Value\hyp{}Stores und \glspl{tsdb}.
 Dieses Kapitel versucht einen Überblick über alle Datenbanktypen zu
 geben und den passenden Datenbanktyp für das Projekt festzulegen.
-\subsection*{Relationale Datenbanken}
-\addcontentsline{toc}{subsection}{Relationale Datenbanken}
+\subsection{Relationale Datenbanken}
 Bei relationalen Datenbanken handelt es sich um tabellenbasierte Datensätze.
 Als Grundlage dieser Datenbanken dienen Relationen. Relationen sind
 algebraische Strukturen in Form von n\hyp{}Tupel. Also in sich selbst
@@ -926,8 +911,7 @@ Bekannte Implementierungen für relationale Datenbanken sind:
     \item SQLite
     \item Microsoft SQL Server
 \end{itemize}
-\subsection*{NoSQL\hyp{}Datenbanken}
-\addcontentsline{toc}{subsection}{NoSQL\hyp{}Datenbanken}
+\subsection{NoSQL\hyp{}Datenbanken}
 NoSQL\hyp{}Datenbanken sind zunächst ein grober Sammelbegriff für alle
 Datenbanken die kein relationales Konzept verfolgen und somit nicht
 durch die Sprache \gls{sql} beschrieben werden können. In den meisten
@@ -1016,8 +1000,7 @@ Inc.} (die Firma hinter der Container\hyp{}Technologie Docker),
 und Container), \emph{Jodel} (eine unter Studenten beliebte anonyme
 Microblogging\hyp{}Plattform)\cite{PROMETHEUS}.
 
-\section*{Prothemeus}
-\addcontentsline{toc}{section}{Prometheus}
+\section{Prothemeus}
 Bei \emph{Prometheus} handelt es sich um keine reine \gls{tsdb}.
 \emph{Prometheus} ist vielmehr eine auf Monitoringdaten spezialisierte
 und mit diversen Komponenten erweiterbare Monitoringanwendung. In diesem
@@ -1047,8 +1030,7 @@ Cloud\hyp{}Software im Opensource\hyp{}Bereich. Bekannte Mitglieder der
     \item RedHat (Platinum Member)
 \end{itemize}
 
-\subsection*{Datenspeicherung in Prometheus}
-\addcontentsline{toc}{subsection}{Datenspeicherung in Prometheus}
+\subsection{Datenspeicherung in Prometheus}
 Daten werden in \emph{Prometheus} als Tupel aus 64\hyp{}bit
 Fließkommazahlen und einem Millisekunden genauen Zeitstempel
 gespeichert\cite{PROMETHEUS_DATA_MODEL}, im
@@ -1113,8 +1095,7 @@ http_requests_total{service="service", server="www.tu-clausthal.de", env="produc
 \end{lstlisting}
 \end{minipage}
 
-\subsection*{Komponenten}
-\addcontentsline{toc}{subsection}{Komponenten}
+\subsection{Komponenten}
 Die meisten \emph{Prometheus}\hyp{}Komponenten sind in der Sprache
 \emph{Go} (auch bekannt als \emph{Golang}) geschrieben. \emph{Go} ist
 eine von der Firma \emph{Google} entwickelte, kompilierbare
@@ -1223,8 +1204,7 @@ Dieses Beispiel unterstreicht die Einsatzfähigkeit und Adoption von
     \caption{Prometheus Web UI Beispiel, welches via Node Exporter
     gesammelte Messdaten in Form einer Zeitreihe darstellt}\label{fig:prometheuswebui}
 \end{figure}
-\subsection*{PromQL}
-\addcontentsline{toc}{subsection}{PromQL}
+\subsection{PromQL}
 \emph{Prometheus} besitzt zum Abfragen der Messdaten eine eigene
 Query\hyp{}Language names \emph{PromQL}. \emph{PromQL} ist nicht
 vergleichbar mit \gls{sql} und besitzt keinen relationalen Ansatz.
@@ -1260,8 +1240,7 @@ Vielzahl von weiteren Funktionen, um beispielsweise den Durchschnitt über einen
 ist eine harte Voraussetzung um die \emph{Prometheus GUI} zu bedienen, da
 spätere Queries zur Visualisierung der Messdaten alle in \emph{PromQL}
 geschrieben werden.
-\section*{Grafana}
-\addcontentsline{toc}{section}{Grafana}
+\section{Grafana}
 Da die \emph{Prometheus Web UI} eingeschränkt mit Graphen und
 Visualisierung der Daten umgehen kann und eher eine Testplattform für
 \emph{PromQL-Anfragen} darstellt, wird für den Zweck der
@@ -1286,8 +1265,7 @@ ausrollen (Umgebungsvariablen sind temporäre oder permanente Variablen im
 Betriebssystem)\cite[Beispiel zum Deployment von Grafana in Amazon
 AWS]{GRAFANA_AWS_DEPLOYMENT}. \emph{Grafana} besitzt beispielsweise nativen
 Support für \emph{Amazon AWS Cloudwatch}\cite{GRAFANA_CLOUDWATCH}.
-\section*{Konfigurationsmanagement}
-\addcontentsline{toc}{section}{Konfigurationsmanagement}
+\section{Konfigurationsmanagement}
 In der Vergangenheit wurden Rechnersysteme zunehmend vertikal skaliert,
 das heißt, die technischen Ressourcen des einzelnen Rechnersystems wurden angehoben
 (beispielsweise der \gls{ram}). Es wurde jedoch zunehmends
@@ -1315,8 +1293,7 @@ Konfigurationsmanagementwerkzeug \emph{Ansible} dominiert, beschränkt sich dies
 Arbeit auf die Verwendung von \emph{Ansible}. Es gibt jedoch andere populäre
 Werkzeuge. Darunter fallen beispielsweise \emph{Puppet}, \emph{Saltstack} und
 \emph{Chef}.
-\section*{Ansible}
-\addcontentsline{toc}{section}{Ansible}
+\section{Ansible}
 Die Entwicklung an \emph{Ansible} startete im Februar 2012 unter Michael
 DeHaan als Opensource\hyp{}Anwendung\cite{ANSIBLE_ORIGINS}. Ein Jahr
 später ging aus dem Projekt die Firma \emph{AnsibleWorks} hervor, welche
@@ -1327,8 +1304,7 @@ Firma durch den großen Linux\hyp{}Dienstleister \emph{Red Hat}
 übernommen\cite{ANSIBLEREDHAT}. Wenig später begann die
 Opensource\hyp{}Gemeinschaft damit, \emph{Ansible} um unzählige Module zu
 erweitern und so den Funktionsumfang zu vergrößern.
-\subsection*{Funktionsweise}
-\addcontentsline{toc}{subsection}{Funktionsweise}
+\subsection{Funktionsweise}
 \emph{Ansible} arbeitet mit Templates zur Orchestrierung und
 Konfiguration von Programmpaketen auf Rechnern und Rechner
 hyp{}Konfigurationsdateien. Die Auszeichnungssprache für die
@@ -1380,8 +1356,7 @@ Außerdem arbeitet \emph{Ansible} idempotent, dadurch lassen sich
 Aufgaben beliebig oft ausführen und führen immer zum gleichen Ergebnis.
 Dies setzt allerdings voraus, das \emph{Ansible} korrekt konfiguriert
 wurde, was nicht immer gelingt.
-\subsection*{Organisationsstruktur}
-\addcontentsline{toc}{subsection}{Organisationsstruktur}
+\subsection{Organisationsstruktur}
 \emph{Ansible} hat eine definierte Struktur zur Speicherung der
 Konfigurationsdateien, Aufgaben, Datenstrukturen für die Templates und
 Templates. Dabei bedient sich \emph{Ansible} bei Synonymen aus der
@@ -1439,8 +1414,7 @@ Projekts},label={lst:ansiblestructure}]
             `-- configuration.j2
 \end{lstlisting}
 \end{minipage}
-\subsection*{Dateistruktur}
-\addcontentsline{toc}{subsection}{Dateistruktur}
+\subsection{Dateistruktur}
 \emph{Ansible} nutzt als zentrale Dateistruktur die Auszeichnungssprache
 \gls{yaml} und ergänzt diese durch Elemente der
 Python\hyp{}Template\hyp{}Engine \emph{Jinja2}. \gls{yaml} unterstützt
@@ -1530,8 +1504,7 @@ root_ssh_keys:
 ...
 \end{lstlisting}
 \end{minipage}
-\subsection*{Sicherheit}
-\addcontentsline{toc}{subsection}{Sicherheit}
+\subsection{Sicherheit}
 \emph{Ansible} nutzt für alle Verbindungen das
 Fernadministrationsprotokoll \glsfirst{ssh}. Dadurch ist die Integrität,
 Sicherheit und Authentizität der übertragenen Daten sichergestellt.
@@ -1548,8 +1521,7 @@ lokalen Dateisystem des Managementsystems zu verschlüsseln wird
 Mechanismus um Dateien mit einem symmetrischen Schlüssel zu
 verschlüsseln. Als Algorithmus wird das Verschlüsselungsverfahren
 \gls{aes} verwendet\cite{ANSIBLEVAULT}.
-\section*{Wahl der Hardware}
-\addcontentsline{toc}{section}{Wahl der Hardware}
+\section{Wahl der Hardware}
 Da das zu entwickelnde Software\hyp{}System horizontal skalierbar sein soll (siehe
 Nicht-Funktionale Anforderung 4 (NFA4)) soll das System auch günstig in
 der Anschaffung sein (NFA2). Dem kommt zu Gute, dass die Software auf den
@@ -1603,14 +1575,12 @@ den \emph{Odroid XU4}.
     \includegraphics[width=0.5\textwidth]{figures/odroid.jpg}
     \caption{Darstellung eines Odroid XU4}\label{fig:odroid}
 \end{figure}
-\chapter*{Projektumsetzung}
-\addcontentsline{toc}{chapter}{Projektumsetzung}
+\chapter{Projektumsetzung}
 Die folgenden Unterkapitel umfassen die Umsetzung eines ersten
 Prototyps. Dazu gehören das Erfüllen der Anforderungen, das Aufsetzen
 eines ersten Test- und Entwicklungssystem, der Entwicklungsprozess
 und der erste Prototype.
-\section*{Erfüllung der Anforderungen}
-\addcontentsline{toc}{section}{Erfüllung der Anforderungen}
+\section{Erfüllung der Anforderungen}
 Nachfolgend sind die evaluierten Anforderungen und deren Umsetzung
 beschrieben.
 \tabulinesep=1.2mm
@@ -1648,8 +1618,7 @@ beschrieben.
     \captionof{table}{Umsetzung der Nicht-Funktionalen Anforderungen}
     \label{table:mapping2}
 \end{center}
-\section*{Test- und Entwicklungsumgebung}
-\addcontentsline{toc}{section}{Test- und Entwicklungsumgebung}
+\section{Test- und Entwicklungsumgebung}
 Da die benötigte Hardware zu Projektanfang noch nicht zur Verfügung
 stand, galt es eine Test\hyp{} und Entwicklungsumgebung aufzubauen. Als
 Grundlage für diese Test\hyp{} und Entwicklungsumgebung dient die
@@ -1789,10 +1758,8 @@ Host node1 192.168.33.11
   LogLevel FATAL
 \end{lstlisting}
 \end{minipage}
-\section*{Entwicklungsprozess}
-\addcontentsline{toc}{section}{Entwicklungsprozess}
-\subsection*{Versionsverwaltung}
-\addcontentsline{toc}{subsection}{Versionsverwaltung}
+\section{Entwicklungsprozess}
+\subsection{Versionsverwaltung}
 Für den Entwicklungsprozess, des Konfigurationsmanagement und der
 Erweiterung des Quellcodes von \emph{Prometheus} um \gls{cifs}, wird die
 Versionsverwaltung \emph{Git} eingesetzt. \emph{Git} ist ein von Linus
@@ -1861,14 +1828,10 @@ Date:   Tue Sep 25 17:07:50 2018 +0200
 [..]
 \end{lstlisting}
 \end{minipage}
-\subsection*{Entwicklungsmethoden}
-\addcontentsline{toc}{subsection}{Entwicklungsmethoden}
-\section*{Prototyp}
-\addcontentsline{toc}{section}{Prototyp}
-\section*{Betriebstests}
-\addcontentsline{toc}{section}{Betriebstests}
-\chapter*{Fazit}
-\addcontentsline{toc}{chapter}{Fazit}
+\subsection{Entwicklungsmethoden}
+\section{Prototyp}
+\section{Betriebstests}
+\chapter{Fazit}
 \nocite{*}
 \printbibliography{}
 \lstlistoflistings{}
