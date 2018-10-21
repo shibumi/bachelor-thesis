@@ -1369,27 +1369,26 @@ Hosts \emph{Roles} (Deutsch: Rollen) zu zuweisen. Die nötigen Daten zum
 Abspielen dieser Rollen befinden sich im \emph{Inventory} (Deutsch:
 Inventar), zu dem die Hosts ebenfalls gehören. 
 \autoref{lst:ansiblestructure} zeigt die Organisationsstruktur eines
-solchen \emph{Ansible} Projekts. Die Datei \emph{ansible.cfg} ist die
+solchen \emph{Ansible}\hyp{}Projekts. Die Datei \emph{ansible.cfg} ist die
 Konfigurationsdatei für \emph{Ansible} und definiert den Pfad zum
 Inventar, den Rollen und den \emph{Playbooks}. Die Datei \emph{hosts}
 beinhaltet eine Auflistung aller Zielsysteme mit Eingliederung in
 Gruppen und Subgruppen. Auf diese Weise lassen sich komplexe
 Installationen aus Zielsystemen hierarchisch gliedern und
-Gemeinsamkeiten fest machen. In den Dateien \emph{group\_vars} und
+Gemeinsamkeiten festmachen. In den Dateien \emph{group\_vars} und
 \emph{host\_vars} werden die eigentlichen Daten für die Gruppen und
 einzelnen Hosts vermerkt. Der Ordner \emph{playbooks} umfasst alle
 \emph{Playbooks}. Im Beispiel ist das \emph{Playbook}
-\emph{configure\_hosts} abgebildet. Dies ist eine \gls{yaml}\hyp{}Datei.
-\gls{yaml}\hyp{}Dateien werden häufig auch mit YML abgekürzt. Der
-Ordner\emph{roles} beinhaltet die Rolle \emph{hello\_world} mit den
+\emph{configure\_hosts} abgebildet. Es handelt sich um eine \gls{yaml}\hyp{}Datei.
+Der Ordner \emph{roles} beinhaltet die Rolle \emph{hello\_world} mit den
 Unterordnern \emph{defaults}, \emph{files}, \emph{tasks} und
 \emph{templates}. Im Ordner \emph{defaults} befinden sich
-Standardbelegungen für Variablen zur Initialisierung. Der Ordner
+Standardbelegungen, mit denen Variablen initialisiert werden. Der Ordner
 \emph{files} umfasst statische Dateien, welche auf den Zielsystemen
 installiert werden sollen. Die letzten beiden Ordner \emph{tasks} und
 \emph{templates} umfassen die eigentliche Logik zur Konfiguration (die
 abzuarbeitenden Aufgabenschritte) und \emph{Jinja2}\hyp{}Templates. Um
-eine Konfiguration zu starten würde der Administrator das
+eine Konfiguration zu starten, würde der Administrator das
 \emph{Playbook} {configure\_hosts.yml} mit dem Kommando
 \emph{ansible-playbook playbooks/configure\_hosts.yml} aufrufen.
 \emph{Ansible} würde daraufhin das zu den Hosts gehörende Inventar
@@ -1425,10 +1424,10 @@ gängige Datenstrukturen wie in etwa Listen und Wörterbücher
 (Dictionaries) und Kombinationen davon sowie Kommentare. Höhere
 Logikebenen werden durch \gls{yaml} und \emph{Jinja2} erreicht (If/Else,
 For\hyp{}Schleifen, While\hyp{}Schleifen etc). Dadurch ist \emph{Jinja2}
-in der Theorie Turing-Vollständig. \autoref{lst:ansiblessh} ist ein
+in der Theorie Turing-vollständig. \autoref{lst:ansiblessh} ist ein
 Beispiel für die Dateistruktur eines \emph{Ansible Tasks}. Der
 \emph{Task} verteilt \gls{ssh}\hyp{}Schlüssel auf eine beliebige Anzahl
-von Zielsystemen.  \gls{yaml}\hyp{}Dateien beginnen stets mit drei
+an Zielsystemen.  \gls{yaml}\hyp{}Dateien beginnen stets mit drei
 Querstrichen und enden mit drei Punkten.  Mittlerweile ist dies jedoch
 optional und \emph{Ansible} erkennt \gls{yaml}\hyp{}Dateien ohne diese
 Markierungen (meistens an der Dateiendung \emph{.yml}). \emph{Ansible
@@ -1439,8 +1438,8 @@ einer Abfolge von weiteren Schlüssel\hyp{}Wert\hyp{}Paaren. Bei den
 Paaren handelt es sich um fest definierte und in Python verfasste
 \emph{Ansible Module}. In dem Beispiel \autoref{lst:ansiblessh} sind
 dies die Module \emph{file} und \emph{template}. Das
-\emph{file}\hyp{}Modul dient zum Erstellen von Ordnern, platzieren von
-statischen Dateien oder anlegen von Dateien mit statischen Inhalt.
+\emph{file}\hyp{}Modul dient zum Erstellen von Ordnern, Platzieren von
+statischen Dateien oder Anlegen von Dateien mit statischen Inhalt.
 Diesem Modul werden eine Anzahl von Parametern übergeben. In diesem Fall
 ein Pfad auf einem Linux\hyp{}System, der gewollte Zustand
 \emph{directory} sowie ein Besitzer, eine Gruppe und eine Konfiguration
@@ -1462,7 +1461,7 @@ abgebildet. In dieser For\hyp{}Schleife wird über die Liste
 \emph{user} als Wert zugewiesen. Der vertikale Strich startet einen
 Filter. In diesem Fall der Filter \emph{sort}. Die Liste wird durch
 diesen Filter vor dem Schleifendurchlauf sortiert. Der horizontale
-Strich am Ende der Anweisung weist die Schleife an alle Leerzeichen oder
+Strich am Ende der Anweisung weist die Schleife an, alle Leerzeichen oder
 Tabs am Ende der generierten Zeile zu entfernen. Innerhalb der
 For\hyp{}Schleife wird die Funktion \emph{lookup} aufgerufen, welche
 eine Information auf dem lokalen Dateisystem einliest. Als Argument für
@@ -1514,23 +1513,23 @@ Sicherheit und Authentizität der übertragenen Daten sichergestellt.
 \gls{ssh} verwendet dazu ein asynchrones Verschlüsselungsverfahren. Auf
 dem Client wird ein Schlüsselpaar generiert. Dies erfolgt durch moderne
 kryptografisch sichere Verfahren wie \gls{rsa} oder Elliptischen Kurven.
-Der öffentliche Schlüssel wird auf dem Zielsystem platziert, meistens
+Der öffentliche Schlüssel wird auf dem Zielsystem platziert, meist
 geschieht dies durch vorheriges Einloggen auf dem Zielsystem mit einem
 Passwort. Bei der Verbindung vom Client zum Zielsystem wird durch das
 asynchrone Verfahren die Authentizität des Servers und des Clients
 bestätigt und der Zugriff gewährt. Um bestimmte Daten auch auf dem
 lokalen Dateisystem des Managementsystems zu verschlüsseln wird
 \emph{Ansible\hyp{}Vault} verwendet. \emph{Ansible\hyp{}Vault} ist ein
-Mechanismus um Dateien mit einem symmetrischen Schlüssel zu
+Mechanismus, um Dateien mit einem symmetrischen Schlüssel zu
 verschlüsseln. Als Algorithmus wird das Verschlüsselungsverfahren
 \gls{aes} verwendet\cite{ANSIBLEVAULT}.
 \section{Wahl der Hardware}
 Da das zu entwickelnde Software\hyp{}System horizontal skalierbar sein soll (siehe
-Nicht-Funktionale Anforderung 4 (NFA4)) soll das System auch günstig in
+Nicht-Funktionale Anforderung 4 (NFA4)), soll das System auch günstig in
 der Anschaffung sein (NFA2). Dem kommt zu Gute, dass die Software auf den
 Messpunkten nicht viele Hardware\hyp{}Ressourcen benötigt. Es wird
 lediglich genug Speicher für ein kleines Linux mit einigen
-Kernkomponenten wie \emph{openSSH} und der eigentlichen Software für die
+Kernkomponenten wie \emph{OpenSSH} und der eigentlichen Software für die
 Messpunkte benötigt. Durch die niedrigen Beschaffungskosten fallen somit
 bereits größere Computersysteme in Form von Server\hyp{}Racks oder
 Tower\hyp{}PC\hyp{}Einheiten weg. Übrig bleibt die Klasse der
@@ -1538,7 +1537,7 @@ Einplatinenrechner. Einplatinenrechner erfreuen sich in den letzten
 Jahren immer größerer Beliebtheit und liegen in einem Budget\hyp{}Level
 von \EUR{10} bis \EUR{100}. Nachfolgend werden die zwei Einplatinenrechner
 \emph{Raspberry Pi 3B+} und \emph{Odroid XU4} verglichen.
-Der \emph{Raspberry Pi 3B+} kommt mit folgenden Spezifikationen\cite{RASPI}:
+Der \emph{Raspberry Pi 3B+} hat die folgenden Spezifikationen\cite{RASPI}:
 \begin{itemize}
     \item CPU: Broadcom BCM2837B0 quad-core A53 (ARMv8) 64-bit @ 1.4GHz
     \item GPU: Broadcom Videocore-IV
@@ -1595,7 +1594,7 @@ beschrieben.
         \hyperref[table:FA1]{\textbf{FA1}} & Die Überwachung von \emph{DNS} erfolgt durch den \emph{Prometheus} \emph{Blackbox-Exporter}. \\
         \hyperref[table:FA2]{\textbf{FA2}} & Die Überwachung von \emph{HTTP} erfolgt durch den \emph{Prometheus} \emph{Blackbox-Exporter}. \\
         \hyperref[table:FA3]{\textbf{FA3}} & Die Überwachung von \emph{HTTPS} erfolgt durch den \emph{Prometheus} \emph{Blackbox-Exporter}. \\
-        \hyperref[table:FA4]{\textbf{FA4}} & \emph{Prometheus} ist zum Stand vom 01.09.2018 nicht in der Lage \emph{CIFS} zu überwachen. Um die Anforderung zu erfüllen wird der \emph{Prometheus} \emph{Node-Exporter} benutzt und die darunter liegende Bibliothek \emph{ProcFS} um Funktionalität erweitert. \\
+        \hyperref[table:FA4]{\textbf{FA4}} & \emph{Prometheus} ist zum Stand vom 01.09.2018 nicht in der Lage \emph{CIFS} zu überwachen. Um die Anforderung zu erfüllen, wird der \emph{Prometheus} \emph{Node-Exporter} benutzt und die darunter liegende Bibliothek \emph{ProcFS} um Funktionalität erweitert. \\
         \hyperref[table:FA5]{\textbf{FA5}} & Die Performance-Daten werden in einer \emph{TSDB} in \emph{Prometheus} gespeichert. \\
         \hyperref[table:FA6]{\textbf{FA6}} & Die Grafische Aufbereitung erfolgt durch die Plattform \emph{Grafana}. \\
         \hyperref[table:FA7]{\textbf{FA7}} & Die Bandbreitenmessung erfolgt durch den \emph{Prometheus} \emph{Node-Exporter}. \\
@@ -1603,7 +1602,7 @@ beschrieben.
         \hyperref[table:FA9]{\textbf{FA9}} & Das System bleibt kontrollierbar durch den Einsatz von \emph{Ansible}. \\
 \bottomrule
     \end{tabu}
-    \captionof{table}{Umsetzung der Funktionalen Anforderungen}
+    \captionof{table}{Umsetzung der funktionalen Anforderungen}
     \label{table:mapping1}
 \end{center}
 \tabulinesep=1.2mm
@@ -1618,7 +1617,7 @@ beschrieben.
         \hyperref[table:NFA4]{\textbf{NFA4}} & Das System ist horizontal skalierbar durch den Einsatz von \emph{Prometheus} als Cluster einsetzbare Datenbank und \emph{Ansible} als Automatisierungswerkzeug zum Deployment. \\
 \bottomrule
     \end{tabu}
-    \captionof{table}{Umsetzung der Nicht-Funktionalen Anforderungen}
+    \captionof{table}{Umsetzung der nicht-funktionalen Anforderungen}
     \label{table:mapping2}
 \end{center}
 \section{Test- und Entwicklungsumgebung}
@@ -1641,7 +1640,7 @@ Cloud\hyp{}Plattformen wie zum Beispiel \emph{Google Cloud},
 \emph{Amazon AWS} und \emph{Openstack}. Die von \emph{Vagrant}
 unterstützten Virtualisierungsplattformen werden in \emph{Vagrant}
 \emph{Provider} genannt. \emph{Vagrant} selbst ist eine
-statisch gebaute aus \emph{Golang} kompilierte Binärdatei, dies
+statisch gebaute aus \emph{Golang} kompilierte Binärdatei. Dies
 erleichtert das Deployment auf allen gängigen Systemen.
 Eine Abhängigkeit zu Linux ist deshalb
 nicht gegeben, \emph{Vagrant} ist auch auf \emph{Windows} oder
@@ -1651,8 +1650,8 @@ Automatisierungswerkzeugen aus, darunter auch
 \emph{Ansible}\cite{VAGRANT_DOCS}. \emph{Vagrant} abstrahiert die
 Virtualisierungsplattform über einen \emph{Ruby}\hyp{}Interpreter. Es
 wird eine Datei in der Programmiersprache \emph{ruby} angelegt, über
-welche die Anzahl der virtuellen Maschinen und dessen Orchestrierung
-organisiert wird. Diese \emph{Ruby} datei wird von \emph{Vagrant}
+welche die Anzahl der virtuellen Maschinen und deren Orchestrierung
+organisiert wird. Diese \emph{Ruby}\hyp{}Datei wird von \emph{Vagrant}
 eingelesen und \emph{Vagrant} dockt über die APIs an die jeweilige
 Virtualisierungsplattform an und startet die virtuellen Maschinen. Der Dateiname
 einer solchen Datei ist immer \emph{Vagrantfile}. \emph{Vagrantfiles}
@@ -1661,8 +1660,8 @@ automatisiertes Aufsetzen einer Testumgebung in wenigen Schritten. Ein
 weiterer Grund für den Einsatz von \emph{Vagrant} ist die Vielzahl an
 fertigen \emph{Images} (Speicherabbildern von Betriebssystemen und
 weiterer Software). Anstatt
-ein benötigtes Betriebssystem manuell in einer VM zu installieren ist es
-möglich direkt über \emph{Vagrant} fertige \emph{Images} für gängige
+ein benötigtes Betriebssystem manuell in einer VM zu installieren, ist es
+möglich, direkt über \emph{Vagrant} fertige \emph{Images} für gängige
 Linux\hyp{}Distributionen zu ziehen. Dies beschleunigt den
 Entwicklungsprozess ungemein, da der Entwickler sich voll auf die
 Anwendung konzentrieren kann und seine Zeit nicht mit dem Installieren
@@ -1677,20 +1676,20 @@ ein Linux\hyp{}Derivat von der bekannteren Linux\hyp{}Distribution
 Maschine erzeugt. Die virtuelle Maschine bekommt demnach die
 IP\hyp{}Adresse \textbf{192.168.33.10}. In den Zeilen 6 bis
 einschließlich Zeile 8 wird eine zweite VM erzeugt und konfiguriert mit
-dem Namen \emph{node1}, dem selben Betriebssystemabbild und der
+dem Namen \emph{node1}, demselben Betriebssystemabbild und der
 IP\hyp{}Adresse \textbf{192.168.33.11}. Die virtuellen Maschinen liegen
-beide im selben Netzwerk damit sie sich gegenseitig erreichen können.
+beide im selben Netzwerk, damit sie sich gegenseitig erreichen können.
 Sie sind via einer \emph{Bridge} mit dem Host\hyp{}Betriebssystem verbunden.
-Anhand dieser \emph{Vagrantfile} ist es möglich die Testumgebung auf jedem System zu
-starten auf dem \emph{Vagrant} installiert ist. Dazu muss lediglich die
+Anhand dieser \emph{Vagrantfile} ist es möglich, die Testumgebung auf jedem System zu
+starten, auf dem \emph{Vagrant} installiert ist. Dazu muss lediglich die
 \emph{Vagrantfile} in einen Ordner abgelegt werden und über die
 Kommandozeile \emph{Vagrant} gestartet werden. Dies geschieht über das
-Kommando: \emph{vagrant up}. \emph{Vagrant} lädt durch diesen Befehl das
+Kommando \emph{vagrant up}. \emph{Vagrant} lädt durch diesen Befehl das
 benötigte Betriebssystemabbild herunter, konfiguriert die virtuellen
 Maschinen mit der in \emph{Vagrant} vorgegebenen
 Standard\hyp{}Virtualisierungsplattform \emph{Virtualbox} und
 konfiguriert das Netzwerk für die Maschinen. Wenn die Maschinen
-gestartet sind kann über den Befehl \emph{vagrant ssh <Name der vm>} auf
+gestartet sind, kann über den Befehl \emph{vagrant ssh <Name der vm>} auf
 eine der virtuellen Maschinen über das Protokoll \gls{ssh} zugegriffen werden.
 Durch diese Vorgehensweise lässt sich die Testumgebung später auf jeden
 anderen Hypervisor mit Emulator übertragen. Über den Befehl
