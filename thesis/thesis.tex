@@ -1711,7 +1711,7 @@ end
 \end{minipage}
 Bei der Anwendung des Befehls \emph{vagrant ssh} wird eine
 Implementierung des \gls{ssh}\hyp{}Protokolls innerhalb \emph{Vagrants} benutzt. Um
-die globale \gls{ssh}\hyp{}Implementierung zu verwenden ist es nötig den
+die globale \gls{ssh}\hyp{}Implementierung zu verwenden, ist es nötig, den
 von \emph{Vagrant} generierten privaten Schlüssel zu benutzen. Dieser
 liegt im versteckten Verzeichnis: \path{.vagrant/machines/<VM
 Name>/virtualbox/private\_key}. Dazu wird unter dem Betriebssystem
@@ -1719,7 +1719,7 @@ Name>/virtualbox/private\_key}. Dazu wird unter dem Betriebssystem
 \path{/home/<Benutzername>/.ssh/config}. \autoref{lst:sshconfig} zeigt
 eine \gls{ssh}\hyp{}Konfigurationsdatei. Die erste Zeile vergibt einen
 Alias für die \gls{ip}\hyp{}Adresse. Auf diese Weise ist es nicht nötig
-einen Eintrag im \gls{dns} für die Testumgebung vorzunehmen. Zeile 2
+für die Testumgebung einen Eintrag im \gls{dns} vorzunehmen. Zeile 2
 spezifiziert die Adresse nochmals. Zeile 3 definiert den Benutzer für
 die \gls{ssh}\hyp{}Verbindung. Zeile 4 leitet die von \gls{ssh}
 gespeicherten \emph{Fingerprints} für die \emph{Host-Zertifikate} nach
@@ -1762,8 +1762,8 @@ Host node1 192.168.33.11
 \end{minipage}
 \section{Entwicklungsprozess}
 \subsection{Versionsverwaltung}
-Für den Entwicklungsprozess, des Konfigurationsmanagement und der
-Erweiterung des Quellcodes von \emph{Prometheus} um \gls{cifs}, wird die
+Für den Entwicklungsprozess, das Konfigurationsmanagement und die
+Erweiterung des Quellcodes von \emph{Prometheus} um \gls{cifs} wird die
 Versionsverwaltung \emph{Git} eingesetzt. \emph{Git} ist ein von Linus
 Torvalds (dem Linux\hyp{}Chef\hyp{}Entwickler) entwickeltes dezentrales
 Versionsverwaltungswerkzeug für Dateien\cite{GITWIKI}. Eine
@@ -1776,8 +1776,8 @@ zerlegbar, in das Versionsverwaltungswerkzeug zusammen mit Informationen
 Entwicklungsschrittes, eingecheckt\cite{GITBOOK}. Die speziellen
 Vorteile von \emph{Git} sind:
 \begin{itemize}
-    \item Ein Dezentraler Ansatz.
-    \item Performance.
+    \item Ein dezentraler Ansatz.
+    \item Eine gute Performance.
     \item Einfache Verwendung von \emph{Branches}, Entwicklungszweigen,
         um mehrere Entwicklungswege logisch zu trennen und später wieder
         zusammen zu führen.
@@ -1785,32 +1785,32 @@ Vorteile von \emph{Git} sind:
         für jede Person einsehbar und erweiterbar.
 \end{itemize}
 Durch den dezentralen Ansatz muss der Entwickler nicht
-\emph{online} sein um zu arbeiten. Auch ohne einen Internetzugang lässt
-sich effektiv auf dem eigenen lokalen \emph{Repository}, den
+\emph{online}, sein um zu arbeiten. Auch ohne einen Internetzugang lässt
+sich effektiv auf dem eigenen lokalen \emph{Repository}, dem
 Entwicklungsordner, arbeiten. Die Unterschiede zwischen den einzelnen
-Revisionen oder \emph{Commits} werden, durch die lokale Speicherung als
-\glspl{blob}, erfasst. Das gesamte \emph{Repository} kann auf einen oder
+Revisionen oder \emph{Commits} werden durch die lokale Speicherung als
+\glspl{blob} erfasst. Das gesamte \emph{Repository} kann auf einen oder
 mehrere entfernte Server gesichert werden\cite{GITOTTO}. Außerdem kann
 durch die Verwendung von \emph{Branches} (Deutsch: Zweige) die
-Entwicklung von unterschiedlichen Funktionen zur selben Zeit erfolgen
-ohne, dass die unterschiedlichen Entwicklungszweige (Englisch:
-\emph{Feature Branch}) sich gegenseitig in
-die Quere kommen. Ist die Entwicklung an der Funktion abgeschlossen wird
+Entwicklung von unterschiedlichen Funktionen zur selben Zeit erfolgen,
+ohne dass die unterschiedlichen Entwicklungszweige (Englisch:
+\emph{Feature Branch}) kollidieren. Ist die Entwicklung an der Funktion
+abgeschlossen, wird
 der Entwicklungszweig wieder mit dem ursprünglichen Hauptzweig (auch
 \emph{Master} genannt) vereinigt. \autoref{lst:gitexample} zeigt einige
 Beispiele für den \emph{Git Terminal Client}. In Zeile 1 wird das
 \emph{Repository} von einem entfernten Server geklont und in Zeile 2
 wird eine Datei des \emph{Repositories} verändert. Diese Veränderung
 wird in Zeile 3 in die \emph{Staging}\hyp{}Ebene übernommen. Die
-\emph{Staging}\hyp{}Ebene ist ein interner Bereich von \emph{Git} in dem
+\emph{Staging}\hyp{}Ebene ist ein interner Bereich von \emph{Git}, in dem
 Änderungen am \emph{Repository} vorgemerkt werden\cite{PROGIT}. Mit dem
 Kommando \emph{git commit} wird die Änderung in die Historie übernommen
 und mit einem Kommentar des Autors versehen. \emph{git push} sendet die
 Änderungen an einen oder mehrere entfernte Server. \emph{git log} zeigt
-den Entwicklungsverlauf an. Es werden alle Änderungen erfasst mit
-zusätzlichen Metadaten. Diese Metadaten beinhalten: die eindeutige
-Nummer der Änderung, der Entwicklungszweig, der Name des Autors und
-seine Email\hyp{}Adresse, ein Zeitstempel und ein Kommentar zu der
+den Entwicklungsverlauf an. Es werden alle Änderungen mit
+zusätzlichen Metadaten erfasst. Diese Metadaten beinhalten: die eindeutige
+Nummer der Änderung, den Entwicklungszweig, den Namen des Autors und
+seine Email\hyp{}Adresse, einen Zeitstempel und einen Kommentar zu der
 Änderung.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Beispiele für die Verwendung des
