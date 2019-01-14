@@ -1830,6 +1830,7 @@ Date:   Tue Sep 25 17:07:50 2018 +0200
 \end{lstlisting}
 \end{minipage}
 \section{Prototyp}
+\subsection{Hinzufügen von CIFS Unterstützung}
 Für den Prototypen ist es notwendig, dass \emph{Prometheus} um die
 Funktion erweitert wird auch \gls{cifs} zu überwachen (Siehe
 \hyperref[table:mapping1]{Funktionale Anforderung 4}). Um diese Funktion
@@ -1852,7 +1853,7 @@ und \gls{smb} Version 2 oder 3 (Die Statistiken von Version 2 und
 Version 3 sind gleich aufgebaut). Die Statistiken zu den eigentlich
 verteilten Ordnern sind optional und sind erst in der Datei enthalten,
 wenn die verteilten Ordner benutzt werden (gemeint sind die beiden
-Blöcke die bei Zeile 12 und Zeile 24 beginnen). In der Beispieldatei
+Blöcke die bei Zeile 11 und Zeile 23 beginnen). In der Beispieldatei
 vermerkt sind die Anzahl der verteilten Ordner (Shares), die Anzahl der
 aktiven \gls{cifs} Verbindungen (Sessions), die Namen der verteilten
 Ordner sowie deren Server,  sowie diverse Statistiken zu
@@ -1927,7 +1928,7 @@ Parser den richtigen Zustand (Valide oder Invalide) zurückgibt.
 \autoref{lst:parsertest} zeigt einen Auszug der Methode
 \emph{TestNewCifsRFCStats} in der eine Liste von \emph{structs} erstellt
 wird mit validen und invaliden Testdaten. Die invaliden Testdaten sind
-in Zeile 10 zu sehen. Hier ist beispielhaft der String \emph{invalid}
+in Zeile 11 zu sehen. Hier ist beispielhaft der String \emph{invalid}
 als Testdatei benutzt worden, da eine Datei mit dem String
 \emph{invalid} niemals in \path{/proc/fs/cifs/stats} auftauchen sollte.
 Für valide Testdaten wird in die Variable \emph{content} eine ganze
@@ -1996,6 +1997,83 @@ type ClientStats struct {
 [...]
 \end{lstlisting}
 \end{minipage}
+Zum eigentlichen Parsen der Daten werden reguläre Ausdrücke verwendet.
+\autoref{lst:parserregex} zeigt die regulären Ausdrücke für die
+allgemeinen Statistiken im Header der \path{/proc/fs/cifs/stats} Datei.
+Die regulären Ausdrücke sind als Liste namens \emph{regexpHeaders}
+organisiert. Pro Zeile im Header der \path{/proc/fs/cifs/stats} Datei
+existiert ein Element in der Liste mit dem passenden regulären Ausdruck
+dazu. Der reguläre Ausdruck ist so gebaut, dass nur der jeweilige Werte
+in jeder Zeile extrahiert wird. Diese Werte sind positive ganze Zahlen.
+\autoref{lst:parserheader} zeigt die dazugehörige Methode
+\emph{parseHeader}, welche eine Zeile der eingelesenen Datei und eine
+Hashmap als Argumente übergeben bekommt. In Zeile 4 wird über die Liste
+\emph{regexpHeaders} iteriert und jeder regulärer Ausdruck wird geprüft
+(Zeile 5). Trifft der reguläre Ausdruck zu, wird über die Teilausdrücke
+iteriert um die Werte aus den Zeilen einzulesen (Zeile 9). Die Werte
+werden in Zeile 13 von String in den Datentyp Unsigned Integer
+überführt und in der Hashmap gespeichert. Es existieren für jeden
+einzelnen \gls{cifs} Block eigene reguläre Ausdrücke sowie eine Methode
+zum Parsen dieses Blocks. Außerdem existiert eine Hauptfunktion, welche
+die Datei einliest und das Parsen über die unterschiedlichen Blöcke
+sequentiell steuert. Dateien werden immer einmalig von oben nach unten
+eingelesen. Über die Erweiterung der \emph{procfs} Programmbibliothek
+erreichen die Daten über den \emph{Node Exporter} schließlich
+\emph{Prometheus} bis \emph{Prometheus} die Daten weiter an
+\emph{Grafana} zur Darstellung übermittelt. Der vollständige
+Programmcode ist selbstverständlich dieser Bachelorarbeit beigefügt und
+wird zum Zeitpunkt des Schreibens dieser Arbeit noch vom
+\emph{Prometheus} Team überprüft, so dass der Programmcode bald
+in die offiziellen \emph{Prometheus} Komponenten eingebaut werden kann.
+Damit stünde der Code einer weltweiten Nutzerbasis zur Verfügung. Der
+\emph{Pull Request}\cite{PRGITHUB}, also die Anfrage den Code in den
+offiziellen Code zu überführen, kann unter der folgenden URL eingesehen
+werden: \url{https://github.com/prometheus/procfs/pull/103}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Nicht vollständiger Auszug aus der Datei
+cifs.go},label={lst:parserregex}]
+[...]
+var regexpHeaders = [...]*regexp.Regexp{
+	regexp.MustCompile(`CIFS Session: (?P<sessions>\d+)`),
+	regexp.MustCompile(`Share \(unique mount targets\): (?P<shares>\d+)`),
+	regexp.MustCompile(`SMB Request/Response Buffer: (?P<smbBuffer>\d+) Pool size: (?P<smbPoolSize>\d+)`),
+	regexp.MustCompile(`SMB Small Req/Resp Buffer: (?P<smbSmallBuffer>\d+) Pool size: (?P<smbSmallPoolSize>\d+)`),
+	regexp.MustCompile(`Operations \(MIDs\): (?P<operations>\d+)`),
+	regexp.MustCompile(`(?P<sessionCount>\d+) session (?P<shareReconnects>\d+) share reconnects`),
+	regexp.MustCompile(`Total vfs operations: (?P<totalOperations>\d+) maximum at one time: (?P<totalMaxOperations>\d+)`),
+}
+[...]
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Nicht vollständiger Auszug aus der Datei
+cifs\_parse.go},label={lst:parserheader}]
+[...]
+// parseHeader parses our SMB header
+func parseHeader(line string, header map[string]uint64) error {
+	for _, regexpHeader := range regexpHeaders {
+		match := regexpHeader.FindStringSubmatch(line)
+		if match == nil {
+			continue
+		}
+		for index, name := range regexpHeader.SubexpNames() {
+			if index == 0 || name == "" {
+				continue
+			}
+			value, err := strconv.ParseUint(match[index], 10, 64)
+			if nil != err {
+				return fmt.Errorf("Invalid value in header")
+			}
+			header[name] = value
+		}
+	}
+	return nil
+}
+[...]
+\end{lstlisting}
+\end{minipage}
+
+
 
 \section{Betriebstests}
 \chapter{Fazit}
