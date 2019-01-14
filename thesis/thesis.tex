@@ -1942,7 +1942,7 @@ vergleicht die eingelesenen
 Werte mit den Konstanten.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Nicht vollständiger Auszug aus der Testdatei
- für den CIFS Parser},label={lst:parsertest}]
+cifs\_parse\_test.go für den CIFS Parser},label={lst:parsertest}]
 [...]
 func TestNewCifsRPCStats(t *testing.T) {
 	tests := []struct {
@@ -1970,6 +1970,7 @@ Identifikationsnummer. Außerdem enthält das \emph{struct}
 \emph{SMBStats} eine Hashmap mit Platz für die Statistiken der
 verteilten Ordner. \autoref{lst:parserdata} zeigt die Deklaration dieser
 \emph{structs} und Hashmaps in der Datei \path{cifs.go}.
+\\
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Nicht vollständiger Auszug aus der Datei
 cifs.go},label={lst:parserdata}]
