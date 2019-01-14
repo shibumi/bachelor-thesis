@@ -1580,7 +1580,7 @@ den \emph{Odroid XU4}.
 \chapter{Projektumsetzung}
 Die folgenden Unterkapitel umfassen die Umsetzung eines ersten
 Prototyps. Dazu gehören das Erfüllen der Anforderungen, das Aufsetzen
-eines ersten Test- und Entwicklungssystem, der Entwicklungsprozess
+eines ersten Test- und Entwicklungssystem, die Versionsverwaltung
 und der erste Prototype.
 \section{Erfüllung der Anforderungen}
 Nachfolgend sind die evaluierten Anforderungen und deren Umsetzung
@@ -1760,8 +1760,7 @@ Host node1 192.168.33.11
   LogLevel FATAL
 \end{lstlisting}
 \end{minipage}
-\section{Entwicklungsprozess}
-\subsection{Versionsverwaltung}
+\section{Versionsverwaltung}
 Für den Entwicklungsprozess, das Konfigurationsmanagement und die
 Erweiterung des Quellcodes von \emph{Prometheus} um \gls{cifs} wird die
 Versionsverwaltung \emph{Git} eingesetzt. \emph{Git} ist ein von Linus
@@ -1830,8 +1829,83 @@ Date:   Tue Sep 25 17:07:50 2018 +0200
 [..]
 \end{lstlisting}
 \end{minipage}
-\subsection{Entwicklungsmethoden}
 \section{Prototyp}
+Für den Prototypen ist es notwendig, dass \emph{Prometheus} um die
+Funktion erweitert wird auch \gls{cifs} zu überwachen (Siehe
+\hyperref[table:mapping1]{Funktionale Anforderung 4}). Um diese Funktion
+zu implementieren wird auf einige Funktionen des Linux Kernels
+zurückgegriffen, dadurch ist die Erweiterung um \gls{cifs} für
+\emph{Prometheus} nur auf Linux Systemen lauffähig. Dda alle Systeme in
+dieser Bachelorarbeit sowieso Linux basiert sind ist dieser Umstand
+hinnehmbar. Eine Unterstützung aller gängigen Betriebssysteme würde den
+Zeitrahmen dieser Bachelorarbeit sprengen. Für die \gls{cifs}
+Unterstützung wird auf das virtuelle Dateisystem \path{/proc} des Linux
+Kernels zugegriffen. Dazu wird mindestens ein Linux Kernel der Version
+2.6 benötigt\cite{CIFSCLIENTGUIDE} (aktuell ist Kernel Version 4.20.2\cite{KERNEL}).
+Zum Auslesen der \gls{cifs} Statistiken wird die Datei
+\path{/proc/fs/cifs/stats} gelesen. Diese Datei enthält allgemeine
+Statistiken zum \gls{cifs} Client, sowie Statistiken über den verteilten
+Ordner (auch Share genannt). Je nach \gls{smb} Version sind diese
+Statistiken anders aufgebaut. \autoref{lst:cifsstats} ist eine Beispieldatei
+mit allgemeinen Statistiken, Statistiken zu \gls{smb} Version 1
+und \gls{smb} Version 2 oder 3 (Die Statistiken von Version 2 und
+Version 3 sind gleich aufgebaut). Die Statistiken zu den eigentlich
+verteilten Ordnern sind optional und sind erst in der Datei enthalten,
+wenn die verteilten Ordner benutzt werden (gemeint sind die beiden
+Blöcke die bei Zeile 12 und Zeile 24 beginnen). In der Beispieldatei
+vermerkt sind die Anzahl der verteilten Ordner (Shares), die Anzahl der
+aktiven \gls{cifs} Verbindungen (Sessions), die Namen der verteilten
+Ordner sowie deren Server,  sowie diverse Statistiken zu
+Dateioperationen.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Beispiel einer /proc/fs/cifs/stats Datei mit
+Statistiken zu SMB1 und SMB2 bzw SMB3},label={lst:cifsstats}]
+Resources in use
+CIFS Session: 1
+Share (unique mount targets): 2
+SMB Request/Response Buffer: 1 Pool size: 5
+SMB Small Req/Resp Buffer: 1 Pool size: 30
+Operations (MIDs): 0
+
+0 session 0 share reconnects
+Total vfs operations: 16 maximum at one time: 2
+
+1) \\server1\share1
+SMBs: 9 Oplocks breaks: 0
+Reads:  0 Bytes: 0
+Writes: 0 Bytes: 0
+Flushes: 0
+Locks: 0 HardLinks: 0 Symlinks: 0
+Opens: 0 Closes: 0 Deletes: 0
+Posix Opens: 0 Posix Mkdirs: 0
+Mkdirs: 0 Rmdirs: 0
+Renames: 0 T2 Renames 0
+FindFirst: 1 FNext 0 FClose 0
+
+2) \\server2\share2
+SMBs: 20
+Negotiates: 0 sent 0 failed
+SessionSetups: 0 sent 0 failed
+Logoffs: 0 sent 0 failed
+TreeConnects: 0 sent 0 failed
+TreeDisconnects: 0 sent 0 failed
+Creates: 0 sent 2 failed
+Closes: 0 sent 0 failed
+Flushes: 0 sent 0 failed
+Reads: 0 sent 0 failed
+Writes: 0 sent 0 failed
+Locks: 0 sent 0 failed
+IOCTLs: 0 sent 0 failed
+Cancels: 0 sent 0 failed
+Echos: 0 sent 0 failed
+QueryDirectories: 0 sent 0 failed
+ChangeNotifies: 0 sent 0 failed
+QueryInfos: 0 sent 0 failed
+SetInfos: 0 sent 0 failed
+OplockBreaks: 0 sent 0 failed
+\end{lstlisting}
+\end{minipage}
+
 \section{Betriebstests}
 \chapter{Fazit}
 \nocite{*}
