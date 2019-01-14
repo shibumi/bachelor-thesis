@@ -1905,6 +1905,96 @@ SetInfos: 0 sent 0 failed
 OplockBreaks: 0 sent 0 failed
 \end{lstlisting}
 \end{minipage}
+\emph{Prometheus} würde die Daten aus der \path{/proc/fs/cifs/stats}
+Datei über den \emph{Node Exporter} erhalten. Um dies zu ermöglichen,
+muss eine abhängige Komponente vom \emph{Node Exporter} angepasst
+werden. Diese Komponente heißt \emph{procfs} und ist eine in Golang
+geschrieben Software\hyp{}Bibliothek zum Einlesen von diversen
+Statistiken die der Linux Kernel über das virtuelle Dateisystem
+\path{/proc} anbietet. Für die Weiterentwicklung dieser Komponente wurde
+ein testgetriebener Ansatz benutzt. Testgetriebene Entwicklung
+(englisch: test\hyp{}driven development) ist eine Entwicklungsmethode
+aus der Softwaretechnik, in welcher erst die für die Software nötigen
+Tests geschrieben werden und dann erst die eigentliche Software
+geschrieben wird. Diese Methode wurde gewählt, da das quelloffene
+Software Projekt bereits dieser Methode folgt. Der Test ist eine eigene
+Golang Datei, welche eine Liste von \emph{structs} erstellt mit validen
+und invaliden Testdaten. Ein \emph{struct} ist ein Verbunddatentyp,
+welcher mehrere Variablen und unterschiedliche Daten bündelt in einer
+Struktur. Diese Testdatei startet, wenn sie ausgeführt wird,
+den \gls{cifs} Parser, füttert diesen mit Testwerten und prüft ob der
+Parser den richtigen Zustand (Valide oder Invalide) zurückgibt.
+\autoref{lst:parsertest} zeigt einen Auszug der Methode
+\emph{TestNewCifsRFCStats} in der eine Liste von \emph{structs} erstellt
+wird mit validen und invaliden Testdaten. Die invaliden Testdaten sind
+in Zeile 10 zu sehen. Hier ist beispielhaft der String \emph{invalid}
+als Testdatei benutzt worden, da eine Datei mit dem String
+\emph{invalid} niemals in \path{/proc/fs/cifs/stats} auftauchen sollte.
+Für valide Testdaten wird in die Variable \emph{content} eine ganze
+valide Datei hart einprogrammiert, danach wird ein \emph{struct} gebaut
+mit den richtigen Werten (in dieser Arbeit nicht abgebildet aus
+Platzgründen. Der Programmcode liegt dieser Arbeit aber seperat bei).
+Diese richtigen Werte sind ebenfalls Konstanten, die hart
+einprogrammiert worden sind, um eine Laufzeitveränderung auszuschließen
+während des Tests. Wenn nun die Testdatei aufgerufen wird, liest der
+Parser die Werte aus der \emph{content} Variable und die Testdatei
+vergleicht die eingelesenen
+Werte mit den Konstanten.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Nicht vollständiger Auszug aus der Testdatei
+ für den CIFS Parser},label={lst:parsertest}]
+[...]
+func TestNewCifsRPCStats(t *testing.T) {
+	tests := []struct {
+		name    string
+		content string
+		stats   *cifs.ClientStats
+		invalid bool
+	}{
+		{
+			name:    "invalid file",
+			content: "invalid",
+			invalid: true,
+[...]
+\end{lstlisting}
+\end{minipage}
+Der \gls{cifs} Parser speichert die aus der eingelesenen Datei
+gewonnenen Daten in ein \emph{struct} namens \emph{ClientStats}, welches
+wiederum eine Hashmap (ein Dictionary oder Wörterbuch) enthält für die
+allgemeinen Statistiken, sowie
+eine Liste mit weiteren \emph{structs} für die Statistiken der
+verteilten Ordner. Diese weiteren \emph{structs} namens \emph{SMBStats} enthalten ebenfalls ein
+\emph{struct} namens \emph{SessionIDs} mit Informationen über den Server und den Namen des
+verteilten Ordners sowie dessen Position in der Datei anhand der
+Identifikationsnummer. Außerdem enthält das \emph{struct}
+\emph{SMBStats} eine Hashmap mit Platz für die Statistiken der
+verteilten Ordner. \autoref{lst:parserdata} zeigt die Deklaration dieser
+\emph{structs} und Hashmaps in der Datei \path{cifs.go}.
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Nicht vollständiger Auszug aus der Datei
+cifs.go},label={lst:parserdata}]
+[...]
+// model for the SMB statistics
+type SMBStats struct {
+	SessionIDs SessionIDs
+	Stats      map[string]uint64
+}
+
+// model for the Share sessionID "number) \\server\share"
+type SessionIDs struct {
+	SessionID uint64
+	Server    string
+	Share     string
+}
+
+// model for the CIFS header statistics
+type ClientStats struct {
+	Header       map[string]uint64
+	SMBStatsList []*SMBStats
+}
+[...]
+\end{lstlisting}
+\end{minipage}
 
 \section{Betriebstests}
 \chapter{Fazit}
