@@ -1970,7 +1970,9 @@ verteilten Ordners sowie dessen Position in der Datei anhand der
 Identifikationsnummer. Außerdem enthält das \emph{struct}
 \emph{SMBStats} eine Hashmap mit Platz für die Statistiken der
 verteilten Ordner. \autoref{lst:parserdata} zeigt die Deklaration dieser
-\emph{structs} und Hashmaps in der Datei \path{cifs.go}.
+\emph{structs} und Hashmaps in der Datei \path{cifs.go}. Während
+\autoref{fig:datamodel} eine grafische Übersicht über die einzelnen
+\emph{structs} und deren Mengenbeziehung untereinander gibt.
 \\
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Nicht vollständiger Auszug aus der Datei
@@ -1997,6 +1999,12 @@ type ClientStats struct {
 [...]
 \end{lstlisting}
 \end{minipage}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/datamodel.pdf}
+    \caption{Datenmodell der CIFS Statistiken mit Beziehungen unter den
+    unterschiedlichen structs.}\label{fig:datamodel}
+\end{figure}
 Zum eigentlichen Parsen der Daten werden reguläre Ausdrücke verwendet.
 \autoref{lst:parserregex} zeigt die regulären Ausdrücke für die
 allgemeinen Statistiken im Header der \path{/proc/fs/cifs/stats} Datei.
