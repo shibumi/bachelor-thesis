@@ -1,0 +1,54 @@
+---
+- name: Install python
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Install python
+    raw: "sudo apt update && sudo apt install -y python"
+
+- name: enable ntp
+  remote_user: vagrant
+  hosts: all
+  become: yes
+  roles:
+      - ntp
+  tags:
+      - ntp
+
+- name: Deploy node_exporter
+  remote_user: vagrant
+  hosts: nodeexporter
+  become: yes
+  roles:
+    - cloudalchemy.node-exporter
+  tags:
+    - node_exporter
+
+- name: Deploy blackbox_exporter
+  remote_user: vagrant
+  hosts: blackboxexporter
+  become: yes
+  roles:
+    - cloudalchemy.blackbox-exporter
+  tags:
+    - blackbox_exporter
+
+- name: Setup core monitoring software
+  remote_user: vagrant
+  hosts: prometheus
+  become: yes
+  roles:
+    - cloudalchemy.prometheus
+    - cloudalchemy.alertmanager
+  tags:
+    - prometheus
+
+
+- name: Deploy grafana
+  remote_user: vagrant
+  hosts: grafana
+  become: yes
+  roles:
+    - cloudalchemy.grafana
+  tags:
+    - grafana

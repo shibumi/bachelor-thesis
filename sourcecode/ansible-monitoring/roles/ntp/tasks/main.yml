@@ -1,0 +1,6 @@
+---
+
+- name: enable ntp via systemd-timesyncd
+  command: timedatectl set-ntp true
+  notify:
+    - ntp-handler

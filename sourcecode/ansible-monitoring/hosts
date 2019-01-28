@@ -1,0 +1,12 @@
+[prometheus]
+192.168.33.10
+
+[grafana]
+192.168.33.10
+
+[nodeexporter]
+192.168.33.10
+192.168.33.11
+
+[blackboxexporter]
+192.168.33.11

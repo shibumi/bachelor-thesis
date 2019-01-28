@@ -1,0 +1,4 @@
+---
+
+- name: ntp-handler
+  service: name=systemd-timesyncd state=restarted
