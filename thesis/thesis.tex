@@ -2124,8 +2124,41 @@ up{instance="192.168.33.11:9100",job="node"} 1
     \includegraphics[width=1.0\textwidth]{figures/grafana_graph.png}
     \caption{Erstellter Graph aus dem Aufruf ``probe\_dns\_lookup\_time\_seconds\{instance=~''\$targets''\}``}\label{fig:grafanagraph}
 \end{figure}
-
-\section{Betriebstests}
+Nachfolgend wird das \emph{Dashboard} für die \gls{dns} und \gls{http}
+beziehungsweise \gls{https} Statistiken näher erläutert.
+Zur einfacheren Erklärung wurden in die
+\autoref{fig:grafanadashboardnumbers}
+rote Nummern eingefügt, welche in diesem Absatz näher erläutert werden
+(siehe \autoref{fig:grafanadashboard} für das Originalbild):
+\begin{enumerate}
+    \item Auswahl des \emph{Blackbox Exporters}.
+    \item Auswahl des Ziels, gegen welches geprüft wird.
+    \item Intervall der Messpunkte.
+    \item Anzeige für den letzten \gls{http} Statuscode des jeweiligen Ziels.
+    \item Durchschnittliche Zeit für einen \gls{dns} Aufruf in Sekunden.
+    \item Durchschnittliche Zeit für einen \gls{http} beziehungsweise \gls{https} Aufruf.
+    \item Graph für die Dauer der \gls{http}/\gls{https} Aufrufe.
+    \item Graph für die Dauer des Verbindungsaufbaus der \gls{http}/\gls{https} Aufrufe.
+    \item Graph für die Dauer des mit dem \gls{http}/\gls{https} Aufruf einhergehenden \gls{dns} Aufruf.
+    \item Graph für die Dauer für die Übermittlung des eigentlichen Inhalts via \gls{http}/\gls{https}.
+    \item Graph für die Dauer von \gls{dns} Aufrufen.
+    \item Graph für die Dauer der Abarbeitung der \gls{http} beziehungsweise \gls{https} Aufrufe.
+    \item Graph für die Dauer des \gls{tls} Handshakes die mit den \gls{https} Aufrufen einhergehen.
+\end{enumerate}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/grafana_dashboard_numbers.png}
+    \caption{Dashboard für die DNS und HTTP beziehungsweise HTTPS
+    Statistiken einschließlich Markierungen für
+    Kommentare}\label{fig:grafanadashboardnumbers}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/grafana_dashboard.png}
+    \caption{Dashboard für die DNS und HTTP beziehungsweise HTTPS
+    Statistiken}\label{fig:grafanadashboard}
+\end{figure}
+\section{Einsatz im Rechenzentrum}
 \chapter{Fazit}
 \nocite{*}
 \printbibliography{}
