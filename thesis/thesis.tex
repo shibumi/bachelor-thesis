@@ -2080,8 +2080,50 @@ func parseHeader(line string, header map[string]uint64) error {
 [...]
 \end{lstlisting}
 \end{minipage}
-
-
+\section{Bau eines Grafana Dashboards}
+Um die via \emph{Prometheus} gewonnenen Daten darzustellen wird
+\emph{Grafana} verwendet. Für die Darstellung wird ein \emph{Dashboard}
+erstellt. \emph{Dashboards} sind in \emph{Grafana} Ansichten von
+verschiedenen Sammlungen von einzelnen Statistiken oder Graphen. Die
+Erstellung des \emph{Dashboards} erfolgt durch Klicken und Einfügen von
+\emph{PromQL} Aufrufen auf der Webseite der jeweiligen \emph{Grafana} Instanz.
+Dazu werden in \emph{Grafana} Variablen angelegt über das
+\emph{label\_values} Kommando und filtern von \emph{PromQL} Aufrufen. Ein
+Solcher Befehl ist beispielsweise:
+\emph{label\_values(up,blackbox\_instance)}. Mit diesem Kommando wird der
+\emph{PromQL} Aufruf \emph{up} mit dem Parameter
+\emph{blackbox\_instance} gefiltert und einer neuen Variable zugewiesen
+(dies geschieht durch Eingabe in der Weboberfläche und ist hier nicht
+dargestellt). \autoref{lst:upquery} zeigt die Rückgabewerte eines
+solchen \emph{up} Aufrufs. Ausgegeben werden alle Informationen und ein
+binärer Rückgabewert (siehe Zeilenende). Der binäre Rückgabewert
+definiert ob die jeweilige Instanz \emph{up}, also eingeschaltet ist,
+oder ausgeschaltet ist. Gezeigt ist außerdem die erwähnte
+\emph{blackbox\_instance} nach, welcher in der \emph{Grafana}
+Weboberfläche gefiltert wird. Demnach wird der in der Weboberfläche
+definierten Variable der Wert \emph{192.168.33.11} zugewiesen. Für das
+später im produktiven Betrieb eingesetzte \emph{Dashboard} wird außerdem
+der Wert in der Variable \emph{instance} unter \emph{targets}
+gespeichert. Dadurch ist es möglich in der \emph{Grafana} Weboberfläche
+aus einem einfachen \emph{PromQL} Aufruf einen Graphen zu generieren
+(siehe \autoref{fig:grafanagraph}).
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Rückgabewerte des up-Aufrufs in
+PromQL},label={lst:upquery}]
+up{blackbox_instance="192.168.33.11",instance="https://rz.tu-clausthal.de",job="blackbox"}	1
+up{blackbox_instance="192.168.33.11",instance="https://service.rz.tu-clausthal.de",job="blackbox"}	1
+up{blackbox_instance="192.168.33.11",instance="https://tu-clausthal.de",job="blackbox"}	1
+up{instance="192.168.33.10:9090",job="prometheus"} 1
+up{instance="192.168.33.10:9093",job="alertmanager"} 1
+up{instance="192.168.33.10:9100",job="node"} 1
+up{instance="192.168.33.11:9100",job="node"} 1
+\end{lstlisting}
+\end{minipage}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/grafana_graph.png}
+    \caption{Erstellter Graph aus dem Aufruf ``probe\_dns\_lookup\_time\_seconds\{instance=~''\$targets''\}``}\label{fig:grafanagraph}
+\end{figure}
 
 \section{Betriebstests}
 \chapter{Fazit}
