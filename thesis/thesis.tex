@@ -2159,6 +2159,45 @@ rote Nummern eingefügt, welche in diesem Absatz näher erläutert werden
     Statistiken}\label{fig:grafanadashboard}
 \end{figure}
 \section{Einsatz im Rechenzentrum}
+Für den Einsatz im Rechenzentrum wurden die Tests noch um einen weiteren
+Knoten erweitert. Die Test\hyp{}Infrastruktur, welche aus virtuellen
+Maschinen besteht, besteht nun aus insgesamt drei Knoten. Einem Knoten
+für \emph{Prometheus} und \emph{Grafana}, sowie zwei Knoten für
+\emph{Node Exporter} und \emph{Blackbox Exporter}. Die Vagrantfile wurde
+dementsprechend angepasst (siehe \autoref{lst:vagrantfile2}).
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Neue Vagrantfile für Tests vor dem
+Deployment},label={lst:vagrantfile2}]
+
+Vagrant.configure("2") do |config|
+  config.vm.define "puppetmaster" do |puppetmaster|
+    puppetmaster.vm.box = "ubuntu/bionic64"
+    puppetmaster.vm.network "private_network", ip: "192.168.33.10"
+  end
+  config.vm.define "node1" do |node1|
+    node1.vm.box = "ubuntu/bionic64"
+    node1.vm.network "private_network", ip: "192.168.33.11"
+  end
+  config.vm.define "node2" do |node2|
+    node2.vm.box = "ubuntu/bionic64"
+    node2.vm.network "private_network", ip: "192.168.33.12"
+  end
+end
+\end{lstlisting}
+\end{minipage}
+Ebenfalls angepasst wurde das \emph{Dashboard} für die verteilten
+\emph{Blackbox Exporter}. Das \emph{Dashboard} ist nun in der Lage die
+\gls{http}\hyp{}Status\hyp{}Codes in einer Tabelle anzuzeigen, sowie
+mehrere \emph{Blackbox Exporter} zeitgleich anzuzeigen (siehe
+\autoref{fig:grafanadashboardfinal}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/grafana_dashboard_final.png}
+    \caption{Neues Dashboard mit mehreren Blackbox
+    Exportern}\label{fig:grafanadashboardfinal}
+\end{figure}
+
+
 \chapter{Fazit}
 \nocite{*}
 \printbibliography{}
