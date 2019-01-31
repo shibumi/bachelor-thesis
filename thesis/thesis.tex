@@ -2196,6 +2196,24 @@ mehrere \emph{Blackbox Exporter} zeitgleich anzuzeigen (siehe
     \caption{Neues Dashboard mit mehreren Blackbox
     Exportern}\label{fig:grafanadashboardfinal}
 \end{figure}
+Um einen fließenden Übergang von der Test\hyp{}Infrastruktur, bestehend
+aus virtuellen Maschinen, zu einer Infrastruktur aus echter Hardware zu
+gewerkstelligen wird \emph{Ansible} verwendet. Als Grundlage dafür
+dienen die \emph{Ansible}\hyp{}Repositories der Community \emph{Cloud
+Alchemy}. \emph{Cloud Alchemy} ist eine kleine Gruppe aus
+Open\hyp{}Source\hyp{}Entwicklern, welche \emph{Ansible}\hyp{}Rollen
+entwickeln. Diese Rollen können in \emph{Ansible} eingebunden
+werden. Für die Test\emph{}Infrastruktur und das anschließende
+Deployment werden folgende Rollen von \emph{Cloud Alchemy} verwendet:
+\begin{description}
+    \item[cloudalchemy.alertmanager] für den \emph{Prometheus Alertmanager}
+    \item[cloudalchemy.blackbox-exporter] für den \emph{Prometheus Blackbox Exporter}
+    \item[cloudalchemy.grafana] für das Dashboard \emph{Grafana}
+    \item[cloudalchemy.node-exporter] für den \emph{Prometheus Node Exporter}
+    \item[cloudalchemy.prometheus] für \emph{Prometheus}
+\end{description}
+Außerdem muss auf den einzelnen Knoten Zeit\hyp{}Synchronisation via \gls{ntp} aktiviert werden.
+Dies erfolgt über die \emph{Ansible}\hyp{}Rolle \emph{ntp}.
 
 
 \chapter{Fazit}
