@@ -2203,7 +2203,7 @@ dienen die \emph{Ansible}\hyp{}Repositories der Community \emph{Cloud
 Alchemy}. \emph{Cloud Alchemy} ist eine kleine Gruppe aus
 Open\hyp{}Source\hyp{}Entwicklern, welche \emph{Ansible}\hyp{}Rollen
 entwickeln. Diese Rollen können in \emph{Ansible} eingebunden
-werden. Für die Test\emph{}Infrastruktur und das anschließende
+werden. Für die Test\hyp{}Infrastruktur und das anschließende
 Deployment werden folgende Rollen von \emph{Cloud Alchemy} verwendet:
 \begin{description}
     \item[cloudalchemy.alertmanager] für den \emph{Prometheus Alertmanager}
@@ -2213,7 +2213,31 @@ Deployment werden folgende Rollen von \emph{Cloud Alchemy} verwendet:
     \item[cloudalchemy.prometheus] für \emph{Prometheus}
 \end{description}
 Außerdem muss auf den einzelnen Knoten Zeit\hyp{}Synchronisation via \gls{ntp} aktiviert werden.
-Dies erfolgt über die \emph{Ansible}\hyp{}Rolle \emph{ntp}.
+Dies erfolgt über die \emph{Ansible}\hyp{}Rolle \emph{ntp}. Eine weitere
+Voraussetzung für das Deployment via \emph{Ansible} ist die Gegenwart
+von \emph{Python} auf den Zielsystemen. Die Installation von
+\emph{Python} geschieht ebenfalls durch \emph{Ansible} durch die
+Verwendung des \emph{raw}\hyp{}Moduls, welches Kommandos direkt via
+\gls{ssh} an die Zielsysteme weiterleitet. Dazu wird der Inhalt aus
+\autoref{lst:ansibleraw} in einem \emph{Ansible}\hyp{Playbook} als
+Erstes ausgeführt. Die Option \emph{gather\_facts} ist abgeschaltet, da
+diese \emph{Python} benötigen würde. Die Option dient zur automatischen
+Erkennung von Systemen und dessen Zusammensetzung, im
+\emph{Ansible}\hyp{}Umfeld \emph{facts} genannt.
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[caption={Installation von Python via Ansible
+raw-Modul},label={lst:ansibleraw}]
+---
+- name: Install python
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Install python
+    raw: "sudo apt update && sudo apt install -y python"
+\end{lstlisting}
+\end{minipage}
+
 
 
 \chapter{Fazit}
