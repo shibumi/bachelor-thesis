@@ -2159,9 +2159,10 @@ rote Nummern eingefügt, welche in diesem Absatz näher erläutert werden
     Statistiken}\label{fig:grafanadashboard}
 \end{figure}
 \section{Einsatz im Rechenzentrum}
+\subsection{Vorbereitungen}
 Für den Einsatz im Rechenzentrum wurden die Tests noch um einen weiteren
 Knoten erweitert. Die Test\hyp{}Infrastruktur, welche aus virtuellen
-Maschinen besteht, besteht nun aus insgesamt drei Knoten. Einem Knoten
+Maschinen besteht, besteht aus insgesamt drei Knoten. Einem Knoten
 für \emph{Prometheus} und \emph{Grafana}, sowie zwei Knoten für
 \emph{Node Exporter} und \emph{Blackbox Exporter}. Die Vagrantfile wurde
 dementsprechend angepasst (siehe \autoref{lst:vagrantfile2}).
@@ -2198,7 +2199,7 @@ mehrere \emph{Blackbox Exporter} zeitgleich anzuzeigen (siehe
 \end{figure}
 Um einen fließenden Übergang von der Test\hyp{}Infrastruktur, bestehend
 aus virtuellen Maschinen, zu einer Infrastruktur aus echter Hardware zu
-gewerkstelligen wird \emph{Ansible} verwendet. Als Grundlage dafür
+bewerkstelligen wird \emph{Ansible} verwendet. Als Grundlage dafür
 dienen die \emph{Ansible}\hyp{}Repositories der Community \emph{Cloud
 Alchemy}. \emph{Cloud Alchemy} ist eine kleine Gruppe aus
 Open\hyp{}Source\hyp{}Entwicklern, welche \emph{Ansible}\hyp{}Rollen
@@ -2237,6 +2238,24 @@ raw-Modul},label={lst:ansibleraw}]
     raw: "sudo apt update && sudo apt install -y python"
 \end{lstlisting}
 \end{minipage}
+\subsection{Deployment}
+Um auf einen Sperrvermerk für diese Bachelorarbeit verzichten zu können
+werden keine internen \gls{ip}\hyp{}Adressen und Hostnamen des
+Universitätsnetzes genannt.  Für das Deployment im Rechenzentrum wurde
+eine virtuelle Maschine in der \emph{VMWare}\hyp{}Umgebung angefordert.
+Diese virtuelle Maschine wird nachträglich \emph{puppetmaster} (Deutsch:
+Puppenspieler) genannt. Auf \emph{puppetmaster}  werden
+\emph{Prometheus}, \emph{Alertmanager}, \emph{Node Exporter} und
+\emph{Grafana} via \emph{Ansible} installiert und konfiguriert. Auf dem
+Einplatinenrechner \emph{Odroid} werden \emph{Node Exporter} und
+\emph{Blackbox Exporter} via \emph{Ansible} installiert und
+konfiguriert. Aus Kostengründen ist zum jetzigen Zeitpunkt nur ein
+Einplatinenrechner als Messpunkt geplant. Der Einplatinenrechner kann
+dank dem Einsatz von \gls{dhcp} und \gls{vlan} mobil im
+Universitätscampus eingesetzt werden. Dies bedeutet, egal an welche
+\gls{lan}\hyp{}Buchse der Einplatinenrechner gesteckt wird, der
+Einplatinenrechner bekommt immer die selbe \gls{ip}\hyp{}Adresse.
+
 
 
 
