@@ -39,7 +39,7 @@ Campus der TU Clausthal}
 Rechenzentrum\\
 Matrikelnummer: 432108 \\
 Studiengang: Informatik (Bachelor) \\
-Email: Christian.Rebischke@tu-clausthal.de}
+E-Mail: Christian.Rebischke@tu-clausthal.de}
 \begin{document}
 \maketitle
 \chapter*{Danksagung}
@@ -51,7 +51,7 @@ rer. nat. habil. Harald Richter für die Unterstützung aus akademischer
 Seite. Besonderen Dank bekommt von mir auch die
 Opensource\hyp{}Gemeinschaft.  Ohne die harte Arbeit der
 Opensource\hyp{}Gemeinschaft würden die grundlegenden Werkzeuge, die
-ich zur Vollendung dieser Bachelor-Arbeit benutzt habe, nicht
+ich zur Vollendung dieser Bachelorarbeit benutzt habe, nicht
 existieren. Besonders hilfreich waren das Softwarepaket \LaTeX{} und die
 Zeichensoftware \emph{Draw IO} (\url{https://www.draw.io/}).
 \chapter*{Eidesstattliche Erklärung}
@@ -62,7 +62,7 @@ Sinn nach anderen gedruckten oder im Internet verfügbaren Werken
 entnommen sind, habe ich durch genaue Quellenangaben kenntlich gemacht.
 Außerdem wurde diese Arbeit in gleicher oder ähnlicher Form noch keiner
 anderen Prüfungsstelle im Sinne von \S 11 Absatz 5 lit. b) der
-Allgemeinen Prüfungsordnung vorgelegt.
+allgemeinen Prüfungsordnung vorgelegt.
 \\
 \\
 Clausthal-Zellerfeld, der \today
@@ -71,7 +71,7 @@ Clausthal-Zellerfeld, der \today
 Christian Rebischke
 \chapter*{Sperrvermerk}
 Hiermit erkläre ich mich damit einverstanden, dass meine Bachelorarbeit
- in der Instituts- und/oder der Universitätsbibliothek ausgelegt
+in der Instituts- und/oder der Universitätsbibliothek ausgelegt
 und zur Einsichtnahme aufbewahrt werden darf.
 \\
 \\
@@ -106,7 +106,7 @@ sowie auch die Vernetzung zwischen der \gls{tuc}
 und anderen Universitäten weltweit. Dementsprechend wichtig ist ein
 stabiles Netz für den täglichen Betrieb. In dieser Bachelorarbeit widme
 ich mich deshalb der technischen Umsetzung eines verteilten
-Monitoring-Systems zur Überwachung der Netzwerkqualität zwischen
+Monitoring\hyp{}Systems zur Überwachung der Netzwerkqualität zwischen
 einzelnen Endpunkten und Kernsystemen, die für einen problemlosen
 Netzbetrieb nötig sind. Das Rechenzentrum der \gls{tuc} dient bei dieser
 Bachelorarbeit als Auftraggeber.
@@ -117,14 +117,14 @@ selbst, wie beispielsweise das \gls{efzn} in Goslar. Dementsprechend
 schwierig gestaltet sich die Wartung und der Betrieb
 des Netzes. So kann auf Netzeinbrüche etwa nur reaktiv
 nach Meldung des Problems reagiert werden. Es existiert
-zwar ein Monitoring-System, welches die Verfügbarkeit von
+zwar ein Monitoring\hyp{}System, welches die Verfügbarkeit von
 einzelnen Diensten überprüft, jedoch erfolgt diese Messung
 von einem Punkt aus und gibt binäre Statuswerte
 zurück (Dienst läuft oder Dienst läuft nicht). Dementsprechend
 fehlen Informationen um die Verfügbarkeit von Diensten und
 deren vollständige Funktion von mehreren Messpunkten aus
 zu garantieren. Beispielsweise ist es möglich, dass ein Dienst
-zwar vom zentralen Monitoring-Server aus erreichbar ist, aber
+zwar vom zentralen Monitoring\hyp{}Server aus erreichbar ist, aber
 aus einem einzelnen Institut der Zugriff auf den Dienst nur
 eingeschränkt oder sogar gar nicht möglich ist. Das Rechenzentrum der
 \gls{tuc} bietet mehrere Kerndienste an. Dazu
@@ -149,8 +149,8 @@ Rechenzentrum, Feldgraben und Tannenhöhe verteilt sind.
 der \gls{tuc} dar und leiten den Datenverkehr zwischen den einzelnen am
 Netz angeschlossenen Geräten. Sie trennen außerdem das Netz in logische
 Abschnitte. Zu sehen ist ebenfalls das aktuell existierende
-Monitoring-System, welches einzelne Kerndienste überwacht. Diese
-Kerndienste und das aktuelle Monitoring-System sind im Rechenzentrum
+Monitoring\hyp{}System, welches einzelne Kerndienste überwacht. Diese
+Kerndienste und das aktuelle Monitoring\hyp{}System sind im Rechenzentrum
 beheimatet. Dadurch entsteht eine physikalische und auch logische Nähe
 der Systeme. Durch diese Nähe verlässt der Datenverkehr, welcher die
 Kerndienste überprüft, niemals die LANs des Rechenzentrum. Dies führt dazu, dass
@@ -175,19 +175,19 @@ das es ermöglicht, die Erreichbarkeit einzelner Dienste periodisch und
 über einen längeren Zeitraum zu beobachten (siehe \autoref{fig:problemloesung}). Dies
 hätte mehrere Vorteile: Zum einen ließe sich so der Zustand des
 Campus-Netzwerks besser erfassen, da Tests nicht nur von einem zentralen
-Monitoring-System aus gestartet werden. Zum anderen können die
+Monitoring\hyp{}System aus gestartet werden. Zum anderen können die
 gewonnenen Daten weiter verwertet, grafisch aufbereitet und zum Beispiel
 für die Erstellung von Langzeitstatistiken über die Gesundheit des
 Netzwerks genutzt werden. Der Zustand des Netzwerkes wird somit als
 Funktion der Zeit angesehen. Weiterhin könnten im Fall eines Ausfalls die
 zuständigen Netzadministratoren benachrichtigt werden, im Idealfall
-durch gewohnte Kommunikationswege wie Email, aber auch durch neue
+durch gewohnte Kommunikationswege wie E\hyp{}mail, aber auch durch neue
 Kommunikationswege wie in etwa das Absetzen von Tweets oder
 Chatnachrichten (beispielsweise an den Chat\hyp{}Server der \gls{tuc}:
 \url{https://chat.rz.tu-clausthal.de}). Außerdem wäre es durch
 einen dezentralen Aufbau einfacher, das System beliebig zu skalieren
 und auf Wachstum und Schrumpfen des Netzes zu reagieren. Mit dem Wandel
-von einem zentralen zu einem dezentralen Monitoring-System entsteht
+von einem zentralen zu einem dezentralen Monitoring\hyp{}System entsteht
 allerdings auch mehr Arbeitsaufwand, denn auch diese Systeme müssen
 gewartet werden. Dies umfasst das Verwalten von Konfigurationsdateien,
 das Aktualisieren und Installieren von Software und die Installation des
@@ -199,7 +199,7 @@ Herausforderungen an diese Arbeit ableiten:
           als verteilter Messpunkt eignen oder diese durch den Einsatz
           von neuer Hardware im Campusnetz platziert werden.
     \item Es muss eine Software\hyp{}Plattform gebaut oder eine
-          vorhandene Software\hyp{}Plattform erweitert werden, so dass
+          vorhandene Software\hyp{}Plattform erweitert werden, sodass
           sie den Anforderungen bezüglich Monitoring aus der
           Problemstellung gerecht wird.
     \item Es muss ein Modell für die gespeicherten Daten gefunden
@@ -248,7 +248,7 @@ zeigt eine solche Verbindung mehrerer \emph{offener Systeme}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/open_systems.pdf}
-    \caption{Stark Vereinfachte Darstellung der Assoziationen verschiedenener offener
+    \caption{Stark vereinfachte Darstellung der Assoziationen verschiedenener offener
     Systeme mit diversen Anwendungen über ein physisches Medium.}\label{fig:opensystems}
 \end{figure}
 Innerhalb eines dieser \emph{offener Systeme} sind sieben
@@ -259,7 +259,7 @@ die beiden untersten Schichten durchlaufen, die Bitübertragungsschicht
 für den Transport der Bits und die Sicherungsschicht für den Zugriff auf
 den Bittransport.
 \autoref{fig:osi} listet alle sieben Schichten, deren Protokolle,
-Einheiten und Einordnung auf. Die Funktionsweise des \gls{osi} lässt
+Einheiten und Einordnung auf. Die Funktionsweise des \gls{osi}s lässt
 sich am besten durch ein kurzes Beispiel erklären:
 
 Es wird angenommen, dass von einem Laptop eine Website aufgerufen wird.
@@ -371,7 +371,7 @@ existiert, wird der nächsthöhere \gls{dns}\hyp{}Server gefragt. An
 oberster Stelle steht ein \emph{Root Nameserver
 Cluster}\cite{ROOTNAMESERVER}. Die \emph{Root
 Name Server} kennen die Namen und \gls{ip}\hyp{}Adressen aller
-\emph{Name Server} die für die \gls{tld} verantwortlich sind.
+\emph{Name Server}, die für die \gls{tld} verantwortlich sind.
 \emph{Resolver} übernehmen die Rolle des Clients, sie senden
 \gls{dns}\hyp{}Anfragen an \emph{Name Server}. Diese
 Anfragen erfolgen in den meisten Fällen über das \gls{udp} an den Zielport
@@ -390,7 +390,7 @@ zu machen, unterstreicht dessen Wichtigkeit für das Internet. Ohne
 Webbrowser oder Mailclient beispielsweise erzeugt diverse
 Namensauflösungen durch den lokalen Resolver. Ist nur
 eine dieser Anfragen fehlerhaft oder stark verzögert ist das für den
-Nutzer augenblicklich zu merken. Im Fall von fehlerhaften Anfragen, wäre
+Nutzer augenblicklich zu merken. Im Fall von fehlerhaften Anfragen wäre
 eine Auflösung der Domain nicht möglich und eine Verbindung zu der
 assoziierten \gls{ip}\hyp{}Adresse würde fehlschlagen. Der Webbrowser
 würde in diesem Fall einen Fehlerbildschirm anzeigen.
@@ -409,7 +409,7 @@ bezahlten Arbeitszeit und damit zu einer geringeren Produktivität.
 \section{\glsfirst{http}}
 \glsfirst{http} ist ein auf \gls{tcp}/\gls{ip} aufbauendes
 Datenübertragungsprotokoll, welches in der Andwendungsschicht des
-\gls{osi} operiert. Der am meisten verbreiteste Anwendungszweck für das
+\gls{osi}s operiert. Der am meisten verbreiteste Anwendungszweck für das
 Protokoll ist das Ausliefern von Webseiten über Port 80. \gls{http}
 wurde erstmals im Jahre 1996 als \gls{rfc} 1945 spezifiziert, nachdem 
 es bereits fast sechs Jahre im Internet im Einsatz gewesen
@@ -433,7 +433,7 @@ Zur Interaktion mit dem Server besitzt \gls{http} mehrere Methoden. Die häufigs
         kommen. Die Antwort auf einen \textbf{GET}\hyp{}Aufruf
         beinhaltet den Header und den Body des
         \gls{http}\hyp{}Response\cite[Siehe Section 9.3]{RFC2616}.
-    \item[POST] wird benutzt um Informationen an den Server zu senden.
+    \item[POST] wird benutzt, um Informationen an den Server zu senden.
         Diese Informationen werden im \gls{http}\hyp{}Header als
         Schlüssel\hyp{}Wert\hyp{}Paare übermittelt\cite[Siehe Section
         9.5]{RFC2616}. Dies eignet sich besonders für kritische Informationen, wie zum Beispiel
@@ -462,9 +462,9 @@ Index der Seite \emph{tu-clausthal.de} (siehe Zeile 6) anfragt. Zeile 7
 welche Mediatypen in einer Antwort erlaubt sind\cite{RFC2616}. Ab Zeile
 10 beginnt der \gls{http}\hyp{}Response des  Servers. Dort werden Protokoll und die
 Version nochmal bestätigt und in diesem Beispiel ein Statuscode
-hinzugefügt (301 weist daraufhin, dass der Inhalt der Seite verschoben
+hinzugefügt (301 weist darauf hin, dass der Inhalt der Seite verschoben
 worden ist und an einem neuen Ort liegt (siehe Zeile 13)). Dazu wird auf
-einen neuen \gls{url} verwiesen. Die \gls{url} dient als Pfadangabe zur
+eine neue \gls{url} verwiesen. Die \gls{url} dient als Pfadangabe zur
 gewünschten Web\hyp{}Ressource oder Datei. Bei \gls{http} haben diese
 Pfadangaben den Präfix \emph{http://}. Zeile 11 gibt
 das aktuelle Datum, die Uhrzeit und die Zeitzone an und Zeile 12 die
@@ -541,7 +541,7 @@ und vergleicht so das signierte Zertifikat des Servers mit allen
 gespeicherten Zertifizierungsstellen. Wurden keine Mängel
 festgestellt, beispielsweise ein abgelaufenes Zertifikat oder eine
 fremde Zertifizierungsstelle, geht der Client davon aus, dass der Server
-die Identität besitzt, die er vorgibt zu haben. Dies ist in so fern
+die Identität besitzt, die er vorgibt zu haben. Dies ist insofern
 problematisch, als in der Vergangenheit wiederholt bei
 Zertifizierungsstellen eingebrochen worden ist und private Schlüssel zum
 Signieren von gültigen Zertifikaten gestohlen worden
@@ -555,7 +555,7 @@ erzeugt, dieser wird mit dem öffentlichen Schlüssel des Servers
 verschlüsselt und das Ergebnis an den Server übermittelt. Der Server entschlüsselt den
 symmetrischen Schlüssel unter Zuhilfenahme seines privaten Schlüssels.
 Damit ist eine sichere Verbindung aufgebaut und der Client und der Server
-sind in der Lage, sich mit Hilfe des symmetrischen Schlüssels
+sind in der Lage, sich mithilfe des symmetrischen Schlüssels
 verschlüsselte Nachrichten zu senden. Beim
 Diffie\hyp{}Hellman\hyp{}Handshake dagegen werden die öffentlichen
 Schlüssel beider Gesprächspartner ausgetauscht und mit dem jeweiligen im
@@ -652,7 +652,7 @@ folgende Schlüsselwörter zum Kennzeichnen für Anforderungen nach
         Anforderungen, welche aus nachvollziehbaren Gründen nicht
         implementiert werden.
     \item[SOLL NICHT] ist gleichbedeutend zu \textbf{NICHT EMPFOHLEN}
-        und beschreibt Anforderungen die nicht erfüllt werden sollten,
+        und beschreibt Anforderungen, die nicht erfüllt werden sollten,
         wenn man sie vermeiden kann.
     \item[KANN] ist eine Anforderung die implementiert werden
         \textbf{KANN}. Diese Art von Anforderungen sind
@@ -699,7 +699,7 @@ Schweizer Firma Adfinis SyGroup AG gestützt\cite{RFC2119DE}.
 	\multicolumn{2}{p{\textwidth-\tabcolsep}}{%
     Die Software \textbf{SOLL} die Zeit messen können, die
     zwischen einer \gls{cifs}-Abfrage und der Antwort von einem
-    \gls{cifs}-Server vergeht.}\\\bottomrule
+    \gls{cifs}\hyp{}Server vergeht.}\\\bottomrule
 \end{tabular}
     \captionof{table}{Funktionale Anforderung FA4}\label{table:FA4}
 \end{center}
@@ -921,7 +921,7 @@ Fällen handelt es sich bei NoSQL\hyp{}Datenbanken um einfache
 Key\hyp{}Value\hyp{}Stores. Key\hyp{}Value\hyp{}Stores sind Ansammlungen
 von Daten in n\hyp{}Tupeln mit einem Schlüssel und einem oder mehrerer
 Werte. Sie ähneln
-demnach also einem Wörterbuch  Meist sind diese Ansammlungen von Tupeln
+demnach also einem Wörterbuch. Meist sind diese Ansammlungen von Tupeln
 in großen Binärdateien (\gls{blob}) oder sogar in einfachen Textdateien
 gespeichert. Ein Beispiel für eine Key\hyp{}Value\hyp{}Datenbank ist
 \emph{Dynamo} von der Firma \emph{Amazon}. Doch NoSQL\hyp{}Datenbanken
@@ -937,10 +937,10 @@ besonders beliebt als Datenbank für Wetterdaten,
 Aktienhandelsdaten, Messdaten oder sonstige Daten die abhängig von der
 Zeit und in besonders großen Mengen gespeichert werden sollen. Beispiele
 für \glspl{tsdb} sind \emph{InfluxDB} und die \gls{tsdb} im
-Monitoring-System \emph{Prometheus}. Trotz dieser Kategorisierungen
+Monitoring\hyp{}System \emph{Prometheus}. Trotz dieser Kategorisierungen
 haben NoSQL\hyp{}Datenbanken mehrere gemeinsame Eigenschaften.
 Beispielsweise verzichten NoSQL\hyp{}Datenbanken auf Eigenschaften von
-relationalen Datenbanken um die Skalierbarkeit zu erhöhen\cite[S. 13]{TSDB}. Dadurch sind
+relationalen Datenbanken, um die Skalierbarkeit zu erhöhen\cite[S. 13]{TSDB}. Dadurch sind
 NoSQL\hyp{}Datenbanken simpler aufgebaut und haben weniger Ansprüche an
 die gespeicherten Daten. Es müssen keine Datentypen eingehalten oder
 sonstige Relationen zwischen Daten gewährleistet werden, insbesondere
@@ -988,7 +988,7 @@ Folgende \gls{tsdb}\hyp{}Implementierungen stehen zur näheren Auswahl:
     \item \emph{OpenTSDB}\cite{OPENTSDB}
     \item \emph{Prometheus}\cite{PROMETHEUS}
 \end{itemize}
-\emph{InfluxDB} und \emph{OpenTSDB} sind beides Vertreter von
+\emph{InfluxDB} und \emph{OpenTSDB} sind Vertreter von
 einer \gls{tsdb} und vielseitig einsetzbar. Interessant für dieses
 Projekt ist jedoch \emph{Prometheus}. \emph{Prometheus} beschränkt sich
 auf Monitoringdaten und erweitert eine \gls{tsdb} um ein ganzes
@@ -1229,7 +1229,7 @@ einem Key\hyp{}Value\hyp{}Store (siehe auch
 \autoref{lst:prometheusdataformat}). Innerhalb eines \emph{Instant Vectors}
 lassen sich reguläre Ausdrücke (Regex) anwenden. Ein regulärer Ausdruck ist
 eine Zeichenkette, die der Beschreibung von Mengen von anderen Zeichenketten
-mit Hilfe syntaktischer Regeln dient\cite{REGEXWIKI}. Für reguläre Ausdrücke
+mithilfe syntaktischer Regeln dient\cite{REGEXWIKI}. Für reguläre Ausdrücke
 verwendet \emph{PromQL} die von der Firma \emph{Google} entwickelte Bibliothek
 \emph{RE2}\cite{RE2}. Wird dieser \emph{Instant Vector} um einen \emph{Range
 Selector} erweitert, handelt es sich um einen \emph{Range Vector}. Ein
@@ -1365,7 +1365,7 @@ Konfigurationsdateien, Aufgaben, Datenstrukturen für die Templates und
 Templates. Dabei bedient sich \emph{Ansible} bei Synonymen aus der
 Filmbranche, um den Einstieg in das Werkzeug zu erleichtern.
 \emph{Playbooks} (Deutsch: Drehbücher) werden verwendet, um einzelnen
-Hosts \emph{Roles} (Deutsch: Rollen) zu zuweisen. Die nötigen Daten zum
+Hosts \emph{Roles} (Deutsch: Rollen) zuzuweisen. Die nötigen Daten zum
 Abspielen dieser Rollen befinden sich im \emph{Inventory} (Deutsch:
 Inventar), zu dem die Hosts ebenfalls gehören. 
 \autoref{lst:ansiblestructure} zeigt die Organisationsstruktur eines
@@ -1444,7 +1444,7 @@ Diesem Modul werden eine Anzahl von Parametern übergeben. In diesem Fall
 ein Pfad auf einem Linux\hyp{}System, der gewollte Zustand
 \emph{directory} sowie ein Besitzer, eine Gruppe und eine Konfiguration
 der Dateiberechtigung. \emph{0700} bedeutet volle
-Lese\hyp{},Schreib\hyp{} und Ausführrechte für den Besitzer der Datei
+Lese\hyp{}, Schreib\hyp{} und Ausführrechte für den Besitzer der Datei
 oder des Ordners. Dem zur Folge erstellt diese Zeile einen Ordner mit
 den im vorherigen Satz erwähnten Dateirechten und dem Besitzer
 \emph{root}. Das \emph{template}\hyp{}Modul hingegen liest ein lokales
@@ -1541,28 +1541,28 @@ Der \emph{Raspberry Pi 3B+} hat die folgenden Spezifikationen\cite{RASPI}:
 \begin{itemize}
     \item CPU: Broadcom BCM2837B0 quad-core A53 (ARMv8) 64-bit @ 1.4GHz
     \item GPU: Broadcom Videocore-IV
-    \item RAM: 1GB LPDDR2 SDRAM
+    \item RAM: 1 GB LPDDR2 SDRAM
     \item Netzwerk: Gigabit Ethernet (via USB channel), 2.4GHz and 5GHz 802.11b/g/n/ac Wi-Fi
     \item Bluetooth: Bluetooth 4.2, Bluetooth Low Energy (BLE)
     \item Speicher: Micro-SD
     \item GPIO: 40-pin GPIO header
-    \item Anschlüsse: HDMI, 3.5mm analogue audio-video jack, 4x USB 2.0, Ethernet, Camera Serial Interface
+    \item Anschlüsse: HDMI, 3.5 mm analogue audio-video jack, 4x USB 2.0, Ethernet, Camera Serial Interface
         (CSI), Display Serial Interface (DSI)
-    \item Dimensionen: 82mm x 56mm x 19.5mm, 50g Gewicht
-    \item Preis: 32.88 Britische Pfund\cite{RASPI_PRICE} (\EUR{36.45} Stand: 2018-09-03)
+    \item Dimensionen: 82 mm x 56 mm x 19.5 mm, 50g Gewicht
+    \item Preis: 32.88 britische Pfund\cite{RASPI_PRICE} (\EUR{36.45} Stand: 2018-09-03)
 \end{itemize}
 Im Gegenzug dazu die \emph{Odroid XU4} Spezifikationen\cite{ODROID}:
 \begin{itemize}
     \item CPU: Samsung Exynos5422 Cortex™-A15 2Ghz and Cortex™-A7 Octa core CPUs
     \item GPU: Mali-T628 MP6(OpenGL ES 3.1/2.0/1.1 and OpenCL 1.2 Full profile)
-    \item RAM: 2Gbyte LPDDR3 RAM PoP stacked
+    \item RAM: 2 GB LPDDR3 RAM PoP stacked
     \item Netzwerk: Gigabit Ethernet, kein WLAN
     \item Bluetooth: nicht vorhanden
     \item Speicher: Micro-SD
     \item GPIO: 30-pin GPIO header\cite{ODROID_GPIO}
     \item Anschlüsse: 2x USB 3.0, 1x USB 2.0, HDMI 1.4a
-    \item Dimensionen: 83mm x 58mm x 20 mm
-    \item Preis: 59 US Dollar\cite{ODROID_PRICE} (\EUR{50,80} Stand: 2018-09-03)
+    \item Dimensionen: 83 mm x 58 mm x 20 mm
+    \item Preis: 59 US\hyp{}Dollar\cite{ODROID_PRICE} (\EUR{50,80} Stand: 2018-09-03)
 \end{itemize}
 Der \emph{Raspberry Pi 3B+} überzeugt zwar durch einen niedrigeren
 Preis, jedoch ist es für den \emph{Raspberry Pi 3B+} unmöglich die
@@ -1666,7 +1666,7 @@ Linux\hyp{}Distributionen zu ziehen. Dies beschleunigt den
 Entwicklungsprozess ungemein, da der Entwickler sich voll auf die
 Anwendung konzentrieren kann und seine Zeit nicht mit dem Installieren
 von Betriebssystemen verschwendet. \autoref{lst:vagrantfile} zeigt
-die Datei namens \emph{Vagrantfile} zum erzeugen der Test\hyp{} und
+die Datei namens \emph{Vagrantfile} zum Erzeugen der Test\hyp{} und
 Entwicklungsumgebung. In Zeile 1 wird eine For\hyp{}Schleife erzeugt,
 welche 2 virtuelle Maschinen erzeugt. Die erste virtuelle Maschine trägt
 den Namen \emph{puppetmaster} (Zeile 2) und wird mit einem \emph{Ubuntu
@@ -1809,7 +1809,7 @@ und mit einem Kommentar des Autors versehen. \emph{git push} sendet die
 den Entwicklungsverlauf an. Es werden alle Änderungen mit
 zusätzlichen Metadaten erfasst. Diese Metadaten beinhalten: die eindeutige
 Nummer der Änderung, den Entwicklungszweig, den Namen des Autors und
-seine Email\hyp{}Adresse, einen Zeitstempel und einen Kommentar zu der
+seine E\hyp{}mail\hyp{}Adresse, einen Zeitstempel und einen Kommentar zu der
 Änderung.
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Beispiele für die Verwendung des
@@ -1836,8 +1836,8 @@ Funktion erweitert wird auch \gls{cifs} zu überwachen (Siehe
 \hyperref[table:mapping1]{Funktionale Anforderung 4}). Um diese Funktion
 zu implementieren wird auf einige Funktionen des Linux Kernels
 zurückgegriffen, dadurch ist die Erweiterung um \gls{cifs} für
-\emph{Prometheus} nur auf Linux Systemen lauffähig. Dda alle Systeme in
-dieser Bachelorarbeit sowieso Linux basiert sind ist dieser Umstand
+\emph{Prometheus} nur auf Linux Systemen lauffähig. Da alle Systeme in
+dieser Bachelorarbeit sowieso Linux basiert sind, ist dieser Umstand
 hinnehmbar. Eine Unterstützung aller gängigen Betriebssysteme würde den
 Zeitrahmen dieser Bachelorarbeit sprengen. Für die \gls{cifs}
 Unterstützung wird auf das virtuelle Dateisystem \path{/proc} des Linux
@@ -2011,8 +2011,8 @@ allgemeinen Statistiken im Header der \path{/proc/fs/cifs/stats} Datei.
 Die regulären Ausdrücke sind als Liste namens \emph{regexpHeaders}
 organisiert. Pro Zeile im Header der \path{/proc/fs/cifs/stats} Datei
 existiert ein Element in der Liste mit dem passenden regulären Ausdruck
-dazu. Der reguläre Ausdruck ist so gebaut, dass nur der jeweilige Werte
-in jeder Zeile extrahiert wird. Diese Werte sind positive ganze Zahlen.
+dazu. Der reguläre Ausdruck ist so gebaut, dass nur die jeweiligen Werte
+in jeder Zeile extrahiert werden. Diese Werte sind positive ganze Zahlen.
 \autoref{lst:parserheader} zeigt die dazugehörige Methode
 \emph{parseHeader}, welche eine Zeile der eingelesenen Datei und eine
 Hashmap als Argumente übergeben bekommt. In Zeile 4 wird über die Liste
@@ -2031,7 +2031,7 @@ erreichen die Daten über den \emph{Node Exporter} schließlich
 \emph{Grafana} zur Darstellung übermittelt. Der vollständige
 Programmcode ist selbstverständlich dieser Bachelorarbeit beigefügt und
 wird zum Zeitpunkt des Schreibens dieser Arbeit noch vom
-\emph{Prometheus} Team überprüft, so dass der Programmcode bald
+\emph{Prometheus} Team überprüft, sodass der Programmcode bald
 in die offiziellen \emph{Prometheus} Komponenten eingebaut werden kann.
 Damit stünde der Code einer weltweiten Nutzerbasis zur Verfügung. Der
 \emph{Pull Request}\cite{PRGITHUB}, also die Anfrage den Code in den
@@ -2089,15 +2089,15 @@ Erstellung des \emph{Dashboards} erfolgt durch Klicken und Einfügen von
 \emph{PromQL} Aufrufen auf der Webseite der jeweiligen \emph{Grafana} Instanz.
 Dazu werden in \emph{Grafana} Variablen angelegt über das
 \emph{label\_values} Kommando und filtern von \emph{PromQL} Aufrufen. Ein
-Solcher Befehl ist beispielsweise:
-\emph{label\_values(up,blackbox\_instance)}. Mit diesem Kommando wird der
+solcher Befehl ist beispielsweise:
+\emph{label\_values(up, blackbox\_instance)}. Mit diesem Kommando wird der
 \emph{PromQL} Aufruf \emph{up} mit dem Parameter
 \emph{blackbox\_instance} gefiltert und einer neuen Variable zugewiesen
 (dies geschieht durch Eingabe in der Weboberfläche und ist hier nicht
 dargestellt). \autoref{lst:upquery} zeigt die Rückgabewerte eines
 solchen \emph{up} Aufrufs. Ausgegeben werden alle Informationen und ein
 binärer Rückgabewert (siehe Zeilenende). Der binäre Rückgabewert
-definiert ob die jeweilige Instanz \emph{up}, also eingeschaltet ist,
+definiert, ob die jeweilige Instanz \emph{up}, also eingeschaltet ist,
 oder ausgeschaltet ist. Gezeigt ist außerdem die erwähnte
 \emph{blackbox\_instance} nach, welcher in der \emph{Grafana}
 Weboberfläche gefiltert wird. Demnach wird der in der Weboberfläche
@@ -2149,7 +2149,7 @@ rote Nummern eingefügt, welche in diesem Absatz näher erläutert werden
     \centering
     \includegraphics[width=1.0\textwidth]{figures/grafana_dashboard_numbers.png}
     \caption{Dashboard für die DNS und HTTP beziehungsweise HTTPS
-    Statistiken einschließlich Markierungen für
+    Statistiken, einschließlich Markierungen für
     Kommentare}\label{fig:grafanadashboardnumbers}
 \end{figure}
 \begin{figure}[H]
