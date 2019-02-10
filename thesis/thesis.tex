@@ -2278,7 +2278,7 @@ Performance überprüft (Zeile 28). Im unteren Abschnitt werden ein
 Administrator Benutzer mit Passwort erstellt, sowie definiert mit
 welchen Dashboards \emph{Grafana} konfiguriert werden soll. Die
 Variable \emph{ inventory\_hostname } wird in der Konfiguration via
-\emph{Jinja2} durch in der \emph{Hosts}\hyp{}Datei definierte Hosts
+\emph{Jinja2} durch in der \emph{hosts}\hyp{}Datei definierte Hosts
 ersetzt. \autoref{lst:ansiblehosts} zeigt eine Zuweisung der einzelnen
 Hosts zu Gruppen. Die Verknüpfung zwischen Gruppen, Hosts und Rollen
 findet in einem Playbook statt (siehe
@@ -2290,7 +2290,7 @@ Zeit\hyp{}Synchronisation via \gls{ntp} und installiert die einzelnen
 mit dem Kommando: \emph{ansible-playbook playbooks/monitoring.yml}.
 Durch die Verwendung von \emph{Ansible} können jederzeit weitere Hosts
 hinzugefügt werden oder umkonfiguriert werden. Zum Hinzufügen muss nur
-der Host in der \emph{Hosts}\hyp{}Datei in die jeweilige Gruppe
+der Host in der \emph{hosts}\hyp{}Datei in die jeweilige Gruppe
 angeordnet werden, danach kann das gesamte Playbook via \emph{Ansible}
 erneut abgespielt werden. Durch \emph{Ansibles} Idempotenz werden nur
 Änderungen am neuen Host vorgenommen (sofern kein Host umkonfiguriert
@@ -2371,7 +2371,7 @@ grafana_dashboards:
 \end{lstlisting}
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[caption={Beispielhafte
-Hosts-Konfigurationsdatei},label={lst:ansiblehosts}]
+hosts-Konfigurationsdatei},label={lst:ansiblehosts}]
 [prometheus]
 Puppetmaster
 
@@ -2455,7 +2455,7 @@ des Systems stellen die funktionalen Anforderungen \textbf{FA1}
 funktionalen Anforderungen sind durch den Einsatz des \emph{Prometheus
 Blackbox Exporter} gegeben. Die funktionale Anforderung \textbf{FA4}
 (Überwachung von \gls{cifs}, siehe \autoref{table:FA4}) ist durch die
-Erweiterung des \emph{ProcFS} Quellcodes erfüllt. Eine Speicherung von
+Erweiterung des \emph{procfs} Quellcodes erfüllt. Eine Speicherung von
 Performance\hyp{}Daten in einer Datenbank (\textbf{FA5}, siehe
 \autoref{table:FA5}) ist durch den Einsatz von \emph{Prometheus} und
 dessen \gls{tsdb}\hyp{}Technologie gewährleistet. Die beiden
