@@ -191,8 +191,10 @@ von einem zentralen zu einem dezentralen Monitoring\hyp{}System entsteht
 allerdings auch mehr Arbeitsaufwand, denn auch diese Systeme müssen
 gewartet werden. Dies umfasst das Verwalten von Konfigurationsdateien,
 das Aktualisieren und Installieren von Software und die Installation des
-Grundsystems. Insgesamt lassen sich daraus folgende
-Herausforderungen an diese Arbeit ableiten:
+Grundsystems. Als zentrale Forschungsfrage ergibt sich somit: \emph{Wie
+lassen sich Rechnernetze dezentral und skalierbar überwachen?}
+Insgesamt lassen sich daraus folgende Herausforderungen an diese Arbeit
+ableiten:
 
 \begin{itemize}
     \item Es müssen Server im Campusnetz gefunden werden, welche sich
@@ -209,9 +211,10 @@ Herausforderungen an diese Arbeit ableiten:
           muss um Messpunkte erweiterbar sein.
     \item Das System muss bei wachsendem Komplexitätsgrad und Anzahl von
           Messpunkten steuerbar und kontrollierbar bleiben.
-    \item Das System muss über \gls{tcp}/\gls{ip} basierte Rechnernetze
-          kommunizieren. Dies schließt die Kommunikation über
-          \glspl{vlan} oder \glspl{vxlan} mit ein.
+      \item Das System muss über \gls{tcp}/\gls{ip} oder
+           \gls{udp}/\gls{ip} basierte Rechnernetze
+           kommunizieren. Dies schließt die Kommunikation über logische
+           Teilnetze wie \glspl{vlan} oder \glspl{vxlan} mit ein.
 \end{itemize}
 
 \begin{figure}[H]
@@ -2526,6 +2529,51 @@ anbietet. Das \emph{Prometheus}\hyp{}Projekt bietet mit dem
 \emph{Prometheus} Komponenten mit \emph{Python}
 an\cite{PROMETHEUSPYTHON}.
 \chapter{Fazit und Ausblick}
+Im Zentrum dieser Bachelorarbeit stand die Forschungsfrage: \emph{Wie
+lassen sich Rechnernetze dezentral und skalierbar überwachen?} Diese
+Bachelorarbeit stellt einen Versuch dar, diese Frage zu beantworten. Als
+Forschungsmethode wurde das \emph{Prototyping} gewählt, da durch das
+\emph{Prototyping} es möglich war während der Entwicklung Anreize des
+Rechenzentrums der Technischen Universität Clausthal zu berücksichtigen.
+Außerdem ist durch das \emph{Prototyping} der direkte Einsatz in der
+Praxis ersichtlich. Der im Rahmen dieser Bachelorarbeit erschaffene
+Prototyp, wuchs zu einem komplexen aber überschaubaren System, welches
+in der Lage fast alle an das Projekt gestellten Anforderungen zu
+erfüllen. Dabei wurden modernste Technologien und Standards verwendet,
+welche teilweise ihren Ursprung in der Cloud\hyp{}Technologie
+oder Container\hyp{}Technologie haben. Diese Technologien sind
+von immenser Bedeutung für das heutige Internet und den damit
+verbundenen Firmen. Eine Weiterentwicklung dieses Prototypen durch das
+Rechenzentrum der Technischen Universität Clausthal ist nicht
+auszuschließen. Das System stellt den Grundstein für ein modernes und
+skalierbares Monitoringsystem dar. Die Skalierbarkeit wird durch den
+Einsatz von \emph{Ansible} sichergestellt. Durch den Einsatz von
+\emph{Prometheus} und dessen \emph{Blackbox Exportern} ist es möglich
+verteilt Messpunkte zu schaffen, welche vom jeweiligen Standort aus,
+Messdaten dezentral sammeln. Diese Messdaten werden von
+\emph{Prometheus} abgeholt und von \emph{Grafana} für den Nutzer
+grafisch aufbereitet. Mögliche Verbesserungen wurden in der
+abschließenden Anforderungsanalyse dargelegt. Denkbare weitere
+Verbesserungen für die Zukunft wären die Nutzung von \emph{Prometheus}
+zur Überwachung anderer Dienste, der Einsatz von
+Container\hyp{}Technologien für noch schnelleres Deployment und
+eine Auslegung des Systems auf Hochverfügbarkeit. Eine solche
+Hochverfügbarkeit könnte möglicherweise durch den Einsatz von
+\emph{Kubernetes} und \emph{Openstack} erreicht werden. In dem durch den
+Einsatz von \emph{Openstack} eine Rechenzentrum eigene
+Cloud\hyp{}Infrastruktur aufgebaut wird, welche durch den Einsatz
+von virtuellen Maschinen einen \emph{Kubernetes} basierten
+Container\hyp{}Cluster etabliert. Abschließend möchte ich als Autor ein
+kleines persönliches Fazit vermitteln. Diese Bachelorarbeit vereint
+diverse Module meines Studiums. Ich habe mir nicht nur durch diese
+Arbeit eine neue Programmiersprache (\emph{Golang}) angeeignet, sondern
+auch meine Kenntnisse des \emph{Software Engineering}, der
+Betriebssysteme und der Rechnernetze vertieft. Ebenfalls wurde ein
+tiefer Einblick in aktuelle Technologien wie \emph{Ansible},
+\emph{Prometheus} und \emph{Grafana} gewonnen. Ich bin für diese
+Erkenntnisse äußerst dankbar und hoffe, dass die Technische Universität
+Clausthal ihre Forschungen in Themengebiete wie \emph{Cloud Computing}
+vertiefen wird.
 
 \nocite{*}
 \printbibliography{}
