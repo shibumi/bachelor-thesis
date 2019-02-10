@@ -2440,6 +2440,54 @@ Deployment},label={lst:ansibleplaybookdeployment},basicstyle=\small]
     - grafana
 \end{lstlisting}
 \subsection{Abschließende Anforderungsanalyse}
+Nachfolgend sollen die im Kapitel 4.1 erfassten funktionalen und
+nicht-funktionalen Anforderungen mit dem gebauten Prototypen verglichen
+werden. Anhand dieser abschließenden Analyse lässt sich feststellen, ob
+der Prototyp den Anforderungen gerecht geworden ist und an welchen
+Stellen das System noch verbessert werden kann. Die Kernfunktionalität
+des Systems stellen die funktionalen Anforderungen \textbf{FA1}
+(Überwachung von \gls{dns}, siehe \autoref{table:FA1}), \textbf{FA2}
+(Überwachung von \gls{http}, siehe \autoref{table:FA2}) und \textbf{FA3}
+(Überwachung von \gls{https}, siehe \autoref{table:FA3}) dar. Diese drei
+funktionalen Anforderungen sind durch den Einsatz des \emph{Prometheus
+Blackbox Exporter} gegeben. Die funktionale Anforderung \textbf{FA4}
+(Überwachung von \gls{cifs}, siehe \autoref{table:FA4}) ist durch die
+Erweiterung des \emph{ProcFS} Quellcodes erfüllt. Eine Speicherung von
+Performance\hyp{}Daten in einer Datenbank (\textbf{FA5}, siehe
+\autoref{table:FA5}) ist durch den Einsatz von \emph{Prometheus} und
+dessen \gls{tsdb}\hyp{}Technologie gewährleistet. Die beiden
+funktionalen Anforderungen \textbf{FA6} (Grafische Aufbereitung, siehe
+\autoref{table:FA6}) und \textbf{FA9} (Kontrollierbarkeit, siehe
+\autoref{table:FA7}) sind durch den Einsatz von \emph{Grafana} und
+\emph{Ansible} erfüllt. Die funktionale Anforderung an eine native 1
+Gigabit Ethernet Schnittstelle (\textbf{FA8}, siehe \autoref{table:FA8})
+wird durch den Einsatz des \emph{Odroid}, als Einplatinenrechner,
+eingehalten. Der Einsatz des Einplatinenrechners deckt sich ebenfalls
+mit der nicht\hyp{}funktionalen Anforderung \textbf{NFA2} (Niedrige
+Beschaffungskosten, siehe \autoref{table:NFA2}). Außerdem deckt der
+Einsatz des Konfigurationsmanagement\hyp{}Werkzeugs \emph{Ansible} die
+nicht\hyp{}funktionale \textbf{NFA4} (Horizontale Skalierbarkeit,
+\autoref{table:NFA4}) ab. Übrig bleibt die funktionale Anforderung
+\textbf{FA7} (Bandbreitenmessung, siehe \autoref{table:FA7}) und die
+nicht\hyp{}funktionalen Anforderungen \textbf{NFA3} (Sicherheit, siehe
+\autoref{table:NFA3}) und \textbf{NFA1} (Wahl der Programmiersprache,
+siehe \autoref{table:NFA1}). Eine Bandbreitenmessung ist bedingt durch
+den Einsatz des \emph{Prometheus Node Exporters} möglich. Der
+\emph{Prometheus Node Exporter} ist durch den Einsatz der Metrik
+\emph{node\_network\_transmit\_bytes} in der Lage die übermittelte Anzahl
+der Bytes via Netzwerk zu messen\cite{HEISENODE}. Eine volle Auslastung
+der Netzwerkkarte kann durch den Einsatz von Werkzeugen wie \emph{Iperf}
+erreicht werden. Bei \emph{Iperf} handelt es sich um quelloffene
+Software zum Testen von Rechnernetzen\cite{IPERF}. Das einzige Problem
+stellt eine Automatisierung solcher Tests dar. Möglich wäre auch hier
+eine Automatisierung via \emph{Ansible} oder via \emph{Systemd}
+beziehungsweise \emph{Cronjobs} um die Ausführung auf dem Host
+automatisiert zu einem bestimmten Zeitpunkt zu starten. Um das
+Rechnernetz nicht permanent zu belasten habe ich mich für eine
+Bandbreitenmessung via \emph{Iperf} und \emph{OpenSSH} entschieden. Der
+Administrator loggt sich via \gls{ssh} auf dem Zielsystem ein und führt
+\emph{Iperf} manuell aus. Die Ergebnisse einer solchen Messung wären via
+\emph{Node Exporter} und \emph{Grafana} sichtbar.
 
 
 
