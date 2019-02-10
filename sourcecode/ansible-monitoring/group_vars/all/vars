@@ -60,20 +60,9 @@ prometheus_scrape_configs:
     - target_label: __address__
       replacement: "192.168.33.12:9115"
 
-
-alertmanager_receivers:
-- name: 'rocketchat'
-  webhook_configs:
-  - send_resolved: false
-    url: 'https://chat.rz.tu-clausthal.de/hooks/sCyvZuLWYXG7erK6J/QsE2zGrpwfXrAjMgWD7KQKte3eY4mLAWFW6qKS92hFQ57RoJ'
-alertmanager_route:
-  group_interval: 1m
-  repeat_interval: 1m
-  receiver: 'rocketchat'
-
 grafana_security:
   admin_user: admin
-  admin_password: foobar
+  admin_password: BEISPIELPASSWORT
 
 grafana_datasources:
   - name: "Prometheus"
