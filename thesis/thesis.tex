@@ -46,7 +46,7 @@ E-Mail: Christian.Rebischke@tu-clausthal.de}
 Ich bedanke mich bei dem Rechenzentrum der \gls{tuc}, insbesondere bei
 Dipl.\hyp{}Math. Christian Strauf. Das Thema dieser Bachelorarbeit
 beruht auf seiner Idee und war mein Ansporn, mich mit diesem Thema näher
-auseinanderzusetzen. Desweiteren danke ich Herrn Prof. Dr.\hyp{}Ing. Dr.
+auseinanderzusetzen. Des Weiteren danke ich Herrn Prof. Dr.\hyp{}Ing. Dr.
 rer. nat. habil. Harald Richter für die Unterstützung aus akademischer
 Seite. Besonderen Dank bekommt von mir auch die
 Open Source Gemeinschaft.  Ohne die harte Arbeit der
@@ -85,9 +85,9 @@ Es gibt nun das Internet seit circa 45 Jahren und das \gls{www} seit 24
 Jahren und keine Technologie
 ist über so kurze Zeit so alltäglich geworden. Das Internet hat es
 geschafft, Einzug zu erhalten in Arbeit, Privatleben und auch Forschung
-und Lehre. Nahezu in allen wissenschaftlichen Diszplinen spielt das
+und Lehre. Nahezu in allen wissenschaftlichen Disziplinen spielt das
 Internet und die damit verknüpfte Informationstechnologie eine Rolle.
-Sei es die Industrie 4.0 mit ihren cyber-physischen Systemen, dem
+Sei es die Industrie 4.0 mit ihren cyber\hyp{}physischen Systemen, dem
 schnellen Abgleich von DNA-Informationen über das Netz in der
 angewandten Biologie, dem Sammeln von Krankheitsdaten in der Medizin
 oder das Verarbeiten von Datenmengen gigantischen Ausmaßes im
@@ -281,11 +281,11 @@ welches wiederum über 64 Kilobyte große Pakete des
 des Empfängers und werden in viele Ethernet-Datenrahmen mit einer Länge
 von 1500 Bytes eingebettet (Sicherungsschicht), welche in Form von
 kodierten Bits über ein Netzwerkkabel übertragen werden (Bitübertragungsschicht).
-Dieses Matrjoschka\hyp{}ähnliche Gebilde wird über das physische
+Dieses Matroschka\hyp{}ähnliche Gebilde wird über das physische
 Medium bitseriell versendet und der Empfänger packt es, angefangen bei der
 Bitübertragungsschicht, aufsteigend wieder aus.
 
-\textbf{Anmerkung}: Es handelt sich hierbei um eine starkvereinfachte
+\textbf{Anmerkung}: Es handelt sich hierbei um eine stark vereinfachte
 Darstellung. In der Realität kommen diverse andere Faktoren dazu, wie in
 etwa:
 \begin{itemize}
@@ -302,7 +302,7 @@ etwa:
 \end{figure}
 \section{\glsfirst{dns}}
 Aus Erfahrungen mit dem Internetvorgänger \gls{arpanet} wurde
-abgeleitet, dass ein manuelles Eingeben von \gls{ip}\hyp{}adressen mit
+abgeleitet, dass ein manuelles Eingeben von \gls{ip}\hyp{}Adressen mit
 steigender Anzahl von Knoten im Netzwerk immer unübersichtlicher wurde.
 Hinzukommend sind \gls{ip}\hyp{}Adressen für den Menschen schwer zu
 merken. Mit dieser Problemstellung als Grundlage arbeitete der Ingenieur
@@ -411,7 +411,7 @@ zu Frustration beim Nutzer, sondern auch zu Verschwendung seiner
 bezahlten Arbeitszeit und damit zu einer geringeren Produktivität.
 \section{\glsfirst{http}}
 \glsfirst{http} ist ein auf \gls{tcp}/\gls{ip} aufbauendes
-Datenübertragungsprotokoll, welches in der Andwendungsschicht des
+Datenübertragungsprotokoll, welches in der Anwendungsschicht des
 \gls{osi}s operiert. Der am meisten verbreiteste Anwendungszweck für das
 Protokoll ist das Ausliefern von Webseiten über Port 80. \gls{http}
 wurde erstmals im Jahre 1996 als \gls{rfc} 1945 spezifiziert, nachdem 
@@ -423,7 +423,7 @@ Verschlüsselung, Caching und Authentifikation. Seit 2015 ist die
 aktuelle Version \gls{http}/2, welche in \gls{rfc} 7540 standardisiert
 werden\cite{RFC7540}. \gls{http} ist ein zustandsloses Protokoll,
 dementsprechend werden mehrere Anfragen getrennt voneinander und ohne
-Kontext zu einander bearbeitet. Es wird keine Session aufgebaut und
+Kontext zueinander bearbeitet. Es wird keine Session aufgebaut und
 keine Sitzungsinformationen verwaltet. Persistente Sitzungsinformationen 
 werden durch \emph{Cookies} übertragen. \emph{Cookies} sind im
 \gls{http}\hyp{}Header des \gls{http}\hyp{}Response befindliche
@@ -604,7 +604,7 @@ setzt der \gls{cifs}\hyp{}Server ein \emph{Lock} auf diese Datei und
 lässt nur einen Client in diese Datei schreiben. Der eigentliche
 Transfer der Dateien wird mit \gls{tcp} vor Datenübertragungsfehlern geschützt.
 Die von der \gls{iana} für \gls{cifs} vergebene Portnummer ist:
-445\cite[S. 19]{MSSMB}. Desweiteren hat \gls{tcp} den Vorteil, dass es
+445\cite[S. 19]{MSSMB}. Des Weiteren hat \gls{tcp} den Vorteil, dass es
 \emph{full-duplex} ist. \emph{Full-duplex} bedeutet, dass \gls{tcp} in
 der Lage ist, gleichzeitig Daten zu empfangen und zu senden.
 \autoref{fig:smbbytefield} zeigt den Aufbau eines solchen \gls{smb}\hyp{}Pakets mit
@@ -924,7 +924,7 @@ Fällen handelt es sich bei NoSQL\hyp{}Datenbanken um einfache
 Key\hyp{}Value\hyp{}Stores. Key\hyp{}Value\hyp{}Stores sind Ansammlungen
 von Daten in n\hyp{}Tupeln mit einem Schlüssel und einem oder mehrerer
 Werte. Sie ähneln
-demnach also einem Wörterbuch. Meist sind diese Ansammlungen von Tupeln
+demnach, also einem Wörterbuch. Meist sind diese Ansammlungen von Tupeln
 in großen Binärdateien (\gls{blob}) oder sogar in einfachen Textdateien
 gespeichert. Ein Beispiel für eine Key\hyp{}Value\hyp{}Datenbank ist
 \emph{Dynamo} von der Firma \emph{Amazon}. Doch NoSQL\hyp{}Datenbanken
@@ -932,7 +932,7 @@ umfassen nicht nur Key\hyp{}Value\hyp{}Stores. Es existieren auch
 NoSQL\hyp{}Datenbanken zum Speichern von Graphen, großen Mengen an
 Dokumenten, wie \emph{IBM Notes}, Spaltenorientierten Datenbanken wie
 \emph{Apache Cassandra} und der \glsfirst{tsdb}. \glspl{tsdb} kommen bei
-jedem Gebiet zum Einsatz, wo große Mengen zeitveränderlicher Daten
+jedem Gebiet zum Einsatz, wo große Mengen zeit veränderlicher Daten
 gespeichert werden müssen. \glspl{tsdb} sammeln große Datenmengen und
 benutzen einen Zeitstempel als Index für diese Daten. Jedes Datum wird
 demnach einem festen Zeitpunkt zugeordnet. Dies macht eine \gls{tsdb}
@@ -1292,7 +1292,7 @@ vereinfachen sollen. Die zwei Leitbegriffe für solche Anwendungen sind
 also gewisse Aufgaben auf den jeweiligen Systemen anzustoßen.
 \emph{Konfigurationsmanagement} dagegen umfasst die Installation und
 Konfiguration von Software auf Systemen, im englischsprachigen Raum zusammengefasst
-\emph{Deployment} genannt. Da im Rechenzentrum der \gls{tuc} zur Zeit das auf
+\emph{Deployment} genannt. Da im Rechenzentrum der \gls{tuc} zurzeit das auf
 der Programmiersprache \emph{Python} basierende Orchestrierungs\hyp{} und
 Konfigurationsmanagementwerkzeug \emph{Ansible} dominiert, beschränkt sich diese
 Arbeit auf die Verwendung von \emph{Ansible}. Es gibt jedoch andere populäre
@@ -1515,7 +1515,7 @@ Fernadministrationsprotokoll \glsfirst{ssh}. Dadurch ist die Integrität,
 Sicherheit und Authentizität der übertragenen Daten sichergestellt.
 \gls{ssh} verwendet dazu ein asynchrones Verschlüsselungsverfahren. Auf
 dem Client wird ein Schlüsselpaar generiert. Dies erfolgt durch moderne
-kryptografisch sichere Verfahren wie \gls{rsa} oder Elliptischen Kurven.
+kryptografisch sichere Verfahren wie \gls{rsa} oder elliptischen Kurven.
 Der öffentliche Schlüssel wird auf dem Zielsystem platziert, meist
 geschieht dies durch vorheriges Einloggen auf dem Zielsystem mit einem
 Passwort. Bei der Verbindung vom Client zum Zielsystem wird durch das
@@ -1529,7 +1529,7 @@ verschlüsseln. Als Algorithmus wird das Verschlüsselungsverfahren
 \section{Wahl der Hardware}
 Da das zu entwickelnde Software\hyp{}System horizontal skalierbar sein soll (siehe
 Nicht-Funktionale Anforderung 4 (NFA4)), soll das System auch günstig in
-der Anschaffung sein (NFA2). Dem kommt zu Gute, dass die Software auf den
+der Anschaffung sein (NFA2). Dem kommt zugute, dass die Software auf den
 Messpunkten nicht viele Hardware\hyp{}Ressourcen benötigt. Es wird
 lediglich genug Speicher für ein kleines Linux mit einigen
 Kernkomponenten wie \emph{OpenSSH} und der eigentlichen Software für die
@@ -1771,7 +1771,7 @@ Torvalds (dem Linux\hyp{}Chef\hyp{}Entwickler) entwickeltes dezentrales
 Versionsverwaltungswerkzeug für Dateien\cite{GITWIKI}. Eine
 Versionsverwaltung hat den Vorteil, dass alle Entwicklungsschritte
 chronologisch und inhaltlich nachvollziehbar sind und die Herkunft jedes
-Entwicklungsschrittes klardokumentiert ist. Dazu werden die
+Entwicklungsschrittes klar dokumentiert ist. Dazu werden die
 Entwicklungsschritte möglichst atomar, also nicht weiter inhaltlich
 zerlegbar, in das Versionsverwaltungswerkzeug zusammen mit Informationen
 über den Entwickler und einer Beschreibung des \emph{Commits}, des
@@ -2513,7 +2513,7 @@ von einer \emph{Firewall} auf den Systemen möglich. Diese
 \emph{Firewall} würde nur die für die Messung nötigen Verbindungen
 erlauben. Implementierungen einer solchen \emph{Firewall} sind
 beispielsweise \emph{Iptables}, \emph{Firewalld}, oder \emph{UFW}. Die
-Konfiguration und Installation der \emph{Firewall} ist via
+Konfiguration und Installation der \emph{Firewall} sind via
 \emph{Ansible} unter geringem Aufwand möglich. Die
 nicht\hyp{}funktionale Anforderung \textbf{NFA1} (Wahl der
 Programmiersprache) ist ebenfalls nur bedingt erfüllt. Das
@@ -2546,7 +2546,7 @@ von immenser Bedeutung für das heutige Internet und den damit
 verbundenen Firmen. Eine Weiterentwicklung dieses Prototypen durch das
 Rechenzentrum der Technischen Universität Clausthal ist nicht
 auszuschließen. Das System stellt den Grundstein für ein modernes und
-skalierbares Monitoringsystem dar. Die Skalierbarkeit wird durch den
+skalierbares Monitoring\hyp{}System dar. Die Skalierbarkeit wird durch den
 Einsatz von \emph{Ansible} sichergestellt. Durch den Einsatz von
 \emph{Prometheus} und dessen \emph{Blackbox Exportern} ist es möglich
 verteilt Messpunkte zu schaffen, welche vom jeweiligen Standort aus,
@@ -2567,7 +2567,7 @@ Container\hyp{}Cluster etabliert. Abschließend möchte ich als Autor ein
 kleines persönliches Fazit vermitteln. Diese Bachelorarbeit vereint
 diverse Module meines Studiums. Ich habe mir nicht nur durch diese
 Arbeit eine neue Programmiersprache (\emph{Golang}) angeeignet, sondern
-auch meine Kenntnisse des \emph{Software Engineering}, der
+auch meine Kenntnisse des \emph{Software\hyp{}Engineering}, der
 Betriebssysteme und der Rechnernetze vertieft. Ebenfalls wurde ein
 tiefer Einblick in aktuelle Technologien wie \emph{Ansible},
 \emph{Prometheus} und \emph{Grafana} gewonnen. Ich bin für diese
