@@ -2441,7 +2441,7 @@ Deployment},label={lst:ansibleplaybookdeployment},basicstyle=\small]
 \end{lstlisting}
 \subsection{Abschließende Anforderungsanalyse}
 Nachfolgend sollen die im Kapitel 4.1 erfassten funktionalen und
-nicht-funktionalen Anforderungen mit dem gebauten Prototypen verglichen
+nicht\hyp{}funktionalen Anforderungen mit dem gebauten Prototypen verglichen
 werden. Anhand dieser abschließenden Analyse lässt sich feststellen, ob
 der Prototyp den Anforderungen gerecht geworden ist und an welchen
 Stellen das System noch verbessert werden kann. Die Kernfunktionalität
@@ -2487,13 +2487,46 @@ Rechnernetz nicht permanent zu belasten habe ich mich für eine
 Bandbreitenmessung via \emph{Iperf} und \emph{OpenSSH} entschieden. Der
 Administrator loggt sich via \gls{ssh} auf dem Zielsystem ein und führt
 \emph{Iperf} manuell aus. Die Ergebnisse einer solchen Messung wären via
-\emph{Node Exporter} und \emph{Grafana} sichtbar.
+\emph{Node Exporter} und \emph{Grafana} sichtbar. Zur Gewährleistung der
+Sicherheit des Systems (nicht\hyp{}funktionale Anforderung
+\textbf{NFA3}) findet die Installation und Konfiguration der Hosts nur
+via \gls{ssh} statt. Die Messdaten werden via \gls{http}
+übermittelt. Dieser Schritt ist dem Ursprung von \emph{Prometheus}
+geschuldet. \emph{Prometheus} war eigentlich nie gedacht zur Überwachung
+von Hosts über das Internet. Der Einsatz von \emph{Prometheus}
+beschränkte sich auf den Einsatz in Container\hyp{}Umgebungen wie
+\emph{Docker} oder Container\hyp{}Clustern wie \emph{Kubernetes}. Erst
+nach und nach wurde \emph{Prometheus} zur Überwachung von virtuellen
+Maschinen oder echter Hardware eingesetzt. Die Lösung des Problems ist
+der Einsatz eines Webservers, welcher \gls{https} beherrscht. Dadurch
+ist es möglich die Messdaten über den Webserver via \gls{https}
+anzubieten. Dennoch wären die Messdaten auch von \gls{ip}\hyp{}Adressen
+aus sichtbar, welche eigentlich keinen Zugriff auf die Messdaten haben
+sollten. Es handelt sich zwar bei den Messdaten um keine kritischen
+Informationen, allerdings geben die Messdaten einen Überblick über das
+System (laufende Prozesse, Versionen von Software, Speicherplatz,
+CPU\hyp{}Verbrauch, etc). Eine Zugangsbeschränkung ist durch den Einsatz
+von einer \emph{Firewall} auf den Systemen möglich. Diese
+\emph{Firewall} würde nur die für die Messung nötigen Verbindungen
+erlauben. Implementierungen einer solchen \emph{Firewall} sind
+beispielsweise \emph{Iptables}, \emph{Firewalld}, oder \emph{UFW}. Die
+Konfiguration und Installation der \emph{Firewall} ist via
+\emph{Ansible} unter geringem Aufwand möglich. Die
+nicht\hyp{}funktionale Anforderung \textbf{NFA1} (Wahl der
+Programmiersprache) ist ebenfalls nur bedingt erfüllt. Das
+Konfigurationsmanagement ist zwar in der Sprache \emph{Python} verfasst
+und mit \emph{Python} erweiterbar, allerdings sind alle anderen
+Bestandteile in der Sprache \emph{Golang} geschrieben. Es ist jedoch
+möglich Messdaten via eigenen \emph{Python}\hyp{}Modulen an
+\emph{Prometheus} unter Verwendung des \emph{Pushgateways}
+weiterzuleiten. Außerdem ist es möglich einen kleinen Webserver via
+\emph{Python} zu schreiben, welcher die Daten \emph{Prometheus}
+anbietet. Das \emph{Prometheus}\hyp{}Projekt bietet mit dem
+\emph{Prometheus Python Client} eine Bibliothek zur Verwendung von
+\emph{Prometheus} Komponenten mit \emph{Python}
+an\cite{PROMETHEUSPYTHON}.
+\chapter{Fazit und Ausblick}
 
-
-
-
-
-\chapter{Fazit}
 \nocite{*}
 \printbibliography{}
 \lstlistoflistings{}
