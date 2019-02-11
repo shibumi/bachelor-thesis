@@ -1,55 +1,40 @@
-# Cloud Alchemy demo monitoring site
+README
+======
 
-[![Build Status](https://travis-ci.org/cloudalchemy/demo-site.svg?branch=master)](https://travis-ci.org/cloudalchemy/demo-site)
-[![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
-[![IRC](https://img.shields.io/badge/irc.freenode.net-%23cloudalchemy-yellow.svg)](https://kiwiirc.com/nextclient/#ircs://irc.freenode.net/#cloudalchemy)
+Um drei virtuelle Maschinen als Testumgebung zu starten wird das
+Werkzeug `Vagrant` benötigt. Das Werkzeug ist herunterladbar über
+folgende Webseite:
 
-## [demo.cloudalchemy.org](https://demo.cloudalchemy.org)
+`https://www.vagrantup.com/`
 
-This repository provides an integration testing suite for our ansible roles as well as a demo site for [grafana](https://github.com/grafana/grafana), [prometheus](https://github.com/prometheus/prometheus), [alertmanager](https://github.com/prometheus/alertmanager) and [node_exporter](https://github.com/prometheus/node_exporter) (possibly more in the future).
-Site is provisioned with ansible running every day and on almost all commits to master branch. Everything is fully automated with travis ci pipeline. If you want to check `ansible-playbook` output, go to [last build](https://travis-ci.org/cloudalchemy/demo-site) or visit [ARA Records Ansible page](https://demo.cloudalchemy.org/ara).
+Unterstützte Betriebssysteme sind Windows, Mac OS X und Linux.
+Um die drei virtuellen Maschinen zu starten ist es nur nötig, dass in
+das Verzeichnis `ansible-monitoring` gewechselt wird. Danach können die
+drei virtuellen Maschinen mit dem folgenden Kommando gestartet werden:
 
-Have a look at the configuration file [group_vars/all/vars](group_vars/all/vars).
+`vagrant up`
 
-## Applications
+Auf die einzelnen Maschinen kann via SSH zugegriffen werden über das
+Kommando `vagrant ssh <hostname>`. Ein Beispiel dafür ist:
 
-All applications should be running on their default ports.
+`vagrant ssh puppetmaster`
 
-| App name          | Address                                                         | Status |  Uptime  |
-|-------------------|-----------------------------------------------------------------|--------|----------|
-| node_exporter     | [demo.cloudalchemy.org:9100](http://demo.cloudalchemy.org:9100) | [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m779739001-48f8ed6c3aa6f23da1ec11e2.svg)](http://demo.cloudalchemy.org:9100) | [![Uptime Robot status](https://img.shields.io/uptimerobot/ratio/7/m779739001-48f8ed6c3aa6f23da1ec11e2.svg)](http://demo.cloudalchemy.org:9100) |
-| snmp_exporter     | [demo.cloudalchemy.org:9116](http://demo.cloudalchemy.org:9116) | [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m779739006-f784bd36e07d328bfacb6d17.svg)](http://demo.cloudalchemy.org:9116) | [![Uptime Robot status](https://img.shields.io/uptimerobot/ratio/7/m779739006-f784bd36e07d328bfacb6d17.svg)](http://demo.cloudalchemy.org:9116) |
-| blackbox_exporter | [demo.cloudalchemy.org:9115](http://demo.cloudalchemy.org:9115) | [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m779739004-8447f4012a129e08df4db247.svg)](http://demo.cloudalchemy.org:9115) | [![Uptime Robot status](https://img.shields.io/uptimerobot/ratio/7/m779739004-8447f4012a129e08df4db247.svg)](http://demo.cloudalchemy.org:9115) |
-| prometheus        | [demo.cloudalchemy.org:9090](http://demo.cloudalchemy.org:9090) | [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m779739002-6049a4d9177bdf92d7dce7d9.svg)](http://demo.cloudalchemy.org:9190) | [![Uptime Robot status](https://img.shields.io/uptimerobot/ratio/7/m779739002-6049a4d9177bdf92d7dce7d9.svg)](http://demo.cloudalchemy.org:9090) |
-| alertmanager      | [demo.cloudalchemy.org:9093](http://demo.cloudalchemy.org:9093) | [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m779739005-687f76da143b768d378502f8.svg)](http://demo.cloudalchemy.org:9193) | [![Uptime Robot status](https://img.shields.io/uptimerobot/ratio/7/m779739005-687f76da143b768d378502f8.svg)](http://demo.cloudalchemy.org:9193) |
-| grafana           | [demo.cloudalchemy.org:3000](http://demo.cloudalchemy.org:3000) | [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m779739003-21ce43d565a95d31564b438d.svg)](http://demo.cloudalchemy.org:3000) | [![Uptime Robot status](https://img.shields.io/uptimerobot/ratio/7/m779739003-21ce43d565a95d31564b438d.svg)](http://demo.cloudalchemy.org:3000) |
+Sind die drei virtuellen Maschinen gestartet ist es möglich, dass
+Ansible Deployment vorzunehmen. Für das Ansible Deployment muss Ansible
+installiert sein. Ansible steht aktuell nur auf Linux und Mac OS X zur
+Verfügung. Es gibt jedoch den Weg Ansible über Windows 10 und "Windows
+Subsystem for Linux" zu benutzen. Eine Dokumentation welche die
+Installation auf Linux erklärt ist hier zu finden:
 
-## Run yourself
+`https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html`
 
-You can easily run such setup yourself without much knowledge how any part of this works. You just need to do two things:
+Eine Installation von Ansible auf Linux via Windows Subsystem for Linux
+ist in diesem Blogartikel erklärt:
 
-#### Change ansible inventory
+`https://www.jeffgeerling.com/blog/2017/using-ansible-through-windows-10s-subsystem-linux`
 
-First of all you need to configure your inventory, ours is located in [`hosts`](hosts) file. Here you set up your target hosts by changing value of `ansible_host` variable. Also here you can exclude parts of this demo site, so if you don't need our website, you just remove this part:
+Ist Ansible installiert kann das Deployment über das folgende Kommando
+gestartet werden. Es ist wichtig, dass man sich mit der Kommandozeile in
+dem Verzeichnis `ansible-monitoring` befindet:
 
-```
-[web]
-demo
-```
-
-Accordingly you can exclude grafana, prometheus, or influxdb.
-
-#### Change passwords
-
-For security measures we encrypted some of our passwords, but it is easy to use yours! You can do it by replacing a file located at [`group_vars/all/vault`](group_vars/all/vault) with following content:
-
-```
-vault_grafana_password: <<INSERT_YOUR_GRAFANA_PASSWORD>>
-vault_influxdb_password <<INSERT_YOUR_INFLUXDB_PASSWORD>>
-```
-
-You need to specify both even if you don't use grafana nor influxdb. You can look over [`group_vars/all/vault`](group_vars/all/vars) to find why.
-
-# 
-
-[![DigitalOcean](https://snapshooter.io/powered_by_digital_ocean.png)](https://digitalocean.com)
+`ansible-playbook playbooks/monitoring.yml`
