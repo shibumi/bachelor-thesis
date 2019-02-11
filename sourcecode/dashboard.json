@@ -1,7 +1,7 @@
 {
   "__inputs": [
     {
-      "name": "Prometheus",
+      "name": "DS_PROMETHEUS",
       "label": "Prometheus",
       "description": "",
       "type": "datasource",
@@ -33,6 +33,12 @@
       "id": "singlestat",
       "name": "Singlestat",
       "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": "5.0.0"
     }
   ],
   "annotations": {
@@ -48,26 +54,79 @@
       }
     ]
   },
-  "description": "Dashboard for decentralized Blackbox Exporters",
+  "description": "Dashboard for decentralized Blackbox Exporters. Mostly for DNS and HTTP/HTTPS Tests",
   "editable": true,
-  "gnetId": null,
+  "gnetId": 9719,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1548607306921,
+  "iteration": 1548948677135,
   "links": [],
   "panels": [
     {
+      "columns": [],
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 22,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "probe_http_status_code{blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "$interval",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "HTTP Status Code",
+      "transform": "table",
+      "type": "table"
+    },
+    {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorPostfix": false,
-      "colorPrefix": false,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#299c46"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -77,12 +136,12 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
+        "h": 2,
         "w": 4,
-        "x": 0,
+        "x": 12,
         "y": 0
       },
-      "id": 20,
+      "id": 6,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -116,20 +175,18 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": false
       },
-      "tableColumn": "",
+      "tableColumn": "Value",
       "targets": [
         {
-          "expr": "probe_http_status_code{instance=~\"$targets\"}",
+          "expr": "avg(probe_duration_seconds{instance=~\"$targets\"})",
           "format": "time_series",
-          "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
       "thresholds": "",
-      "title": "HTTP Status Code",
-      "transparent": false,
+      "title": "Average HTTP/HTTPS Duration",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -139,7 +196,7 @@
           "value": "null"
         }
       ],
-      "valueName": "current"
+      "valueName": "avg"
     },
     {
       "cacheTimeout": null,
@@ -150,7 +207,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -160,9 +217,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
+        "h": 2,
         "w": 4,
-        "x": 4,
+        "x": 16,
         "y": 0
       },
       "id": 8,
@@ -225,98 +282,17 @@
       "valueName": "avg"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#d44a3a",
-        "rgba(237, 129, 40, 0.89)",
-        "#299c46"
-      ],
-      "datasource": "Prometheus",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 8,
-        "y": 0
-      },
-      "id": 6,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "Value",
-      "targets": [
-        {
-          "expr": "avg(probe_duration_seconds{instance=~\"$targets\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "title": "Average HTTP/HTTPS Duration",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 5,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 2
       },
       "id": 18,
       "legend": {
@@ -342,11 +318,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_http_duration_seconds{phase=\"transfer\",instance=~\"$targets\"}",
+          "expr": "probe_http_duration_seconds{phase=\"transfer\",blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{blackbox_instance}}[{{instance}}]",
           "refId": "A"
         }
       ],
@@ -396,13 +372,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 3
+        "y": 5
       },
       "id": 2,
       "legend": {
@@ -430,12 +406,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_duration_seconds{instance=~\"$targets\"}",
+          "expr": "probe_duration_seconds{blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
           "format": "time_series",
           "hide": false,
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{blackbox_instance}}[{{instance}}]",
           "refId": "A"
         }
       ],
@@ -490,7 +466,7 @@
         "h": 6,
         "w": 12,
         "x": 12,
-        "y": 5
+        "y": 7
       },
       "id": 4,
       "legend": {
@@ -516,11 +492,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_dns_lookup_time_seconds{instance=~\"$targets\"}",
+          "expr": "probe_dns_lookup_time_seconds{blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{blackbox_instance}}[{{instance}}]",
           "refId": "A"
         }
       ],
@@ -570,13 +546,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "id": 10,
       "legend": {
@@ -602,11 +578,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_http_duration_seconds{phase=\"connect\",instance=~\"$targets\"}",
+          "expr": "probe_http_duration_seconds{phase=\"connect\",blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{blackbox_instance}}[{{instance}}]",
           "refId": "A"
         }
       ],
@@ -656,13 +632,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 6,
         "w": 12,
         "x": 12,
-        "y": 11
+        "y": 13
       },
       "id": 12,
       "legend": {
@@ -688,11 +664,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_http_duration_seconds{phase=\"processing\",instance=~\"$targets\"}",
+          "expr": "probe_http_duration_seconds{phase=\"processing\",blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{blackbox_instance}}[{{instance}}]",
           "refId": "A"
         }
       ],
@@ -747,7 +723,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 17
       },
       "id": 14,
       "legend": {
@@ -773,11 +749,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_http_duration_seconds{phase=\"resolve\",instance=~\"$targets\"}",
+          "expr": "probe_http_duration_seconds{phase=\"resolve\",blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{blackbox_instance}}[{{instance}}]",
           "refId": "A"
         }
       ],
@@ -827,13 +803,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 5,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 19
       },
       "id": 16,
       "legend": {
@@ -859,11 +835,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_http_duration_seconds{phase=\"tls\",instance=~\"$targets\"}",
+          "expr": "probe_http_duration_seconds{phase=\"tls\",blackbox_instance=~\"$blackboxes\",instance=~\"$targets\"}",
           "format": "time_series",
           "interval": "$interval",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{blackbox_instance}}[{{instance}}]",
           "refId": "A"
         }
       ],
@@ -921,13 +897,13 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "Prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(up,blackbox_instance)",
         "hide": 0,
-        "includeAll": false,
-        "label": "blackbox",
-        "multi": false,
-        "name": "blackbox",
+        "includeAll": true,
+        "label": "blackboxes",
+        "multi": true,
+        "name": "blackboxes",
         "options": [],
         "query": "label_values(up,blackbox_instance)",
         "refresh": 1,
@@ -943,15 +919,15 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "Prometheus",
-        "definition": "label_values(up{blackbox_instance=~\"$blackbox\"},instance)",
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(up{blackbox_instance=~\"$blackboxes\"},instance)",
         "hide": 0,
         "includeAll": true,
         "label": "targets",
         "multi": true,
         "name": "targets",
         "options": [],
-        "query": "label_values(up{blackbox_instance=~\"$blackbox\"},instance)",
+        "query": "label_values(up{blackbox_instance=~\"$blackboxes\"},instance)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1053,8 +1029,8 @@
     ]
   },
   "time": {
-    "from": "now-6h",
-    "to": "now"
+    "from": "2019-01-31T15:30:59.657Z",
+    "to": "2019-01-31T15:32:24.639Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1083,6 +1059,6 @@
   },
   "timezone": "browser",
   "title": "Decentralized Blackbox Exporter",
-  "uid": "dSgGTdlmk",
-  "version": 9
+  "uid": "ynUxXflik",
+  "version": 2
 }
